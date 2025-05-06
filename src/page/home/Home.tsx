@@ -38,7 +38,7 @@ const gridOptions: GridStackOptions = {
   row: 16,
   cellHeight: 5,
   cellHeightUnit: "rem",
-  margin: 8,
+  margin: 2,
   children: [
     {
       id: "item1",
@@ -59,12 +59,13 @@ export function Home() {
   const [initialOptions] = useState(gridOptions);
 
   return (
+
     <GridStackProvider initialOptions={initialOptions}>
       <Toolbar />
 
-      <GridStackRenderProvider>
-        <GridStackRender componentMap={COMPONENT_MAP} />
-      </GridStackRenderProvider>
+        <GridStackRenderProvider>
+          <GridStackRender componentMap={COMPONENT_MAP} />
+        </GridStackRenderProvider>
 
       <DebugInfo />
     </GridStackProvider>
@@ -78,6 +79,7 @@ function Toolbar() {
 
   return (
     <div
+    className="z-10 fixed bg-white opacity-50"
       style={{
         border: "1px solid gray",
         width: "100%",
