@@ -33,24 +33,12 @@ const COMPONENT_MAP: ComponentMap = {
 // { name: "Text", props: { content: "Item 1" } }
 const gridOptions: GridStackOptions = {
   acceptWidgets: true,
-  columnOpts: {
-    breakpointForWindow: true,
-    breakpoints: BREAKPOINTS,
-    layout: "moveScale",
-    columnMax: 12,
-  },
+  float: true,
+  column: 16,
+  row: 16,
+  cellHeight: 5,
+  cellHeightUnit: "rem",
   margin: 8,
-  cellHeight: CELL_HEIGHT,
-  subGridOpts: {
-    acceptWidgets: true,
-    columnOpts: {
-      breakpoints: BREAKPOINTS,
-      layout: "moveScale",
-    },
-    margin: 8,
-    minRow: 2,
-    cellHeight: CELL_HEIGHT,
-  },
   children: [
     {
       id: "item1",
@@ -62,73 +50,8 @@ const gridOptions: GridStackOptions = {
         name: "Text",
         props: { content: "Item 1" },
       } satisfies ComponentDataType<ComponentProps<typeof Text>>), // if need type check
-    },
-    {
-      id: "item2",
-      h: 2,
-      w: 2,
-      x: 2,
-      y: 0,
-      content: JSON.stringify({
-        name: "Text",
-        props: { content: "Item 2" },
-      }),
-    },
-    {
-      id: "sub-grid-1",
-      h: 5,
-      sizeToContent: true,
-      subGridOpts: {
-        acceptWidgets: true,
-        cellHeight: CELL_HEIGHT,
-        alwaysShowResizeHandle: false,
-        column: "auto",
-        minRow: 2,
-        layout: "list",
-        margin: 8,
-        children: [
-          {
-            id: "sub-grid-1-title",
-            locked: true,
-            noMove: true,
-            noResize: true,
-            w: 12,
-            x: 0,
-            y: 0,
-            content: JSON.stringify({
-              name: "Text",
-              props: { content: "Sub Grid 1 Title" },
-            }),
-          },
-          {
-            id: "item3",
-            h: 2,
-            w: 2,
-            x: 0,
-            y: 1,
-            content: JSON.stringify({
-              name: "Text",
-              props: { content: "Item 3" },
-            }),
-          },
-          {
-            id: "item4",
-            h: 2,
-            w: 2,
-            x: 2,
-            y: 0,
-            content: JSON.stringify({
-              name: "Text",
-              props: { content: "Item 4" },
-            }),
-          },
-        ],
-      },
-      w: 12,
-      x: 0,
-      y: 2,
-    },
-  ],
+    }
+  ]
 };
 
 export function Home() {
