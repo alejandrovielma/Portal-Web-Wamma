@@ -1,6 +1,6 @@
 import React from 'react';
-import { BreadcrumbItem } from './breadcrumbs'; // Asegúrate de que la ruta sea correcta
-import LogoAwani from './logo-awani.png'; // Importa tu logo (reemplaza con la ruta real)
+import { BreadcrumbItem } from '../header/breadcrumbs'; // Asegúrate de que la ruta sea correcta
+import LogoAwani from '../logo-awani.png'; // Importa tu logo (reemplaza con la ruta real)
 
 interface HeaderProps {
   breadcrumbs: BreadcrumbItem[];

@@ -11,8 +11,8 @@ import {
   useGridStackContext,
 } from "#lib/gridStackLib/index.js";
 
-import { generateBreadcrumbs, BreadcrumbItem } from "../../lib/breadcrumbs"; // Ajusta la ruta si es necesario
-import { Header } from "../../lib/Header"; // Ajusta la ruta si es necesario
+import { generateBreadcrumbs, BreadcrumbItem } from "../../lib/header/breadcrumbs"; // Ajusta la ruta si es necesario
+import { Header } from "../../lib/header/Header"; // Ajusta la ruta si es necesario
 
 import "./Home.css";
 
