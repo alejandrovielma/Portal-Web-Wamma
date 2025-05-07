@@ -1,11 +1,28 @@
 @import "tailwindcss";
 @import "gridstack/dist/gridstack.css";
 
+html {
+  --primary-color-light: #6BB8D7;
+  --primary-color-light2: #93CBE2;
+  --primary-color-dark: #6BB8D7;
+  --primary-color-dark2: #93CBE2;
+
+  --secoundary-color-light: #236E8C;
+  --secoundary-color-light2: #2D8DB4;
+  --secoundary-color-dark: #236E8C;
+  --secoundary-color-dark2: #2D8DB4;
+
+  --terceary-color-light: #0197D2;
+  --terceary-color-light2: #01719D;
+  --terceary-color-dark: #0197D2;
+  --terceary-color-dark2: #01719D;
+
+  --shadow-50: #191615;
+  --shadow-100: white;
+}
+
 :root {
   font-family: Quicksand, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,6 +35,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  line-height: 1.5;
+  font-weight: 400;
   background-color: white;
   color: black;
 }
@@ -26,7 +45,7 @@ body {
   height: 100%;
 }
 
-.grid-stack-item-content { background-color: #18BC9C; }
+.grid-stack-item-content { background-color: var(--primary-color-light); }
 
 button{
   border-radius: 3.125rem 3.125rem 0 0;
