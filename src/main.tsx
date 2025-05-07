@@ -6,7 +6,7 @@ import Map from '#pages/map/Map.tsx'
 import Animals from '#pages/animals/Animals.tsx'
 import News from '#pages/news/News.tsx'
 import Library from '#pages/library/Library.tsx'
-import './index.css'
+import './globals.css'
 
 const router = createBrowserRouter([
   {path: '/', element: <Home />},
