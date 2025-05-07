@@ -1,5 +1,6 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { GridStackOptions, GridStackWidget } from "gridstack";
+import  NavBarMenu  from "../../component/NavBarMenu.jsx";
 import {
   ComponentDataType,
   ComponentMap,
@@ -7,9 +8,7 @@ import {
   GridStackRender,
   GridStackRenderProvider,
   useGridStackContext,
-} from "../../lib";
-
-import "gridstack/dist/gridstack.css";
+} from "../../../lib/gridStackLib";
 import "./Home.css";
 
 const CELL_HEIGHT = 50;
@@ -62,13 +61,13 @@ export function Home() {
 
     <GridStackProvider initialOptions={initialOptions}>
       <Toolbar />
-
+        <NavBarMenu text="Menu" />
         <GridStackRenderProvider>
           <GridStackRender componentMap={COMPONENT_MAP} />
         </GridStackRenderProvider>
 
-      <DebugInfo />
-      {navBar()}
+      {/*<DebugInfo />*/}
+      
     </GridStackProvider>
   );
 }
@@ -148,26 +147,7 @@ function Toolbar() {
   );
 }
 
-function navBar() {
-  return (
-    <button className="z-10 fixed" 
-      style={{
-        border: "1px solid gray",
-        width: "10rem",
-        height: "3rem",
-        backgroundColor: "black",
-        color: "white",
-        fontSize: "1.5rem",
-        padding: "10px",
-        bottom: "0",
-        left: "43%",
-        
-        }}>
 
-        Menu
-    </button>
-  )
-}
 
 function DebugInfo() {
   const { initialOptions, saveOptions } = useGridStackContext();

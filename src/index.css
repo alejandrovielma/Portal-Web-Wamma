@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "gridstack/dist/gridstack.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

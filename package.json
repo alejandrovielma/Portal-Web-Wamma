@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "bun vite preview"
   },
+  "imports": {
+    "#lib/*": "./src/lib/*"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
     "gridstack": "^12.1.1",
