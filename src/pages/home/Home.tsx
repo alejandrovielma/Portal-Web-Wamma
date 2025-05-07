@@ -1,7 +1,6 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { GridStackOptions, GridStackWidget } from "gridstack";
 import NavBarMenu from "#components/NavBarMenu.jsx";
-import NavBarMenu from "#components/NavBarMenu.jsx";
 import BubbleMenu from "#components/BubbleMenu.jsx";
 import {
   ComponentDataType,
