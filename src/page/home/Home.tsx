@@ -68,6 +68,7 @@ export function Home() {
         </GridStackRenderProvider>
 
       <DebugInfo />
+      {navBar()}
     </GridStackProvider>
   );
 }
@@ -145,6 +146,27 @@ function Toolbar() {
       </button>
     </div>
   );
+}
+
+function navBar() {
+  return (
+    <button className="z-10 fixed" 
+      style={{
+        border: "1px solid gray",
+        width: "10rem",
+        height: "3rem",
+        backgroundColor: "black",
+        color: "white",
+        fontSize: "1.5rem",
+        padding: "10px",
+        bottom: "0",
+        left: "43%",
+        
+        }}>
+
+        Menu
+    </button>
+  )
 }
 
 function DebugInfo() {
