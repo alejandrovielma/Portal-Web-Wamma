@@ -10,9 +10,9 @@
     "preview": "bun vite preview"
   },
   "imports": {
-    "#lib/*": "./lib/*",
-    "#component/*": "./src/component/*",
-    "#page/*": "./src/page/*"
+    "#lib/*": "./src/lib/*",
+    "#components/*": "./src/components/*",
+    "#pages/*": "./src/pages/*"
   },
   "dependencies": {
     "@react-router/node": "^7.5.3",

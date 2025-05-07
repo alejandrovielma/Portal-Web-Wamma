@@ -1,11 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from '#page/home/Home.tsx'
-import Map from '#page/map/Map.tsx'
-import Animals from '#page/animals/Animals.tsx'
-import News from '#page/news/News.tsx'
-import Library from '#page/library/Library.tsx'
+import Home from '#pages/home/Home.tsx'
+import Map from '#pages/map/Map.tsx'
+import Animals from '#pages/animals/Animals.tsx'
+import News from '#pages/news/News.tsx'
+import Library from '#pages/library/Library.tsx'
 import './index.css'
 
 const router = createBrowserRouter([
