@@ -9,6 +9,10 @@ import {
   useGridStackContext,
 } from "../../lib";
 
+
+import { generateBreadcrumbs, BreadcrumbItem } from "../../lib/breadcrumbs";
+import { Header } from "../../lib/Header"; // Ajusta la ruta a Header.tsx
+
 import "gridstack/dist/gridstack.css";
 import "./Home.css";
 
@@ -58,21 +62,37 @@ export function Home() {
   // ! Uncontrolled
   const [initialOptions] = useState(gridOptions);
 
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('pushstate', handleLocationChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('pushstate', handleLocationChange);
+    };
+  }, []);
+
+  const pathSegments = currentPath.split('/').filter(segment => segment !== '');
+  const breadcrumbs: BreadcrumbItem[] = generateBreadcrumbs(pathSegments);
+
   return (
-
     <GridStackProvider initialOptions={initialOptions}>
+      <Header breadcrumbs={breadcrumbs} /> {/* Renderiza el componente Header */}
       <Toolbar />
-
-        <GridStackRenderProvider>
-          <GridStackRender componentMap={COMPONENT_MAP} />
-        </GridStackRenderProvider>
-
+      <GridStackRenderProvider>
+        <GridStackRender componentMap={COMPONENT_MAP} />
+      </GridStackRenderProvider>
       <DebugInfo />
       {navBar()}
     </GridStackProvider>
   );
 }
-
 export default Home;
 
 function Toolbar() {
@@ -80,7 +100,7 @@ function Toolbar() {
 
   return (
     <div
-    className="z-10 fixed bg-white opacity-50"
+      className="z-10 fixed bg-white opacity-50"
       style={{
         border: "1px solid gray",
         width: "100%",
@@ -150,7 +170,7 @@ function Toolbar() {
 
 function navBar() {
   return (
-    <button className="z-10 fixed" 
+    <button className="z-10 fixed"
       style={{
         border: "1px solid gray",
         width: "10rem",
@@ -161,10 +181,10 @@ function navBar() {
         padding: "10px",
         bottom: "0",
         left: "43%",
-        
-        }}>
 
-        Menu
+      }}>
+
+      Menu
     </button>
   )
 }
