@@ -1,6 +1,7 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { GridStackOptions, GridStackWidget } from "gridstack";
 import NavBarMenu from "#components/NavBarMenu.jsx";
+import NavBarMenu from "#components/NavBarMenu.jsx";
 import BubbleMenu from "#components/BubbleMenu.jsx";
 import {
   ComponentDataType,
@@ -11,6 +12,10 @@ import {
   useGridStackContext,
   COMPONENT_MAP
 } from "#lib/gridStackLib/index.js";
+
+import { generateBreadcrumbs, BreadcrumbItem } from "../../lib/header/breadcrumbs"; // Ajusta la ruta si es necesario
+import { Header } from "../../lib/header/Header"; // Ajusta la ruta si es necesario
+
 import "./Home.css";
 import PostItInfo from "#components/PostItInfo.tsx";
 
@@ -51,6 +56,24 @@ const gridOptions: GridStackOptions = {
 export function Home() {
   // ! Uncontrolled
   const [initialOptions] = useState(gridOptions);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('pushstate', handleLocationChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('pushstate', handleLocationChange);
+    };
+  }, []);
+
+  const pathSegments = currentPath.split('/').filter(segment => segment !== '');
+  const breadcrumbs: BreadcrumbItem[] = generateBreadcrumbs(pathSegments);
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 
@@ -58,17 +81,16 @@ export function Home() {
   };
 
   return (
-
     <GridStackProvider initialOptions={initialOptions}>
+      <Header breadcrumbs={breadcrumbs} /> {/* Renderiza el componente Header */}
       <Toolbar />
-      <NavBarMenu text="Menu" onClick={handleMenuClick} />
-      <BubbleMenu text="Bubble" onClick={handleMenuClick} />
+      <NavBarMenu text="Menu" onClick={handleMenuClick}/>
+      <BubbleMenu text="Bubble" onClick={handleMenuClick}/>
       <GridStackRenderProvider>
         <GridStackRender componentMap={COMPONENT_MAP} />
       </GridStackRenderProvider>
-
-      {/*<DebugInfo />*/}
-
+      {/* <DebugInfo /> */}
+      {/* {navBar()} */} {/* Comentando la función navBar, NavBarMenu y BubbleMenu cumplen una función similar */}
     </GridStackProvider>
   );
 }
@@ -148,7 +170,24 @@ function Toolbar() {
   );
 }
 
-
+// function navBar() { // Comentado para evitar duplicación con NavBarMenu
+//   return (
+//     <button className="z-10 fixed"
+//       style={{
+//         border: "1px solid gray",
+//         width: "10rem",
+//         height: "3rem",
+//         backgroundColor: "black",
+//         color: "white",
+//         fontSize: "1.5rem",
+//         padding: "10px",
+//         bottom: "0",
+//         left: "43%",
+//       }}>
+//       Menu
+//     </button>
+//   )
+// }
 
 function DebugInfo() {
   const { initialOptions, saveOptions } = useGridStackContext();
