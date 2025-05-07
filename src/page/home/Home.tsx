@@ -1,6 +1,7 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { GridStackOptions, GridStackWidget } from "gridstack";
 import  NavBarMenu  from "../../component/NavBarMenu.jsx";
+import BubbleMenu from "../../component/BubbleMenu.jsx";
 import {
   ComponentDataType,
   ComponentMap,
@@ -57,11 +58,17 @@ export function Home() {
   // ! Uncontrolled
   const [initialOptions] = useState(gridOptions);
 
+  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    
+    
+  };
+
   return (
 
     <GridStackProvider initialOptions={initialOptions}>
       <Toolbar />
-        <NavBarMenu text="Menu" />
+        <NavBarMenu text="Menu" onClick={handleMenuClick}/>
+        <BubbleMenu text="Bubble" onClick={handleMenuClick}/>
         <GridStackRenderProvider>
           <GridStackRender componentMap={COMPONENT_MAP} />
         </GridStackRenderProvider>
