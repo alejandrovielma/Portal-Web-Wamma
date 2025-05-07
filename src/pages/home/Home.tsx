@@ -1,6 +1,6 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { GridStackOptions, GridStackWidget } from "gridstack";
-import  NavBarMenu  from "#components/NavBarMenu.jsx";
+import NavBarMenu from "#components/NavBarMenu.jsx";
 import BubbleMenu from "#components/BubbleMenu.jsx";
 import {
   ComponentDataType,
@@ -9,8 +9,10 @@ import {
   GridStackRender,
   GridStackRenderProvider,
   useGridStackContext,
+  COMPONENT_MAP
 } from "#lib/gridStackLib/index.js";
 import "./Home.css";
+import PostItInfo from "#components/PostItInfo.tsx";
 
 const CELL_HEIGHT = 50;
 const BREAKPOINTS = [
@@ -20,14 +22,6 @@ const BREAKPOINTS = [
   { c: 8, w: 1100 },
 ];
 
-function Text({ content }: { content: string }) {
-  return <div className="w-full h-full">{content}</div>;
-}
-
-const COMPONENT_MAP: ComponentMap = {
-  Text,
-  // ... other components here
-};
 
 // ! Content must be json string like this:
 // { name: "Text", props: { content: "Item 1" } }
@@ -47,9 +41,9 @@ const gridOptions: GridStackOptions = {
       x: 0,
       y: 0,
       content: JSON.stringify({
-        name: "Text",
+        name: "PostItInfo",
         props: { content: "Item 1" },
-      } satisfies ComponentDataType<ComponentProps<typeof Text>>), // if need type check
+      } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>), // if need type check
     }
   ]
 };
@@ -59,22 +53,22 @@ export function Home() {
   const [initialOptions] = useState(gridOptions);
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    
-    
+
+
   };
 
   return (
 
     <GridStackProvider initialOptions={initialOptions}>
       <Toolbar />
-        <NavBarMenu text="Menu" onClick={handleMenuClick}/>
-        <BubbleMenu text="Bubble" onClick={handleMenuClick}/>
-        <GridStackRenderProvider>
-          <GridStackRender componentMap={COMPONENT_MAP} />
-        </GridStackRenderProvider>
+      <NavBarMenu text="Menu" onClick={handleMenuClick} />
+      <BubbleMenu text="Bubble" onClick={handleMenuClick} />
+      <GridStackRenderProvider>
+        <GridStackRender componentMap={COMPONENT_MAP} />
+      </GridStackRenderProvider>
 
       {/*<DebugInfo />*/}
-      
+
     </GridStackProvider>
   );
 }
@@ -86,7 +80,7 @@ function Toolbar() {
 
   return (
     <div
-    className="z-10 fixed bg-white opacity-50"
+      className="z-10 fixed bg-white opacity-50"
       style={{
         border: "1px solid gray",
         width: "100%",
