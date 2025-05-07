@@ -9,11 +9,21 @@
     "lint": "eslint .",
     "preview": "bun vite preview"
   },
+  "imports": {
+    "#lib/*": "./src/lib/*",
+    "#components/*": "./src/components/*",
+    "#pages/*": "./src/pages/*",
+    "#types/*": "./src/types/*"
+  },
   "dependencies": {
+    "@react-router/node": "^7.5.3",
+    "@react-router/serve": "^7.5.3",
     "@tailwindcss/vite": "^4.1.4",
     "gridstack": "^12.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-router": "^7.5.3",
+    "react-router-dom": "^7.5.3",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {

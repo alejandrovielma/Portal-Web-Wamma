@@ -6,10 +6,22 @@ import {
     useRef,
   } from "react";
   import { useGridStackContext } from "./grid-stack-context";
-  import { GridStack, GridStackOptions, GridStackWidget } from "gridstack";
+  import { GridStack, GridStackEventHandler, GridStackOptions, GridStackWidget } from "gridstack";
   import { GridStackRenderContext } from "./grid-stack-render-context";
+
+
+  interface GridStackRenderProviderProps extends PropsWithChildren {
+    onEvent?: GridStackEventHandler;
+  }
   
-  export function GridStackRenderProvider({ children }: PropsWithChildren) {
+  /**
+   * 
+   * @param children Para que pueda tener estiquetas dentro
+   * @param onEvent Callback para los eventos de gridstack. Se le pasa una funcion de tipo GridStackEventHandler
+   * 
+   * 
+   */
+  export function GridStackRenderProvider({ children, onEvent, }: GridStackRenderProviderProps) {
     const {
       _gridStack: { value: gridStack, set: setGridStack },
       initialOptions,
@@ -31,17 +43,33 @@ import {
     const initGrid = useCallback(() => {
       if (containerRef.current) {
         GridStack.renderCB = renderCBFn;
-        return GridStack.init(optionsRef.current, containerRef.current);
-        // ! Change event not firing on nested grids (resize, move...) https://github.com/gridstack/gridstack.js/issues/2671
-        // .on("change", () => {
-        //   console.log("changed");
-        // })
-        // .on("resize", () => {
-        //   console.log("resize");
-        // })
+        const grid = GridStack.init(optionsRef.current, containerRef.current)
+
+        grid.on("dragstart", (event, el) => {
+          //console.log("Drag started:", event);
+          onEvent?.( event );
+        });
+  
+        grid.on("drag", (event, el) => {
+          onEvent?.(event);
+        });
+  
+        grid.on("dragstop", (event, el) => {
+          onEvent?.(event);
+        });
+  
+        grid.on("resize", (event, el) => {
+          onEvent?.(event);
+        });
+  
+        grid.on("change", (event, items) => {
+          onEvent?.(event);
+        });
+
+        return grid
       }
       return null;
-    }, [renderCBFn]);
+    }, [renderCBFn, onEvent]);
   
     useLayoutEffect(() => {
       if (initialOptions != optionsRef.current && gridStack) {

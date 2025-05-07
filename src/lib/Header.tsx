@@ -14,7 +14,7 @@ export const Header: React.FC<HeaderProps> = ({ breadcrumbs, titulo = "Título" 
       <div className="flex items-center">
         <img src={LogoAwani} alt="Logo Awani" className="h-8 w-auto mr-4" /> {/* Ajusta el tamaño del logo */}
         <div>
-          <h1 className="text-lg font-semibold">Awani</h1>
+          <h1 className="text-lg font-semibold">Wamma</h1>
           <p className="text-sm">Aprendices del agua</p>
         </div>
       </div>
