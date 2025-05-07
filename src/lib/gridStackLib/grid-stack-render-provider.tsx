@@ -14,6 +14,13 @@ import {
     onEvent?: GridStackEventHandler;
   }
   
+  /**
+   * 
+   * @param children Para que pueda tener estiquetas dentro
+   * @param onEvent Callback para los eventos de gridstack. Se le pasa una funcion de tipo GridStackEventHandler
+   * 
+   * 
+   */
   export function GridStackRenderProvider({ children, onEvent, }: GridStackRenderProviderProps) {
     const {
       _gridStack: { value: gridStack, set: setGridStack },
