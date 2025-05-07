@@ -1,3 +1,4 @@
+import { BreadcrumbItem, generateBreadcrumbs, NavHeader } from "#components/NavHeader.tsx";
 import { ComponentDataType, ComponentMap, GridStackProvider, GridStackRender, GridStackRenderProvider } from "#lib/gridStackLib/index.ts";
 import { GridStackOptions } from "gridstack";
 import { ComponentProps, useEffect, useState } from "react";
@@ -36,6 +37,10 @@ const gridOptions: GridStackOptions = {
 
 export function Library() {
     const [initialOptions] = useState(gridOptions);
+    const [currentPath, setCurrentPath] = useState(window.location.pathname);
+    
+    const pathSegments = currentPath.split('/').filter(segment => segment !== '');
+    const breadcrumbs: BreadcrumbItem[] = generateBreadcrumbs(pathSegments);
 
     function handleEvent(event: Event) {
         console.log("Event triggered:", event);
@@ -43,7 +48,7 @@ export function Library() {
 
     return (
         <>
-            
+            <NavHeader breadcrumbs={breadcrumbs} />
             <div className="size-60">
                 
                 <GridStackProvider initialOptions={initialOptions}>

@@ -13,7 +13,8 @@
     "#lib/*": "./src/lib/*",
     "#components/*": "./src/components/*",
     "#pages/*": "./src/pages/*",
-    "#types/*": "./src/types/*"
+    "#types/*": "./src/types/*",
+    "#public/*": "./public/*"
   },
   "dependencies": {
     "@react-router/node": "^7.5.3",
