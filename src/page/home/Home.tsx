@@ -1,7 +1,7 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { GridStackOptions, GridStackWidget } from "gridstack";
-import  NavBarMenu  from "../../component/NavBarMenu.jsx";
-import BubbleMenu from "../../component/BubbleMenu.jsx";
+import  NavBarMenu  from "#component/NavBarMenu.jsx";
+import BubbleMenu from "#component/BubbleMenu.jsx";
 import {
   ComponentDataType,
   ComponentMap,
@@ -10,7 +10,6 @@ import {
   GridStackRenderProvider,
   useGridStackContext,
 } from "#lib/gridStackLib/index.js";
-import  NavBarMenu  from "#component/NavBarMenu.jsx";
 import "./Home.css";
 
 const CELL_HEIGHT = 50;
