@@ -73,7 +73,7 @@ export const NavHeader: React.FC<HeaderProps> = ({ breadcrumbs, titulo = "Títul
       <h2 className="text-xl font-semibold">{titulo}</h2>
 
       {/* Sección derecha: "X" (puedes usar un icono o texto) */}
-      <span className="text-2xl cursor-pointer">X</span>
+      <a href='.' className="text-2xl cursor-pointer">X</a>
 
       {/* (Opcional) Migas de pan - puedes posicionarlas donde prefieras */}
       {breadcrumbs && breadcrumbs.length > 0 && (

@@ -60,7 +60,7 @@ export function Home() {
     <GridStackProvider initialOptions={initialOptions}>
       <Toolbar />
       <NavBarMenu text="Menu" onClick={handleMenuClick}/>
-      <BubbleMenu text="Bubble" onClick={handleMenuClick}/>
+      <BubbleMenu text="Biblioteca" link="./biblioteca"/>
       <GridStackRenderProvider>
         <GridStackRender componentMap={COMPONENT_MAP} />
       </GridStackRenderProvider>
@@ -95,7 +95,7 @@ function Toolbar() {
             x: 0,
             y: 0,
             content: JSON.stringify({
-              name: "Text",
+              name: "PostItInfo",
               props: { content: id },
             }),
           }));
@@ -104,7 +104,7 @@ function Toolbar() {
         Add Text (2x2)
       </button>
 
-      <button
+      {/*<button
         onClick={() => {
           addSubGrid((id, withWidget) => ({
             h: 5,
@@ -126,7 +126,7 @@ function Toolbar() {
                   x: 0,
                   y: 0,
                   content: JSON.stringify({
-                    name: "Text",
+                    name: "PostItInfo",
                     props: { content: "Sub Grid 1 Title" + id },
                   }),
                 }),
@@ -139,29 +139,10 @@ function Toolbar() {
         }}
       >
         Add Sub Grid (12x1)
-      </button>
+      </button>*/}
     </div>
   );
 }
-
-// function navBar() { // Comentado para evitar duplicación con NavBarMenu
-//   return (
-//     <button className="z-10 fixed"
-//       style={{
-//         border: "1px solid gray",
-//         width: "10rem",
-//         height: "3rem",
-//         backgroundColor: "black",
-//         color: "white",
-//         fontSize: "1.5rem",
-//         padding: "10px",
-//         bottom: "0",
-//         left: "43%",
-//       }}>
-//       Menu
-//     </button>
-//   )
-// }
 
 function DebugInfo() {
   const { initialOptions, saveOptions } = useGridStackContext();

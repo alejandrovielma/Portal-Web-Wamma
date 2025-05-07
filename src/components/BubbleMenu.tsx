@@ -1,13 +1,16 @@
 interface BubbleMenuProps {
     text: string
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    link: string
 }
-export function BubbleMenu({text}: BubbleMenuProps) {
+export function BubbleMenu({text, link}: BubbleMenuProps) {
 
     return (
-        <button className="z-10 flex-col justify-center items-center w-7 h-7 bg-white opacity-80" >
-            {text}
-        </button>
+        
+        <a href={link} className="z-10 bottom-0 fixed" >
+            <div className="flex-col justify-center content-center text-center size-16 rounded-full items-center bg-blue-500 text-white opacity-80">
+                <h4>{text}</h4>
+            </div>
+        </a>
     )
     
     

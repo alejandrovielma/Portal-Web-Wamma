@@ -1,32 +1,30 @@
 @import "tailwindcss";
 @import "gridstack/dist/gridstack.css";
 
-html {
-  --primary-color-light: #6BB8D7;
-  --primary-color-light2: #93CBE2;
-  --primary-color-dark: #6BB8D7;
-  --primary-color-dark2: #93CBE2;
-
-  --secoundary-color-light: #236E8C;
-  --secoundary-color-light2: #2D8DB4;
-  --secoundary-color-dark: #236E8C;
-  --secoundary-color-dark2: #2D8DB4;
-
-  --terceary-color-light: #0197D2;
-  --terceary-color-light2: #01719D;
-  --terceary-color-dark: #0197D2;
-  --terceary-color-dark2: #01719D;
-
-  --shadow-50: #191615;
-  --shadow-100: white;
-}
-
 :root {
   font-family: Quicksand, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-primary-light: #6BB8D7;
+  --color-primary-light2: #93CBE2;
+  --color-primary-dark: #6BB8D7;
+  --color-primary-dark2: #93CBE2;
+
+  --color-secoundary-light: #236E8C;
+  --color-secoundary-light2: #2D8DB4;
+  --color-secoundary-dark: #236E8C;
+  --color-secoundary-dark2: #2D8DB4;
+
+  --color-terceary-light: #0197D2;
+  --color-terceary-light2: #01719D;
+  --color-terceary-dark: #0197D2;
+  --color-terceary-dark2: #01719D;
+
+  --color-shadow-50: #191615;
+  --color-shadow-100: white;
 }
 
 body {
@@ -44,7 +42,7 @@ body {
   height: 100%;
 }
 
-.grid-stack-item-content { background-color: var(--primary-color-light); }
+.grid-stack-item-content { background-color: var(--color-primary-light); }
 
 button{
   border-radius: 3.125rem 3.125rem 0 0;
