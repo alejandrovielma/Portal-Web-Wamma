@@ -1,18 +1,9 @@
 import { BreadcrumbItem, generateBreadcrumbs, NavHeader } from "#components/NavHeader.tsx";
 import PostItBase from "#components/PostIts/PostItBase.tsx";
-import { ComponentDataType, ComponentMap, GridStackProvider, GridStackRender, GridStackRenderProvider } from "#lib/gridStackLib/index.ts";
+import PostItInfo from "#components/PostIts/PostItInfo.tsx";
+import { COMPONENT_MAP, ComponentDataType, ComponentMap, GridStackProvider, GridStackRender, GridStackRenderProvider } from "#lib/gridStackLib/index.ts";
 import { GridStackOptions } from "gridstack";
 import { ComponentProps, useEffect, useState } from "react";
-
-
-function Text({ content }: { content: string }) {
-  return <div className="w-full h-full">{content}</div>;
-}
-
-const COMPONENT_MAP: ComponentMap = {
-  Text,
-  // ... other components here
-};
 
 const gridOptions: GridStackOptions = {
   acceptWidgets: true,
@@ -29,9 +20,9 @@ const gridOptions: GridStackOptions = {
       x: 0,
       y: 0,
       content: JSON.stringify({
-        name: "Text",
+        name: "PostItInfo",
         props: { content: "Item 1" },
-      } satisfies ComponentDataType<ComponentProps<typeof Text>>), // if need type check
+      } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>), // if need type check
     }
   ],
 };

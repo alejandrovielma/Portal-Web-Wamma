@@ -14,15 +14,6 @@ import {
 import "./Home.css";
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
 
-const CELL_HEIGHT = 50;
-const BREAKPOINTS = [
-  { c: 1, w: 700 },
-  { c: 3, w: 850 },
-  { c: 6, w: 950 },
-  { c: 8, w: 1100 },
-];
-
-
 // ! Content must be json string like this:
 // { name: "Text", props: { content: "Item 1" } }
 const gridOptions: GridStackOptions = {
