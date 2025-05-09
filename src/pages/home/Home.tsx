@@ -67,16 +67,7 @@ function Toolbar() {
 
   return (
     <div
-      className="z-10 fixed bg-white opacity-50"
-      style={{
-        border: "1px solid gray",
-        width: "100%",
-        padding: "10px",
-        marginBottom: "10px",
-        display: "flex",
-        flexDirection: "row",
-        gap: "10px",
-      }}
+      className="z-10 flex gap-8 fixed bg-white/50 top-0 right-0 m-4 p-4 rounded-lg shadow-md"
     >
       <button
         onClick={() => {
@@ -92,7 +83,23 @@ function Toolbar() {
           }));
         }}
       >
-        Add Text (2x2)
+        Add Card Info (2x2)
+      </button>
+      <button
+        onClick={() => {
+          addWidget((id) => ({
+            w: 2,
+            h: 2,
+            x: 0,
+            y: 0,
+            content: JSON.stringify({
+              name: "PostItLink",
+              props: { content: id },
+            }),
+          }));
+        }}
+      >
+        Add Card Link (2x2)
       </button>
 
       {/*<button

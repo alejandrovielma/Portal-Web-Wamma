@@ -9,6 +9,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme{
   --color-light-primary: #6BB8D7;
   --color-light-primaryVar: #93CBE2;
@@ -16,11 +18,11 @@
   --color-light-secondaryVar: #2D8DB4;
   --color-light-tertiary: #0197D2;
 
-  --color-dark-primary: #6BB8D7;
-  --color-dark-primaryVar: #93CBE2;
-  --color-dark-secondary : #236E8C;
-  --color-dark-secondaryVar: #2D8DB4;
-  --color-dark-tertiary: #0197D2;
+  --color-dark-primary: #5492aa;
+  --color-dark-primaryVar: #7baabd;
+  --color-dark-secondary : #123847;
+  --color-dark-secondaryVar: #246e8b;
+  --color-dark-tertiary: #012e41;
 
   --color-shadow-50: #191615;
   --color-shadow-100: white;
@@ -45,11 +47,11 @@ body {
   height: 100%;
 }
 
-button{
+/*button{
   border-radius: 3.125rem 3.125rem 0 0;
   cursor: pointer;
 }
-/*button {
+button {
   border-radius: 24px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -58,11 +60,11 @@ button{
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}*/
+}
 button:hover {
   border-color: #646cff;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+}*/
