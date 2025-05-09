@@ -50,10 +50,6 @@ export function Library() {
     return (
         <>
             <NavHeader breadcrumbs={breadcrumbs} />
-            <PostItBase>
-              <h1>hola</h1>
-              <p>hoal comos estas</p>
-              </PostItBase>
             <div className="size-60">
                 <GridStackProvider initialOptions={initialOptions}>
                     <GridStackRenderProvider onEvent={handleEvent}>
