@@ -1,4 +1,5 @@
 import { BreadcrumbItem, generateBreadcrumbs, NavHeader } from "#components/NavHeader.tsx";
+import PostItBase from "#components/PostIts/PostItBase.tsx";
 import { ComponentDataType, ComponentMap, GridStackProvider, GridStackRender, GridStackRenderProvider } from "#lib/gridStackLib/index.ts";
 import { GridStackOptions } from "gridstack";
 import { ComponentProps, useEffect, useState } from "react";
@@ -49,8 +50,11 @@ export function Library() {
     return (
         <>
             <NavHeader breadcrumbs={breadcrumbs} />
+            <PostItBase>
+              <h1>hola</h1>
+              <p>hoal comos estas</p>
+              </PostItBase>
             <div className="size-60">
-                
                 <GridStackProvider initialOptions={initialOptions}>
                     <GridStackRenderProvider onEvent={handleEvent}>
                     <GridStackRender componentMap={COMPONENT_MAP} />

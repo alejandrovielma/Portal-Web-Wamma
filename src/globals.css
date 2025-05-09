@@ -46,8 +46,6 @@ body {
   height: 100%;
 }
 
-.grid-stack-item-content { background-color: var(--color-primary-light); }
-
 button{
   border-radius: 3.125rem 3.125rem 0 0;
   cursor: pointer;

@@ -12,7 +12,7 @@ import {
 } from "#lib/gridStackLib/index.js";
 
 import "./Home.css";
-import PostItInfo from "#components/PostItInfo.tsx";
+import PostItInfo from "#components/PostIts/PostItInfo.tsx";
 
 const CELL_HEIGHT = 50;
 const BREAKPOINTS = [
