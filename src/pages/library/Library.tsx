@@ -1,9 +1,10 @@
 import { BreadcrumbItem, generateBreadcrumbs, NavHeader } from "#components/NavHeader.tsx";
-import PostItBase from "#components/PostIts/PostItBase.tsx";
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
+import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import { COMPONENT_MAP, ComponentDataType, ComponentMap, GridStackProvider, GridStackRender, GridStackRenderProvider } from "#lib/gridStackLib/index.ts";
 import { GridStackOptions } from "gridstack";
 import { ComponentProps, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const gridOptions: GridStackOptions = {
   acceptWidgets: true,
@@ -29,17 +30,18 @@ const gridOptions: GridStackOptions = {
 
 export function Library() {
     const [initialOptions] = useState(gridOptions);
+    const [isDragging, setIsDragging] = useState(false);
     const [currentPath, setCurrentPath] = useState(window.location.pathname);
     
     const pathSegments = currentPath.split('/').filter(segment => segment !== '');
     const breadcrumbs: BreadcrumbItem[] = generateBreadcrumbs(pathSegments);
 
     function handleEvent(event: Event) {
-        console.log("Event triggered:", event);
+        setIsDragging(event.type === 'dragstart');
     }
 
     return (
-        <>
+        <SelectPostItLayer isLargePadding={isDragging}>
             <NavHeader breadcrumbs={breadcrumbs} />
             <div className="size-60">
                 <GridStackProvider initialOptions={initialOptions}>
@@ -48,7 +50,7 @@ export function Library() {
                     </GridStackRenderProvider>
                 </GridStackProvider>
             </div>
-        </>
+        </SelectPostItLayer>
     )
 }
 export default Library;

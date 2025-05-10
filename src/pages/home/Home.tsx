@@ -40,18 +40,65 @@ const gridOptions: GridStackOptions = {
 };
 
 export function Home() {
-
   const [isBubbleMenuVisible, setIsBubbleMenuVisible] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   // ! Uncontrolled
   const [initialOptions] = useState(gridOptions);
 
-  const handleMenuClick = () => {
-    setIsBubbleMenuVisible(!isBubbleMenuVisible);
-  };
+  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 
   const handleCloseBubbleMenu = () => {
     setIsBubbleMenuVisible(false);
+  };
+
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [scrollStart, setScrollStart] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === "Space") {
+        setIsDragging(true);
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (event.code === "Space") {
+        setIsDragging(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
+
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (isDragging) {
+      setDragStart({ x: event.clientX, y: event.clientY });
+      setScrollStart({
+        x: event.currentTarget.scrollLeft,
+        y: event.currentTarget.scrollTop,
+      });
+    }
+  }
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (isDragging) {
+      const dx = event.clientX - dragStart.x;
+      const dy = event.clientY - dragStart.y;
+
+      event.currentTarget.scrollLeft = scrollStart.x - dx;
+      event.currentTarget.scrollTop = scrollStart.y - dy;
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
   };
 
   return (
@@ -78,16 +125,7 @@ function Toolbar() {
 
   return (
     <div
-      className="z-10 fixed bg-white opacity-50"
-      style={{
-        border: "1px solid gray",
-        width: "100%",
-        padding: "10px",
-        marginBottom: "10px",
-        display: "flex",
-        flexDirection: "row",
-        gap: "10px",
-      }}
+      className="z-10 flex gap-8 fixed bg-white/50 top-0 right-0 m-4 p-4 rounded-lg shadow-md"
     >
       <button
         onClick={() => {
@@ -103,7 +141,23 @@ function Toolbar() {
           }));
         }}
       >
-        Add Text (2x2)
+        Add Card Info (2x2)
+      </button>
+      <button
+        onClick={() => {
+          addWidget((id) => ({
+            w: 2,
+            h: 2,
+            x: 0,
+            y: 0,
+            content: JSON.stringify({
+              name: "PostItLink",
+              props: { content: id },
+            }),
+          }));
+        }}
+      >
+        Add Card Link (2x2)
       </button>
 
       {/*<button

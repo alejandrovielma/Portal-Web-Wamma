@@ -45,24 +45,27 @@ import {
         GridStack.renderCB = renderCBFn;
         const grid = GridStack.init(optionsRef.current, containerRef.current)
 
-        grid.on("dragstart", (event, el) => {
-          //console.log("Drag started:", event);
+        grid.on("added", (event) => {
+          onEvent?.(event);
+        })
+
+        grid.on("dragstart", (event) => {
           onEvent?.( event );
         });
   
-        grid.on("drag", (event, el) => {
+        grid.on("drag", (event) => {
           onEvent?.(event);
         });
   
-        grid.on("dragstop", (event, el) => {
+        grid.on("dragstop", (event) => {
           onEvent?.(event);
         });
   
-        grid.on("resize", (event, el) => {
+        grid.on("resize", (event) => {
           onEvent?.(event);
         });
   
-        grid.on("change", (event, items) => {
+        grid.on("change", (event) => {
           onEvent?.(event);
         });
 

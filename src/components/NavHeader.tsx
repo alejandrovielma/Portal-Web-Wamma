@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { TransitionToMenuButton } from "./TransitionToMenuButton";
 
 export interface BreadcrumbItem {
   nombre: string;
@@ -12,14 +13,18 @@ export interface BreadcrumbItem {
  * @param baseUrl La URL base de tu sitio web (opcional, por defecto es '/').
  * @returns Un array de objetos BreadcrumbItem.
  */
-export function generateBreadcrumbs(segments: string[], baseUrl: string = '/'): BreadcrumbItem[] {
-  const breadcrumbs: BreadcrumbItem[] = [{ nombre: 'Inicio', link: baseUrl }];
+export function generateBreadcrumbs(
+  segments: string[],
+  baseUrl: string = "/"
+): BreadcrumbItem[] {
+  const breadcrumbs: BreadcrumbItem[] = [{ nombre: "Inicio", link: baseUrl }];
   let currentPath = baseUrl;
 
   segments.forEach((segment) => {
-    currentPath += (currentPath.endsWith('/') ? '' : '/') + segment;
+    currentPath += (currentPath.endsWith("/") ? "" : "/") + segment;
     breadcrumbs.push({
-      nombre: segment.charAt(0).toUpperCase() + segment.slice(1).replace('-', ' '), // Formatear el nombre
+      nombre:
+        segment.charAt(0).toUpperCase() + segment.slice(1).replace("-", " "), // Formatear el nombre
       link: currentPath,
     });
   });
@@ -36,13 +41,13 @@ export function generateBreadcrumbs(segments: string[], baseUrl: string = '/'): 
  */
 export function generateBreadcrumbsFromItems(
   items: { nombre: string; slug: string }[],
-  baseUrl: string = '/'
+  baseUrl: string = "/"
 ): BreadcrumbItem[] {
-  const breadcrumbs: BreadcrumbItem[] = [{ nombre: 'Inicio', link: baseUrl }];
+  const breadcrumbs: BreadcrumbItem[] = [{ nombre: "Inicio", link: baseUrl }];
   let currentPath = baseUrl;
 
   items.forEach((item) => {
-    currentPath += (currentPath.endsWith('/') ? '' : '/') + item.slug;
+    currentPath += (currentPath.endsWith("/") ? "" : "/") + item.slug;
     breadcrumbs.push({
       nombre: item.nombre,
       link: currentPath,
@@ -54,44 +59,44 @@ export function generateBreadcrumbsFromItems(
 
 interface HeaderProps {
   breadcrumbs: BreadcrumbItem[];
-  titulo?: string; // Prop opcional para el título
+  titulo?: string;
 }
 
-export const NavHeader: React.FC<HeaderProps> = ({ breadcrumbs, titulo = "Título" }) => {
+export const NavHeader: React.FC<HeaderProps> = ({
+  breadcrumbs,
+}) => {
   return (
-    <header className="bg-blue-500 text-white py-4 px-6 flex items-center justify-between">
-      {/* Sección izquierda: Logo y texto */}
-      <div className="flex items-center">
-        <img src="logo-wamma.png" alt="Logo Awani" className="h-8 w-auto mr-4" /> {/* Ajusta el tamaño del logo */}
+    <header className="bg-blue-500 text-white flex items-stretch justify-between relative h-20">
+      <TransitionToMenuButton href="/" className="flex items-center pl-6 cursor-pointer">
+        <img src="logo.svg" alt="Logo Awani" className="h-8 w-auto mr-4" />
         <div>
-          <h1 className="text-lg font-semibold">Wamma</h1>
+          <h1 className="text-lg font-semibold text-start">Wamma</h1>
           <p className="text-sm">Aprendices del agua</p>
         </div>
-      </div>
-
-      {/* Sección central: Título */}
-      <h2 className="text-xl font-semibold">{titulo}</h2>
-
-      {/* Sección derecha: "X" (puedes usar un icono o texto) */}
-      <a href='.' className="text-2xl cursor-pointer">X</a>
-
-      {/* (Opcional) Migas de pan - puedes posicionarlas donde prefieras */}
+      </TransitionToMenuButton>
+      <div className="border-l border-white self-stretch mx-4"></div>
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <nav aria-label="breadcrumb" className="absolute bottom-2 left-6 text-sm">
-          <ol className="flex items-center space-x-2">
-            {breadcrumbs.map((item, index) => (
-              <li key={index}>
-                <a href={item.link} className="text-white hover:underline">
-                  {item.nombre}
-                </a>
-                {index < breadcrumbs.length - 1 && (
-                  <span className="mx-2 text-white">&gt;</span>
-                )}
-              </li>
-            ))}
-          </ol>
+        <nav aria-label="breadcrumb" className="flex items-center text-xl">
+          {breadcrumbs.map((item, index) => (
+            <React.Fragment key={index}>
+              <a href={item.link} className="text-white hover:underline">
+                {item.nombre}
+              </a>
+              {index < breadcrumbs.length - 1 && (
+                <span className="mx-2 text-white">
+                  &gt;
+                </span>
+              )}{" "}
+            </React.Fragment>
+          ))}
         </nav>
       )}
+      <TransitionToMenuButton
+        href="/"
+        className="text-2xl cursor-pointer ml-auto pr-6 flex items-center"
+      >
+        <img src="x.svg" alt="salir" className="h-8 w-auto mr-4" />
+      </TransitionToMenuButton>
     </header>
   );
 };
