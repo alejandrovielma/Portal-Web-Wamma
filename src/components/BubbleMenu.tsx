@@ -34,7 +34,7 @@ const BubbleMenu: React.FC<BubbleMenuProps> = ({ isVisible, onClose, menuButtonR
     >
         {/* Actualidad */}
         <a href="./Actualidad" onClick={onClose}>
-          <div className={`flex flex-col items-center w-28 h-28 bg-white opacity-95 rounded-full shadow-md p-4 transition-all duration-600 ease-in-out  ${
+          <div className={`flex flex-col items-center w-28 h-28 bg-white opacity-85 rounded-full shadow-md p-4 transition-all duration-600 ease-in-out  ${
             isVisible ? 'opacity-95 translate-y-10' : ''
           }`}>
             <h4 className="text-black font-semibold text-center">Actualidad</h4>
@@ -44,7 +44,7 @@ const BubbleMenu: React.FC<BubbleMenuProps> = ({ isVisible, onClose, menuButtonR
 
         {/* Animales */}
         <a href="./Animales" onClick={onClose}>
-          <div className={`flex flex-col items-center w-28 h-28 bg-white opacity-95 rounded-full shadow-md p-4 transition-all duration-600 ease-in-out  ${
+          <div className={`flex flex-col items-center w-28 h-28 bg-white opacity-85 rounded-full shadow-md p-4 transition-all duration-600 ease-in-out  ${
             isVisible ? 'opacity-95 -translate-y-10' : ''
           }`}>
             <h4 className="text-black font-semibold text-center">Animales</h4>
@@ -54,7 +54,7 @@ const BubbleMenu: React.FC<BubbleMenuProps> = ({ isVisible, onClose, menuButtonR
 
         {/* Biblioteca */}
         <a href="./Biblioteca" onClick={onClose}>
-          <div className={`flex flex-col items-center w-28 h-28 bg-white opacity-95 rounded-full shadow-md p-4 transition-all duration-600 ease-in-out  ${
+          <div className={`flex flex-col items-center w-28 h-28 bg-white opacity-85 rounded-full shadow-md p-4 transition-all duration-600 ease-in-out  ${
             isVisible ? 'opacity-95 -translate-y-10' : ''
           }`}>
             <h4 className="text-black font-semibold text-center">Biblioteca</h4>
@@ -64,7 +64,7 @@ const BubbleMenu: React.FC<BubbleMenuProps> = ({ isVisible, onClose, menuButtonR
 
         {/* Mapa */}
         <a href="./Mapa" onClick={onClose}>
-          <div className={`flex flex-col items-center w-28 h-28 bg-white opacity-95 rounded-full shadow-md p-4 transition-all duration-600 ease-in-out  ${
+          <div className={`flex flex-col items-center w-28 h-28 bg-white opacity-85 rounded-full shadow-md p-4 transition-all duration-600 ease-in-out  ${
             isVisible ? 'opacity-95 translate-y-10' : ''
           }`}>
             <h4 className="text-black font-semibold text-center">Mapa</h4>

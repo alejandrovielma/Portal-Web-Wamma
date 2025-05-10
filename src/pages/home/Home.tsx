@@ -42,18 +42,20 @@ const gridOptions: GridStackOptions = {
 export function Home() {
   const [isBubbleMenuVisible, setIsBubbleMenuVisible] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  // ! Uncontrolled
   const [initialOptions] = useState(gridOptions);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [scrollStart, setScrollStart] = useState({ x: 0, y: 0 });
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setIsBubbleMenuVisible(!isBubbleMenuVisible);
+  };
 
   const handleCloseBubbleMenu = () => {
     setIsBubbleMenuVisible(false);
   };
 
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const [scrollStart, setScrollStart] = useState({ x: 0, y: 0 });
+  
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -102,19 +104,27 @@ export function Home() {
   };
 
   return (
-    <GridStackProvider initialOptions={initialOptions}>
-      <Toolbar />
-      <NavBarMenu text="Menu" isVisible={isBubbleMenuVisible} onClick={handleMenuClick} ref={menuButtonRef}/>
-      <BubbleMenu 
-        isVisible={isBubbleMenuVisible}
-        onClose={handleCloseBubbleMenu}
-        menuButtonRef={menuButtonRef}
-      />
-      <GridStackRenderProvider>
-        <GridStackRender componentMap={COMPONENT_MAP} />
-      </GridStackRenderProvider>
-      {/* <DebugInfo /> */}
-    </GridStackProvider>
+    <div className="overflow-hidden h-screen"
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      style={{ cursor: isDragging ? "grabbing" : "default" }}
+    >
+      <GridStackProvider initialOptions={initialOptions}>
+        <Toolbar />
+        <NavBarMenu text="Menu" isVisible={isBubbleMenuVisible} onClick={handleMenuClick} ref={menuButtonRef}/>
+        <BubbleMenu 
+          isVisible={isBubbleMenuVisible}
+          onClose={handleCloseBubbleMenu}
+          menuButtonRef={menuButtonRef}
+        />
+        <GridStackRenderProvider>
+          <GridStackRender componentMap={COMPONENT_MAP} />
+        </GridStackRenderProvider>
+        {/* <DebugInfo /> */}
+      </GridStackProvider>
+    </div>
   );
 }
 
