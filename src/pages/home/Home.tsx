@@ -1,7 +1,6 @@
 import { ComponentProps, useEffect, useState, useRef } from "react";
 import { GridStackOptions, GridStackWidget } from "gridstack";
-import NavBarMenu from "#components/NavBarMenu.jsx";
-import BubbleMenu from "#components/BubbleMenu.jsx";
+import NavMenu from "#components/NavMenu.js";
 import {
   ComponentDataType,
   GridStackProvider,
@@ -13,6 +12,7 @@ import {
 
 import "./Home.css";
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
+import { TransitionToPage } from "#components/TransitionToPage.tsx";
 
 // ! Content must be json string like this:
 // { name: "Text", props: { content: "Item 1" } }
@@ -104,27 +104,25 @@ export function Home() {
   };
 
   return (
-    <div className="overflow-hidden h-screen"
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      style={{ cursor: isDragging ? "grabbing" : "default" }}
-    >
-      <GridStackProvider initialOptions={initialOptions}>
-        <Toolbar />
-        <NavBarMenu text="Menu" isVisible={isBubbleMenuVisible} onClick={handleMenuClick} ref={menuButtonRef}/>
-        <BubbleMenu 
-          isVisible={isBubbleMenuVisible}
-          onClose={handleCloseBubbleMenu}
-          menuButtonRef={menuButtonRef}
-        />
-        <GridStackRenderProvider>
-          <GridStackRender componentMap={COMPONENT_MAP} />
-        </GridStackRenderProvider>
-        {/* <DebugInfo /> */}
-      </GridStackProvider>
-    </div>
+    <>
+      <div className="overflow-hidden h-screen"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        style={{ cursor: isDragging ? "grabbing" : "default" }}
+      >
+        <GridStackProvider initialOptions={initialOptions}>
+          <Toolbar />
+          <NavMenu text="Menu" isVisible={isBubbleMenuVisible} onClick={handleMenuClick} ref={menuButtonRef}/>
+          <GridStackRenderProvider>
+            <GridStackRender componentMap={COMPONENT_MAP} />
+          </GridStackRenderProvider>
+          {/* <DebugInfo /> */}
+        </GridStackProvider>
+      </div>
+      <TransitionToPage/>
+    </>
   );
 }
 
