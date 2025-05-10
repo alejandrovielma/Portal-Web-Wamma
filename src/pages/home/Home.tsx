@@ -41,21 +41,10 @@ const gridOptions: GridStackOptions = {
 
 export function Home() {
   const [isBubbleMenuVisible, setIsBubbleMenuVisible] = useState(false);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [initialOptions] = useState(gridOptions);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [scrollStart, setScrollStart] = useState({ x: 0, y: 0 });
-
-  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setIsBubbleMenuVisible(!isBubbleMenuVisible);
-  };
-
-  const handleCloseBubbleMenu = () => {
-    setIsBubbleMenuVisible(false);
-  };
-
-  
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -114,7 +103,7 @@ export function Home() {
       >
         <GridStackProvider initialOptions={initialOptions}>
           <Toolbar />
-          <NavMenu text="Menu" isVisible={isBubbleMenuVisible} onClick={handleMenuClick} ref={menuButtonRef}/>
+          <NavMenu text="Menu"/>
           <GridStackRenderProvider>
             <GridStackRender componentMap={COMPONENT_MAP} />
           </GridStackRenderProvider>

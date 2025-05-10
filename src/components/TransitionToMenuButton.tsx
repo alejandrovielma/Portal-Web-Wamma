@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 
-export function navegateTransitionToMenu(navigate: NavigateFunction, href: string){
+export function navigateTransitionToMenu(navigate: NavigateFunction, href: string){
   gsap.to(".pageContainer", {
     y: "100vh",
     duration: 0.5,
@@ -20,7 +20,7 @@ export function TransitionToMenuButton(
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navegateTransitionToMenu(navigate, href);
+    navigateTransitionToMenu(navigate, href);
   } 
 
   return (

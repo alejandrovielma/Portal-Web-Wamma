@@ -72,10 +72,10 @@ export function NavMenu({ text}:NavMenuProps) {
   }
 
   return (
-    <div ref={componentRef} className="z-10 flex flex-col items-center bottom-0 w-full fixed">
+    <div ref={componentRef} className="w-50 z-10 flex flex-col items-center bottom-0 left-1/2 -translate-x-1/2 fixed">
         <button
         onClick={onClick}
-        className="hover:h-13 hover:bg-neutral-950 flex flex-row justify-center items-center gap-2.5 bg-black left-1/2 w-50 h-12 text-4xl rounded-t-full text-white transition-all duration-300 ease-in-out"
+        className="hover:h-13 hover:bg-neutral-950 cursor-pointer flex flex-row justify-center items-center gap-2.5 bg-black left-1/2 w-50 h-12 text-4xl rounded-t-full text-white transition-all duration-300 ease-in-out"
       >
         {text}
       </button>
