@@ -1,4 +1,4 @@
-import { ComponentProps, useEffect, useState } from "react";
+import { ComponentProps, useEffect, useState, useRef } from "react";
 import { GridStackOptions, GridStackWidget } from "gridstack";
 import NavBarMenu from "#components/NavBarMenu.jsx";
 import BubbleMenu from "#components/BubbleMenu.jsx";
@@ -40,18 +40,29 @@ const gridOptions: GridStackOptions = {
 };
 
 export function Home() {
+
+  const [isBubbleMenuVisible, setIsBubbleMenuVisible] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   // ! Uncontrolled
   const [initialOptions] = useState(gridOptions);
 
-  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMenuClick = () => {
+    setIsBubbleMenuVisible(!isBubbleMenuVisible);
+  };
 
+  const handleCloseBubbleMenu = () => {
+    setIsBubbleMenuVisible(false);
   };
 
   return (
     <GridStackProvider initialOptions={initialOptions}>
       <Toolbar />
-      <NavBarMenu text="Menu" onClick={handleMenuClick}/>
-      <BubbleMenu text="Biblioteca" link="./biblioteca"/>
+      <NavBarMenu text="Menu" isVisible={isBubbleMenuVisible} onClick={handleMenuClick} ref={menuButtonRef}/>
+      <BubbleMenu 
+        isVisible={isBubbleMenuVisible}
+        onClose={handleCloseBubbleMenu}
+        menuButtonRef={menuButtonRef}
+      />
       <GridStackRenderProvider>
         <GridStackRender componentMap={COMPONENT_MAP} />
       </GridStackRenderProvider>
