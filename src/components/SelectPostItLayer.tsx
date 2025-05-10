@@ -1,8 +1,8 @@
-import { COMPONENT_MAP, ComponentDataType, GridStackProvider, GridStackRender, GridStackRenderProvider } from "#lib/gridStackLib/index.ts"
-import { ComponentProps, ReactNode, useState } from "react"
-import PostItInfo from "./PostIts/PostItInfo";
+import { COMPONENT_MAP, GridStackProvider, GridStackRender, GridStackRenderProvider } from "#lib/gridStackLib/index.ts"
+import { ReactNode, useState } from "react"
 import { GridStackOptions } from "gridstack";
 import { useNavigate } from "react-router-dom";
+import { navegateTransitionToMenu } from "#components/TransitionToMenuButton.tsx";
 
 const gridOptions: GridStackOptions = {
   acceptWidgets: true,
@@ -20,7 +20,9 @@ export function SelectPostItLayer({  children, isLargePadding }: { children?: Re
     const navigate = useNavigate();
 
     function handleEvent(event: Event) {
-        if (event.type === 'added') navigate('/');
+        if (event.type === 'added') {
+            navegateTransitionToMenu(navigate, '/');
+        }
     }
     
     return (

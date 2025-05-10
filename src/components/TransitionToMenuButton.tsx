@@ -1,6 +1,17 @@
 import { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
+
+export function navegateTransitionToMenu(navigate: NavigateFunction, href: string){
+  gsap.to(".pageContainer", {
+    y: "100vh",
+    duration: 0.5,
+    ease: "power2.inOut",
+    onComplete: () => {
+      navigate(href);
+    },
+  });
+}
 
 export function TransitionToMenuButton(
   {children, className ,href}:
@@ -9,15 +20,7 @@ export function TransitionToMenuButton(
   const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log("click");
-    gsap.to(".pageContainer", {
-      y: "100vh",
-      duration: 0.5,
-      ease: "power2.inOut",
-      onComplete: () => {
-        navigate(href);
-      },
-    });
+    navegateTransitionToMenu(navigate, href);
   } 
 
   return (
