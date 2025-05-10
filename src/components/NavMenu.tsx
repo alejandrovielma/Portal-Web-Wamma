@@ -17,7 +17,7 @@ function Bubble({children ,navigate, href}: BubbleProps) {
   return (
     <button
       onClick={handleClick}
-      className='cursor-pointer flex flex-col items-center size-28 bg-white opacity-85 rounded-full shadow-md p-4 z-10'
+      className='cursor-pointer flex flex-col items-center hover:text-neutral-950 size-28 bg-white opacity-85 rounded-full shadow-md p-4 z-10'
     >
       {children}
     </button>
@@ -75,7 +75,7 @@ export function NavMenu({ text}:NavMenuProps) {
     <div ref={componentRef} className="z-10 flex flex-col items-center bottom-0 w-full fixed">
         <button
         onClick={onClick}
-        className="hover:h-14 hover:bg-neutral-950 flex flex-row justify-center items-center gap-2.5 bg-black left-1/2 w-50 h-12 text-4xl rounded-t-full text-white transition-all duration-300 ease-in-out"
+        className="hover:h-13 hover:bg-neutral-950 flex flex-row justify-center items-center gap-2.5 bg-black left-1/2 w-50 h-12 text-4xl rounded-t-full text-white transition-all duration-300 ease-in-out"
       >
         {text}
       </button>
