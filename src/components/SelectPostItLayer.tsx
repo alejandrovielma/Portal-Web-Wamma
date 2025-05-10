@@ -35,7 +35,7 @@ export function SelectPostItLayer({  children, isLargePadding }: { children?: Re
                     </GridStackRenderProvider>
                 </GridStackProvider>
             </div>
-            <div>
+            <div className="pageContainer">
                 {children}
             </div>
         </>

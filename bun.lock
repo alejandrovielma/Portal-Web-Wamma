@@ -8,6 +8,7 @@
         "@react-router/serve": "^7.5.3",
         "@tailwindcss/vite": "^4.1.6",
         "gridstack": "^12.1.1",
+        "gsap": "^3.13.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-router": "^7.5.3",
@@ -459,6 +460,8 @@
     "graphemer": ["graphemer@1.4.0", "", {}, "sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag=="],
 
     "gridstack": ["gridstack@12.1.1", "", {}, "sha512-wpfNUkzVBuHJftRRMRQDpH8DPIO5NBdfE0ioIIVoXFePBzqqVTpfgttSs5IJYqO4Uj5LfnJ2fjOmsFEBqpeSwg=="],
+
+    "gsap": ["gsap@3.13.0", "", {}, "sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw=="],
 
     "has-flag": ["has-flag@4.0.0", "", {}, "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ=="],
 

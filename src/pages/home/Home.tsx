@@ -40,23 +40,79 @@ const gridOptions: GridStackOptions = {
 };
 
 export function Home() {
-  // ! Uncontrolled
   const [initialOptions] = useState(gridOptions);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [scrollStart, setScrollStart] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === "Space") {
+        setIsDragging(true);
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (event.code === "Space") {
+        setIsDragging(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
+
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (isDragging) {
+      setDragStart({ x: event.clientX, y: event.clientY });
+      setScrollStart({
+        x: event.currentTarget.scrollLeft,
+        y: event.currentTarget.scrollTop,
+      });
+    }
+  }
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (isDragging) {
+      const dx = event.clientX - dragStart.x;
+      const dy = event.clientY - dragStart.y;
+
+      event.currentTarget.scrollLeft = scrollStart.x - dx;
+      event.currentTarget.scrollTop = scrollStart.y - dy;
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 
   };
 
   return (
-    <GridStackProvider initialOptions={initialOptions}>
-      <Toolbar />
-      <NavBarMenu text="Menu" onClick={handleMenuClick}/>
-      <BubbleMenu text="Biblioteca" link="./biblioteca"/>
-      <GridStackRenderProvider>
-        <GridStackRender componentMap={COMPONENT_MAP} />
-      </GridStackRenderProvider>
-      {/* <DebugInfo /> */}
-    </GridStackProvider>
+    <div className="overflow-hidden h-screen"
+       onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      style={{ cursor: isDragging ? "grabbing" : "default" }}
+    >
+      <GridStackProvider initialOptions={initialOptions}>
+        <Toolbar />
+        <NavBarMenu text="Menu" onClick={handleMenuClick}/>
+        <BubbleMenu text="Biblioteca" link="./biblioteca"/>
+        <GridStackRenderProvider>
+          <GridStackRender componentMap={COMPONENT_MAP} />
+        </GridStackRenderProvider>
+        {/* <DebugInfo /> */}
+      </GridStackProvider>
+    </div>
   );
 }
 
