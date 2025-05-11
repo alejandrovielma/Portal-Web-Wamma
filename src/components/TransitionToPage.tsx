@@ -1,4 +1,4 @@
-import { NavigateFunction } from "react-router-dom";
+import { NavigateFunction, NavigateOptions } from "react-router-dom";
 import { NavHeader } from "./NavHeader";
 import { gsap } from "gsap";
 
