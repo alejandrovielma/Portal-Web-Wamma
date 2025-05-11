@@ -40,76 +40,18 @@ const gridOptions: GridStackOptions = {
 };
 
 export function Home() {
-  const [isBubbleMenuVisible, setIsBubbleMenuVisible] = useState(false);
-  const [initialOptions] = useState(gridOptions);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const [scrollStart, setScrollStart] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.code === "Space") {
-        setIsDragging(true);
-      }
-    };
-
-    const handleKeyUp = (event: KeyboardEvent) => {
-      if (event.code === "Space") {
-        setIsDragging(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, []);
-
-  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (isDragging) {
-      setDragStart({ x: event.clientX, y: event.clientY });
-      setScrollStart({
-        x: event.currentTarget.scrollLeft,
-        y: event.currentTarget.scrollTop,
-      });
-    }
-  }
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (isDragging) {
-      const dx = event.clientX - dragStart.x;
-      const dy = event.clientY - dragStart.y;
-
-      event.currentTarget.scrollLeft = scrollStart.x - dx;
-      event.currentTarget.scrollTop = scrollStart.y - dy;
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+  const [initialOptions] = useState(gridOptions)
 
   return (
     <>
-      <div className="overflow-hidden h-screen"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        style={{ cursor: isDragging ? "grabbing" : "default" }}
-      >
-        <GridStackProvider initialOptions={initialOptions}>
-          <Toolbar />
-          <NavMenu text="Menu"/>
-          <GridStackRenderProvider>
-            <GridStackRender componentMap={COMPONENT_MAP} />
-          </GridStackRenderProvider>
-          {/* <DebugInfo /> */}
-        </GridStackProvider>
-      </div>
+      <GridStackProvider initialOptions={initialOptions}>
+        <Toolbar />
+        <NavMenu text="Menu"/>
+        <GridStackRenderProvider>
+          <GridStackRender componentMap={COMPONENT_MAP} />
+        </GridStackRenderProvider>
+        {/* <DebugInfo /> */}
+      </GridStackProvider>
       <TransitionToPage/>
     </>
   );
@@ -156,43 +98,6 @@ function Toolbar() {
       >
         Add Card Link (2x2)
       </button>
-
-      {/*<button
-        onClick={() => {
-          addSubGrid((id, withWidget) => ({
-            h: 5,
-            noResize: false,
-            sizeToContent: true,
-            subGridOpts: {
-              acceptWidgets: true,
-              columnOpts: { breakpoints: BREAKPOINTS, layout: "moveScale" },
-              margin: 8,
-              minRow: 2,
-              cellHeight: CELL_HEIGHT,
-              children: [
-                withWidget({
-                  h: 1,
-                  locked: true,
-                  noMove: true,
-                  noResize: true,
-                  w: 12,
-                  x: 0,
-                  y: 0,
-                  content: JSON.stringify({
-                    name: "PostItInfo",
-                    props: { content: "Sub Grid 1 Title" + id },
-                  }),
-                }),
-              ],
-            },
-            w: 12,
-            x: 0,
-            y: 0,
-          }));
-        }}
-      >
-        Add Sub Grid (12x1)
-      </button>*/}
     </div>
   );
 }
