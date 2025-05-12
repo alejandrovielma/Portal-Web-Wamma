@@ -8,6 +8,7 @@ import News from '#pages/news/News.tsx'
 import Library from '#pages/library/Library.tsx'
 import './globals.css'
 import { GridStackGlobalWidgetProvider } from '#lib/gridStackLib/grip-stack-global-widget-provider.tsx'
+import ArticlesSearch from '#pages/articles/ArticlesSearch.tsx'
 
 const router = createBrowserRouter([
   {path: '/', element: <Home />},
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
   {path: '/animales', element: <Animals />},
   {path: '/actualidad', element: <News />},
   {path: '/biblioteca', element: <Library />},
+  {path: '/articulos', element: <ArticlesSearch />},
 ]
 )
 

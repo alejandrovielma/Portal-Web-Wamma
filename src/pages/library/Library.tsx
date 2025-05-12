@@ -1,7 +1,4 @@
-import {
-  BreadcrumbItem,
-  NavHeader,
-} from "#components/NavHeader.tsx";
+import {NavHeader} from "#components/NavHeader.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import UnitPostIt from "#components/UnitPostIt.tsx";
 import { useState } from "react";
