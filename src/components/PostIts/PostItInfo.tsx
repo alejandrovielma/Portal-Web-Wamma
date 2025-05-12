@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PostItBase from "./PostItBase";
-import PopInfo from "#components/PopInfo.tsx";
+import DialogInfo from "#components/DialogInfo.tsx";
 import { getArticleById } from "../../data/dataBase/articles";
 
 interface PostItInfoProps {
@@ -27,7 +27,7 @@ export function PostItInfo({ titleText, imageLink, content, onClickInfo }: PostI
                     </div>
                 </button>
             </PostItBase>
-            <PopInfo active={isPopOpen} onClose={()=>{setIsPopOpen(false)}}>
+            <DialogInfo active={isPopOpen} onClose={()=>{setIsPopOpen(false)}}>
                 { article && (
                         <>
                             <h2>{article.title}</h2>
@@ -43,7 +43,7 @@ export function PostItInfo({ titleText, imageLink, content, onClickInfo }: PostI
                         </>
                     )
                 }
-            </PopInfo>
+            </DialogInfo>
         </>
     );
 }
