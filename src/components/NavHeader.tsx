@@ -58,16 +58,28 @@ export function generateBreadcrumbsFromItems(
 }
 
 interface HeaderProps {
-  breadcrumbs: BreadcrumbItem[];
+  pathItems?: BreadcrumbItem[];
   titulo?: string;
 }
 
-export const NavHeader: React.FC<HeaderProps> = ({
-  breadcrumbs,
-}) => {
+export const NavHeader: React.FC<HeaderProps> = ({ pathItems, titulo }) => {
+  const fullBreadcrumbs: BreadcrumbItem[] = [];
+  if (titulo) {
+    fullBreadcrumbs.push({ nombre: titulo, link: "/" });
+  } else {
+    fullBreadcrumbs.push({ nombre: "Inicio", link: "/" });
+  }
+
+  if (pathItems && pathItems.length > 0) {
+    fullBreadcrumbs.push(...pathItems);
+  }
+
   return (
     <header className="bg-blue-500 text-white flex items-stretch justify-between relative h-20">
-      <TransitionToMenuButton href="/" className="flex items-center pl-6 cursor-pointer">
+      <TransitionToMenuButton
+        href="/"
+        className="flex items-center pl-6 cursor-pointer"
+      >
         <img src="logo.svg" alt="Logo Awani" className="h-8 w-auto mr-4" />
         <div>
           <h1 className="text-lg font-semibold text-start">Wamma</h1>
@@ -75,17 +87,16 @@ export const NavHeader: React.FC<HeaderProps> = ({
         </div>
       </TransitionToMenuButton>
       <div className="border-l border-white self-stretch mx-4"></div>
-      {breadcrumbs && breadcrumbs.length > 0 && (
+      {/* Now using 'fullBreadcrumbs' for rendering */}
+      {fullBreadcrumbs.length > 0 && (
         <nav aria-label="breadcrumb" className="flex items-center text-xl">
-          {breadcrumbs.map((item, index) => (
+          {fullBreadcrumbs.map((item, index) => (
             <React.Fragment key={index}>
               <a href={item.link} className="text-white hover:underline">
                 {item.nombre}
               </a>
-              {index < breadcrumbs.length - 1 && (
-                <span className="mx-2 text-white">
-                  &gt;
-                </span>
+              {index < fullBreadcrumbs.length - 1 && (
+                <span className="mx-2 text-white">&gt;</span>
               )}{" "}
             </React.Fragment>
           ))}
