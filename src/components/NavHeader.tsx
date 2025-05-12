@@ -49,7 +49,7 @@ interface HeaderProps {
   titulo?: string;
 }
 
-export const NavHeader: React.FC<HeaderProps> = ({ pathItems, titulo }) => {
+export function NavHeader ({ pathItems, titulo }: HeaderProps) {
   const fullBreadcrumbs: BreadcrumbItem[] = [];
   if (titulo) {
     fullBreadcrumbs.push({ nombre: titulo, link: "/" });
@@ -74,7 +74,7 @@ export const NavHeader: React.FC<HeaderProps> = ({ pathItems, titulo }) => {
         </div>
       </TransitionToMenuButton>
       <div className="border-l border-white self-stretch mx-4"></div>
-      {/* Implementación de las migas de pan sin recarga */}
+
       {fullBreadcrumbs.length > 0 && (
         <nav aria-label="breadcrumb" className="flex items-center text-xl">
           {fullBreadcrumbs.map((item, index) => (
