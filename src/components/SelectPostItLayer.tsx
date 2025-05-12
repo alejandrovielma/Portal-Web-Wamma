@@ -30,7 +30,7 @@ export function SelectPostItLayer({  children, isDragging }: { children?: ReactN
         if (isDragging) {
             gsap.to("#expander", {
                 duration: 0.5,
-                height: "20vh",
+                height: "10vh",
                 visibility: "visible",
             })
         }else{
