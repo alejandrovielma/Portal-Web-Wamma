@@ -1,23 +1,12 @@
-import { COMPONENT_MAP, GridStackProvider, GridStackRender, GridStackRenderProvider } from "#lib/gridStackLib/index.ts"
-import { ReactNode, useState } from "react"
-import { GridStackOptions, GridStackWidget } from "gridstack";
+import { ReactNode, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { navigateTransitionToMenu } from "#components/TransitionToMenuButton.tsx";
+import GlobalGrip from "./globalgrid/GlobalGrid";
+import { gsap } from "gsap";
 
-const gridOptions: GridStackOptions = {
-  acceptWidgets: true,
-  float: true,
-  column: 1,
-  row: 1,
-  disableResize: true,
-  margin:0,
-  children: [
-  ],
-};
-
-export function SelectPostItLayer({  children, isLargePadding }: { children?: ReactNode | undefined, isLargePadding: boolean }) {
-    const [initialOptions] = useState(gridOptions);
+export function SelectPostItLayer({  children, isDragging }: { children?: ReactNode | undefined, isDragging: boolean }) {
     const navigate = useNavigate();
+    let zIndexGridTo = gsap.quickTo("#gridContainer", "zIndex");
 
     function handleEvent(event: Event) {
         console.log(event);
@@ -25,20 +14,44 @@ export function SelectPostItLayer({  children, isLargePadding }: { children?: Re
             navigateTransitionToMenu(navigate, '/');
         }
     }
+
+    function onMouseEnter(){
+        console.log("Mouse enter");
+        gsap.to("#expander", {
+            duration: 0.5,
+            height: "100vh",
+            visibility: "hidden",
+        })
+        zIndexGridTo(0)
+    }
+
+    useEffect(()=>{
+        zIndexGridTo(-10)
+        if (isDragging) {
+            gsap.to("#expander", {
+                duration: 0.5,
+                height: "20vh",
+                visibility: "visible",
+            })
+        }else{
+            gsap.to("#expander", {
+                duration: 0.5,
+                height: "0vh",
+                visibility: "hidden",
+            })
+        }
+
+    }, [isDragging])
     
     return (
         <>
-            <div
-            className="overflow-hidden transition-all duration-500 delay-200"
-            style={{ height: isLargePadding ? '10rem' : '0'}}
-            >
-                <GridStackProvider initialOptions={initialOptions}>
-                    <GridStackRenderProvider onEvent={handleEvent}>
-                    <GridStackRender componentMap={COMPONENT_MAP} />
-                    </GridStackRenderProvider>
-                </GridStackProvider>
+            <div id="gridContainer" className="overflow-hidden fixed top-0 left-0 w-full h-full -z-10">
+                <GlobalGrip/>
             </div>
-            <div className="pageContainer">
+            <div id="expander" onMouseEnter={onMouseEnter}>
+
+            </div>
+            <div id="pageContainer" className="bg-white h-screen">
                 {children}
             </div>
         </>
