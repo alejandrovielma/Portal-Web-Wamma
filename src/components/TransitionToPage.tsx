@@ -3,7 +3,6 @@ import { NavHeader } from "./NavHeader";
 import { gsap } from "gsap";
 
 export function navigateAnimateToPage(navigate: NavigateFunction, href: string, options?: NavigateOptions) {
-    console.log("click");
     gsap.to(".animatePageContainer", {
       y: "0%",
       duration: 0.5,

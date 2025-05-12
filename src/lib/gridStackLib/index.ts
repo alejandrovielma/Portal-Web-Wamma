@@ -8,6 +8,8 @@ import {
 import { useGridStackContext } from "./grid-stack-context";
 import { useGridStackWidgetContext } from "./grid-stack-widget-context";
 import COMPONENT_MAP from "./itemsType";
+import { GridStackGlobalWidgetProvider, useWidgetContext } from "./grip-stack-global-widget-provider";
+import GlobalWidgetupdater from "./grid-stack-global-widget-updater";
 
 export {
   GridStackProvider,
@@ -17,5 +19,8 @@ export {
   type ComponentMap,
   useGridStackContext,
   useGridStackWidgetContext,
+  GridStackGlobalWidgetProvider,
+  useWidgetContext,
+  GlobalWidgetupdater,
   COMPONENT_MAP
 };
