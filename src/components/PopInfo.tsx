@@ -14,7 +14,6 @@ export function PopInfo({children, active, onClose}: PopInfoProps){
     useEffect(() => {
         if (!popInfoRef.current || !popContainerRef.current) return;
 
-        console.log("PopInfo active:", active);
         if (active) {
             gsap.set(popContainerRef.current, { opacity: 1, zIndex: 10 });
             gsap.fromTo(
