@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { TransitionToMenuButton } from "./TransitionToMenuButton";
 
 export interface BreadcrumbItem {
@@ -6,13 +7,6 @@ export interface BreadcrumbItem {
   link: string;
 }
 
-/**
- * Función para generar un array de objetos BreadcrumbItem.
- * @param segments Un array de strings que representan los segmentos de la URL.
- * Por ejemplo: ['productos', 'electronica', 'detalle-123'].
- * @param baseUrl La URL base de tu sitio web (opcional, por defecto es '/').
- * @returns Un array de objetos BreadcrumbItem.
- */
 export function generateBreadcrumbs(
   segments: string[],
   baseUrl: string = "/"
@@ -24,7 +18,7 @@ export function generateBreadcrumbs(
     currentPath += (currentPath.endsWith("/") ? "" : "/") + segment;
     breadcrumbs.push({
       nombre:
-        segment.charAt(0).toUpperCase() + segment.slice(1).replace("-", " "), // Formatear el nombre
+        segment.charAt(0).toUpperCase() + segment.slice(1).replace("-", " "),
       link: currentPath,
     });
   });
@@ -32,13 +26,6 @@ export function generateBreadcrumbs(
   return breadcrumbs;
 }
 
-/**
- * Función alternativa que recibe un array de objetos con nombre y un slug/path.
- * Útil si tienes la información del nombre directamente.
- * @param items Un array de objetos con las propiedades 'nombre' y 'slug'.
- * @param baseUrl La URL base de tu sitio web (opcional, por defecto es '/').
- * @returns Un array de objetos BreadcrumbItem.
- */
 export function generateBreadcrumbsFromItems(
   items: { nombre: string; slug: string }[],
   baseUrl: string = "/"
@@ -87,17 +74,17 @@ export const NavHeader: React.FC<HeaderProps> = ({ pathItems, titulo }) => {
         </div>
       </TransitionToMenuButton>
       <div className="border-l border-white self-stretch mx-4"></div>
-      {/* Now using 'fullBreadcrumbs' for rendering */}
+      {/* Implementación de las migas de pan sin recarga */}
       {fullBreadcrumbs.length > 0 && (
         <nav aria-label="breadcrumb" className="flex items-center text-xl">
           {fullBreadcrumbs.map((item, index) => (
             <React.Fragment key={index}>
-              <a href={item.link} className="text-white hover:underline">
+              <Link to={item.link} className="text-white hover:underline">
                 {item.nombre}
-              </a>
+              </Link>
               {index < fullBreadcrumbs.length - 1 && (
                 <span className="mx-2 text-white">&gt;</span>
-              )}{" "}
+              )}
             </React.Fragment>
           ))}
         </nav>
