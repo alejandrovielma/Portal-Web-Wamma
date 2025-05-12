@@ -7,11 +7,12 @@ interface PostItInfoProps {
     titleText?: string;
     imageLink?: string;
     content?: string;
-    onClickInfo?: string;
+    onClickInfo?: number;
 }
 
 export function PostItInfo({ titleText, imageLink, content, onClickInfo }: PostItInfoProps) {
     const [isPopOpen, setIsPopOpen] = useState(false);
+    const [article, setArticle] = useState(onClickInfo ? getArticleById(onClickInfo) : null);
     
     return (
         <>  
@@ -27,7 +28,21 @@ export function PostItInfo({ titleText, imageLink, content, onClickInfo }: PostI
                 </button>
             </PostItBase>
             <PopInfo active={isPopOpen} onClose={()=>{setIsPopOpen(false)}}>
-                hola
+                { article && (
+                        <>
+                            <h2>{article.title}</h2>
+                            {
+                                article.content.map((content) => (
+                                    <>
+                                        {content.subtitle && <h3>{content.subtitle}</h3>}
+                                        <p>{content.paragraphs}</p>
+                                    </>
+                                ))
+                            }
+
+                        </>
+                    )
+                }
             </PopInfo>
         </>
     );

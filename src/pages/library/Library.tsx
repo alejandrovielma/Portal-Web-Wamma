@@ -19,7 +19,7 @@ export function Library() {
       />
 
       <div className="size-60">
-        <UnitPostIt imageLink="images/homeBg.jpg" handleEvent={handleEvent} />
+        <UnitPostIt imageLink="images/homeBg.jpg" onClickInfo={1} handleEvent={handleEvent} />
       </div>
     </SelectPostItLayer>
   );
