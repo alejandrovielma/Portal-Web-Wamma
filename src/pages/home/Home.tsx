@@ -1,5 +1,5 @@
 import { ComponentProps, useEffect, useState, useRef } from "react";
-import { GridStackOptions, GridStackWidget } from "gridstack";
+import { GridStack, GridStackOptions, GridStackWidget } from "gridstack";
 import NavMenu from "#components/NavMenu.js";
 import {
   ComponentDataType,
@@ -7,40 +7,31 @@ import {
   GridStackRender,
   GridStackRenderProvider,
   useGridStackContext,
-  COMPONENT_MAP
+  COMPONENT_MAP,
+  useWidgetContext,
+  GlobalWidgetupdater
 } from "#lib/gridStackLib/index.js";
 
 import "./Home.css";
-import PostItInfo from "#components/PostIts/PostItInfo.tsx";
 import { TransitionToPage } from "#components/TransitionToPage.tsx";
 
-// ! Content must be json string like this:
-// { name: "Text", props: { content: "Item 1" } }
-const gridOptions: GridStackOptions = {
-  acceptWidgets: true,
-  float: true,
-  column: 16,
-  row: 16,
-  cellHeight: 5,
-  cellHeightUnit: "rem",
-  margin: 2,
-  children: [
-    {
-      id: "item1",
-      h: 2,
-      w: 2,
-      x: 0,
-      y: 0,
-      content: JSON.stringify({
-        name: "PostItInfo",
-        props: { content: "Item 1" },
-      } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>), // if need type check
-    }
-  ]
-};
-
 export function Home() {
+  const { widgets } = useWidgetContext();
+
+  const gridOptions: GridStackOptions = {
+    acceptWidgets: true,
+    float: true,
+    column: 16,
+    row: 16,
+    cellHeight: 5,
+    cellHeightUnit: "rem",
+    margin: 2,
+    children: widgets
+  };
   const [initialOptions] = useState(gridOptions)
+
+  
+
 
   return (
     <>
@@ -50,7 +41,8 @@ export function Home() {
         <GridStackRenderProvider>
           <GridStackRender componentMap={COMPONENT_MAP} />
         </GridStackRenderProvider>
-        {/* <DebugInfo /> */}
+        {/*<DebugInfo />*/}
+        <GlobalWidgetupdater/>
       </GridStackProvider>
       <TransitionToPage/>
     </>

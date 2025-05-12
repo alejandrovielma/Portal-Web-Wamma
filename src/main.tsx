@@ -7,6 +7,7 @@ import Animals from '#pages/animals/Animals.tsx'
 import News from '#pages/news/News.tsx'
 import Library from '#pages/library/Library.tsx'
 import './globals.css'
+import { GridStackGlobalWidgetProvider } from '#lib/gridStackLib/grip-stack-global-widget-provider.tsx'
 
 const router = createBrowserRouter([
   {path: '/', element: <Home />},
@@ -19,6 +20,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <GridStackGlobalWidgetProvider>
+      <RouterProvider router={router}/>
+    </GridStackGlobalWidgetProvider>
   </StrictMode>,
 )
