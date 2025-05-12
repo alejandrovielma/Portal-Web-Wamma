@@ -6,7 +6,6 @@ import { gsap } from "gsap";
 
 export function SelectPostItLayer({  children, isDragging }: { children?: ReactNode | undefined, isDragging: boolean }) {
     const navigate = useNavigate();
-    let zIndexGridTo = gsap.quickTo("#gridContainer", "zIndex");
 
     function handleEvent(event: Event) {
         console.log(event);
@@ -22,11 +21,17 @@ export function SelectPostItLayer({  children, isDragging }: { children?: ReactN
             height: "100vh",
             visibility: "hidden",
         })
-        zIndexGridTo(0)
+        gsap.to("#gridContainer", {
+            duration: 0.5,
+            zIndex: 10,
+        })
     }
 
     useEffect(()=>{
-        zIndexGridTo(-10)
+        gsap.to("#gridContainer", {
+            duration: 0.5,
+            zIndex: -10,
+        })
         if (isDragging) {
             gsap.to("#expander", {
                 duration: 0.5,
