@@ -3,7 +3,7 @@ import { NavigateFunction, NavigateOptions, useNavigate } from "react-router-dom
 import { gsap } from "gsap";
 
 export function navigateTransitionToMenu(navigate: NavigateFunction, href: string, options?: NavigateOptions) {
-  gsap.to(".pageContainer", {
+  gsap.to("#pageContainer", {
     y: "100vh",
     duration: 0.5,
     ease: "power2.inOut",
