@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "title": "titulo",
+        "content": [
+            {
+                "paragraphs": ["Descripccion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu"]
+            },
+            {
+                "subtitle": "1. Justificación",
+                "paragraphs": [
+                    "¿No deberían el entorno ambiental, la visión de la naturaleza y el lugar convertirse en una nueva categoría para el análisis de la literatura, como lo hicieron en su momento la raza, la clase y el género? De esta manera se podría estudiar, por ejemplo, cómo comienza a plantearse la crisis ambiental contemporánea en la literatura, y de qué manera influencian las obras literarias y el lenguaje en la forma en que nos relacionamos con el medioambiente.",
+                    "En concreto, el agua ha estado históricamente contemplada desde numerosas perspectivas. Es el caso, por ejemplo, de la hidráulica y otras disciplinas científicas que estudian el agua desde las ciencias puras. Dichos estudios son de incuestionable valor para el desarrollo de nuestras sociedades; no obstante, no ponen de manifiesto todas las manifestaciones que de ella se derivan, pues se centran en entender el agua como materia prima, al servicio de las necesidades del ser humano (Martos y Martos, 2012). En este sentido, desde hace relativamente pocos años la ecocrítica ha permitido entender las implicaciones invisibles del agua, sus lazos con el día a día del ser humano, así como su valor trasversal en los ámbitos educativo, cultural, turístico y económico. En efecto, la aproximación ecocrítica (Flys et al., 2010) formula un planteamiento en el cual todo se conecta con todo. Existe, por así decirlo, un interés en aplicar el uso de conceptos de la ecología a las composiciones literarias, estableciendo de este modo una conexión entre diversos planos, la obra literaria, el autor y la ecología.",
+                    "Recordemos que una de las características más importantes de la ecocrítica es el compromiso de incitar una conciencia ecológica a través de la literatura. Utiliza un enfoque basado en la tierra y en la naturaleza para el estudio de la literatura. Una de las definiciones más recientes que se ha dado a la ecocrítica es la de David Mazel, que la define como el estudio de la literatura “como si la tierra importara” (Mazel 2001: 1). Por lo tanto, un lector ecocrítico se plantea entonces preguntas sobre la visión de la naturaleza en un texto, el papel que juega el entorno ambiental en una obra; analizará si los valores expresados en un relato son consistentes con una sabiduría ecológica, o si las metáforas que utilizamos para referirnos a nuestro entorno influyen en la forma en que lo tratamos. De tal forma que accedemos a una visión holística donde lo natural y lo cultural se enhebran de forma armónica."
+                ]
+            }
+        ],
+        "video": "https://www.youtube.com/watch?v=jUoWAQqDSrQ",
+        "images": []
+    }
+]

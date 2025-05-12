@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PostItBase from "./PostItBase";
 import PopInfo from "#components/PopInfo.tsx";
+import { getArticleById } from "../../data/dataBase/articles";
 
 interface PostItInfoProps {
     titleText?: string;
