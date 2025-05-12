@@ -1,4 +1,5 @@
 import { BreadcrumbItem, generateBreadcrumbs, NavHeader } from "#components/NavHeader.tsx";
+import PopInfo from "#components/PopInfo.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import UnitPostIt from "#components/UnitPostIt.tsx";
 import { useState } from "react";
@@ -6,6 +7,7 @@ import { useState } from "react";
 
 
 export function Library() {
+    const [isPopOpen, setIsPopOpen] = useState(true);
 
     const [isDragging, setIsDragging] = useState(false);
     function handleEvent(event: Event) {

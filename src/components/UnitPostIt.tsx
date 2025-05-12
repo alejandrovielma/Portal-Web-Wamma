@@ -5,7 +5,7 @@ import PostItInfo from "./PostIts/PostItInfo";
 
 interface PostItProps {
     imageLink: string;
-    handleEvent?: (event: Event) => void
+    handleEvent: (event: Event) => void;
 }
 
 export function UnitPostIt({imageLink, handleEvent}: PostItProps) {
@@ -31,11 +31,11 @@ export function UnitPostIt({imageLink, handleEvent}: PostItProps) {
     const [initialOptions] = useState(gridOptions);
 
     return (
-        <GridStackProvider initialOptions={initialOptions}>
-            <GridStackRenderProvider onEvent={handleEvent}>
-            <GridStackRender componentMap={COMPONENT_MAP} />
-            </GridStackRenderProvider>
-        </GridStackProvider>
+      <GridStackProvider initialOptions={initialOptions}>
+          <GridStackRenderProvider onEvent={handleEvent}>
+          <GridStackRender componentMap={COMPONENT_MAP} />
+          </GridStackRenderProvider>
+      </GridStackProvider>
     );
 }
 export default UnitPostIt;

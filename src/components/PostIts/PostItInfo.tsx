@@ -1,25 +1,34 @@
+import { useState } from "react";
 import PostItBase from "./PostItBase";
+import PopInfo from "#components/PopInfo.tsx";
 
 interface PostItInfoProps {
     titleText?: string;
     imageLink?: string;
     content?: string;
-    onClick?: () => void;
+    onClickInfo?: string;
 }
 
-export function PostItInfo({ titleText, imageLink, content, onClick }: PostItInfoProps) {
+export function PostItInfo({ titleText, imageLink, content, onClickInfo }: PostItInfoProps) {
+    const [isPopOpen, setIsPopOpen] = useState(false);
+    
     return (
-        <PostItBase color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
-            <button onClick={onClick} className="flex flex-col gap-2 w-full">
-                <header className="flex-1">
-                    {imageLink && <img src={imageLink} alt="" />}
-                </header>
-                <div id="content" className="flex-1 p-2">
-                    {titleText && <h2>titleText</h2>}
-                    {content && <p>content</p>}
-                </div>
-            </button>
-        </PostItBase>
+        <>  
+            <PostItBase color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
+                <button onClick={()=>{setIsPopOpen(true)}} className="flex flex-col gap-2 w-full cursor-pointer">
+                    <header className="flex-1">
+                        {imageLink && <img src={imageLink} alt="" />}
+                    </header>
+                    <div id="content" className="flex-1 p-2">
+                        {titleText && <h2>titleText</h2>}
+                        {content && <p>content</p>}
+                    </div>
+                </button>
+            </PostItBase>
+            <PopInfo active={isPopOpen} onClose={()=>{setIsPopOpen(false)}}>
+                hola
+            </PopInfo>
+        </>
     );
 }
 
