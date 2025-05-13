@@ -8,8 +8,8 @@ export function PostItBase({ children, color1, color2 }: { children?: ReactNode 
         >
             <div className={`${color2} size-8 absolute top-0 right-0 z-10`}></div>
 
-            <span className="flex items-center justify-center w-full h-10">
-                <div className="size-6 border-1 rounded-full text-center">*</div>
+            <span className="flex items-center justify-center w-full h-10 cursor-grabbing">
+                <div className="size-6 bg-black rounded-full text-center">*</div>
             </span>
 
             {children}
