@@ -1,3 +1,4 @@
+import DialogInfo from "#components/DialogInfo.tsx";
 import {NavHeader} from "#components/NavHeader.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import UnitPostIt from "#components/UnitPostIt.tsx";
@@ -10,15 +11,18 @@ export function Library() {
   }
 
   return (
-    <SelectPostItLayer isDragging={isDragging}>
-      <NavHeader
-        pathItems={[{ nombre: "Biblioteca", link: "/biblioteca" }]}
-      />
+    <>
+      <SelectPostItLayer isDragging={isDragging}>
+        <NavHeader
+          pathItems={[{ nombre: "Biblioteca", link: "/biblioteca" }]}
+        />
 
-      <div className="size-60">
-        <UnitPostIt imageLink="images/homeBg.jpg" onClickInfo={1} handleEvent={handleEvent} />
-      </div>
-    </SelectPostItLayer>
+        <div className="size-60">
+          <UnitPostIt imageLink="images/perro.jpg" onClickInfo={1} handleEvent={handleEvent} />
+        </div>
+      </SelectPostItLayer>
+    </>
+    
   );
 }
 
