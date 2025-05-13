@@ -3,7 +3,7 @@ import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import UnitPostIt from "#components/UnitPostIt.tsx";
 import { useState } from "react";
 
-export function News() {
+export function ArticlesSearch() {
   const [isDragging, setIsDragging] = useState(false);
   function handleEvent(event: Event) {
     setIsDragging(event.type === "dragstart");
@@ -12,10 +12,10 @@ export function News() {
   return (
     <SelectPostItLayer isDragging={isDragging}>
       <NavHeader
-        pathItems={[{ nombre: "Actualidad", link: "/actualidad" }]}
+        pathItems={[{ nombre: "articulos", link: "/articulos" }]}
       />
     </SelectPostItLayer>
   );
 }
 
-export default News;
+export default ArticlesSearch;

@@ -5,10 +5,11 @@ import PostItInfo from "./PostIts/PostItInfo";
 
 interface PostItProps {
     imageLink: string;
+    onClickInfo: number
     handleEvent: (event: Event) => void;
 }
 
-export function UnitPostIt({imageLink, handleEvent}: PostItProps) {
+export function UnitPostIt({imageLink, onClickInfo, handleEvent}: PostItProps) {
     const gridOptions: GridStackOptions = {
       column: 2,
       row: 2,
@@ -23,7 +24,7 @@ export function UnitPostIt({imageLink, handleEvent}: PostItProps) {
           y: 0,
           content: JSON.stringify({
             name: "PostItInfo",
-            props: {  imageLink: imageLink },
+            props: {  imageLink: imageLink, onClickInfo: onClickInfo },
           } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
         }
       ],
