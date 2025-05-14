@@ -1,7 +1,7 @@
 import React, { ReactNode, useRef, useState, useEffect } from "react";
 import { gsap } from 'gsap';
 
-export function PostItBase({ children, color1, color2}: { children?: ReactNode | undefined, color1: string, color2: string, className?: string }) {
+export function PostItBase({ children, color1, color2 }: { children?: ReactNode | undefined, color1: string, color2: string, className?: string }) {
     const pinRef = useRef<HTMLSpanElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const pinHeadRef = useRef<HTMLDivElement>(null);
@@ -49,43 +49,41 @@ export function PostItBase({ children, color1, color2}: { children?: ReactNode |
     const handleMouseDown = () => {
         isDragging.current = true;
         setIsPinVisible(false);
+        if (containerRef.current) {
+            containerRef.current.classList.add('cursor-grabbing');
+        }
     };
 
-
     const handleMouseUp = () => {
-        setIsPinVisible(true);
-        isDragging.current = false;
-        setTimeout(() => {
-            if (pinRef.current) {
-                gsap.fromTo(pinRef.current,
-                    { y: 12, scale: 1.5, opacity: 0 },
-                    { y: 0, scale: 1, opacity: 1, duration: 0.3, ease: 'elastic.out(1, 0.3)' }
-                );
-            }
-            if (pinHeadRef.current) {
-                gsap.to(pinHeadRef.current, {
-                    boxShadow: 'none',
-                    duration: 0.3,
-                    ease: 'elastic.out(1, 0.3)'
-                });
-            }
-            if (containerRef.current) {
-                containerRef.current.classList.remove('cursor-grabbing');
-                containerRef.current.classList.add('cursor-grab');
-            }
-        }, 1);
+        if (isDragging.current) {
+            setIsPinVisible(true);
+            isDragging.current = false
+            setTimeout(() => { 
+                if (pinRef.current) { 
+                    gsap.fromTo(pinRef.current, 
+                        { y: 12, scale: 1.5, opacity: 0 }, 
+                        { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: 'elastic.out(1, 0.3)' } 
+                    ); 
+                } 
+                if (pinHeadRef.current) { 
+                    gsap.to(pinHeadRef.current, 
+                        { boxShadow: 'none', duration: 0.8, ease: 'elastic.out(1, 0.3)' }
+                    ); 
+                } 
+                if (containerRef.current) { 
+                    containerRef.current.classList.remove('cursor-grabbing'); 
+                    containerRef.current.classList.add('cursor-grab'); 
+                } 
+            }, 2); 
+        } 
     };
 
     useEffect(() => {
-        const container = containerRef.current;
-        if (container) {
-            container.addEventListener('mousedown', handleMouseDown);
-            container.addEventListener('mouseup', handleMouseUp);
-            return () => {
-                container.removeEventListener('mousedown', handleMouseDown);
-                container.removeEventListener('mouseup', handleMouseUp);
-            };
-        }
+        document.addEventListener('mouseup', handleMouseUp);
+
+        return () => {
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
     }, []);
 
     return (
@@ -93,6 +91,7 @@ export function PostItBase({ children, color1, color2}: { children?: ReactNode |
             ref={containerRef}
             className={`${color1} w-full h-full relative overflow-hidden cursor-grab`}
             style={{ clipPath: `polygon(calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%, 0 0)` }}
+            onMouseDown={handleMouseDown}
         >
             <div
                 className={`${color2} size-8 absolute top-0 right-0 z-10`}
@@ -100,12 +99,13 @@ export function PostItBase({ children, color1, color2}: { children?: ReactNode |
             </div>
             <span
                 ref={pinRef}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                
                 className="flex items-start justify-center w-full h-10 pt-1.5"
             >
                 {isPinVisible && (
                     <div
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
                         ref={pinHeadRef}
                         className="z-20 size-4 bg-black rounded-full shadow-md"
                     >
