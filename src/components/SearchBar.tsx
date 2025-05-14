@@ -18,7 +18,7 @@ export const SearchBar: React.FC<SearchBarProps> = () => {
         placeholder="¿Que Buscas?"
         value={searchTerm}
         onChange={handleInputChange}
-        className=" border-0 p-2 w-2/3"
+        className=" border-0 p-2 w-2/3 focus-visible:outline-0"
       />
       {searchTerm && (
         <button onClick={() => setSearchTerm("")} className="ml-2 px-2 py-1 rounded-md bg-gray-200 hover:bg-gray-300">
