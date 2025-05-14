@@ -72,7 +72,7 @@ export function GridStackProvider({
 
   const removeWidget = useCallback(
     (id: string) => {
-      gridStack?.removeWidget(id);
+      gridStack?.removeWidget(`[gs-id="${id}"]`);
       setRawWidgetMetaMap((prev) => {
         const newMap = new Map<string, GridStackWidget>(prev);
         newMap.delete(id);

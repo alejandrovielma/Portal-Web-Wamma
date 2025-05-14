@@ -1,5 +1,8 @@
 import React, { ReactNode, useRef, useState, useEffect } from "react";
 import { gsap } from 'gsap';
+import { useGridStackWidgetContext } from "#lib/gridStackLib/grid-stack-widget-context.ts";
+import { useGridStackContext } from "#lib/gridStackLib/grid-stack-context.ts";
+import TrashSVG from "#assets/TrashSVG.tsx";
 
 export function PostItBase({ children, color1, color2 }: { children?: ReactNode | undefined, color1: string, color2: string}) {
     const pinRef = useRef<HTMLSpanElement>(null);
@@ -86,6 +89,9 @@ export function PostItBase({ children, color1, color2 }: { children?: ReactNode 
         };
     }, []);
 
+    const { widget } = useGridStackWidgetContext();
+    const { removeWidget } = useGridStackContext();
+
     return (
         <div
             ref={containerRef}
@@ -93,10 +99,18 @@ export function PostItBase({ children, color1, color2 }: { children?: ReactNode 
             style={{ clipPath: `polygon(calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%, 0 0)` }}
             onMouseDown={handleMouseDown}
         >
-            <div
-                className={`${color2} size-8 absolute top-0 right-0 z-10`}
-            >
+            <div className={`${color2} size-8 absolute top-0 right-0 z-10`}>
             </div>
+            <button className="absolute top-0 left-0 z-20 cursor-pointer p-1"
+                onClick={() => {
+                    if (widget) {
+                        removeWidget(widget.id);
+                    }
+                }}
+            >
+                <TrashSVG/>
+            </button>
+
             <span
                 ref={pinRef}
                 
