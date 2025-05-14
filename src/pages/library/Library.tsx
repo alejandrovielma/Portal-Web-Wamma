@@ -1,4 +1,3 @@
-import DialogInfo from "#components/DialogInfo.tsx";
 import {NavHeader} from "#components/NavHeader.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import UnitPostIt from "#components/UnitPostIt.tsx";
@@ -6,7 +5,7 @@ import { useState } from "react";
 import "./library.css"
 import Separator from "#components/Separator.tsx";
 import LinkButton from "#components/LinkButton.tsx";
-import { Article, getLastArticles } from "../../data/dataBase/repository";
+import { getLastArticles, getLastWorks } from "../../data/dataBase/repository";
 import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 
 export function Library() {
@@ -37,9 +36,7 @@ export function Library() {
             <Separator/>
             <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
               <h2 className="text-2xl">Descubre mas sobre la cultura del agua</h2>
-              <div id="resources" className="grid gap-x-16 justify-between">
-                  
-              </div>
+              <LastWorks handleDrag={handleDrag}/>
             </section>
           </div>
             
@@ -52,6 +49,23 @@ export function Library() {
   );
 }
 export default Library;
+
+function LastWorks({handleDrag}: {handleDrag: (event: Event) => void}) {
+  const lastWorks = getLastWorks(12)
+
+  return(
+    <ul id="resources" className="grid gap-x-16 justify-between">                  
+      {lastWorks.map((work: PostItInfoProps, i) => (
+          <li key={i}>
+            <UnitPostIt 
+            postItProds = {work}
+            handleEvent={handleDrag}
+            />
+          </li>
+      ))}
+    </ul>
+  );
+}
 
 function LastArticles({handleDrag}: {handleDrag: (event: Event) => void}) {
   const lastArticles = getLastArticles(3)

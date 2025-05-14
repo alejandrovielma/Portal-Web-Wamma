@@ -24,7 +24,7 @@ export function UnitPostIt({postItProds, handleEvent}: UnitPostItProps) {
           y: 0,
           content: JSON.stringify({
             name: "PostItInfo",
-            props: {...postItProds, lockImage: true},
+            props: {...postItProds},
           } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
         }
       ],

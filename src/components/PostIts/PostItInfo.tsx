@@ -12,10 +12,9 @@ export interface PostItInfoProps {
     content: PostItInfoContent[]
     video?: string
     images?: string[]
-    lockImage?: boolean
 }
 
-export function PostItInfo({title, content, video, images, lockImage }: PostItInfoProps) {
+export function PostItInfo({title, content, video, images }: PostItInfoProps) {
     const [isPopOpen, setIsPopOpen] = useState(false);
     
     return (
@@ -25,13 +24,10 @@ export function PostItInfo({title, content, video, images, lockImage }: PostItIn
                     <header className="flex-1">
                         {images && <img src={images[0]} alt="" className="h-full w-full" />}
                     </header>
-                    {
-                        !lockImage &&
-                        <div id="content" className="flex-1 p-2">
-                            {title && <h2>{title}</h2>}
-                            {content && <p>{content[0].paragraphs}</p>}
-                        </div>
-                    }
+                    <div id="content" className="flex-1 p-2">
+                        {title && <h2>{title}</h2>}
+                        {content && <p>{content[0].paragraphs}</p>}
+                    </div>
                     
                 </button>
             </PostItBase>
