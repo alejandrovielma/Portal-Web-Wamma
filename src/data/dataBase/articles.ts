@@ -21,3 +21,7 @@ const articles: Article[] = articlesData.map(article => ({
 export function getArticleById(id: number): Article | undefined {
     return articles.find(article => article.id === id);
 }
+
+export function getLastArticles(count: number): Article[] {
+    return articles.slice(-count);
+}

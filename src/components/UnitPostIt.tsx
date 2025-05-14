@@ -33,7 +33,7 @@ export function UnitPostIt({imageLink, onClickInfo, handleEvent}: PostItProps) {
     const [initialOptions] = useState(gridOptions);
 
     return (
-      <div className="w-full min-w-48">
+      <div className="w-full h-full min-w-48 max-w-xl">
         <GridStackProvider initialOptions={initialOptions}>
           <GridStackRenderProvider onEvent={handleEvent}>
           <GridStackRender componentMap={COMPONENT_MAP} />

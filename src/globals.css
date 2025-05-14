@@ -40,7 +40,7 @@ body {
   line-height: 1.5;
   font-weight: 400;
   background-color: white;
-  color: black;
+  color: var(--color-shadow-50);
 }
 #root{
   width: 100%;
