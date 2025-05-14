@@ -10,9 +10,9 @@ interface PostItInfoProps {
     onClickInfo?: number;
 }
 
-export function PostItInfo({ titleText, imageLink, content, onClickInfo }: PostItInfoProps) {
+export function PostItInfo({titleText, imageLink, content, onClickInfo }: PostItInfoProps) {
     const [isPopOpen, setIsPopOpen] = useState(false);
-    const [article, setArticle] = useState(onClickInfo ? getArticleById(onClickInfo) : null);
+    const [article] = useState(onClickInfo ? getArticleById(onClickInfo) : null);
     
     return (
         <>  

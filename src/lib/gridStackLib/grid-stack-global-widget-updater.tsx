@@ -14,7 +14,6 @@ export function GlobalWidgetupdater(){
       if (saveOptions) {
         const data = saveOptions()["children"] as GridStackWidget[];
         setWidgets(data);
-        console.log("GridStack data updated:", data);
       }
     };
 

@@ -26,7 +26,7 @@ export function DialogInfo({ children, active, onClose }: PopInfoProps) {
     return (
         <dialog
             ref={dialogRef}
-            className="bg-white w-full max-w-5xl h-auto p-4 shadow-lg overflow-y-scroll fixed bottom-0 left-1/2 transform -translate-x-1/2"
+            className=" bg-white w-full max-w-5xl  h-full px-8 py-4 mx-4 shadow-lg overflow-y-scroll bottom-0 top-auto left-1/2 transform -translate-x-1/2"
             onCancel={onClose}
         >
             <header className="flex justify-end">
