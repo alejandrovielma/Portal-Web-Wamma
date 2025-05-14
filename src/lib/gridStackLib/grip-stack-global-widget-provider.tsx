@@ -20,7 +20,7 @@ export function GridStackGlobalWidgetProvider({ children }:{ children: React.Rea
       y: 0,
       content: JSON.stringify({
         name: "PostItInfo",
-        props: { content: "Item 1" },
+        props: { title: "Prueba", content: [{paragraphs: "Esto es un postIt de prueba"}, {subtitle:"Se sigue probando", paragraphs:"Como se leyo, este postIt se sigue probando"}], images: ["images/perro.jpg"] },
       } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>), // if need type check
     }
   ]);

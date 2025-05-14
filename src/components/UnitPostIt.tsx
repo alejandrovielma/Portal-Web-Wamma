@@ -2,14 +2,14 @@ import { COMPONENT_MAP, ComponentDataType, GridStackProvider, GridStackRender, G
 import { GridStackOptions } from "gridstack";
 import { ComponentProps, useState } from "react";
 import PostItInfo from "./PostIts/PostItInfo";
+import { PostItInfoProps } from "./PostIts/PostItInfo.tsx";
 
-interface PostItProps {
-    imageLink: string;
-    onClickInfo: number
+interface UnitPostItProps {
+    postItProds: PostItInfoProps
     handleEvent: (event: Event) => void;
 }
 
-export function UnitPostIt({imageLink, onClickInfo, handleEvent}: PostItProps) {
+export function UnitPostIt({postItProds, handleEvent}: UnitPostItProps) {
     const gridOptions: GridStackOptions = {
       column: 2,
       row: 2,
@@ -24,7 +24,7 @@ export function UnitPostIt({imageLink, onClickInfo, handleEvent}: PostItProps) {
           y: 0,
           content: JSON.stringify({
             name: "PostItInfo",
-            props: {  imageLink: imageLink, onClickInfo: onClickInfo },
+            props: {...postItProds},
           } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
         }
       ],
@@ -33,7 +33,7 @@ export function UnitPostIt({imageLink, onClickInfo, handleEvent}: PostItProps) {
     const [initialOptions] = useState(gridOptions);
 
     return (
-      <div className="w-full min-w-48">
+      <div className="w-full h-full min-w-48 max-w-xl">
         <GridStackProvider initialOptions={initialOptions}>
           <GridStackRenderProvider onEvent={handleEvent}>
           <GridStackRender componentMap={COMPONENT_MAP} />
