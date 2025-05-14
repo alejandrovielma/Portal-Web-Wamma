@@ -15,10 +15,10 @@
             }
         ],
         "video": "https://www.youtube.com/watch?v=jUoWAQqDSrQ",
-        "images": ["images/perro.jpg"]
+        "images": ["articles/cicloAgua1.jpg"]
     },
     {
-        "title": "titulo2",
+        "title": "Historia de los Waraos",
         "content": [
             {
                 "paragraphs": ["Descripccion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu"]
@@ -33,10 +33,10 @@
             }
         ],
         "video": "https://www.youtube.com/watch?v=jUoWAQqDSrQ",
-        "images": ["images/perro.jpg"]
+        "images": ["articles/waraos1.jpg"]
     },
     {
-        "title": "titulo3",
+        "title": "Nueva rana en el amazonas",
         "content": [
             {
                 "paragraphs": ["Descripccion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu"]
@@ -51,6 +51,6 @@
             }
         ],
         "video": "https://www.youtube.com/watch?v=jUoWAQqDSrQ",
-        "images": ["images/perro.jpg"]
+        "images": ["articles/rana1.png"]
     }
 ]
