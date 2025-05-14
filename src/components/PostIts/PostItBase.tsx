@@ -1,7 +1,7 @@
 import React, { ReactNode, useRef, useState, useEffect } from "react";
 import { gsap } from 'gsap';
 
-export function PostItBase({ children, color1, color2 }: { children?: ReactNode | undefined, color1: string, color2: string, className?: string }) {
+export function PostItBase({ children, color1, color2 }: { children?: ReactNode | undefined, color1: string, color2: string}) {
     const pinRef = useRef<HTMLSpanElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const pinHeadRef = useRef<HTMLDivElement>(null);
