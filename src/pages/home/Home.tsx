@@ -1,4 +1,5 @@
 import NavMenu from "#components/NavMenu.js";
+import SearchBar from "#components/SearchBar.tsx";
 import { TransitionToPage } from "#components/TransitionToPage.tsx";
 import GlobalGrip from "#components/globalgrid/GlobalGrid.tsx";
 import { useState } from "react";
@@ -16,6 +17,7 @@ export function Home() {
   return (
     <div className="relative min-h-screen" onContextMenu={handleContextMenu}>
       <GlobalGrip/>
+      <SearchBar/>
       <NavMenu text="Menu"/>
       <TransitionToPage/>
       {menu && (
