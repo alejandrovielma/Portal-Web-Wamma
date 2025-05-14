@@ -5,8 +5,11 @@ import { useState } from "react";
 import "./library.css"
 import Separator from "#components/Separator.tsx";
 import LinkButton from "#components/LinkButton.tsx";
-import { getLastArticles, getLastWorks } from "../../data/dataBase/repository";
-import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
+import { getLastArticles, getLastWorks, Work } from "../../data/dataBase/repository";
+import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx"; 
+import BookSVG from "#assets/BookSVG.tsx";
+import AudioSVG from "#assets/AudioSVG.tsx";
+import VideoSVG from "#assets/VideoSVG.tsx";
 
 export function Library() {
   const [isDragging, setIsDragging] = useState(false);
@@ -55,12 +58,23 @@ function LastWorks({handleDrag}: {handleDrag: (event: Event) => void}) {
 
   return(
     <ul id="resources" className="grid gap-x-16 justify-between">                  
-      {lastWorks.map((work: PostItInfoProps, i) => (
-          <li key={i}>
+      {lastWorks.map((work: Work, i) => (
+          <li key={i} className="relative">
             <UnitPostIt 
-            postItProds = {work}
+            postItProds = {work.content}
             handleEvent={handleDrag}
             />
+            <div className="bg-light-primary/70 absolute bottom-0 left-0 rounded-tr-2xl px-4 py-1">
+              {
+                work.type === "video" ? (
+                  <span className="text-sm text-shadow-50 font-bold"><VideoSVG/></span>
+                ) : work.type === "audio" ? (
+                  <span className="text-sm text-shadow-50 font-bold"><AudioSVG/></span>
+                ) : work.type === "book" ? (
+                  <span className="text-sm text-shadow-50 font-bold"><BookSVG/></span>
+                ) : null
+              }
+            </div>
           </li>
       ))}
     </ul>

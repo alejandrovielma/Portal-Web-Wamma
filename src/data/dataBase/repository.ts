@@ -10,10 +10,18 @@ export function getLastArticles(count: number): PostItInfoProps[] {
     return articles.slice(-count);
 }
 
-const works: PostItInfoProps[] = worksData.map(work => ({
-    ...work
+export interface Work {
+    type: string;
+    content: PostItInfoProps
+}
+
+const works: Work[] = worksData.map(work => ({
+    type: work.type,
+    content: {
+        ...work
+    }
 }));
 
-export function getLastWorks(count: number): PostItInfoProps[] {
+export function getLastWorks(count: number): Work[] {
     return works.slice(-count);
 }

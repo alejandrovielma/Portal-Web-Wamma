@@ -15,7 +15,8 @@
     "#pages/*": "./src/pages/*",
     "#types/*": "./src/types/*",
     "#public/*": "./public/*",
-    "#info/*": "./info/*"
+    "#info/*": "./info/*",
+    "#assets/*": "./src/assets/*"
   },
   "dependencies": {
     "@react-router/node": "^7.5.3",

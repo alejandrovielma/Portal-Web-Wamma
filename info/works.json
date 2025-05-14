@@ -1,5 +1,6 @@
 [
     {
+        "type": "book",
         "title": "Libro del agua",
         "content": [
             {
@@ -18,7 +19,8 @@
         "images": ["images/perro.jpg"]
     },
     {
-        "title": "psotCast del agua",
+        "type": "audio",
+        "title": "postCast del agua",
         "content": [
             {
                 "paragraphs": ["Descripccion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu"]
@@ -36,6 +38,7 @@
         "images": ["images/perro.jpg"]
     },
     {
+        "type": "video",
         "title": "Pelicula del agua",
         "content": [
             {
@@ -54,6 +57,7 @@
         "images": ["images/perro.jpg"]
     },
     {
+        "type": "video",
         "title": "Pelicula del agua",
         "content": [
             {
@@ -72,6 +76,7 @@
         "images": ["images/perro.jpg"]
     },
     {
+        "type": "video",
         "title": "Pelicula del agua",
         "content": [
             {
@@ -90,6 +95,7 @@
         "images": ["images/perro.jpg"]
     },
     {
+        "type": "video",
         "title": "Pelicula del agua",
         "content": [
             {
