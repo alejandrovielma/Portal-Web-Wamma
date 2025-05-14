@@ -1,48 +1,52 @@
 import { useState } from "react";
 import PostItBase from "./PostItBase";
 import DialogInfo from "#components/DialogInfo.tsx";
-import { getArticleById } from "../../data/dataBase/articles";
 
-interface PostItInfoProps {
-    titleText?: string;
-    imageLink?: string;
-    content?: string;
-    onClickInfo?: number;
+export interface PostItInfoContent {
+    subtitle?: string;
+    paragraphs: string[];
 }
 
-export function PostItInfo({titleText, imageLink, content, onClickInfo }: PostItInfoProps) {
+export interface PostItInfoProps {
+    title: string
+    content: PostItInfoContent[]
+    video?: string
+    images?: string[]
+    lockImage?: boolean
+}
+
+export function PostItInfo({title, content, video, images, lockImage }: PostItInfoProps) {
     const [isPopOpen, setIsPopOpen] = useState(false);
-    const [article] = useState(onClickInfo ? getArticleById(onClickInfo) : null);
     
     return (
         <>  
             <PostItBase color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
                 <button onClick={()=>{setIsPopOpen(true)}} className="flex flex-col gap-2 w-full h-full cursor-pointer">
                     <header className="flex-1">
-                        {imageLink && <img src={imageLink} alt="" className="h-full w-full" />}
+                        {images && <img src={images[0]} alt="" className="h-full w-full" />}
                     </header>
-                    {titleText && <div id="content" className="flex-1 p-2">
-                        {titleText && <h2>titleText</h2>}
-                        {content && <p>content</p>}
-                    </div>}
+                    {
+                        !lockImage &&
+                        <div id="content" className="flex-1 p-2">
+                            {title && <h2>{title}</h2>}
+                            {content && <p>{content[0].paragraphs}</p>}
+                        </div>
+                    }
+                    
                 </button>
             </PostItBase>
             <DialogInfo active={isPopOpen} onClose={()=>{setIsPopOpen(false)}}>
-                { article && (
-                        <>
-                            <h2>{article.title}</h2>
-                            {
-                                article.content.map((content) => (
-                                    <>
-                                        {content.subtitle && <h3>{content.subtitle}</h3>}
-                                        <p>{content.paragraphs}</p>
-                                    </>
-                                ))
-                            }
-
-                        </>
-                    )
-                }
+                <>
+                    <h2>{title}</h2>
+                    {
+                        content.map((content, i) => (
+                            <section key={i}>
+                                {content.subtitle && <h3>{content.subtitle}</h3>}
+                                <p>{content.paragraphs}</p>
+                            </section>
+                        ))
+                    }
+                </>
             </DialogInfo>
         </>
     );

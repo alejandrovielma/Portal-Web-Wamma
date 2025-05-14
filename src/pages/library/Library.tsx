@@ -6,7 +6,8 @@ import { useState } from "react";
 import "./library.css"
 import Separator from "#components/Separator.tsx";
 import LinkButton from "#components/LinkButton.tsx";
-import { Article, getLastArticles } from "../../data/dataBase/articles";
+import { Article, getLastArticles } from "../../data/dataBase/repository";
+import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 
 export function Library() {
   const [isDragging, setIsDragging] = useState(false);
@@ -37,13 +38,7 @@ export function Library() {
             <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
               <h2 className="text-2xl">Descubre mas sobre la cultura del agua</h2>
               <div id="resources" className="grid gap-x-16 justify-between">
-                  <UnitPostIt imageLink="images/perro.jpg" onClickInfo={1} handleEvent={handleDrag} />
-                  <UnitPostIt imageLink="images/perro.jpg" onClickInfo={1} handleEvent={handleDrag} />
-                  <UnitPostIt imageLink="images/perro.jpg" onClickInfo={1} handleEvent={handleDrag} />
-                  <UnitPostIt imageLink="images/perro.jpg" onClickInfo={1} handleEvent={handleDrag} />
-                  <UnitPostIt imageLink="images/perro.jpg" onClickInfo={1} handleEvent={handleDrag} />
-                  <UnitPostIt imageLink="images/perro.jpg" onClickInfo={1} handleEvent={handleDrag} />
-                  <UnitPostIt imageLink="images/perro.jpg" onClickInfo={1} handleEvent={handleDrag} />
+                  
               </div>
             </section>
           </div>
@@ -63,12 +58,11 @@ function LastArticles({handleDrag}: {handleDrag: (event: Event) => void}) {
 
   return(
     <>
-      {lastArticles.map((article: Article) => (
-          <article key={article.id} className="flex flex-col shadow-md rounded-b-2xl">
-            <div className="">
+      {lastArticles.map((article: PostItInfoProps, i) => (
+          <article key={i} className="flex flex-col shadow-md rounded-b-2xl">
+            <div >
               <UnitPostIt 
-              imageLink={article.images && article.images.length > 0 ? article.images[0] : "images/perro.jpg"}
-              onClickInfo={article.id}
+              postItProds = {article}
               handleEvent={handleDrag}
               />
             </div>
