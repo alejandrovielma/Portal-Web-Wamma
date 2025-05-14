@@ -10,6 +10,7 @@ import {
   useWidgetContext,
   GlobalWidgetupdater
 } from "#lib/gridStackLib/index.js";
+import LogoSVG from "#assets/LogoSVG.tsx";
 
 export function GlobalGrip(){
     const { widgets } = useWidgetContext();
@@ -36,6 +37,9 @@ export function GlobalGrip(){
             {/*<DebugInfo />*/}
             <GlobalWidgetupdater/>
         </GridStackProvider>
+        <div className="absolute left-1/2 top-1/2 -translate-1/2">
+          <LogoSVG className="opacity-70 size-80"/>
+        </div>
       </div>
     )
 }
