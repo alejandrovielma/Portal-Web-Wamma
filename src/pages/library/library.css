@@ -1,0 +1,7 @@
+#articles{
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+#resources{
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}

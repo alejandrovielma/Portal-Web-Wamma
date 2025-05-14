@@ -1,4 +1,4 @@
-import { COMPONENT_MAP, ComponentDataType, GridStackProvider, GridStackRender, GridStackRenderProvider, useWidgetContext } from "#lib/gridStackLib/index.ts";
+import { COMPONENT_MAP, ComponentDataType, GridStackProvider, GridStackRender, GridStackRenderProvider, useGridStackContext, useWidgetContext } from "#lib/gridStackLib/index.ts";
 import { GridStackOptions } from "gridstack";
 import { ComponentProps, useState } from "react";
 import PostItInfo from "./PostIts/PostItInfo";
@@ -28,15 +28,18 @@ export function UnitPostIt({imageLink, onClickInfo, handleEvent}: PostItProps) {
           } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
         }
       ],
+      
     };
     const [initialOptions] = useState(gridOptions);
 
     return (
-      <GridStackProvider initialOptions={initialOptions}>
+      <div className="w-full min-w-48">
+        <GridStackProvider initialOptions={initialOptions}>
           <GridStackRenderProvider onEvent={handleEvent}>
           <GridStackRender componentMap={COMPONENT_MAP} />
           </GridStackRenderProvider>
-      </GridStackProvider>
+        </GridStackProvider>
+      </div>
     );
 }
 export default UnitPostIt;

@@ -4,19 +4,20 @@ import DialogInfo from "#components/DialogInfo.tsx";
 import { getArticleById } from "../../data/dataBase/articles";
 
 interface PostItInfoProps {
+    id: string;
     titleText?: string;
     imageLink?: string;
     content?: string;
     onClickInfo?: number;
 }
 
-export function PostItInfo({ titleText, imageLink, content, onClickInfo }: PostItInfoProps) {
+export function PostItInfo({id, titleText, imageLink, content, onClickInfo }: PostItInfoProps) {
     const [isPopOpen, setIsPopOpen] = useState(false);
     const [article, setArticle] = useState(onClickInfo ? getArticleById(onClickInfo) : null);
     
     return (
         <>  
-            <PostItBase color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
+            <PostItBase id={id} color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
                 <button onClick={()=>{setIsPopOpen(true)}} className="flex flex-col gap-2 w-full cursor-pointer">
                     <header className="flex-1">
                         {imageLink && <img src={imageLink} alt="" />}

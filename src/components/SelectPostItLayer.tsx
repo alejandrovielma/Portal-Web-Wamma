@@ -49,17 +49,19 @@ export function SelectPostItLayer({  children, isDragging }: { children?: ReactN
     }, [isDragging])
     
     return (
-        <>
+        <div className="overflow-hidden h-screen">
             <div id="gridContainer" className="overflow-hidden fixed top-0 left-0 w-full h-full -z-10">
                 <GlobalGrip/>
             </div>
             <div id="expander" onMouseEnter={onMouseEnter}>
 
             </div>
-            <div id="pageContainer" className="bg-white h-screen">
-                {children}
+            <div id="pageContainer" className="bg-white h-screen overflow-clip">
+                <div className="overflow-y-scroll h-full">
+                    {children}
+                </div>
             </div>
-        </>
+        </div>
     )
 }
 
