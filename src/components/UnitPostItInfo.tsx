@@ -9,7 +9,7 @@ interface UnitPostItProps {
     handleEvent: (event: Event) => void;
 }
 
-export function UnitPostIt({ postItProds, handleEvent }: UnitPostItProps) {
+export function UnitPostItInfo({ postItProds, handleEvent }: UnitPostItProps) {
     const [gridOptions, setGridOptions] = useState<GridStackOptions>({
         column: 2,
         row: 2,
@@ -59,4 +59,4 @@ export function UnitPostIt({ postItProds, handleEvent }: UnitPostItProps) {
         </div>
     );
 }
-export default UnitPostIt;
+export default UnitPostItInfo;

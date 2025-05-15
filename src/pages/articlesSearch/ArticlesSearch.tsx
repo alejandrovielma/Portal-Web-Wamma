@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getAllArticles } from "../../data/dataBase/repository"; 
 import { NavHeader, BreadcrumbItem } from "#components/NavHeader.tsx";
 import { SearchBar } from "#components/SearchBar.tsx"; 
-import UnitPostIt from "#components/UnitPostIt.tsx";
+import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 
@@ -52,7 +52,7 @@ function Articles({ handleDrag, articles }: { handleDrag: (event: Event) => void
       {articles.map((article: PostItInfoProps, i) => (
         <article key={i} className="flex shadow-md rounded-b-2xl">
           <div className="w-1/4 relative">
-            <UnitPostIt key={article.title} postItProds={article} handleEvent={handleDrag} />
+            <UnitPostItInfo key={article.title} postItProds={article} handleEvent={handleDrag} />
           </div>
           <div className="w-3/4 p-5 flex flex-col items-start justify-start gap-2">
             <header className="text-center">

@@ -1,6 +1,6 @@
 import {NavHeader} from "#components/NavHeader.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
-import UnitPostIt from "#components/UnitPostIt.tsx";
+import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 import { useState } from "react";
 import "./library.css"
 import Separator from "#components/Separator.tsx";
@@ -60,7 +60,7 @@ function LastWorks({handleDrag}: {handleDrag: (event: Event) => void}) {
     <ul id="resources" className="grid gap-x-16 justify-between">                  
       {lastWorks.map((work: Work, i) => (
           <li key={i} className="relative">
-            <UnitPostIt 
+            <UnitPostItInfo 
             postItProds = {work.content}
             handleEvent={handleDrag}
             />
@@ -89,7 +89,7 @@ function LastArticles({handleDrag}: {handleDrag: (event: Event) => void}) {
       {lastArticles.map((article: PostItInfoProps, i) => (
           <article key={i} className="flex flex-col shadow-md rounded-b-2xl">
             <div >
-              <UnitPostIt 
+              <UnitPostItInfo 
               postItProds = {article}
               handleEvent={handleDrag}
               />

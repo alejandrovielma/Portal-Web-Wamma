@@ -1,6 +1,6 @@
 import { NavHeader } from "#components/NavHeader.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
-import UnitPostIt from "#components/UnitPostIt.tsx";
+import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 import { useEffect, useState } from "react";
 import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet"
 import "leaflet/dist/leaflet.css";

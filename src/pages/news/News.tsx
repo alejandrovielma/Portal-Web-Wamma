@@ -1,6 +1,6 @@
 import {NavHeader} from "#components/NavHeader.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
-import UnitPostIt from "#components/UnitPostIt.tsx";
+import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 import { useState } from "react";
 
 export function News() {
