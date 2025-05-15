@@ -13,7 +13,7 @@ export function LinkButton({children, href}: LinkButtonProps) {
     }
 
     return (
-        <a onClick={onClick} className="flex tems-center justify-center px-6 py-1 text-sm font-medium text-white bg-shadow-50 rounded-2xl shadow-sm hover:bg-neutral-800">
+        <a onClick={onClick} className="flex tems-center justify-center px-6 py-1 text-sm font-medium text-white bg-shadow-50 rounded-2xl shadow-sm hover:bg-neutral-800 cursor-pointer">
             {children}
         </a>
     )
