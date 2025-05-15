@@ -1,6 +1,8 @@
 import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
+import { PostItMapProps } from "#components/PostIts/PostItMap.tsx";
 import articlesData from "#info/articles.json"
 import worksData from "#info/works.json"
+import destinationsData from "#info/destinations.json"
 
 const articles: PostItInfoProps[] = articlesData.map(article => ({
     ...article
@@ -28,4 +30,20 @@ const works: Work[] = worksData.map(work => ({
 
 export function getLastWorks(count: number): Work[] {
     return works.slice(-count);
+}
+
+export interface Destination{
+    type: string;
+    content: PostItMapProps
+}
+
+const destinations: Destination[] = destinationsData.map(destination => ({
+    type: destination.type,
+    content: {
+        ...destination
+    }
+}));
+
+export function getAllDestinations(): Destination[] {
+    return destinations;
 }

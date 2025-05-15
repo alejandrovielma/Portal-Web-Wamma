@@ -9,7 +9,7 @@ export interface PostItMapProps {
         lat: number;
         lng: number;
     };
-    city: string;
+    city?: string;
 }
 
 export function PostItMap({ content }: { content: string }) {

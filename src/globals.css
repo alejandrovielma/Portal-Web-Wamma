@@ -26,6 +26,9 @@
 
   --color-shadow-50: #191615;
   --color-shadow-100: white;
+
+  --font-titles: "Tsukimi_Rounded", 'Arial Narrow Bold', sans-serif;
+  --font-body: "Barlow", sans-serif;
 }
 
 h1{
