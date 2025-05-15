@@ -81,20 +81,20 @@ export function NavMenu({ text}:NavMenuProps) {
       </button>
       <div ref={bubblesRef} className='flex gap-8 absolute translate-y-full'>
         <Bubble navigate={navigate} href='/actualidad'>
-          <h4 className="text-black font-semibold text-center">Actualidad</h4>
-          <img className="w-5/12" src="./Public/svgs/Actualidad.svg" alt="Actualidad" />
+          <h4 className="text-shadow-50 font-semibold text-center">Actualidad</h4>
+          <img className="flex-1" src="./Public/svgs/Actualidad.svg" alt="Actualidad" />
         </Bubble>
         <Bubble navigate={navigate} href='/animales'>
-          <h4 className="text-black font-semibold text-center">Animales</h4>
-            <img className="w-7/12" src="./Public/svgs/Animales.svg" alt="Animales" />
+          <h4 className="text-shadow-50 font-semibold text-center">Animales</h4>
+            <img className="flex-1" src="./Public/svgs/Animales.svg" alt="Animales" />
         </Bubble>
         <Bubble navigate={navigate} href='/biblioteca'>
-           <h4 className="text-black font-semibold text-center">Biblioteca</h4>
-            <img className="w-4/6" src="./Public/svgs/Biblioteca.svg" alt="Biblioteca" />
+           <h4 className="text-shadow-50 font-semibold text-center">Biblioteca</h4>
+            <img className="flex-1" src="./Public/svgs/Biblioteca.svg" alt="Biblioteca" />
         </Bubble>
         <Bubble navigate={navigate} href='/mapa'>
-          <h4 className="text-black font-semibold text-center">Mapa</h4>
-            <img src="./Public/svgs/Mapa.svg" alt="Mapa" />
+          <h4 className="text-shadow-50 font-semibold text-center">Mapa</h4>
+            <img className='flex-1' src="./Public/svgs/Mapa.svg" alt="Mapa" />
         </Bubble>
       </div>
     </div>
