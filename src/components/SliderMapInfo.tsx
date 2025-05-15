@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { PostItMapProps } from "./PostIts/PostItMap";
 import gsap from "gsap";
 import CompressSVG from "#assets/CompressSVG.tsx";
+import UnitPostItMap from "./UnitPostItMap";
 
 
 export interface RealatesDestination {
@@ -10,7 +11,7 @@ export interface RealatesDestination {
     content: PostItMapProps;
 }
 
-export function SliderMapInfo({ content, realates }: { content?: PostItMapProps; realates?: RealatesDestination[] }) {
+export function SliderMapInfo({ content, realates, handleDrag }: { content?: PostItMapProps; realates?: RealatesDestination[], handleDrag: (event: Event) => void }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const asideRef = useRef<HTMLDivElement>(null);
 
@@ -29,12 +30,12 @@ export function SliderMapInfo({ content, realates }: { content?: PostItMapProps;
     }, [isExpanded, content]);
 
     return (
-        <aside ref={asideRef} className="absolute pt-24 top-0 right-0 w-96 h-full overflow-hidden bg-white/80 shadow-lg p-4 flex flex-col">
+        <aside ref={asideRef} className="absolute pt-24 top-0 right-0 w-96 h-full overflow-y-scroll bg-white/80 shadow-lg p-4 flex flex-col">
             {
                 content
                     ? (
                         !isExpanded
-                            ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true) })
+                            ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), handleDrag })
                             : OpenSlider({ content, realates, onClose: () => setIsExpanded(false) })
                     )
                     : null
@@ -72,7 +73,7 @@ function OpenSlider({ content, realates, onClose }: { content: PostItMapProps; r
     )
 }
 
-function CloseSlider({ content, realates, onOpen }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void }) {
+function CloseSlider({ content, realates, onOpen, handleDrag }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, handleDrag: (event: Event) => void }) {
     return (
         <div id="content" className="flex flex-col gap-4 h-full">
             <header className="flex justify-between items-center gap-4">
@@ -81,7 +82,7 @@ function CloseSlider({ content, realates, onOpen }: { content: PostItMapProps; r
             </header>
             <div className="flex flex-col gap-8 justify-between h-full">
                 <div className="flex flex-col gap-4">
-                    <img src={content.images[0]} alt={content.title} />
+                    <UnitPostItMap key={content.title} postItProds={content} handleEvent={handleDrag}/>
                     <p>
                         {content?.description && content.description.length > 240
                             ? content.description.slice(0, 240) + '...'

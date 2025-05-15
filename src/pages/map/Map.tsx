@@ -1,27 +1,20 @@
 import { NavHeader } from "#components/NavHeader.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
-import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 import { useEffect, useState } from "react";
 import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet"
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import SliderMapInfo, { RealatesDestination } from "#components/SliderMapInfo.tsx";
 import { Destination, getAllDestinations } from "../../data/dataBase/repository";
-import { PostItMapProps } from "#components/PostIts/PostItMap.tsx";
-
-function FlyTo({ lat, lng, zoom = 15 }: { lat: number, lng: number, zoom?: number }) {
-  const map = useMap();
-  useEffect(() => {
-    map.flyTo([lat, lng], zoom);
-  }, [lat, lng, zoom, map]);
-  return null;
-}
+import { useLocation } from "react-router-dom";
 
 export function Map() {
   const [isDragging, setIsDragging] = useState(false);
   function handleEvent(event: Event) {
     setIsDragging(event.type === "dragstart");
   }
+
+  const location = useLocation();
 
   const destinations = getAllDestinations()
   const [infoSlider, setInfoSlider] = useState<Destination>()
@@ -50,6 +43,17 @@ export function Map() {
     }));
     setRelatedDestinations(related);
   }, [infoSlider, destinations]);
+
+  useEffect(() => {
+    if (location.state && location.state.coordinates) {
+      const { lat, lng } = location.state.coordinates;
+      setTargetCoords({ lat, lng });
+      const found = destinations.find(
+        d => d.content.coordinates.lat === lat && d.content.coordinates.lng === lng
+      );
+      if (found) setInfoSlider(found);
+    }
+  }, [location.state, destinations]);
 
   return (
     <SelectPostItLayer isDragging={isDragging}>
@@ -92,13 +96,21 @@ export function Map() {
             })
           }
         </MapContainer>
-        <SliderMapInfo content={infoSlider?.content} realates={relatedDestinations} />
+        <SliderMapInfo content={infoSlider?.content} realates={relatedDestinations} handleDrag={handleEvent} />
       </div>
 
     </SelectPostItLayer>
   );
 }
 export default Map;
+
+function FlyTo({ lat, lng, zoom = 15 }: { lat: number, lng: number, zoom?: number }) {
+  const map = useMap();
+  useEffect(() => {
+    map.flyTo([lat, lng], zoom);
+  }, [lat, lng, zoom, map]);
+  return null;
+}
 
 
 

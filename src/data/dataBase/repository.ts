@@ -24,7 +24,10 @@ export interface Work {
 const works: Work[] = worksData.map(work => ({
     type: work.type,
     content: {
-        ...work
+        title: work.title,
+        content: work.content,
+        images: work.images,
+        video: work.video,
     }
 }));
 
@@ -40,7 +43,15 @@ export interface Destination{
 const destinations: Destination[] = destinationsData.map(destination => ({
     type: destination.type,
     content: {
-        ...destination
+        title: destination.title,
+        description: destination.description,
+        images: destination.images,
+        video: destination.video,
+        coordinates: {
+            lat: destination.coordinates.lat,
+            lng: destination.coordinates.lng
+        },
+        city: destination.city,
     }
 }));
 
