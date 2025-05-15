@@ -8,10 +8,8 @@ export function Home() {
   return (
     <>
       <GlobalGrip/>
-      <SearchBar/>
       <NavMenu text="Menu"/>
       <TransitionToPage/>
-      
     </>
   );
 }
