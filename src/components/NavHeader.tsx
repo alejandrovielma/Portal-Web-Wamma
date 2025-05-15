@@ -79,9 +79,9 @@ export function NavHeader ({ pathItems, titulo }: HeaderProps) {
         <nav aria-label="breadcrumb" className="flex items-center text-xl">
           {fullBreadcrumbs.map((item, index) => (
             <React.Fragment key={index}>
-              <Link to={item.link} className="text-white hover:underline">
+              <TransitionToMenuButton href={item.link} className="text-white hover:underline">
                 {item.nombre}
-              </Link>
+              </TransitionToMenuButton>
               {index < fullBreadcrumbs.length - 1 && (
                 <span className="mx-2 text-white">&gt;</span>
               )}
