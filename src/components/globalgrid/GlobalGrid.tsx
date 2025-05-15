@@ -10,7 +10,6 @@ import {
   useWidgetContext,
   GlobalWidgetupdater
 } from "#lib/gridStackLib/index.js";
-import LogoSVG from "#assets/LogoSVG.tsx";
 
 export function GlobalGrip(){
     const { widgets } = useWidgetContext();
@@ -30,7 +29,6 @@ export function GlobalGrip(){
     return (
       <div className="bgGrid">
         <GridStackProvider initialOptions={initialOptions}>
-            <Toolbar />
             <GridStackRenderProvider>
                 <GridStackRender componentMap={COMPONENT_MAP} />
             </GridStackRenderProvider>
@@ -42,48 +40,6 @@ export function GlobalGrip(){
 }
 export default GlobalGrip
 
-function Toolbar() {
-  const { addWidget } = useGridStackContext();
-
-  return (
-    <div
-      className="z-10 flex gap-8 fixed bg-white/50 top-0 right-0 m-4 p-4 rounded-lg shadow-md"
-    >
-      <button
-        onClick={() => {
-          addWidget((id) => ({
-            w: 2,
-            h: 2,
-            x: 0,
-            y: 0,
-            content: JSON.stringify({
-              name: "PostItInfo",
-              props: { content: id },
-            }),
-          }));
-        }}
-      >
-        Add Card Info (2x2)
-      </button>
-      <button
-        onClick={() => {
-          addWidget((id) => ({
-            w: 2,
-            h: 2,
-            x: 0,
-            y: 0,
-            content: JSON.stringify({
-              name: "PostItLink",
-              props: { content: id },
-            }),
-          }));
-        }}
-      >
-        Add Card Link (2x2)
-      </button>
-    </div>
-  );
-}
 
 function DebugInfo() {
   const { initialOptions, saveOptions } = useGridStackContext();
