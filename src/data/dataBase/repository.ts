@@ -10,6 +10,10 @@ export function getLastArticles(count: number): PostItInfoProps[] {
     return articles.slice(-count);
 }
 
+export function getAllArticles(): PostItInfoProps[] {
+    return articles;
+}
+
 export interface Work {
     type: string;
     content: PostItInfoProps
