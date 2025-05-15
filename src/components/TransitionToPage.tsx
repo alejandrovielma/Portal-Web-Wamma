@@ -17,7 +17,7 @@ export function TransitionToPage() {
   return (
     <>
       <div className="animatePageContainer bg-white z-50 fixed top-0 left-0 w-full h-full translate-y-full">
-        <NavHeader breadcrumbs={[]}/>
+        <NavHeader/>
       </div>
     </>
   )
