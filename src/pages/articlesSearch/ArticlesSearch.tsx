@@ -54,11 +54,11 @@ function Articles({ handleDrag, articles }: { handleDrag: (event: Event) => void
           <div className="w-1/4 relative">
             <UnitPostIt key={article.title} postItProds={article} handleEvent={handleDrag} />
           </div>
-          <div className="w-3/4 p-5 flex flex-col items-center justify-center gap-2">
+          <div className="w-3/4 p-5 flex flex-col items-start justify-start gap-2">
             <header className="text-center">
               <h3 className="text-xl">{article.title}</h3>
             </header>
-            <p className="text-sm opacity-90 text-center overflow-hidden whitespace-normal">
+            <p className="text-sm opacity-90 overflow-hidden whitespace-normal">
               {article.content[1]?.paragraphs[0]?.length > 300
                 ? article.content[1].paragraphs[0].slice(0, 300) + "..."
                 : article.content[1]?.paragraphs[0]}
