@@ -46,16 +46,10 @@ export function generateBreadcrumbsFromItems(
 
 interface HeaderProps {
   pathItems?: BreadcrumbItem[];
-  titulo?: string;
 }
 
-export function NavHeader ({ pathItems, titulo }: HeaderProps) {
+export function NavHeader ({ pathItems }: HeaderProps) {
   const fullBreadcrumbs: BreadcrumbItem[] = [];
-  if (titulo) {
-    fullBreadcrumbs.push({ nombre: titulo, link: "/" });
-  } else {
-    fullBreadcrumbs.push({ nombre: "Inicio", link: "/" });
-  }
 
   if (pathItems && pathItems.length > 0) {
     fullBreadcrumbs.push(...pathItems);
@@ -77,11 +71,15 @@ export function NavHeader ({ pathItems, titulo }: HeaderProps) {
 
       {fullBreadcrumbs.length > 0 && (
         <nav aria-label="breadcrumb" className="flex items-center text-xl">
+          <TransitionToMenuButton href="/" className="text-white hover:underline">
+            Inicio
+          </TransitionToMenuButton>
+          <span className="mx-2 text-white">&gt;</span>
           {fullBreadcrumbs.map((item, index) => (
             <React.Fragment key={index}>
-              <TransitionToMenuButton href={item.link} className="text-white hover:underline">
+              <Link to={item.link} className="text-white hover:underline">
                 {item.nombre}
-              </TransitionToMenuButton>
+              </Link>
               {index < fullBreadcrumbs.length - 1 && (
                 <span className="mx-2 text-white">&gt;</span>
               )}
