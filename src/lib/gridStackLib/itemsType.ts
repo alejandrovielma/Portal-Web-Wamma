@@ -1,10 +1,10 @@
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
-import PostItLink from "#components/PostIts/PostItLink.tsx";
+import PostItMap from "#components/PostIts/PostItMap.tsx";
 import { ComponentMap } from "./grid-stack-render";
 
 export const COMPONENT_MAP: ComponentMap = {
   PostItInfo,
-  PostItLink,
+  PostItMap,
   // ... other components here
 };
 
