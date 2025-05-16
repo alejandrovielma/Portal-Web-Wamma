@@ -1,7 +1,10 @@
-import { useState } from "react"; // Importa el hook useState para manejar el estado de apertura del modal
+import { useEffect, useState } from "react"; // Importa el hook useState para manejar el estado de apertura del modal
 import PostItBase from "./PostItBase"; // Importa el componente base para el diseño del post-it
 import DialogInfo from "#components/DialogInfo.tsx"; // Importa el componente para los diálogos adicionales
 import { motion, AnimatePresence } from "framer-motion"; // Importa las funciones de animación de Framer Motion
+import { useGridStackContext } from "#lib/gridStackLib/grid-stack-context.ts";
+import { useGridStackWidgetContext } from "#lib/gridStackLib/grid-stack-widget-context.ts";
+import { GridStackWidget } from "gridstack";
 
 export interface PostItInfoContent {
     subtitle?: string; // Subtítulo opcional para cada sección de contenido
@@ -12,25 +15,53 @@ export interface PostItInfoProps {
     title: string; // Título principal del post-it
     content: PostItInfoContent[]; // Lista de secciones de contenido para mostrar en el diálogo
     video?: string; // URL opcional para un video
-    images?: string[]; // Lista opcional de URLs de imágenes
+    images: string[]; // Lista opcional de URLs de imágenes
 }
 
 
 export function PostItInfo({title, content, video, images }: PostItInfoProps) {
-    // Estado para controlar la apertura del modal
     const [isPopOpen, setIsPopOpen] = useState(false);
-    
+    const { widget } = useGridStackWidgetContext();
+    const { saveOptions, gridStack } = useGridStackContext()
+    const [dimensions, setDimensions] = useState({ h: 2, w: 2 });
+
+    useEffect(() => {
+        if (!gridStack) return;
+        function updateDimensions() {
+            const childrens: GridStackWidget[] = saveOptions()["children"]
+            const self = childrens.find((child: GridStackWidget) => child.id === widget.id)
+            setDimensions({
+                h: self?.h || 2,
+                w: self?.w || 2,
+            })
+        }
+        updateDimensions();
+
+        if (gridStack) {
+            gridStack.on('change', updateDimensions);
+        }
+        return () => {
+            if (gridStack) {
+                gridStack.off('change');
+            }
+        };
+
+    }, [])
+
+    const allContent:PostItInfoProps = {
+        title: title,
+        content: content,
+        video: video,
+        images: images
+    }
     return (
         <>  
-            {/* Contenedor del Post-It con imagen y título */}
-            <PostItBase color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
+            <PostItBase dimensions={dimensions} color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
                 <button onClick={()=>{setIsPopOpen(true)}} className="relative flex flex-col w-full h-full cursor-pointer" style={{height: "300px"}}>
-                    {/* Imagen principal del Post-It */}
-                    {images && images[0] && (
-                        <div className="w-full aspect-square overflow-hidden rounded-t-2xl">
-                            <img src={images[0]} alt="" className="w-full h-full object-cover" />
-                        </div>
-                    )}
+                    {
+                    dimensions.h <= 2 && dimensions.w <= 2 ? <ContentSmall allContent={allContent} /> :
+                        <ContentMedium allContent={allContent} />
+                        }
                 </button>
             </PostItBase>
             {/* Modal desplegable con animación */}
@@ -97,5 +128,19 @@ export function PostItInfo({title, content, video, images }: PostItInfoProps) {
         </>
     );
 }
-
 export default PostItInfo;
+
+function ContentSmall({ allContent }: { allContent: PostItInfoProps }) {
+    return <img className="flex-1" src={allContent.images[0]} alt={allContent.title} />
+}
+function ContentMedium({ allContent }: { allContent: PostItInfoProps }) {
+    return (
+        <>
+            <img className="flex-1" src={allContent.images[0]} alt={allContent.title} />
+            <div className="flex-1/2 px-4 py-2 flex flex-col gap-2">
+                <h2 className="font-titles text-left text-xl" >{allContent.title}</h2>
+                <p className="text-left">{allContent.content[0]?.paragraphs?.join(' ')}</p>
+            </div>
+        </>
+    )
+}

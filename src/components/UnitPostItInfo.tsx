@@ -29,27 +29,8 @@ export function UnitPostItInfo({ postItProds, handleEvent }: UnitPostItProps) {
                     props: { ...postItProds },
                 }),
             }
-        ],
+        ]
     });
-
-    useEffect(() => {
-        setGridOptions((prev) => ({
-            ...prev,
-            children: [
-                {
-                    id: "item2",
-                    h: 2,
-                    w: 2,
-                    x: 0,
-                    y: 0,
-                    content: JSON.stringify({
-                        name: "PostItInfo",
-                        props: { ...postItProds },
-                    }),
-                }
-            ],
-        }));
-    }, [postItProds]);
 
     return (
         <div className="w-full h-full min-w-48 max-w-xl">
