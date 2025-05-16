@@ -2,8 +2,7 @@ import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 import { PostItMapProps } from "#components/PostIts/PostItMap.tsx";
 import articlesData from "#info/articles.json"
 import worksData from "#info/works.json"
-import animalsData1 from "#info/faunaVenezuelaArthropoda.json";
-import animalsData2 from "#info/faunaVenezuelaChordata.json";
+import animalsData from "#info/faunaVenezuelaChordata.json";
 import destinationsData from "#info/destinations.json"
 import { PostItInfoAnimalsProps } from "#components/PostIts/PostItInfoAnimals.tsx";
 
@@ -18,16 +17,6 @@ export function getLastArticles(count: number): PostItInfoProps[] {
 export function getAllArticles(): PostItInfoProps[] {
     return articles;
 }
-
-
-const animals: PostItInfoAnimalsProps[] = animalsData1.map(animal => ({
-    ...animal
-}));
-
-export function getAllAnimals(): PostItInfoAnimalsProps[] {
-  return animals;
-}
-
 
 export interface Work {
     type: string;
@@ -70,4 +59,44 @@ const destinations: Destination[] = destinationsData.map(destination => ({
 
 export function getAllDestinations(): Destination[] {
     return destinations;
+}
+
+const animals: PostItInfoProps[] = animalsData.map((animal): PostItInfoProps => ({
+    title: animal.scientificName,
+    content: [
+        {
+            paragraphs: [animal.description]
+        },
+        {
+            subtitle: "Taxonomía",
+            paragraphs: [
+                `Filo: ${animal.phylum}`,
+                `Clase: ${animal.class}`,
+                `Orden: ${animal.order}`,
+                `Familia: ${animal.family}`,
+                `Género: ${animal.genus}`,
+            ]
+        },
+        {
+            subtitle: "Distribución",
+            paragraphs: [animal.distribution]
+        },
+        {
+            subtitle: "Situación",
+            paragraphs: [animal.situation]
+        },
+        {
+            subtitle: "Peligro",
+            paragraphs: [animal.danger]
+        },
+        {
+            subtitle: "Conservación",
+            paragraphs: [animal.conservation]
+        }
+    ],
+    images: [animal.image]
+}));
+
+export function getAllAnimals(): PostItInfoProps[] {
+  return animals;
 }
