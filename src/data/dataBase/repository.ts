@@ -94,7 +94,7 @@ const animals: PostItInfoProps[] = animalsData.map((animal): PostItInfoProps => 
             paragraphs: [animal.conservation]
         }
     ],
-    images: [animal.image]
+    images: ["https://www.especiesamenazadas.org/"+animal.image]
 }));
 
 export function getAllAnimals(): PostItInfoProps[] {

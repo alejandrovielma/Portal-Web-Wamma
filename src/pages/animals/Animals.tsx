@@ -6,16 +6,18 @@ import UnitPostItInfoAnimals from "#components/UnitPostItInfoAnimals.tsx";
 import { getAllAnimals } from "../../data/dataBase/repository";
 import { useState, useEffect } from "react";
 import { PostItInfoAnimalsProps } from "#components/PostIts/PostItInfoAnimals.tsx";
+import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
+import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 
 export function Animals() {
   const [isDragging, setIsDragging] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredAnimals, setFilteredAnimals] = useState<PostItInfoAnimalsProps[]>([]);
-  const [animals, setAnimals] = useState<PostItInfoAnimalsProps[]>(getAllAnimals())
+  const [filteredAnimals, setFilteredAnimals] = useState<PostItInfoProps[]>([]);
+  const [animals, setAnimals] = useState<PostItInfoProps[]>(getAllAnimals())
 
   useEffect(() => {
     const results = animals.filter((animal) =>
-      animal.scientificName.toLowerCase().includes(searchTerm.toLowerCase())
+      animal.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredAnimals(results);
   }, [searchTerm, animals]);
@@ -39,32 +41,31 @@ export function Animals() {
         </div>
       </div>
       <SearchBar estilo="w-1/3" onSearch={setSearchTerm} />
-      {/*filteredAnimals.length > 0 ? (
-        <AnimalsGrid handleDrag={handleEvent} animals={filteredAnimals} />
-      ) : (
-        <p className="text-center translate-x-14 text-6xl text-gray-500">
-          No se encontró el artículo solicitado
-        </p>
-      )*/}
-
-      
+      <AnimalGrip filteredAnimals={filteredAnimals} handleEvent={handleEvent} />
     </SelectPostItLayer>
   );
 }
-
 export default Animals;
 
-/*function AnimalsGrid({ handleDrag, animals }: { handleDrag: (event: Event) => void; animals: PostItInfoAnimalsProps[] }) {
+function AnimalGrip({filteredAnimals, handleEvent}:{ filteredAnimals: PostItInfoProps[], handleEvent: (event: Event) => void }) {
   return (
-    <div className="grid grid-cols-4 grid-rows-3 gap-4">
-      {animals.map((animal: PostItInfoAnimalsProps, i) => (
-        <article key={i} className="flex flex-col items-center justify-center">
-          <UnitPostItInfoAnimals key={animal.scientificName} postItProds={animal} handleEvent={handleDrag} />
+    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+      {filteredAnimals.length > 0 && filteredAnimals.slice(0,16).map((info: PostItInfoProps, i) => (
+        <article key={i} className="flex flex-col items-center justify-center shadow-xl rounded-b-xl overflow-hidden">
+          <UnitPostItInfo
+            key={info.title}
+            postItProds={info}
+            handleEvent={handleEvent}
+          />
+          <div>
+            <h3 className="font-titles">{info.title}</h3>
+          </div>
         </article>
       ))}
     </div>
   );
-}*/
+
+}
 
 
 
