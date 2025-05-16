@@ -4,7 +4,7 @@ import { useGridStackWidgetContext } from "#lib/gridStackLib/grid-stack-widget-c
 import { useGridStackContext } from "#lib/gridStackLib/grid-stack-context.ts";
 import TrashSVG from "#assets/TrashSVG.tsx";
 
-export function PostItBase({ children, color1, color2 }: { children?: ReactNode | undefined, color1: string, color2: string}) {
+export function PostItBase({ children, color1, color2, dimensions }: { children?: ReactNode | undefined, color1: string, color2: string, dimensions?: { h: number, w: number } }) {
     const pinRef = useRef<HTMLSpanElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const pinHeadRef = useRef<HTMLDivElement>(null);
@@ -101,7 +101,8 @@ export function PostItBase({ children, color1, color2 }: { children?: ReactNode 
         >
             <div className={`${color2} size-8 absolute top-0 right-0 z-10`}>
             </div>
-            <button className="absolute top-0 left-0 z-20 cursor-pointer p-1"
+            {
+                (!dimensions || (dimensions?.h > 2 || dimensions?.w > 2)) && <button className="absolute top-0 left-0 z-20 cursor-pointer p-1"
                 onClick={() => {
                     if (widget) {
                         removeWidget(widget.id);
@@ -109,7 +110,7 @@ export function PostItBase({ children, color1, color2 }: { children?: ReactNode 
                 }}
             >
                 <TrashSVG/>
-            </button>
+            </button>}
 
             <span
                 ref={pinRef}
