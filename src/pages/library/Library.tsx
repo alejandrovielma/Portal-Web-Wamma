@@ -98,7 +98,7 @@ function LastArticles({ handleDrag }: { handleDrag: (event: Event) => void }) {
           </div>
           <div className="px-5 py-3 flex flex-col gap-1">
             <header>
-              <h3 className="text-xl">{article.title}</h3>
+              <h3 className="text-xl font-titles">{article.title}</h3>
             </header>
             <p className="text-sm opacity-90">
               {article.content[0].paragraphs[0]}
