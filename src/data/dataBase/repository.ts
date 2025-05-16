@@ -89,44 +89,52 @@ export function getAllProjects(): Project[] {
   return projects;
 }
 
-const animals: PostItInfoProps[] = animalsData.map(
-  (animal): PostItInfoProps => ({
-    title: animal.scientificName,
-    content: [
-      {
-        paragraphs: [animal.description],
-      },
-      {
-        subtitle: "Taxonomía",
-        paragraphs: [
-          `Filo: ${animal.phylum}`,
-          `Clase: ${animal.class}`,
-          `Orden: ${animal.order}`,
-          `Familia: ${animal.family}`,
-          `Género: ${animal.genus}`,
-        ],
-      },
-      {
-        subtitle: "Distribución",
-        paragraphs: [animal.distribution],
-      },
-      {
-        subtitle: "Situación",
-        paragraphs: [animal.situation],
-      },
-      {
-        subtitle: "Peligro",
-        paragraphs: [animal.danger],
-      },
-      {
-        subtitle: "Conservación",
-        paragraphs: [animal.conservation],
-      },
-    ],
-    images: ["https://www.especiesamenazadas.org/" + animal.image],
+export interface Animal {
+  class: string;
+  content: PostItInfoProps;
+}
+
+const animals: Animal[] = animalsData.map(
+  (animal): Animal => ({
+    class: animal.class,
+    content: {
+      title: animal.scientificName,
+      content: [
+        {
+          paragraphs: [animal.description],
+        },
+        {
+          subtitle: "Taxonomía",
+          paragraphs: [
+            `Filo: ${animal.phylum}`,
+            `Clase: ${animal.class}`,
+            `Orden: ${animal.order}`,
+            `Familia: ${animal.family}`,
+            `Género: ${animal.genus}`,
+          ],
+        },
+        {
+          subtitle: "Distribución",
+          paragraphs: [animal.distribution],
+        },
+        {
+          subtitle: "Situación",
+          paragraphs: [animal.situation],
+        },
+        {
+          subtitle: "Peligro",
+          paragraphs: [animal.danger],
+        },
+        {
+          subtitle: "Conservación",
+          paragraphs: [animal.conservation],
+        },
+      ],
+      images: ["https://www.especiesamenazadas.org/" + animal.image],
+    },
   })
 );
 
-export function getAllAnimals(): PostItInfoProps[] {
+export function getAllAnimals(): Animal[] {
   return animals;
 }
