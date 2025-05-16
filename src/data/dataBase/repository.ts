@@ -1,9 +1,11 @@
 import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 import { PostItMapProps } from "#components/PostIts/PostItMap.tsx";
+import projectsData from "#info/projects.json";
 import articlesData from "#info/articles.json";
 import worksData from "#info/works.json";
+import animalsData from "#info/faunaVenezuelaChordata.json";
 import destinationsData from "#info/destinations.json";
-import projectsData from "#info/projects.json";
+import { PostItInfoAnimalsProps } from "#components/PostIts/PostItInfoAnimals.tsx";
 
 const articles: PostItInfoProps[] = articlesData.map((article) => ({
   ...article,
@@ -85,4 +87,46 @@ export function getLastProjects(count: number): Project[] {
 
 export function getAllProjects(): Project[] {
   return projects;
+}
+
+const animals: PostItInfoProps[] = animalsData.map(
+  (animal): PostItInfoProps => ({
+    title: animal.scientificName,
+    content: [
+      {
+        paragraphs: [animal.description],
+      },
+      {
+        subtitle: "Taxonomía",
+        paragraphs: [
+          `Filo: ${animal.phylum}`,
+          `Clase: ${animal.class}`,
+          `Orden: ${animal.order}`,
+          `Familia: ${animal.family}`,
+          `Género: ${animal.genus}`,
+        ],
+      },
+      {
+        subtitle: "Distribución",
+        paragraphs: [animal.distribution],
+      },
+      {
+        subtitle: "Situación",
+        paragraphs: [animal.situation],
+      },
+      {
+        subtitle: "Peligro",
+        paragraphs: [animal.danger],
+      },
+      {
+        subtitle: "Conservación",
+        paragraphs: [animal.conservation],
+      },
+    ],
+    images: ["https://www.especiesamenazadas.org/" + animal.image],
+  })
+);
+
+export function getAllAnimals(): PostItInfoProps[] {
+  return animals;
 }

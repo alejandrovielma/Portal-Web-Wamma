@@ -31,7 +31,7 @@ export function ArticlesSearch() {
   return (
     <SelectPostItLayer isDragging={isDragging}>
       <NavHeader pathItems={breadcrumbs} />
-      <SearchBar onSearch={setSearchTerm} /> 
+      <SearchBar estilo="w-1/3 top-24 left-1/2 -translate-x-1/2" onSearch={setSearchTerm} /> 
       <section className="w-11/12 flex flex-col px-4 mt-52">
         <div id="articles" className="flex flex-col gap-8">
           {filteredArticles.length > 0 ? (
