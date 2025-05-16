@@ -26,12 +26,18 @@ export function PostItMap({ title, description, images, video, coordinates, city
     const { saveOptions, gridStack } = useGridStackContext()
     const [dimensions, setDimensions] = useState({ h: 2, w: 2 });
 
-    const [weather, setWeather] = useState();
+    const [weather, setWeather] = useState<any | undefined>(undefined);
 
     useEffect(() => {
         fetch(`http://api.weatherapi.com/v1/current.json?key=${WHEATHER_API}&q=${city}&aqi=no`)
             .then(response => response.json())
-            .then(json => { setWeather(json) })
+            .then(json => {
+                if (!json.error) {
+                    setWeather(json);
+                } else {
+                    setWeather(undefined);
+                }
+            })
             .catch(error => console.error("Error:", error));
     }, []);
 
@@ -108,7 +114,7 @@ function ContentMedium({ content }: { content: PostItMapProps }) {
     )
 }
 function ContentLarge({ content, weather }: { content: PostItMapProps, weather?: any }) {
-
+    console.log(weather)
     return (
         <div className="flex flex-col gap-2">
             <h2 className="font-titles text-left text-2xl" >{content.title}</h2>
