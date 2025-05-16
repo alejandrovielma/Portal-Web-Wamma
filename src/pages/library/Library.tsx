@@ -55,7 +55,7 @@ function LastWorks({ handleDrag }: { handleDrag: (event: Event) => void }) {
   const lastWorks = getLastWorks(12);
 
   return (
-    <ul id="resources" className="grid gap-x-16 h-dvw justify-between">
+    <ul id="resources" className="grid gap-x-16 pb-24 justify-between">
       {lastWorks.map((work: Work, i) => (
         <li key={i} className="relative">
           <div className="relative shadow-xl rounded-b-xl">
