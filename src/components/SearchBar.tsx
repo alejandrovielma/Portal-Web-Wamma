@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
+  estilo: string;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+export const SearchBar: React.FC<SearchBarProps> = ({ onSearch, estilo=""}) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +15,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="z-10 w-1/3 ring-2 ring-black flex items-center relative top-24 left-1/2 -translate-x-1/2 m-4 p-2 rounded-full bg-white opacity-85">
+    <div className={`z-10 ring-2 ring-black flex items-center relative m-4 p-2 rounded-full bg-white opacity-85 ${estilo}`}>
       <input
         type="text"
         placeholder="¿Que Buscas?"

@@ -2,7 +2,10 @@ import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 import { PostItMapProps } from "#components/PostIts/PostItMap.tsx";
 import articlesData from "#info/articles.json"
 import worksData from "#info/works.json"
+import animalsData1 from "#info/faunaVenezuelaArthropoda.json";
+import animalsData2 from "#info/faunaVenezuelaChordata.json";
 import destinationsData from "#info/destinations.json"
+import { PostItInfoAnimalsProps } from "#components/PostIts/PostItInfoAnimals.tsx";
 
 const articles: PostItInfoProps[] = articlesData.map(article => ({
     ...article
@@ -15,6 +18,16 @@ export function getLastArticles(count: number): PostItInfoProps[] {
 export function getAllArticles(): PostItInfoProps[] {
     return articles;
 }
+
+
+const animals: PostItInfoAnimalsProps[] = animalsData1.map(animal => ({
+    ...animal
+}));
+
+export function getAllAnimals(): PostItInfoAnimalsProps[] {
+  return animals;
+}
+
 
 export interface Work {
     type: string;
