@@ -108,7 +108,7 @@ function ContentSmall({ content }: { content: PostItMapProps }) {
 function ContentMedium({ content }: { content: PostItMapProps }) {
     return (
         <>
-            <h2 className="font-titles text-left text-xl" >{content.title}</h2>
+            <h2 className="m-2 font-titles text-left text-xl" >{content.title}</h2>
             <img className="flex-1" src={content.images[0]} alt={content.title} />
         </>
     )
@@ -117,7 +117,7 @@ function ContentLarge({ content, weather }: { content: PostItMapProps, weather?:
     console.log(weather)
     return (
         <div className="flex flex-col gap-2">
-            <h2 className="font-titles text-left text-2xl" >{content.title}</h2>
+            <h2 className="m-2 font-titles text-left text-2xl" >{content.title}</h2>
             <div className="flex gap-2">
                 <div className="flex flex-1 overflow-hidden">
                     <img className="h-full object-cover" src={content.images[0]} alt={content.title} />
