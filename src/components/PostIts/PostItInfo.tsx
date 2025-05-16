@@ -29,12 +29,6 @@ export function PostItInfo({title, content, video, images }: PostItInfoProps) {
                     {images && images[0] && (
                         <div className="w-full aspect-square overflow-hidden rounded-t-2xl">
                             <img src={images[0]} alt="" className="w-full h-full object-cover" />
-                            {/* Título centrado sobre la imagen con efecto de sombra */}
-                            {title && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/80 to-transparent p-4 rounded-t-2xl">
-                                    <h2 className="text-center text-lg font-bold text-white drop-shadow-md" style={{ wordBreak: "break-word" }}>{title}</h2>
-                                </div>
-                            )}
                         </div>
                     )}
                 </button>
