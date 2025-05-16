@@ -4,7 +4,11 @@ import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 import { useState } from "react";
 // Asegúrate que la ruta a tu repositorio de data sea correcta
-import { getLastProjects, Project } from "../../data/dataBase/repository";
+import {
+  getLastProjects,
+  getLastProposals,
+  Project,
+} from "../../data/dataBase/repository";
 
 export function News() {
   const [isDragging, setIsDragging] = useState(false);
@@ -37,6 +41,12 @@ export function News() {
               pegándose a los bordes de la pantalla.
             */}
             <LastProjects handleDrag={handleEvent} />
+
+            <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
+              <h2 className="text-2xl">Propuestas de Proyectos</h2>
+            </section>
+
+            <LastProposals handleDrag={handleEvent} />
           </div>
         </div>
       </SelectPostItLayer>
@@ -69,6 +79,37 @@ function LastProjects({ handleDrag }: { handleDrag: (event: Event) => void }) {
             {project.content.length > 0 && (
               <p className="text-xl text-gray-600 italic text-left">
                 {project.content[0].content[0].paragraphs}
+              </p>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function LastProposals({ handleDrag }: { handleDrag: (event: Event) => void }) {
+  const lastProposals = getLastProposals(20); // Obtiene las últimas 20 propuestas
+
+  return (
+    <div className="w-screen flex flex-col items-start pl-0 gap-20">
+      {lastProposals.map((proposal: Project, i) => (
+        <div key={i} className="w-full flex items-center gap-4">
+          <div className="w-75 flex-shrink-0">
+            <UnitPostItInfo
+              postItProds={proposal.content[0]}
+              handleEvent={handleDrag}
+            />
+          </div>
+
+          {/* Contenido con título y párrafo */}
+          <div className="flex flex-col flex-grow">
+            <h2 className="text-2xl font-bold text-gray-800">
+              {proposal.title}
+            </h2>
+            {proposal.content.length > 0 && (
+              <p className="text-xl text-gray-600 italic text-left">
+                {proposal.content[0].content[0].paragraphs}
               </p>
             )}
           </div>

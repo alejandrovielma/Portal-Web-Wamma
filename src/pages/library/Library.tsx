@@ -55,11 +55,12 @@ function LastWorks({ handleDrag }: { handleDrag: (event: Event) => void }) {
   const lastWorks = getLastWorks(12);
 
   return (
-    <ul id="resources" className="grid gap-x-16 justify-between">
+    <ul id="resources" className="grid gap-x-16 h-dvw justify-between">
       {lastWorks.map((work: Work, i) => (
         <li key={i} className="relative">
-          <UnitPostItInfo postItProds={work.content} handleEvent={handleDrag} />
-          <div className="bg-light-primary/70 absolute bottom-0 left-0 rounded-tr-2xl px-4 py-1">
+          <div className="relative shadow-xl rounded-b-xl">
+            <UnitPostItInfo postItProds={work.content} handleEvent={handleDrag} />
+            <div className="bg-light-primary/70 absolute bottom-0 left-0 rounded-tr-2xl px-4 py-1">
             {work.type === "video" ? (
               <span className="text-sm text-shadow-50 font-bold">
                 <VideoSVG />
@@ -74,6 +75,11 @@ function LastWorks({ handleDrag }: { handleDrag: (event: Event) => void }) {
               </span>
             ) : null}
           </div>
+          </div>
+          <div>
+              <h3 className="font-titles text-sm">{work.content.title}</h3>
+          </div>
+          
         </li>
       ))}
     </ul>

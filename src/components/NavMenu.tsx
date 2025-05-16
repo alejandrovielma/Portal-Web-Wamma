@@ -81,7 +81,7 @@ export function NavMenu({ text}:NavMenuProps) {
       </button>
       <div ref={bubblesRef} className='flex gap-8 absolute translate-y-full'>
         <Bubble navigate={navigate} href='/actualidad'>
-          <h4 className="text-shadow-50 font-semibold text-center">Actualidad</h4>
+          <h4 className="text-shadow-50 font-semibold text-center">Proyectos</h4>
           <img className="flex-1" src="./Public/svgs/Actualidad.svg" alt="Actualidad" />
         </Bubble>
         <Bubble navigate={navigate} href='/animales'>
