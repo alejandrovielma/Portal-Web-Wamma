@@ -5,10 +5,11 @@ import { motion, AnimatePresence } from "framer-motion"; // Importa las funcione
 import { useGridStackContext } from "#lib/gridStackLib/grid-stack-context.ts";
 import { useGridStackWidgetContext } from "#lib/gridStackLib/grid-stack-widget-context.ts";
 import { GridStackWidget } from "gridstack";
+import TrashSVG from "#assets/TrashSVG.tsx";
 
 export interface PostItInfoContent {
-  subtitle?: string; // Subtítulo opcional para cada sección de contenido
-  paragraphs: string[]; // Lista de párrafos para cada sección de contenido
+    subtitle?: string; // Subtítulo opcional para cada sección de contenido
+    paragraphs: string[]; // Lista de párrafos para cada sección de contenido
 }
 
 export interface PostItInfoProps {
@@ -19,7 +20,7 @@ export interface PostItInfoProps {
 }
 
 
-export function PostItInfo({title, content, video, images }: PostItInfoProps) {
+export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
     const [isPopOpen, setIsPopOpen] = useState(false);
     const { widget } = useGridStackWidgetContext();
     const { saveOptions, gridStack } = useGridStackContext()
@@ -48,36 +49,42 @@ export function PostItInfo({title, content, video, images }: PostItInfoProps) {
 
     }, [])
 
-    const allContent:PostItInfoProps = {
+    const allContent: PostItInfoProps = {
         title: title,
         content: content,
         video: video,
         images: images
     }
     return (
-        <>  
+        <>
             <PostItBase dimensions={dimensions} color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
-                <button onClick={()=>{setIsPopOpen(true)}} className="relative flex flex-col w-full h-full cursor-pointer" style={{height: "300px"}}>
+                <button onClick={() => { setIsPopOpen(true) }} className="relative flex flex-col w-full h-full cursor-pointer">
+                    {/* Overlay oscuro al hacer hover */}
+                    <span className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity z-10"></span>
+                    {/* HomeSVG arriba a la derecha solo en hover */}
+                    <span className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <TrashSVG />
+                    </span>
                     {
-                    dimensions.h <= 2 && dimensions.w <= 2 ? <ContentSmall allContent={allContent} /> :
-                        <ContentMedium allContent={allContent} />
-                        }
+                        dimensions.h <= 2 && dimensions.w <= 2 ? <ContentSmall allContent={allContent} /> :
+                            <ContentMedium allContent={allContent} />
+                    }
                 </button>
             </PostItBase>
             {/* Modal desplegable con animación */}
             <AnimatePresence>
                 {isPopOpen && (
-                    <div className="fixed inset-0 z-40 flex items-end justify-center bg-black/50" onClick={()=>{setIsPopOpen(false)}}>
-                        <motion.div 
+                    <div className="fixed inset-0 z-40 flex items-end justify-center bg-black/50" onClick={() => { setIsPopOpen(false) }}>
+                        <motion.div
                             initial={{ y: "100%" }} // Ajusta este valor para cambiar el punto de inicio del modal
-                            animate={{ y: 0 }} 
-                            exit={{ y: "100%" }} 
+                            animate={{ y: 0 }}
+                            exit={{ y: "100%" }}
                             transition={{ duration: 0.5, ease: "easeInOut" }}
                             className="relative w-full max-w-5xl bg-white z-50 rounded-t-2xl shadow-xl overflow-hidden"
                             onClick={(e) => e.stopPropagation()} // Evita que los clics dentro del modal lo cierren
                         >
                             {/* Barra superior para cerrar el modal */}
-                            <div className="bg-gray-200 p-4 cursor-pointer rounded-t-2xl" onClick={()=>{setIsPopOpen(false)}}>
+                            <div className="bg-gray-200 p-4 cursor-pointer rounded-t-2xl" onClick={() => { setIsPopOpen(false) }}>
                                 <div className="h-1 w-12 bg-gray-500 mx-auto rounded-full"></div>
                             </div>
                             {/* Contenedor desplazable completo */}
@@ -104,37 +111,37 @@ export function PostItInfo({title, content, video, images }: PostItInfoProps) {
                                             ))}
                                         </div>
 
-                    {/* Sección de imágenes y videos */}
-                    <div className="flex flex-col gap-4 flex-none w-2/5">
-                      {images &&
-                        images
-                          .slice(1)
-                          .map((src, i) => (
-                            <img
-                              key={i}
-                              src={src}
-                              alt=""
-                              className="w-full rounded-2xl shadow-lg"
-                            />
-                          ))}
-                      {video && (
-                        <iframe
-                          src={video}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="w-full h-64 rounded-2xl shadow-lg"
-                        />
-                      )}
+                                        {/* Sección de imágenes y videos */}
+                                        <div className="flex flex-col gap-4 flex-none w-2/5">
+                                            {images &&
+                                                images
+                                                    .slice(1)
+                                                    .map((src, i) => (
+                                                        <img
+                                                            key={i}
+                                                            src={src}
+                                                            alt=""
+                                                            className="w-full rounded-2xl shadow-lg"
+                                                        />
+                                                    ))}
+                                            {video && (
+                                                <iframe
+                                                    src={video}
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowFullScreen
+                                                    className="w-full h-64 rounded-2xl shadow-lg"
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-    </>
-  );
+                )}
+            </AnimatePresence>
+        </>
+    );
 }
 export default PostItInfo;
 
