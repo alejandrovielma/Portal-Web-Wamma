@@ -37,6 +37,18 @@
     },
     {
         "type": "tourism",
+        "title": "Parque Nacional Serranía La Neblina",
+        "description": "La Serranía La Neblina es el tepuy más alto en la Tierra. El relieve está cortado por profundos valles. Este masivo tepuy está en efecto cortado en dos por el Cañón Grande del río Baría, uno de los cañones más profundos del mundo.",
+        "images": ["destinations/serrania.jpg", "destinations/serrania.jpg", "destinations/serrania3.jpg", "destinations/serrania4.jpg"],
+        "video": "https://www.youtube.com/watch?v=8v0g1q2X4aA",
+        "coordinates": {
+            "lat": 1.2450608459065895,
+            "lng": -65.66589971956282
+        },
+        "city": "Amazonas"
+    },
+    {
+        "type": "tourism",
         "title": "Parque Nacional Canaima",
         "description": "Se extiende sobre 30 000 km² hasta la frontera con Guyana y Brasil, por su tamaño es considerado el decimoquinto parque nacional más grande del mundo.",
         "images": ["destinations/canaima.jpg", "destinations/canaima2.jpg", "destinations/canaima3.jpg", "destinations/canaima4.jpg"],
