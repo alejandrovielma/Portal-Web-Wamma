@@ -37,7 +37,7 @@ export function Library() {
               </span>
             </section>
             <Separator/>
-            <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
+            <section className="w-full h-dvh flex flex-col gap-4 max-w-6xl px-4">
               <h2 className="text-2xl">Descubre mas sobre la cultura del agua</h2>
               <LastWorks handleDrag={handleDrag}/>
             </section>
@@ -57,7 +57,7 @@ function LastWorks({handleDrag}: {handleDrag: (event: Event) => void}) {
   const lastWorks = getLastWorks(12)
 
   return(
-    <ul id="resources" className="grid gap-x-16 justify-between">                  
+    <ul id="resources" className="grid gap-x-16 mt-4 justify-between">                  
       {lastWorks.map((work: Work, i) => (
           <li key={i} className="relative">
             <UnitPostItInfo 
