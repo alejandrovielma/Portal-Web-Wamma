@@ -22,8 +22,10 @@ export function PostItMap({ title, description, images, video, coordinates, city
     const navigate = useNavigate();
     const { widget } = useGridStackWidgetContext();
     const { saveOptions, gridStack } = useGridStackContext()
-
     const [dimensions, setDimensions] = useState({ h: 2, w: 2 });
+    
+
+
     useEffect(() => {
         function updateDimensions() {
             const childrens: GridStackWidget[] = saveOptions()["children"]
@@ -33,6 +35,7 @@ export function PostItMap({ title, description, images, video, coordinates, city
                 w: self?.w || 2,
             })
         }
+        updateDimensions();
 
         if (gridStack) {
             gridStack.on('change', updateDimensions);
@@ -43,7 +46,7 @@ export function PostItMap({ title, description, images, video, coordinates, city
             }
         };
 
-    }, [saveOptions])
+    }, [])
 
 
     function handleClick() {
@@ -54,21 +57,51 @@ export function PostItMap({ title, description, images, video, coordinates, city
         });
     }
 
+    const content: PostItMapProps = {
+        title,
+        description,
+        images,
+        video,
+        coordinates,
+        city
+    }
     return (
-        <PostItBase color1="bg-light-secondary dark:bg-dark-secondary" color2="bg-light-secondaryVar dark:bg-dark-secondaryVar">
+        <PostItBase dimensions={dimensions} color1="bg-light-secondary dark:bg-dark-secondary" color2="bg-light-secondaryVar dark:bg-dark-secondaryVar">
             <button onClick={handleClick} className="flex flex-col gap-2 w-full h-full cursor-pointer">
-                <img className="flex-1" src={images[0]} alt={title} />
                 {
-                    (dimensions.h > 2 || dimensions.w > 2) &&
-                    <div className="flex-1/2 p-2">
-                        <h2 className="font-titles text-left" >{title}</h2>
-                        <p className="text-left">{description}</p>
-                    </div>
+                    dimensions.h <= 2 && dimensions.w <= 2 ? <ContentSmall content={content} /> :
+                        dimensions.h <= 4 && dimensions.w <= 4 ? <ContentMedium content={content} /> :
+                            <ContentLarge content={content} />
                 }
 
             </button>
         </PostItBase>
     );
 }
-
 export default PostItMap;
+
+function ContentSmall({ content }: { content: PostItMapProps }) {
+    return <img className="flex-1" src={content.images[0]} alt={content.title} />
+}
+function ContentMedium({ content }: { content: PostItMapProps }) {
+    return (
+        <>
+            <h2 className="font-titles text-left text-xl" >{content.title}</h2>
+            <img className="flex-1" src={content.images[0]} alt={content.title} />
+        </>
+    )
+}
+function ContentLarge({ content }: { content: PostItMapProps }) {
+    return (
+        <>
+            <div>
+                <h2 className="font-titles text-left text-xl" >{content.title}</h2>
+                <img className="flex-1" src={content.images[0]} alt={content.title} />
+            </div>
+            <div>
+
+            </div>
+        </>
+
+    )
+}
