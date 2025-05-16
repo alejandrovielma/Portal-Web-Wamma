@@ -7,8 +7,8 @@ import { useGridStackWidgetContext } from "#lib/gridStackLib/grid-stack-widget-c
 import { GridStackWidget } from "gridstack";
 
 export interface PostItInfoContent {
-    subtitle?: string; // Subtítulo opcional para cada sección de contenido
-    paragraphs: string[]; // Lista de párrafos para cada sección de contenido
+  subtitle?: string; // Subtítulo opcional para cada sección de contenido
+  paragraphs: string[]; // Lista de párrafos para cada sección de contenido
 }
 
 export interface PostItInfoProps {
@@ -104,29 +104,37 @@ export function PostItInfo({title, content, video, images }: PostItInfoProps) {
                                             ))}
                                         </div>
 
-                                        {/* Sección de imágenes y videos */}
-                                        <div className="flex flex-col gap-4 flex-none w-2/5">
-                                            {images && images.slice(1).map((src, i) => (
-                                                <img key={i} src={src} alt="" className="w-full rounded-2xl shadow-lg" />
-                                            ))}
-                                            {video && (
-                                                <iframe 
-                                                    src={video} 
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                                    allowFullScreen 
-                                                    className="w-full h-64 rounded-2xl shadow-lg"
-                                                />
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
+                    {/* Sección de imágenes y videos */}
+                    <div className="flex flex-col gap-4 flex-none w-2/5">
+                      {images &&
+                        images
+                          .slice(1)
+                          .map((src, i) => (
+                            <img
+                              key={i}
+                              src={src}
+                              alt=""
+                              className="w-full rounded-2xl shadow-lg"
+                            />
+                          ))}
+                      {video && (
+                        <iframe
+                          src={video}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-64 rounded-2xl shadow-lg"
+                        />
+                      )}
                     </div>
-                )}
-            </AnimatePresence>
-        </>
-    );
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
 export default PostItInfo;
 
