@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react"; // Importa el hook useState para manejar el estado de apertura del modal
-import PostItBase from "./PostItBase"; // Importa el componente base para el diseño del post-it
-import DialogInfo from "#components/DialogInfo.tsx"; // Importa el componente para los diálogos adicionales
-import { motion, AnimatePresence } from "framer-motion"; // Importa las funciones de animación de Framer Motion
+import { useEffect, useState } from "react";
+import PostItBase from "./PostItBase";
+import { motion, AnimatePresence } from "framer-motion"; 
 import { useGridStackContext } from "#lib/gridStackLib/grid-stack-context.ts";
 import { useGridStackWidgetContext } from "#lib/gridStackLib/grid-stack-widget-context.ts";
 import { GridStackWidget } from "gridstack";
-import TrashSVG from "#assets/TrashSVG.tsx";
+import OpenSVG from "#assets/OpenSVG.tsx";
 
 export interface PostItInfoContent {
-    subtitle?: string; // Subtítulo opcional para cada sección de contenido
-    paragraphs: string[]; // Lista de párrafos para cada sección de contenido
+    subtitle?: string;
+    paragraphs: string[];
 }
 
 export interface PostItInfoProps {
-    title: string; // Título principal del post-it
-    content: PostItInfoContent[]; // Lista de secciones de contenido para mostrar en el diálogo
-    video?: string; // URL opcional para un video
-    images: string[]; // Lista opcional de URLs de imágenes
+    title: string;
+    content: PostItInfoContent[];
+    video?: string;
+    images: string[];
 }
 
 
@@ -58,12 +57,11 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
     return (
         <>
             <PostItBase dimensions={dimensions} color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
-                <button onClick={() => { setIsPopOpen(true) }} className="relative flex flex-col w-full h-full cursor-pointer">
-                    {/* Overlay oscuro al hacer hover */}
-                    <span className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity z-10"></span>
-                    {/* HomeSVG arriba a la derecha solo en hover */}
+                <button onClick={() => { setIsPopOpen(true) }} className="relative flex flex-col w-full h-full cursor-pointer group overflow-hidden">
+
+                    <span className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity z-10"></span>
                     <span className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <TrashSVG />
+                        <OpenSVG />
                     </span>
                     {
                         dimensions.h <= 2 && dimensions.w <= 2 ? <ContentSmall allContent={allContent} /> :

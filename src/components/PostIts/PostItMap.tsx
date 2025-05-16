@@ -5,6 +5,7 @@ import { useGridStackWidgetContext } from "#lib/gridStackLib/grid-stack-widget-c
 import { useGridStackContext } from "#lib/gridStackLib/grid-stack-context.ts";
 import { useEffect, useState } from "react";
 import { GridStackWidget } from "gridstack";
+import OpenSVG from "#assets/OpenSVG.tsx";
 const WHEATHER_API = import.meta.env.VITE_WEATHER_API;
 
 export interface PostItMapProps {
@@ -77,7 +78,12 @@ export function PostItMap({ title, description, images, video, coordinates, city
     }
     return (
         <PostItBase dimensions={dimensions} color1="bg-light-secondary dark:bg-dark-secondary" color2="bg-light-secondaryVar dark:bg-dark-secondaryVar">
-            <button onClick={handleClick} className="flex flex-col gap-2 w-full h-full cursor-pointer">
+            <button onClick={handleClick} className="relative flex flex-col w-full h-full cursor-pointer group overflow-hidden">
+
+                <span className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity z-10"></span>
+                <span className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <OpenSVG />
+                </span>
                 {
                     dimensions.h <= 2 && dimensions.w <= 2 ? <ContentSmall content={content} /> :
                         dimensions.h <= 6 && dimensions.w <= 6 ? <ContentMedium content={content} /> :
