@@ -4,7 +4,6 @@ import { SearchBar } from "#components/SearchBar.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import { Animal, getAllAnimals } from "../../data/dataBase/repository";
 import { useState, useEffect } from "react";
-import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 
 export function Animals() {
@@ -49,7 +48,7 @@ export function Animals() {
       </div>
       <span className="flex items-center justify-start gap-4 mt-8">
         <SearchBar estilo="w-1/3" onSearch={setSearchTerm} />
-        <h2 className="text-xl" >Buscando: {filteredClass}</h2>
+        <h2 className="text-xl" >Filtrando por clase: {filteredClass}</h2>
       </span>
       <AnimalGrip filteredAnimals={filteredAnimals} handleEvent={handleEvent} />
     </SelectPostItLayer>
@@ -60,7 +59,7 @@ export default Animals;
 function AnimalGrip({filteredAnimals, handleEvent}:{ filteredAnimals: Animal[], handleEvent: (event: Event) => void }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 pb-24">
-      {filteredAnimals.length > 0 && filteredAnimals.slice(0,16).map((info: Animal, i) => (
+      {filteredAnimals.length > 0 && filteredAnimals.slice(0,18).map((info: Animal, i) => (
         <article key={i} className="flex flex-col items-center justify-center shadow-xl rounded-b-xl overflow-hidden">
           <UnitPostItInfo
             key={info.content.title}
