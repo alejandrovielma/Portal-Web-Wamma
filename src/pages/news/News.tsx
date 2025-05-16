@@ -48,7 +48,7 @@ export function News() {
 export default News;
 
 function LastProjects({ handleDrag }: { handleDrag: (event: Event) => void }) {
-  const lastProjects = getLastProjects(3);
+  const lastProjects = getLastProjects(20);
 
   return (
     <div className="w-screen flex flex-col items-start pl-0 gap-20">

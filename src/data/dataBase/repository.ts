@@ -81,12 +81,12 @@ const projects: Project[] = projectsData.map((project) => ({
   images: project.images,
 }));
 
-export function getLastProjects(count: number): Project[] {
-  return projects.slice(-count);
+export function getLastProjects(limit: number): Project[] {
+  return projects.slice(0, limit);
 }
 
 export function getAllProjects(): Project[] {
-  return projects;
+  return projects; // Devuelve toda la lista
 }
 
 export interface Animal {
