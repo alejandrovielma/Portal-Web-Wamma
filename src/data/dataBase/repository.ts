@@ -1,11 +1,11 @@
 import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 import { PostItMapProps } from "#components/PostIts/PostItMap.tsx";
 import projectsData from "#info/projects.json";
+import proposalsData from "#info/proposals.json";
 import articlesData from "#info/articles.json";
 import worksData from "#info/works.json";
 import animalsData from "#info/faunaVenezuelaChordata.json";
 import destinationsData from "#info/destinations.json";
-import { PostItInfoAnimalsProps } from "#components/PostIts/PostItInfoAnimals.tsx";
 
 const articles: PostItInfoProps[] = articlesData.map((article) => ({
   ...article,
@@ -62,31 +62,30 @@ export function getAllDestinations(): Destination[] {
   return destinations;
 }
 
-export interface Project {
-  title: string;
-  content: PostItInfoProps[];
-  video: string;
-  images: string[];
-}
-
-const projects: Project[] = projectsData.map((project) => ({
-  title: project.title,
-  content: project.content.map((item) => ({
-    title: project.title,
-    content: item.paragraphs.map((paragraph) => ({ paragraphs: [paragraph] })),
-    subtitle: item.subtitle,
-    images: project.images,
-  })),
-  video: project.video,
-  images: project.images,
+const projects: PostItInfoProps[] = projectsData.map((project) => ({
+  ...project,
 }));
 
-export function getLastProjects(count: number): Project[] {
+export function getLastProjects(count: number): PostItInfoProps[] {
   return projects.slice(-count);
 }
 
-export function getAllProjects(): Project[] {
+export function getAllProjects(): PostItInfoProps[] {
   return projects;
+}
+
+//Propuestas
+
+const proposals: PostItInfoProps[] = proposalsData.map((proposal) => ({
+  ...proposal,
+}));
+
+export function getLastProposals(count: number): PostItInfoProps[] {
+  return proposals.slice(-count);
+}
+
+export function getAllProposals(): PostItInfoProps[] {
+  return proposals;
 }
 
 export interface Animal {

@@ -1,0 +1,59 @@
+[
+  {
+    "title": "Propuesta",
+    "content": [
+      {
+        "paragraphs": [
+          "Este informe analiza la relación entre la cultura del agua y la prevención de enfermedades hídricas en la región de Guayana. Destaca la importancia de la educación ambiental y el acceso a agua potable para mejorar la calidad de vida de las comunidades."
+        ]
+      },
+      {
+        "subtitle": "1. Justificación",
+        "paragraphs": [
+          "El acceso a agua potable y la educación sobre su uso adecuado son fundamentales para la prevención de enfermedades hídricas. En Guayana, diversas comunidades han implementado programas de concienciación y saneamiento con el apoyo de organizaciones ambientales y gubernamentales.",
+          "Este proyecto se centra en la relación entre los hábitos de consumo, el saneamiento y la incidencia de enfermedades vinculadas con la calidad del agua disponible."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=EjemploVideo1",
+    "images": ["projects/cultura_agua.jpeg"]
+  },
+  {
+    "title": "Construcción de una Nueva Cultura del Agua en Venezuela",
+    "content": [
+      {
+        "paragraphs": [
+          "Este estudio examina la participación comunitaria en la gestión del agua y cómo la institucionalización del agua como bien público ha mejorado el acceso a servicios de saneamiento en Venezuela."
+        ]
+      },
+      {
+        "subtitle": "1. Justificación",
+        "paragraphs": [
+          "La gestión participativa del agua en Guayana ha permitido desarrollar infraestructuras de distribución más eficientes y sostenibles.",
+          "Este proyecto busca fortalecer la conciencia social sobre la importancia de conservar los recursos hídricos y promover políticas de acceso equitativo."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=EjemploVideo2",
+    "images": ["projects/agua.jpeg"]
+  },
+  {
+    "title": "Cultura y Tradiciones Hídricas en la Región Guayana",
+    "content": [
+      {
+        "paragraphs": [
+          "Este artículo explora la riqueza cultural de la región, incluyendo la relación de las comunidades indígenas con los recursos naturales, como los ríos y el agua."
+        ]
+      },
+      {
+        "subtitle": "1. Justificación",
+        "paragraphs": [
+          "Las comunidades indígenas en Guayana han desarrollado una cosmovisión en la que el agua tiene un papel central en sus rituales y formas de vida.",
+          "Este proyecto documenta prácticas ancestrales relacionadas con el agua y su impacto en la identidad cultural de la región."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=EjemploVideo3",
+    "images": ["projects/waraos.jpg"]
+  }
+]
