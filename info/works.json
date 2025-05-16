@@ -1,22 +1,20 @@
 [
     {
         "type": "book",
-        "title": "Agua Viva. Living water.",
+        "title": "Urban Water Challenges in the Americas: Venezuela",
         "content": [
             {
-                "paragraphs": ["Descripccion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu"]
+                "paragraphs": ["Libro de la Red Interamericana de Academias de Ciencias (IANAS) - Programa de Aguas"]
             },
             {
-                "subtitle": "1. Justificación",
+                "subtitle": "Descripción",
                 "paragraphs": [
-                    "¿No deberían el entorno ambiental, la visión de la naturaleza y el lugar convertirse en una nueva categoría para el análisis de la literatura, como lo hicieron en su momento la raza, la clase y el género? De esta manera se podría estudiar, por ejemplo, cómo comienza a plantearse la crisis ambiental contemporánea en la literatura, y de qué manera influencian las obras literarias y el lenguaje en la forma en que nos relacionamos con el medioambiente.",
-                    "En concreto, el agua ha estado históricamente contemplada desde numerosas perspectivas. Es el caso, por ejemplo, de la hidráulica y otras disciplinas científicas que estudian el agua desde las ciencias puras. Dichos estudios son de incuestionable valor para el desarrollo de nuestras sociedades; no obstante, no ponen de manifiesto todas las manifestaciones que de ella se derivan, pues se centran en entender el agua como materia prima, al servicio de las necesidades del ser humano (Martos y Martos, 2012). En este sentido, desde hace relativamente pocos años la ecocrítica ha permitido entender las implicaciones invisibles del agua, sus lazos con el día a día del ser humano, así como su valor trasversal en los ámbitos educativo, cultural, turístico y económico. En efecto, la aproximación ecocrítica (Flys et al., 2010) formula un planteamiento en el cual todo se conecta con todo. Existe, por así decirlo, un interés en aplicar el uso de conceptos de la ecología a las composiciones literarias, estableciendo de este modo una conexión entre diversos planos, la obra literaria, el autor y la ecología.",
-                    "Recordemos que una de las características más importantes de la ecocrítica es el compromiso de incitar una conciencia ecológica a través de la literatura. Utiliza un enfoque basado en la tierra y en la naturaleza para el estudio de la literatura. Una de las definiciones más recientes que se ha dado a la ecocrítica es la de David Mazel, que la define como el estudio de la literatura “como si la tierra importara” (Mazel 2001: 1). Por lo tanto, un lector ecocrítico se plantea entonces preguntas sobre la visión de la naturaleza en un texto, el papel que juega el entorno ambiental en una obra; analizará si los valores expresados en un relato son consistentes con una sabiduría ecológica, o si las metáforas que utilizamos para referirnos a nuestro entorno influyen en la forma en que lo tratamos. De tal forma que accedemos a una visión holística donde lo natural y lo cultural se enhebran de forma armónica."
+                    "Este capítulo de un libro más amplio se centra específicamente en los desafíos del agua urbana en Venezuela. Es probable que examine temas como la infraestructura del agua, la calidad del agua, el acceso al agua y la gestión del agua en las ciudades venezolanas."
                 ]
             }
         ],
         "video": "",
-        "images": ["https://m.media-amazon.com/images/I/71Ai4-+9-pL._SL1360_.jpg"]
+        "images": ["./public/images/UrbanDelAgua.JPG"]
     },
     {
         "type": "audio",
@@ -36,78 +34,39 @@
     },
     {
         "type": "video",
-        "title": "",
+        "title": "Video informativo de la Cultura del Agua",
         "content": [
             {
-                "paragraphs": [""]
+                "paragraphs": ["En el Presente Video se muestra información interesante sobre la cultura del agua y lo que conlleva"]
             },
             {
-                "subtitle": "1. Justificación",
+                "subtitle": "",
                 "paragraphs": [
-                    "¿No deberían el entorno ambiental, la visión de la naturaleza y el lugar convertirse en una nueva categoría para el análisis de la literatura, como lo hicieron en su momento la raza, la clase y el género? De esta manera se podría estudiar, por ejemplo, cómo comienza a plantearse la crisis ambiental contemporánea en la literatura, y de qué manera influencian las obras literarias y el lenguaje en la forma en que nos relacionamos con el medioambiente.",
-                    "En concreto, el agua ha estado históricamente contemplada desde numerosas perspectivas. Es el caso, por ejemplo, de la hidráulica y otras disciplinas científicas que estudian el agua desde las ciencias puras. Dichos estudios son de incuestionable valor para el desarrollo de nuestras sociedades; no obstante, no ponen de manifiesto todas las manifestaciones que de ella se derivan, pues se centran en entender el agua como materia prima, al servicio de las necesidades del ser humano (Martos y Martos, 2012). En este sentido, desde hace relativamente pocos años la ecocrítica ha permitido entender las implicaciones invisibles del agua, sus lazos con el día a día del ser humano, así como su valor trasversal en los ámbitos educativo, cultural, turístico y económico. En efecto, la aproximación ecocrítica (Flys et al., 2010) formula un planteamiento en el cual todo se conecta con todo. Existe, por así decirlo, un interés en aplicar el uso de conceptos de la ecología a las composiciones literarias, estableciendo de este modo una conexión entre diversos planos, la obra literaria, el autor y la ecología.",
-                    "Recordemos que una de las características más importantes de la ecocrítica es el compromiso de incitar una conciencia ecológica a través de la literatura. Utiliza un enfoque basado en la tierra y en la naturaleza para el estudio de la literatura. Una de las definiciones más recientes que se ha dado a la ecocrítica es la de David Mazel, que la define como el estudio de la literatura “como si la tierra importara” (Mazel 2001: 1). Por lo tanto, un lector ecocrítico se plantea entonces preguntas sobre la visión de la naturaleza en un texto, el papel que juega el entorno ambiental en una obra; analizará si los valores expresados en un relato son consistentes con una sabiduría ecológica, o si las metáforas que utilizamos para referirnos a nuestro entorno influyen en la forma en que lo tratamos. De tal forma que accedemos a una visión holística donde lo natural y lo cultural se enhebran de forma armónica."
+                    
                 ]
             }
         ],
-        "video": "",
-        "images": ["images/perro.jpg"]
+        "video": "https://www.youtube.com/embed/H8ZV7bJTiME?si=teuf4O8--qBi9WRC",
+        "images": ["https://www.gob.mx/cms/uploads/action_program/main_image/9181/post_Icono_Cultura_del_Agua_360x229.jpg"]
     },
     {
         "type": "video",
-        "title": "Pelicula del agua",
+        "title": "Pelicula: Salto de los Ángeles",
         "content": [
             {
-                "paragraphs": ["Descripccion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu"]
+                "paragraphs": ["es una película venezolana de 2023 dirigida por José Miguel Zamora Figuera. Es un drama de aventuras familiar que cuenta la historia de Antonio, un niño de 12 años que crece en el seno de una familia humilde y amorosa en la región de Guayana, Venezuela."]
             },
             {
-                "subtitle": "1. Justificación",
+                "subtitle": "Descripción",
                 "paragraphs": [
-                    "¿No deberían el entorno ambiental, la visión de la naturaleza y el lugar convertirse en una nueva categoría para el análisis de la literatura, como lo hicieron en su momento la raza, la clase y el género? De esta manera se podría estudiar, por ejemplo, cómo comienza a plantearse la crisis ambiental contemporánea en la literatura, y de qué manera influencian las obras literarias y el lenguaje en la forma en que nos relacionamos con el medioambiente.",
-                    "En concreto, el agua ha estado históricamente contemplada desde numerosas perspectivas. Es el caso, por ejemplo, de la hidráulica y otras disciplinas científicas que estudian el agua desde las ciencias puras. Dichos estudios son de incuestionable valor para el desarrollo de nuestras sociedades; no obstante, no ponen de manifiesto todas las manifestaciones que de ella se derivan, pues se centran en entender el agua como materia prima, al servicio de las necesidades del ser humano (Martos y Martos, 2012). En este sentido, desde hace relativamente pocos años la ecocrítica ha permitido entender las implicaciones invisibles del agua, sus lazos con el día a día del ser humano, así como su valor trasversal en los ámbitos educativo, cultural, turístico y económico. En efecto, la aproximación ecocrítica (Flys et al., 2010) formula un planteamiento en el cual todo se conecta con todo. Existe, por así decirlo, un interés en aplicar el uso de conceptos de la ecología a las composiciones literarias, estableciendo de este modo una conexión entre diversos planos, la obra literaria, el autor y la ecología.",
-                    "Recordemos que una de las características más importantes de la ecocrítica es el compromiso de incitar una conciencia ecológica a través de la literatura. Utiliza un enfoque basado en la tierra y en la naturaleza para el estudio de la literatura. Una de las definiciones más recientes que se ha dado a la ecocrítica es la de David Mazel, que la define como el estudio de la literatura “como si la tierra importara” (Mazel 2001: 1). Por lo tanto, un lector ecocrítico se plantea entonces preguntas sobre la visión de la naturaleza en un texto, el papel que juega el entorno ambiental en una obra; analizará si los valores expresados en un relato son consistentes con una sabiduría ecológica, o si las metáforas que utilizamos para referirnos a nuestro entorno influyen en la forma en que lo tratamos. De tal forma que accedemos a una visión holística donde lo natural y lo cultural se enhebran de forma armónica."
+                    "La trama se centra en el viaje iniciático de Antonio. La obligada ausencia de su padre, quien se marcha a trabajar a las minas de oro en busca de un mejor futuro para la familia, obliga a Antonio a dejar atrás su infancia y a enfrentarse a sus miedos. Se embarca en un viaje para encontrar a su padre y así mantener unida a su familia.",
+                    "La película explora temas como el paso a la adultez, la superación de los miedos, la importancia de la familia y la dura realidad de la búsqueda de oportunidades en un contexto determinado.",
+                    "Se destaca que la película fue filmada en locaciones naturales del estado Bolívar, incluyendo el río Caroní, los parques La Llovizna y Cachamay, El Callao, la Gran Sabana y, aunque el título haga referencia, no directamente en el Salto Ángel. La historia está inspirada en una tradición de la comunidad de Campo Rojo, en San Félix, donde jóvenes saltan desde el Puente Caroní como un rito."
                 ]
             }
         ],
-        "video": "https://www.youtube.com/watch?v=jUoWAQqDSrQ",
-        "images": ["images/perro.jpg"]
-    },
-    {
-        "type": "video",
-        "title": "Pelicula del agua",
-        "content": [
-            {
-                "paragraphs": ["Descripccion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu"]
-            },
-            {
-                "subtitle": "1. Justificación",
-                "paragraphs": [
-                    "¿No deberían el entorno ambiental, la visión de la naturaleza y el lugar convertirse en una nueva categoría para el análisis de la literatura, como lo hicieron en su momento la raza, la clase y el género? De esta manera se podría estudiar, por ejemplo, cómo comienza a plantearse la crisis ambiental contemporánea en la literatura, y de qué manera influencian las obras literarias y el lenguaje en la forma en que nos relacionamos con el medioambiente.",
-                    "En concreto, el agua ha estado históricamente contemplada desde numerosas perspectivas. Es el caso, por ejemplo, de la hidráulica y otras disciplinas científicas que estudian el agua desde las ciencias puras. Dichos estudios son de incuestionable valor para el desarrollo de nuestras sociedades; no obstante, no ponen de manifiesto todas las manifestaciones que de ella se derivan, pues se centran en entender el agua como materia prima, al servicio de las necesidades del ser humano (Martos y Martos, 2012). En este sentido, desde hace relativamente pocos años la ecocrítica ha permitido entender las implicaciones invisibles del agua, sus lazos con el día a día del ser humano, así como su valor trasversal en los ámbitos educativo, cultural, turístico y económico. En efecto, la aproximación ecocrítica (Flys et al., 2010) formula un planteamiento en el cual todo se conecta con todo. Existe, por así decirlo, un interés en aplicar el uso de conceptos de la ecología a las composiciones literarias, estableciendo de este modo una conexión entre diversos planos, la obra literaria, el autor y la ecología.",
-                    "Recordemos que una de las características más importantes de la ecocrítica es el compromiso de incitar una conciencia ecológica a través de la literatura. Utiliza un enfoque basado en la tierra y en la naturaleza para el estudio de la literatura. Una de las definiciones más recientes que se ha dado a la ecocrítica es la de David Mazel, que la define como el estudio de la literatura “como si la tierra importara” (Mazel 2001: 1). Por lo tanto, un lector ecocrítico se plantea entonces preguntas sobre la visión de la naturaleza en un texto, el papel que juega el entorno ambiental en una obra; analizará si los valores expresados en un relato son consistentes con una sabiduría ecológica, o si las metáforas que utilizamos para referirnos a nuestro entorno influyen en la forma en que lo tratamos. De tal forma que accedemos a una visión holística donde lo natural y lo cultural se enhebran de forma armónica."
-                ]
-            }
-        ],
-        "video": "https://www.youtube.com/watch?v=jUoWAQqDSrQ",
-        "images": ["images/perro.jpg"]
-    },
-    {
-        "type": "video",
-        "title": "Pelicula del agua",
-        "content": [
-            {
-                "paragraphs": ["Descripccion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu"]
-            },
-            {
-                "subtitle": "1. Justificación",
-                "paragraphs": [
-                    "¿No deberían el entorno ambiental, la visión de la naturaleza y el lugar convertirse en una nueva categoría para el análisis de la literatura, como lo hicieron en su momento la raza, la clase y el género? De esta manera se podría estudiar, por ejemplo, cómo comienza a plantearse la crisis ambiental contemporánea en la literatura, y de qué manera influencian las obras literarias y el lenguaje en la forma en que nos relacionamos con el medioambiente.",
-                    "En concreto, el agua ha estado históricamente contemplada desde numerosas perspectivas. Es el caso, por ejemplo, de la hidráulica y otras disciplinas científicas que estudian el agua desde las ciencias puras. Dichos estudios son de incuestionable valor para el desarrollo de nuestras sociedades; no obstante, no ponen de manifiesto todas las manifestaciones que de ella se derivan, pues se centran en entender el agua como materia prima, al servicio de las necesidades del ser humano (Martos y Martos, 2012). En este sentido, desde hace relativamente pocos años la ecocrítica ha permitido entender las implicaciones invisibles del agua, sus lazos con el día a día del ser humano, así como su valor trasversal en los ámbitos educativo, cultural, turístico y económico. En efecto, la aproximación ecocrítica (Flys et al., 2010) formula un planteamiento en el cual todo se conecta con todo. Existe, por así decirlo, un interés en aplicar el uso de conceptos de la ecología a las composiciones literarias, estableciendo de este modo una conexión entre diversos planos, la obra literaria, el autor y la ecología.",
-                    "Recordemos que una de las características más importantes de la ecocrítica es el compromiso de incitar una conciencia ecológica a través de la literatura. Utiliza un enfoque basado en la tierra y en la naturaleza para el estudio de la literatura. Una de las definiciones más recientes que se ha dado a la ecocrítica es la de David Mazel, que la define como el estudio de la literatura “como si la tierra importara” (Mazel 2001: 1). Por lo tanto, un lector ecocrítico se plantea entonces preguntas sobre la visión de la naturaleza en un texto, el papel que juega el entorno ambiental en una obra; analizará si los valores expresados en un relato son consistentes con una sabiduría ecológica, o si las metáforas que utilizamos para referirnos a nuestro entorno influyen en la forma en que lo tratamos. De tal forma que accedemos a una visión holística donde lo natural y lo cultural se enhebran de forma armónica."
-                ]
-            }
-        ],
-        "video": "https://www.youtube.com/watch?v=jUoWAQqDSrQ",
-        "images": ["images/perro.jpg"]
+        "video": "https://www.youtube.com/embed/0tpWaUpjgGc?si=XJGYE7bH0emq5c0b",
+        "images": ["https://www.tendenciainternacional.com/wp-content/uploads/2024/02/BeFunky-2-8.jpg"]
     }
+    
 ]
