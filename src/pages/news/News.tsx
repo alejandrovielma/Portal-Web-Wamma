@@ -1,120 +1,89 @@
 import { NavHeader } from "#components/NavHeader.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
-// Asegúrate que la ruta de importación y el tipo de exportación (default vs named) sean correctos
 import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 import { useState } from "react";
-// Asegúrate que la ruta a tu repositorio de data sea correcta
+import "./proyects.css";
+import Separator from "#components/Separator.tsx";
 import {
   getLastProjects,
   getLastProposals,
 } from "../../data/dataBase/repository";
-import { Project } from "../../data/dataBase/repository";
+import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 
 export function News() {
   const [isDragging, setIsDragging] = useState(false);
-
-  // Función para actualizar el estado de arrastre
-  function handleEvent(event: Event) {
+  function handleDrag(event: Event) {
     setIsDragging(event.type === "dragstart");
   }
 
   return (
     <>
-      {/* Capa que posiblemente cubre la pantalla para manejar eventos de arrastre */}
       <SelectPostItLayer isDragging={isDragging}>
-        {/* Encabezado de navegación */}
-        <NavHeader
-          pathItems={[{ nombre: "Actualidad", link: "/actualidad" }]}
-        />
-
-        {/* Contenedor principal del contenido */}
+        <NavHeader pathItems={[{ nombre: "Proyectos", link: "" }]} />
         <div className="flex flex-col items-center pt-32">
           <div className="flex flex-col items-center w-full gap-8">
-            {/* Sección para el título - mantiene el max-width y padding */}
             <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
-              <h2 className="text-2xl">Últimos Proyectos</h2>
+              <span className="flex items-center justify-between">
+                <h2 className="text-2xl">Proyectos Activos</h2>
+              </span>
+              <span id="articles" className="grid gap-8 justify-between">
+                <LastArticles handleDrag={handleDrag} />
+              </span>
             </section>
-
-            {/*
-              Componente LastProjects - movido fuera de la sección
-              para que su clase w-screen le permita abarcar todo el ancho,
-              pegándose a los bordes de la pantalla.
-            */}
-            <LastProjects handleDrag={handleEvent} />
-
+            <Separator />
             <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
-              <h2 className="text-2xl">Propuestas de Proyectos</h2>
+              <h2 className="text-2xl">
+                Motivate y aporta a la comunidad
+              </h2>
+              <LastWorks handleDrag={handleDrag} />
             </section>
-
-            <LastProposals handleDrag={handleEvent} />
           </div>
         </div>
       </SelectPostItLayer>
     </>
   );
 }
-
-// Exporta News como default para la configuración de rutas típica
 export default News;
 
-function LastProjects({ handleDrag }: { handleDrag: (event: Event) => void }) {
-  const lastProjects = getLastProjects(20);
+function LastWorks({ handleDrag }: { handleDrag: (event: Event) => void }) {
+  const lastProposals = getLastProposals(12);
 
   return (
-    <div className="w-screen flex flex-col items-start pl-0 gap-20">
-      {lastProjects.map((project: Project, i) => (
-        <div key={i} className="w-full flex items-center gap-4">
-          <div className="w-75 flex-shrink-0">
-            <UnitPostItInfo
-              postItProds={project.content[0]}
-              handleEvent={handleDrag}
-            />
+    <ul id="resources" className="grid gap-x-16 justify-between">
+      {lastProposals.map((proposal: PostItInfoProps, i) => (
+        <li key={i} className="relative">
+          <div className="relative shadow-xl rounded-b-xl">
+            <UnitPostItInfo postItProds={proposal} handleEvent={handleDrag} />
           </div>
-
-          {/* Contenido con título y párrafo */}
-          <div className="flex flex-col flex-grow">
-            <h2 className="text-2xl font-bold text-gray-800">
-              {project.title}
-            </h2>
-            {project.content.length > 0 && (
-              <p className="text-xl text-gray-600 italic text-left">
-                {project.content[0].content[0].paragraphs}
-              </p>
-            )}
+          <div>
+              <h3 className="font-titles text-sm">{proposal.title}</h3>
           </div>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
-function LastProposals({ handleDrag }: { handleDrag: (event: Event) => void }) {
-  const lastProposals = getLastProposals(20); // Obtiene las últimas 20 propuestas
+function LastArticles({ handleDrag }: { handleDrag: (event: Event) => void }) {
+  const lastArticles = getLastProjects(3);
 
   return (
-    <div className="w-screen flex flex-col items-start pl-0 gap-20">
-      {lastProposals.map((proposal: Project, i) => (
-        <div key={i} className="w-full flex items-center gap-4">
-          <div className="w-75 flex-shrink-0">
-            <UnitPostItInfo
-              postItProds={proposal.content[0]}
-              handleEvent={handleDrag}
-            />
+    <>
+      {lastArticles.map((article: PostItInfoProps, i) => (
+        <article key={i} className="flex flex-col shadow-md rounded-b-2xl">
+          <div>
+            <UnitPostItInfo postItProds={article} handleEvent={handleDrag} />
           </div>
-
-          {/* Contenido con título y párrafo */}
-          <div className="flex flex-col flex-grow">
-            <h2 className="text-2xl font-bold text-gray-800">
-              {proposal.title}
-            </h2>
-            {proposal.content.length > 0 && (
-              <p className="text-xl text-gray-600 italic text-left">
-                {proposal.content[0].content[0].paragraphs}
-              </p>
-            )}
+          <div className="px-5 py-3 flex flex-col gap-1">
+            <header>
+              <h3 className="text-xl">{article.title}</h3>
+            </header>
+            <p className="text-sm opacity-90">
+              {article.content[0].paragraphs[0]}
+            </p>
           </div>
-        </div>
+        </article>
       ))}
-    </div>
+    </>
   );
 }

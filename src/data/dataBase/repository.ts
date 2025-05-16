@@ -62,51 +62,30 @@ export function getAllDestinations(): Destination[] {
   return destinations;
 }
 
-export interface Project {
-  title: string;
-  content: PostItInfoProps[];
-  video: string;
-  images: string[];
-}
-
-const projects: Project[] = projectsData.map((project) => ({
-  title: project.title,
-  content: project.content.map((item) => ({
-    title: project.title,
-    content: item.paragraphs.map((paragraph) => ({ paragraphs: [paragraph] })),
-    subtitle: item.subtitle,
-    images: project.images,
-  })),
-  video: project.video,
-  images: project.images,
+const projects: PostItInfoProps[] = projectsData.map((project) => ({
+  ...project,
 }));
 
-const proposals: Project[] = proposalsData.map((proposal) => ({
-  title: proposal.title,
-  content: proposal.content.map((item) => ({
-    title: proposal.title,
-    content: item.paragraphs.map((paragraph) => ({ paragraphs: [paragraph] })),
-    subtitle: item.subtitle,
-    images: proposal.images,
-  })),
-  video: proposal.video,
-  images: proposal.images,
+export function getLastProjects(count: number): PostItInfoProps[] {
+  return projects.slice(-count);
+}
+
+export function getAllProjects(): PostItInfoProps[] {
+  return projects;
+}
+
+//Propuestas
+
+const proposals: PostItInfoProps[] = proposalsData.map((proposal) => ({
+  ...proposal,
 }));
 
-export function getLastProjects(limit: number): Project[] {
-  return projects.slice(0, limit);
+export function getLastProposals(count: number): PostItInfoProps[] {
+  return proposals.slice(-count);
 }
 
-export function getAllProjects(): Project[] {
-  return projects; // Devuelve toda la lista
-}
-
-export function getLastProposals(limit: number): Project[] {
-  return proposals.slice(0, limit);
-}
-
-export function getAllProposals(): Project[] {
-  return projects; // Devuelve toda la lista
+export function getAllProposals(): PostItInfoProps[] {
+  return proposals;
 }
 
 export interface Animal {
