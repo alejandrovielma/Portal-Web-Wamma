@@ -19,7 +19,7 @@
       }
     ],
     "video": "https://www.youtube.com/watch?v=EjemploVideo4",
-    "images": ["projects/cambalache.jpeg"]
+    "images": ["projects/comunidad.jpg"]
   },
   {
     "title": "Instalación de Tuberías en San Félix",
@@ -41,7 +41,7 @@
       }
     ],
     "video": "https://www.youtube.com/watch?v=EjemploVideo5",
-    "images": ["projects/san_felix.jpeg"]
+    "images": ["projects/tuberías.avif"]
   },
   {
     "title": "Programa de Monitoreo de la Calidad del Agua",
@@ -63,6 +63,6 @@
       }
     ],
     "video": "https://www.youtube.com/watch?v=EjemploVideo8",
-    "images": ["projects/monitoreo_agua.jpeg"]
+    "images": ["projects/monitoreo.png"]
   }
 ]

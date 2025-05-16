@@ -1,59 +1,59 @@
 [
   {
-    "title": "Propuesta",
+    "title": "Programa de Recuperación de Fuentes Hídricas en Guayana",
     "content": [
       {
         "paragraphs": [
-          "Este informe analiza la relación entre la cultura del agua y la prevención de enfermedades hídricas en la región de Guayana. Destaca la importancia de la educación ambiental y el acceso a agua potable para mejorar la calidad de vida de las comunidades."
+          "Este proyecto busca la restauración de fuentes hídricas afectadas por la actividad minera y la contaminación en la región de Guayana. Se propone la implementación de tecnologías de filtración y reforestación de zonas cercanas a los cuerpos de agua."
         ]
       },
       {
         "subtitle": "1. Justificación",
         "paragraphs": [
-          "El acceso a agua potable y la educación sobre su uso adecuado son fundamentales para la prevención de enfermedades hídricas. En Guayana, diversas comunidades han implementado programas de concienciación y saneamiento con el apoyo de organizaciones ambientales y gubernamentales.",
-          "Este proyecto se centra en la relación entre los hábitos de consumo, el saneamiento y la incidencia de enfermedades vinculadas con la calidad del agua disponible."
+          "La contaminación de ríos y lagunas en Guayana ha afectado la calidad del agua y la biodiversidad. Este proyecto busca mitigar estos efectos mediante la recuperación de ecosistemas acuáticos.",
+          "Se plantea la colaboración con universidades y organizaciones ambientales para desarrollar estrategias de saneamiento y conservación."
         ]
       }
     ],
     "video": "https://www.youtube.com/watch?v=EjemploVideo1",
-    "images": ["projects/cultura_agua.jpeg"]
+    "images": ["projects/fuentehidrica.webp"]
   },
   {
-    "title": "Construcción de una Nueva Cultura del Agua en Venezuela",
+    "title": "Educación Hídrica para Comunidades Indígenas",
     "content": [
       {
         "paragraphs": [
-          "Este estudio examina la participación comunitaria en la gestión del agua y cómo la institucionalización del agua como bien público ha mejorado el acceso a servicios de saneamiento en Venezuela."
+          "Este programa propone la integración de conocimientos ancestrales sobre el agua con prácticas modernas de conservación y uso sostenible. Se busca capacitar a comunidades indígenas en técnicas de purificación y almacenamiento de agua."
         ]
       },
       {
         "subtitle": "1. Justificación",
         "paragraphs": [
-          "La gestión participativa del agua en Guayana ha permitido desarrollar infraestructuras de distribución más eficientes y sostenibles.",
-          "Este proyecto busca fortalecer la conciencia social sobre la importancia de conservar los recursos hídricos y promover políticas de acceso equitativo."
+          "Las comunidades indígenas de Guayana han desarrollado una relación profunda con los recursos hídricos, pero enfrentan desafíos debido a la contaminación y el acceso limitado a agua potable.",
+          "Este proyecto busca fortalecer la autonomía de estas comunidades mediante la educación y el desarrollo de soluciones adaptadas a sus necesidades."
         ]
       }
     ],
     "video": "https://www.youtube.com/watch?v=EjemploVideo2",
-    "images": ["projects/agua.jpeg"]
+    "images": ["projects/comunidades_indi.jpeg"]
   },
   {
-    "title": "Cultura y Tradiciones Hídricas en la Región Guayana",
+    "title": "Sistema de Captación de Agua de Lluvia en Zonas Rurales",
     "content": [
       {
         "paragraphs": [
-          "Este artículo explora la riqueza cultural de la región, incluyendo la relación de las comunidades indígenas con los recursos naturales, como los ríos y el agua."
+          "Este proyecto propone la instalación de sistemas de captación de agua de lluvia en comunidades rurales de Guayana con acceso limitado a fuentes hídricas seguras. Se plantea el uso de tecnologías accesibles y sostenibles para garantizar el abastecimiento de agua potable."
         ]
       },
       {
         "subtitle": "1. Justificación",
         "paragraphs": [
-          "Las comunidades indígenas en Guayana han desarrollado una cosmovisión en la que el agua tiene un papel central en sus rituales y formas de vida.",
-          "Este proyecto documenta prácticas ancestrales relacionadas con el agua y su impacto en la identidad cultural de la región."
+          "Muchas comunidades rurales en Guayana dependen de fuentes de agua no tratadas, lo que incrementa el riesgo de enfermedades hídricas.",
+          "Este proyecto busca ofrecer una alternativa sostenible y accesible para mejorar el acceso al agua potable en estas zonas."
         ]
       }
     ],
     "video": "https://www.youtube.com/watch?v=EjemploVideo3",
-    "images": ["projects/waraos.jpg"]
+    "images": ["projects/captacion.png"]
   }
 ]

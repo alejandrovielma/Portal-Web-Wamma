@@ -7,8 +7,8 @@ import { useState } from "react";
 import {
   getLastProjects,
   getLastProposals,
-  Project,
 } from "../../data/dataBase/repository";
+import { Project } from "../../data/dataBase/repository";
 
 export function News() {
   const [isDragging, setIsDragging] = useState(false);
