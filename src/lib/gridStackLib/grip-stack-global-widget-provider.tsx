@@ -1,5 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { ComponentProps, createContext, useContext, useEffect, useState } from "react";
 import { GridStackWidget } from "gridstack";
+import { ComponentDataType } from "./grid-stack-render";
+import PostItInfo from "#components/PostIts/PostItInfo.tsx";
+import PostItMap from "#components/PostIts/PostItMap.tsx";
 
 type WidgetContextType = {
   widgets:  GridStackWidget[];
@@ -12,6 +15,7 @@ const WIDGETS_STORAGE_KEY = "gridstack-widgets";
 
 export function GridStackGlobalWidgetProvider({ children }:{ children: React.ReactNode }) {
   const [widgets, setWidgetsState] = useState<GridStackWidget[]>(() => {
+    //Carga los widgets en localStorage y si existen los usa
     const cached = localStorage.getItem(WIDGETS_STORAGE_KEY);
     if (cached) {
       try {
@@ -20,7 +24,36 @@ export function GridStackGlobalWidgetProvider({ children }:{ children: React.Rea
         console.error("Error parsing cached widgets:", cached);
       }
     }
-    return [];
+    // Si no existen, devuelve lso postIt por defecto
+    const defaultWidgets: GridStackWidget[] = [
+      /*{
+        x: 0,
+        y: 0,
+        w: 4,
+        h: 4,
+        content: JSON.stringify({
+            name: "PostItInfo", // Component que usara
+            props: { 
+
+            } 
+          } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>
+          ),
+      },
+      {
+        x: 4,
+        y: 4,
+        w: 4,
+        h: 4,
+        content: JSON.stringify({
+            name: "PostItMap", // Component que usara
+            props: { 
+              
+            } 
+          } satisfies ComponentDataType<ComponentProps<typeof PostItMap>>
+          ),
+      }*/
+    ]
+    return defaultWidgets;
   });
 
   useEffect(() => {
