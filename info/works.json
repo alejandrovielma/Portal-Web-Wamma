@@ -1,72 +1,94 @@
 [
-    {
-        "type": "book",
-        "title": "Urban Water Challenges in the Americas: Venezuela",
-        "content": [
-            {
-                "paragraphs": ["Libro de la Red Interamericana de Academias de Ciencias (IANAS) - Programa de Aguas"]
-            },
-            {
-                "subtitle": "Descripción",
-                "paragraphs": [
-                    "Este capítulo de un libro más amplio se centra específicamente en los desafíos del agua urbana en Venezuela. Es probable que examine temas como la infraestructura del agua, la calidad del agua, el acceso al agua y la gestión del agua en las ciudades venezolanas."
-                ]
-            }
-        ],
-        "video": "",
-        "images": ["./public/images/UrbanDelAgua.JPG"]
-    },
-    {
-        "type": "audio",
-        "title": "Podcast del Agua",
-        "content": [
-            {
-                "paragraphs": ["Programa de educación hídrica, recibiendo a más de 89600 personas en su mayoría estudiantes"]
-            },
-            {
-                "subtitle": "",
-                "paragraphs": [
-                ]
-            }
-        ],
-        "video": "https://www.youtube.com/embed/9ZzLnD8Iqow?si=H39H0IH6FOxpeWbU",
-        "images": ["./public/images/Podcast Del Agua.JPG"]
-    },
-    {
-        "type": "video",
-        "title": "Video informativo de la Cultura del Agua",
-        "content": [
-            {
-                "paragraphs": ["En el Presente Video se muestra información interesante sobre la cultura del agua y lo que conlleva"]
-            },
-            {
-                "subtitle": "",
-                "paragraphs": [
-                    
-                ]
-            }
-        ],
-        "video": "https://www.youtube.com/embed/H8ZV7bJTiME?si=teuf4O8--qBi9WRC",
-        "images": ["https://www.gob.mx/cms/uploads/action_program/main_image/9181/post_Icono_Cultura_del_Agua_360x229.jpg"]
-    },
-    {
-        "type": "video",
-        "title": "Pelicula: Salto de los Ángeles",
-        "content": [
-            {
-                "paragraphs": ["es una película venezolana de 2023 dirigida por José Miguel Zamora Figuera. Es un drama de aventuras familiar que cuenta la historia de Antonio, un niño de 12 años que crece en el seno de una familia humilde y amorosa en la región de Guayana, Venezuela."]
-            },
-            {
-                "subtitle": "Descripción",
-                "paragraphs": [
-                    "La trama se centra en el viaje iniciático de Antonio. La obligada ausencia de su padre, quien se marcha a trabajar a las minas de oro en busca de un mejor futuro para la familia, obliga a Antonio a dejar atrás su infancia y a enfrentarse a sus miedos. Se embarca en un viaje para encontrar a su padre y así mantener unida a su familia.",
-                    "La película explora temas como el paso a la adultez, la superación de los miedos, la importancia de la familia y la dura realidad de la búsqueda de oportunidades en un contexto determinado.",
-                    "Se destaca que la película fue filmada en locaciones naturales del estado Bolívar, incluyendo el río Caroní, los parques La Llovizna y Cachamay, El Callao, la Gran Sabana y, aunque el título haga referencia, no directamente en el Salto Ángel. La historia está inspirada en una tradición de la comunidad de Campo Rojo, en San Félix, donde jóvenes saltan desde el Puente Caroní como un rito."
-                ]
-            }
-        ],
-        "video": "https://www.youtube.com/embed/0tpWaUpjgGc?si=XJGYE7bH0emq5c0b",
-        "images": ["https://www.tendenciainternacional.com/wp-content/uploads/2024/02/BeFunky-2-8.jpg"]
-    }
-    
+  {
+    "type": "book",
+    "title": "Urban Water Challenges in the Americas: Venezuela",
+    "content": [
+      {
+        "paragraphs": [
+          "Libro de la Red Interamericana de Academias de Ciencias (IANAS) - Programa de Aguas"
+        ]
+      },
+      {
+        "subtitle": "",
+        "paragraphs": [
+          "Este capítulo de un libro más amplio se centra específicamente en los desafíos del agua urbana en Venezuela. Se analizan aspectos como la infraestructura hídrica, la calidad del agua, el acceso y la gestión del agua en las ciudades venezolanas.",
+          "El acceso al agua potable en Venezuela es un desafío que afecta a millones de habitantes debido a la falta de mantenimiento en la infraestructura de distribución. Las ciudades enfrentan problemas como racionamiento, cortes prolongados en el servicio y la contaminación de fuentes hídricas. Además, el crecimiento poblacional y la urbanización han incrementado la demanda del recurso, mientras que el cambio climático genera incertidumbre sobre la disponibilidad futura del agua.",
+          "Este capítulo también explora posibles soluciones, incluyendo proyectos de rehabilitación de redes de distribución, mayor inversión en plantas de tratamiento y estrategias de conservación del agua que involucran a la ciudadanía y a los sectores productivos."
+        ]
+      }
+    ],
+    "video": "",
+    "images": ["./public/images/UrbanDelAgua.JPG"]
+  },
+  {
+    "type": "audio",
+    "title": "Podcast del Agua",
+    "content": [
+      {
+        "paragraphs": [
+          "Programa de educación hídrica, recibiendo a más de 89600 personas en su mayoría estudiantes"
+        ]
+      },
+      {
+        "subtitle": "",
+        "paragraphs": [
+          "Este podcast ofrece una serie de episodios dedicados a la concienciación sobre la importancia del agua como recurso fundamental para la vida y el desarrollo sostenible.",
+          "A través de entrevistas con expertos en hidrología, políticas ambientales y educación ecológica, los episodios abordan temas como la reducción del consumo doméstico, la contaminación de los cuerpos de agua y las estrategias de reuso y reciclaje del recurso hídrico.",
+          "También se exploran casos de éxito en comunidades que han mejorado el acceso al agua mediante proyectos de gestión participativa y tecnologías innovadoras. Con un enfoque dinámico y educativo, este podcast busca inspirar a jóvenes y adultos a adoptar hábitos más sostenibles en relación con el agua."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/embed/9ZzLnD8Iqow?si=H39H0IH6FOxpeWbU",
+    "images": ["./public/images/Podcast Del Agua.JPG"]
+  },
+  {
+    "type": "video",
+    "title": "Video informativo de la Cultura del Agua",
+    "content": [
+      {
+        "paragraphs": [
+          "En el Presente Video se muestra información interesante sobre la cultura del agua y lo que conlleva"
+        ]
+      },
+      {
+        "subtitle": "",
+        "paragraphs": [
+          "La cultura del agua involucra conocimientos, valores y hábitos relacionados con el uso responsable y la conservación de los recursos hídricos.",
+          "Este video explica el impacto del agua en la biodiversidad, la producción agrícola y el bienestar humano, destacando la importancia de una gestión eficiente.",
+          "También se presentan estrategias para reducir el desperdicio, promover el uso racional del agua en actividades industriales y domésticas, y fortalecer el compromiso social con la protección de ríos, lagos y fuentes subterráneas.",
+          "Finalmente, se menciona el papel de las políticas públicas y el trabajo comunitario en la promoción de una cultura del agua sustentable, impulsando acciones educativas y normativas para garantizar la disponibilidad del recurso en el futuro."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/embed/H8ZV7bJTiME?si=teuf4O8--qBi9WRC",
+    "images": [
+      "https://www.gob.mx/cms/uploads/action_program/main_image/9181/post_Icono_Cultura_del_Agua_360x229.jpg"
+    ]
+  },
+  {
+    "type": "video",
+    "title": "Pelicula: Salto de los Ángeles",
+    "content": [
+      {
+        "subtitle": "",
+        "paragraphs": [
+          "Es una película venezolana de 2023 dirigida por José Miguel Zamora Figuera. Es un drama de aventuras familiar que cuenta la historia de Antonio, un niño de 12 años que crece en el seno de una familia humilde y amorosa en la región de Guayana, Venezuela."
+        ]
+      },
+      {
+        "subtitle": "",
+        "paragraphs": [
+          "La trama se centra en el viaje iniciático de Antonio. La obligada ausencia de su padre, quien se marcha a trabajar a las minas de oro en busca de un mejor futuro para la familia, obliga a Antonio a dejar atrás su infancia y a enfrentarse a sus miedos. Se embarca en un viaje para encontrar a su padre y así mantener unida a su familia.",
+          "La película explora temas como el paso a la adultez, la superación de los miedos, la importancia de la familia y la dura realidad de la búsqueda de oportunidades en un contexto determinado.",
+          "El film captura la esencia de la vida en Guayana, mostrando la riqueza natural de la región y la relación de sus habitantes con el entorno. Además, refleja la lucha cotidiana de muchas familias venezolanas frente a la migración forzada en busca de una vida mejor.",
+          "Filmada en locaciones naturales del estado Bolívar, incluyendo el río Caroní, los parques La Llovizna y Cachamay, El Callao y la Gran Sabana, la película se inspira en una tradición de la comunidad de Campo Rojo, en San Félix, donde jóvenes saltan desde el Puente Caroní como un rito de iniciación.",
+          "Con una cinematografía impresionante y una narrativa emotiva, 'Salto de los Ángeles' ha sido reconocida en festivales internacionales y destaca por su representación auténtica de la cultura venezolana."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/embed/0tpWaUpjgGc?si=XJGYE7bH0emq5c0b",
+    "images": [
+      "https://www.tendenciainternacional.com/wp-content/uploads/2024/02/BeFunky-2-8.jpg"
+    ]
+  }
 ]
