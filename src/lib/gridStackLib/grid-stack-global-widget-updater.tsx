@@ -14,7 +14,6 @@ export function GlobalWidgetupdater(){
     const handleGridChange = () => {
       if (saveOptions) {
         const data = saveOptions()["children"] as GridStackWidget[];
-        console.log("GridStack data saved to localStorage:", data);
         setWidgets(data);
         localStorage.setItem(WIDGETS_STORAGE_KEY, JSON.stringify(data));
       }
