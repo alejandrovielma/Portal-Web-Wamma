@@ -45,7 +45,7 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
       ...animals.map((animal, index) => ({
         id: `animalDefault${index}`,
         x: 0,
-        y: 4 + 3 * index, 
+        y: 5 + 3 * index, 
         w: 3,
         h: 3,
         content: JSON.stringify({
@@ -59,7 +59,7 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
       ...projects.map((project, index) => ({
         id: `projectDefault${index}`,
         x: 12 ,
-        y: 4 + index* 3, 
+        y: 5 + index* 3, 
         w: 4,
         h: 3,
         content: JSON.stringify({
