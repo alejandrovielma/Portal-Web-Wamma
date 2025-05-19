@@ -2,8 +2,9 @@ import React, { ComponentProps, createContext, useContext, useEffect, useState }
 import { GridStackWidget } from "gridstack";
 import { ComponentDataType } from "./grid-stack-render";
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
-import { getAllAnimals, getAllArticles, getAllProjects } from "../../data/dataBase/repository";
+import { getAllAnimals, getAllArticles, getAllDestinations, getAllProjects, getLastArticles, getLastProjects } from "../../data/dataBase/repository";
 import { WIDGETS_STORAGE_KEY } from "../../global";
+import PostItMap from "#components/PostIts/PostItMap.tsx";
 
 type WidgetContextType = {
   widgets: GridStackWidget[];
@@ -19,20 +20,20 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
         return JSON.parse(cached);
       } catch (error) {
         console.error("Error parsing cached widgets:", error);
-        localStorage.removeItem(WIDGETS_STORAGE_KEY);
       }
     }
 
-    const articles = getAllArticles().slice(0, 1);
-    const projects = getAllProjects().slice(0, 2);
+    const articles = getLastArticles(1);
+    const projects = getLastProjects(2)
     const animals = getAllAnimals().slice(0,3);
+    const destination = getAllDestinations().slice(0, 1);
     const defaultWidgets: GridStackWidget[] = [
       ...articles.map((article, index) => ({
         id: `articleDefault${index}`,
-        x: (index % 2) * 2,
-        y: Math.floor(index / 2) * 5,
-        w: 3,
-        h: 3,
+        x: 11,
+        y: 0,
+        w: 5,
+        h: 4,
         content: JSON.stringify({
           name: "PostItInfo",
           props: {
@@ -43,8 +44,8 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
 
       ...animals.map((animal, index) => ({
         id: `animalDefault${index}`,
-        x: (index % 2) * 4,
-        y: Math.floor(index / 2) * 5 + 1, 
+        x: 0,
+        y: 4 + 3 * index, 
         w: 3,
         h: 3,
         content: JSON.stringify({
@@ -57,9 +58,9 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
 
       ...projects.map((project, index) => ({
         id: `projectDefault${index}`,
-        x: (index % 2) * 6,
-        y: Math.floor(index / 2) * 5 + 2, 
-        w: 3,
+        x: 12 ,
+        y: 4 + index* 3, 
+        w: 4,
         h: 3,
         content: JSON.stringify({
           name: "PostItInfo",
@@ -67,6 +68,20 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
             ...project
           },
         } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
+      })),
+
+      ...destination.map((dest, index) => ({
+        id: `destinationDefault${index}`,
+        x: 0,
+        y: 0,
+        w: 7,
+        h: 4,
+        content: JSON.stringify({
+          name: "PostItMap",
+          props: {
+            ...dest.content
+          },
+        } satisfies ComponentDataType<ComponentProps<typeof PostItMap>>),
       })),
     ];
     return defaultWidgets;
