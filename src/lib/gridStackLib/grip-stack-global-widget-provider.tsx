@@ -2,9 +2,7 @@ import React, { ComponentProps, createContext, useContext, useEffect, useState }
 import { GridStackWidget } from "gridstack";
 import { ComponentDataType } from "./grid-stack-render";
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
-import PostItMap from "#components/PostIts/PostItMap.tsx";
-import { image, video } from "framer-motion/client";
-import { getAllArticles } from "../../data/dataBase/repository";
+import { getAllAnimals, getAllArticles, getAllProjects } from "../../data/dataBase/repository";
 
 type WidgetContextType = {
   widgets: GridStackWidget[];
@@ -17,7 +15,6 @@ const WIDGETS_STORAGE_KEY = "gridstack-widgets";
 
 export function GridStackGlobalWidgetProvider({ children }: { children: React.ReactNode }) {
   const [widgets, setWidgetsState] = useState<GridStackWidget[]>(() => {
-    //Carga los widgets en localStorage y si existen los usa
     const cached = localStorage.getItem(WIDGETS_STORAGE_KEY);
     if (cached) {
       try {
@@ -28,26 +25,52 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
       }
     }
 
-    const articles = getAllArticles().slice(0, 4);
-
-    const defaultWidgets: GridStackWidget[] = articles.map((article, index) => {
-      const x = (index % 2) * 4;
-      const y = Math.floor(index / 2) * 5;
-
-      return {
-        id: `itemDeafault${index}`,
-        x: x,
-        y: y,
-        w: 4,
-        h: 4,
+    const articles = getAllArticles().slice(0, 1);
+    const projects = getAllProjects().slice(0, 2);
+    const animals = getAllAnimals().slice(0,3);
+    const defaultWidgets: GridStackWidget[] = [
+      ...articles.map((article, index) => ({
+        id: `articleDefault${index}`,
+        x: (index % 2) * 2,
+        y: Math.floor(index / 2) * 5,
+        w: 3,
+        h: 3,
         content: JSON.stringify({
           name: "PostItInfo",
           props: {
             ...article
           },
         } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
-      };
-    });
+      })),
+
+      ...animals.map((animal, index) => ({
+        id: `animalDefault${index}`,
+        x: (index % 2) * 4,
+        y: Math.floor(index / 2) * 5 + 1, 
+        w: 3,
+        h: 3,
+        content: JSON.stringify({
+          name: "PostItInfo",
+          props: {
+            ...animal.content
+          },
+        } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
+      })),
+
+      ...projects.map((project, index) => ({
+        id: `projectDefault${index}`,
+        x: (index % 2) * 6,
+        y: Math.floor(index / 2) * 5 + 2, 
+        w: 3,
+        h: 3,
+        content: JSON.stringify({
+          name: "PostItInfo",
+          props: {
+            ...project
+          },
+        } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
+      })),
+    ];
     return defaultWidgets;
   });
 
