@@ -3,15 +3,13 @@ import { GridStackWidget } from "gridstack";
 import { ComponentDataType } from "./grid-stack-render";
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
 import { getAllAnimals, getAllArticles, getAllProjects } from "../../data/dataBase/repository";
+import { WIDGETS_STORAGE_KEY } from "../../global";
 
 type WidgetContextType = {
   widgets: GridStackWidget[];
   setWidgets: (widgets: GridStackWidget[]) => void;
 };
-
 const WidgetContext = createContext<WidgetContextType | undefined>(undefined);
-
-const WIDGETS_STORAGE_KEY = "gridstack-widgets";
 
 export function GridStackGlobalWidgetProvider({ children }: { children: React.ReactNode }) {
   const [widgets, setWidgetsState] = useState<GridStackWidget[]>(() => {
@@ -73,12 +71,6 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
     ];
     return defaultWidgets;
   });
-
-  useEffect(() => {
-    if (widgets.length > 0) {
-      localStorage.setItem(WIDGETS_STORAGE_KEY, JSON.stringify(widgets));
-    }
-  }, [widgets]);
 
   const setWidgets = (newWidgets: GridStackWidget[]) => {
     setWidgetsState(newWidgets);
