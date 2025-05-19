@@ -2,6 +2,7 @@ import { GridStackWidget } from "gridstack";
 import { useEffect } from "react";
 import { useGridStackContext } from "./grid-stack-context";
 import { useWidgetContext } from "./grip-stack-global-widget-provider";
+import { WIDGETS_STORAGE_KEY } from "../../global";
 
 export function GlobalWidgetupdater(){
   const { saveOptions, gridStack } = useGridStackContext();
@@ -14,6 +15,7 @@ export function GlobalWidgetupdater(){
       if (saveOptions) {
         const data = saveOptions()["children"] as GridStackWidget[];
         setWidgets(data);
+        localStorage.setItem(WIDGETS_STORAGE_KEY, JSON.stringify(data));
       }
     };
 

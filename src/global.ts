@@ -1,0 +1,1 @@
+export const WIDGETS_STORAGE_KEY = "gridstack-widgets";

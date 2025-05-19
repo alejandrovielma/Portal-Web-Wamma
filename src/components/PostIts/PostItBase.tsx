@@ -102,7 +102,7 @@ export function PostItBase({ children, color1, color2, dimensions }: { children?
             <div className={`${color2} size-8 absolute top-0 right-0 z-10`}>
             </div>
             {
-                (!dimensions || (dimensions?.h > 2 || dimensions?.w > 2)) && <button className="absolute top-0 left-0 z-20 cursor-pointer p-1"
+                (!dimensions || (dimensions?.h > 2 || dimensions?.w > 2)) && <button className="absolute top-0 left-0 h-10 z-20 cursor-pointer px-2 "
                 onClick={() => {
                     if (widget) {
                         removeWidget(widget.id);
@@ -128,7 +128,11 @@ export function PostItBase({ children, color1, color2, dimensions }: { children?
                 )}
             </span>
 
-            {children}
+            <div className="bg-white/10">
+                {children}
+            </div>
+
+            
         </div>
     );
 }

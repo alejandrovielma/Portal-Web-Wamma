@@ -6,6 +6,8 @@ import articlesData from "#info/articles.json";
 import worksData from "#info/works.json";
 import animalsData from "#info/faunaVenezuelaChordata.json";
 import destinationsData from "#info/destinations.json";
+import locationsData from "#info/locations.json";
+import { LatLngExpression } from "leaflet";
 
 const articles: PostItInfoProps[] = articlesData.map((article) => ({
   ...article,
@@ -142,4 +144,21 @@ const animals: Animal[] = animalsData.map(
 
 export function getAllAnimals(): Animal[] {
   return animals;
+}
+
+// Locaciones par also animales
+
+export interface MapLocation {
+  name: string;
+  color: string;
+  bonds: [number, number][]
+}
+const locations:MapLocation[]  = locationsData.map((location) => ({
+  name: location.name,
+  color: location.color,
+  bonds: location.bonds.map((bond) => [bond[0], bond[1]] as [number, number]),
+}));
+
+export function getAllLocations(): MapLocation[] {
+  return locations;
 }

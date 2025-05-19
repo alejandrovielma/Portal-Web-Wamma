@@ -2,43 +2,37 @@ import React, { ComponentProps, createContext, useContext, useEffect, useState }
 import { GridStackWidget } from "gridstack";
 import { ComponentDataType } from "./grid-stack-render";
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
+import { getAllAnimals, getAllArticles, getAllDestinations, getAllProjects, getLastArticles, getLastProjects } from "../../data/dataBase/repository";
+import { WIDGETS_STORAGE_KEY } from "../../global";
 import PostItMap from "#components/PostIts/PostItMap.tsx";
-import { image, video } from "framer-motion/client";
-import { getAllArticles } from "../../data/dataBase/repository";
 
 type WidgetContextType = {
   widgets: GridStackWidget[];
   setWidgets: (widgets: GridStackWidget[]) => void;
 };
-
 const WidgetContext = createContext<WidgetContextType | undefined>(undefined);
-
-const WIDGETS_STORAGE_KEY = "gridstack-widgets";
 
 export function GridStackGlobalWidgetProvider({ children }: { children: React.ReactNode }) {
   const [widgets, setWidgetsState] = useState<GridStackWidget[]>(() => {
-    //Carga los widgets en localStorage y si existen los usa
     const cached = localStorage.getItem(WIDGETS_STORAGE_KEY);
     if (cached) {
       try {
         return JSON.parse(cached);
       } catch (error) {
         console.error("Error parsing cached widgets:", error);
-        localStorage.removeItem(WIDGETS_STORAGE_KEY);
       }
     }
 
-    const articles = getAllArticles().slice(0, 4);
-
-    const defaultWidgets: GridStackWidget[] = articles.map((article, index) => {
-      const x = (index % 2) * 4;
-      const y = Math.floor(index / 2) * 5;
-
-      return {
-        id: `itemDeafault${index}`,
-        x: x,
-        y: y,
-        w: 4,
+    const articles = getLastArticles(1);
+    const projects = getLastProjects(2)
+    const animals = getAllAnimals().slice(0,3);
+    const destination = getAllDestinations().slice(0, 1);
+    const defaultWidgets: GridStackWidget[] = [
+      ...articles.map((article, index) => ({
+        id: `articleDefault${index}`,
+        x: 11,
+        y: 0,
+        w: 5,
         h: 4,
         content: JSON.stringify({
           name: "PostItInfo",
@@ -46,16 +40,52 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
             ...article
           },
         } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
-      };
-    });
+      })),
+
+      ...animals.map((animal, index) => ({
+        id: `animalDefault${index}`,
+        x: 0,
+        y: 5 + 3 * index, 
+        w: 3,
+        h: 3,
+        content: JSON.stringify({
+          name: "PostItInfo",
+          props: {
+            ...animal.content
+          },
+        } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
+      })),
+
+      ...projects.map((project, index) => ({
+        id: `projectDefault${index}`,
+        x: 12 ,
+        y: 5 + index* 3, 
+        w: 4,
+        h: 3,
+        content: JSON.stringify({
+          name: "PostItInfo",
+          props: {
+            ...project
+          },
+        } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
+      })),
+
+      ...destination.map((dest, index) => ({
+        id: `destinationDefault${index}`,
+        x: 0,
+        y: 0,
+        w: 7,
+        h: 4,
+        content: JSON.stringify({
+          name: "PostItMap",
+          props: {
+            ...dest.content
+          },
+        } satisfies ComponentDataType<ComponentProps<typeof PostItMap>>),
+      })),
+    ];
     return defaultWidgets;
   });
-
-  useEffect(() => {
-    if (widgets.length > 0) {
-      localStorage.setItem(WIDGETS_STORAGE_KEY, JSON.stringify(widgets));
-    }
-  }, [widgets]);
 
   const setWidgets = (newWidgets: GridStackWidget[]) => {
     setWidgetsState(newWidgets);
