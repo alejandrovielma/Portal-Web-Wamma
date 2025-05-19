@@ -90,12 +90,18 @@ export function getAllProposals(): PostItInfoProps[] {
 
 export interface Animal {
   class: string;
+  scientificName: string;
+  commonName: string;
+  locations: string[];
   content: PostItInfoProps;
 }
 
 const animals: Animal[] = animalsData.map(
   (animal): Animal => ({
     class: animal.class,
+    scientificName: animal.scientificName,
+    commonName: "Nombre Comun",
+    locations: ["locacion1", "location2"],
     content: {
       title: animal.scientificName,
       content: [
