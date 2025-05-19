@@ -3,6 +3,8 @@ import { GridStackWidget } from "gridstack";
 import { ComponentDataType } from "./grid-stack-render";
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
 import PostItMap from "#components/PostIts/PostItMap.tsx";
+import { image, video } from "framer-motion/client";
+import { getAllArticles } from "../../data/dataBase/repository";
 
 type WidgetContextType = {
   widgets:  GridStackWidget[];
@@ -20,44 +22,58 @@ export function GridStackGlobalWidgetProvider({ children }:{ children: React.Rea
     if (cached) {
       try {
         return JSON.parse(cached);
-      } catch {
-        console.error("Error parsing cached widgets:", cached);
+      } catch (error) {
+        console.error("Error parsing cached widgets:", error);
+        localStorage.removeItem(WIDGETS_STORAGE_KEY); 
       }
     }
-    // Si no existen, devuelve lso postIt por defecto
-    const defaultWidgets: GridStackWidget[] = [
-      /*{
-        x: 0,
-        y: 0,
-        w: 4,
-        h: 4,
-        content: JSON.stringify({
-            name: "PostItInfo", // Component que usara
-            props: { 
 
-            } 
-          } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>
-          ),
-      },
-      {
-        x: 4,
-        y: 4,
-        w: 4,
-        h: 4,
+
+    const articles = getAllArticles().slice(0, 4);
+    const defaultWidgets: GridStackWidget[] = articles.map((article, index) => {
+      const x = (index % 2) * 4;
+      const y = Math.floor(index / 2) * 5;
+      const images = article.images && article.images.length > 0
+        ? article.images.map((img, i) => ({
+            url: img,
+            alt: `Image ${i + 1}`,
+          }))
+        : [];
+      const videos = article.video
+        ? [{ url: article.video, title: "Video" }]
+        : [];
+      const content = article.content.map(c => {
+        if (c.paragraphs) {
+          return { type: "paragraph", content: c.paragraphs.join("\n") };
+        } else if (c.subtitle) {
+          return { type: "subtitle", content: c.subtitle };
+        }
+        return {};
+      });
+
+      return {
+        x: x,
+        y: y,
+        w: 2,
+        h: 2,
         content: JSON.stringify({
-            name: "PostItMap", // Component que usara
-            props: { 
-              
-            } 
-          } satisfies ComponentDataType<ComponentProps<typeof PostItMap>>
-          ),
-      }*/
-    ]
+          name: "PostItInfo",
+          props: {
+            title: article.title,
+            content: content,
+            images: images,
+            video: videos,
+          },
+        } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
+      };
+    });
     return defaultWidgets;
   });
 
   useEffect(() => {
-    localStorage.setItem(WIDGETS_STORAGE_KEY, JSON.stringify(widgets));
+    if (widgets.length > 0) { 
+        localStorage.setItem(WIDGETS_STORAGE_KEY, JSON.stringify(widgets));
+    }
   }, [widgets]);
 
   const setWidgets = (newWidgets: GridStackWidget[]) => {
