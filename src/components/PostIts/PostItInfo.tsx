@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PostItBase from "./PostItBase";
-import { motion, AnimatePresence } from "framer-motion"; 
+import { motion, AnimatePresence } from "framer-motion";
 import { useGridStackContext } from "#lib/gridStackLib/grid-stack-context.ts";
 import { useGridStackWidgetContext } from "#lib/gridStackLib/grid-stack-widget-context.ts";
 import { GridStackWidget } from "gridstack";
@@ -57,7 +57,7 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
     return (
         <>
             <PostItBase dimensions={dimensions} color1="bg-light-primary dark:bg-dark-primary" color2="bg-light-primaryVar dark:bg-dark-primaryVar">
-                <button onClick={() => { setIsPopOpen(true) }} className="relative flex flex-col w-full h-full cursor-pointer group overflow-hidden">
+                <button onClick={() => { setIsPopOpen(true) }} className="relative flex-1 flex flex-col w-full h-full cursor-pointer group overflow-hidden">
 
                     <span className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity z-10"></span>
                     <span className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -69,7 +69,6 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
                     }
                 </button>
             </PostItBase>
-            {/* Modal desplegable con animación */}
             <AnimatePresence>
                 {isPopOpen && (
                     <div className="fixed inset-0 z-200 flex items-end justify-center bg-black/50" onClick={() => { setIsPopOpen(false) }}>
@@ -144,13 +143,17 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
 export default PostItInfo;
 
 function ContentSmall({ allContent }: { allContent: PostItInfoProps }) {
-    return <img className="flex-1" src={allContent.images[0]} alt={allContent.title} />
+    return <div className="flex-1 overflow-hidden">
+        <img className="object-cover h-full w-full" src={allContent.images[0]} alt={allContent.title} />
+    </div>
 }
 function ContentMedium({ allContent }: { allContent: PostItInfoProps }) {
     return (
         <>
-            <img className="flex-1" src={allContent.images[0]} alt={allContent.title} />
-            <div className="flex-1/2 px-4 py-2 flex flex-col gap-2">
+            <div className="flex-1/4 max-h-48 overflow-hidden">
+                <img className="object-cover h-full w-full" src={allContent.images[0]} alt={allContent.title} />
+            </div>
+            <div className="flex-1 px-4 py-2 flex flex-col gap-2">
                 <h2 className="font-titles text-left text-xl" >{allContent.title}</h2>
                 <p className="text-left">{allContent.content[0]?.paragraphs?.join(' ')}</p>
             </div>
