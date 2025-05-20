@@ -18,7 +18,7 @@
       }
     ],
     "video": "",
-    "images": ["./public/images/UrbanDelAgua.JPG"]
+    "images": ["./images/UrbanDelAgua.JPG"]
   },
   {
     "type": "audio",
@@ -39,7 +39,7 @@
       }
     ],
     "video": "https://www.youtube.com/embed/9ZzLnD8Iqow?si=H39H0IH6FOxpeWbU",
-    "images": ["./public/images/Podcast Del Agua.JPG"]
+    "images": ["./images/Podcast Del Agua.JPG"]
   },
   {
     "type": "video",
@@ -90,5 +90,109 @@
     "images": [
       "https://www.tendenciainternacional.com/wp-content/uploads/2024/02/BeFunky-2-8.jpg"
     ]
+  },
+  {
+    "type": "video",
+    "title": "Novela Canaima",
+    "content": [
+      {
+        "paragraphs": [
+          "Este video trata sobre Canaima, una novela de aventura y drama escrita por Rómulo Gallegos en 1935. Ambientada en la selva del Orinoco, la historia sigue a Marcos Vargas, un joven que se enfrenta a la dureza de la naturaleza y a los conflictos del caciquismo en su búsqueda de riqueza y propósito1. La obra es una crítica al caudillismo y resalta la lucha del hombre contra su entorno."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/embed/oe3lBvwyC_A",
+    "images": ["./images/canaima_libro.jpg"]
+  },
+  {
+    "type": "video",
+    "title": "¿Quiénes son los Warao?",
+    "content": [
+      {
+        "paragraphs": [
+          "Este video explora la cultura del pueblo indígena Warao, que habita en el delta del Orinoco. Se destaca su conexión con el agua, su forma de vida basada en la pesca y la artesanía, así como los desafíos que enfrentan en la actualidad. También se abordan sus tradiciones, su idioma y su organización comunitaria."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/embed/sWtOmmLHXcg",
+    "images": ["./images/warao.png"]
+  },
+  {
+    "type": "video",
+    "title": "Inauguración de Macagua II",
+    "content": [
+      {
+        "paragraphs": [
+          "El Complejo Hidroeléctrico Macagua II, inaugurado el 23 de enero de 1997 por el presidente Rafael Caldera, fue presentado como un reconocimiento al apoyo de los gobiernos democráticos en Venezuela. Durante la ceremonia, Caldera defendió el sistema democrático y propuso un debate profundo sobre los aciertos y errores de los cuarenta años de democracia en el país. En su discurso, abordó las críticas y controversias que podrían influir en la percepción de las nuevas generaciones, advirtiendo sobre el riesgo de que se diera crédito a los adversarios del sistema democrático. Sin embargo, su llamado al debate no tuvo el impacto esperado."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/embed/8vagvuP-tUU",
+    "images": ["./images/macagua.jpg"]
+  },
+  {
+    "type": "video",
+    "title": "Toninas del Orinoco",
+    "content": [
+      {
+        "paragraphs": [
+          "Las toninas del Orinoco (Inia geoffrensis) son cetáceos de agua dulce que habitan en la cuenca del río Orinoco. Este video explora sus características, comportamiento y el impacto ambiental que enfrentan. Se destaca su capacidad de ecolocalización, su coloración variable entre gris y rosado, y su importancia en el ecosistema fluvial. También se abordan las amenazas que afectan su población, como la contaminación, la pesca indiscriminada y la alteración de su hábitat por actividades humanas"
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/embed/wnEI-Y9CkUQ?si=CS-IGmyT9adgeOwR",
+    "images": ["./images/tonina.jpeg"]
+  },
+  {
+    "type": "video",
+    "title": "Kayak y Senderismo en Guayana",
+    "content": [
+      {
+        "paragraphs": ["Video corto que habla acerca del senderismo"]
+      }
+    ],
+    "video": "https://youtube.com/embed/XvtCrA1-tVw?feature=shared",
+    "images": ["./images/kayak.png"]
+  },
+  {
+    "type": "video",
+    "title": "Foro Guayana Sustentable",
+    "content": [
+      {
+        "paragraphs": [
+          "El XX Foro Guayana Sustentable, organizado por la Universidad Católica Andrés Bello Extensión Guayana, fue un espacio de discusión sobre el desarrollo sustentable de la Región Guayana. Se llevó a cabo los días 26 y 27 de noviembre de 2020, abordando temas clave como modelos de desarrollo, impacto ambiental, extractivismo, y propuestas estratégicas para el futuro."
+        ]
+      }
+    ],
+    "video": "https://www.youtube.com/embed/L3hSmAbUUpU?si=HUMuUcRy6Cog88wf",
+    "images": ["./images/guayana_sustentable.jpg"]
+  },
+  {
+    "type": "book",
+    "title": "Guión formulación de una estrategia de desarrollo sostenible",
+    "content": [
+      {
+        "paragraphs": [
+          "Este documento plantea una visión a largo plazo para el desarrollo sostenible de la Región Guayana, reconociendo la crisis estructural de Venezuela y la necesidad de una planificación estratégica. Se enfatiza el uso racional de los recursos naturales, la ordenación del territorio, la generación de políticas económicas favorables a la inversión privada y la competitividad, y la incorporación de modelos productivos que garanticen la sostenibilidad ambiental. Se presentan análisis de escenarios que exploran futuros posibles para la región, incluyendo opciones de especialización económica en ecoturismo, servicios ambientales y nuevas industrias.",
+          "El documento propone programas estratégicos orientados al progreso social, la economía basada en conocimiento e innovación, la sostenibilidad ambiental y la afirmación de la soberanía territorial. También se destacan reformas institucionales necesarias para garantizar una gestión eficiente y transparente. El objetivo final es convertir Guayana en una región autosostenible y próspera, con impacto positivo en el desarrollo nacional. ¿Te gustaría profundizar en algún aspecto en particular?"
+        ]
+      }
+    ],
+    "video": "",
+    "images": ["./images/guion_ucab.png"]
+  },
+  {
+    "type": "book",
+    "title": "Hoja de Ruta para recuperar servicios de Agua Potable y Saneamiento",
+    "content": [
+      {
+        "paragraphs": [
+          "La Hoja de Ruta para recuperar los servicios de Agua Potable y Saneamiento en Venezuela, elaborada por el Grupo Orinoco, presenta un plan integral para mejorar el acceso al agua en el país, abordando tanto la crisis operativa como la sostenibilidad a largo plazo. En un contexto de deterioro institucional y de infraestructura, el documento identifica desafíos urgentes como la rehabilitación de sistemas, el financiamiento y la formación de talento humano. También propone reformas estructurales para modernizar el marco legal, rediseñar tarifas y asegurar fuentes de agua. Su objetivo inmediato es garantizar un suministro mínimo de 50 litros por habitante al día, seguido de una recuperación operativa para alcanzar 200 litros en cinco años.",
+          "Para lograr estos objetivos, el plan se organiza en tres fases: corto, mediano y largo plazo. En el corto plazo, se busca evitar el colapso mediante la restauración de infraestructuras clave y la mejora en la gestión de los prestadores de servicio. En el mediano plazo, se fortalecerá la capacidad operativa y se iniciará la rehabilitación de plantas de tratamiento. Finalmente, en el largo plazo, se establecerán políticas de gestión de cuencas y se impulsará una nueva arquitectura institucional que garantice eficiencia y transparencia en la administración del recurso hídrico. La estrategia involucra financiamiento multilateral y cooperación internacional para asegurar la sostenibilidad del proyecto y su impacto positivo en la población."
+        ]
+      }
+    ],
+    "video": "",
+    "images": ["./images/hoja_ruta.png"]
   }
 ]
