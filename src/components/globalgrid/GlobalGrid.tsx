@@ -28,14 +28,21 @@ export function GlobalGrip() {
 
   return (
     <div className="bgGrid">
-      <header className="bg-light-tertiary px-4 text-white flex items-center gap-4 h-20 fixed w-full z-50">
+      {/*<header className="bg-light-tertiary px-4 text-white flex items-center gap-4 h-20 fixed w-full z-50">
         <img src="logo.svg" alt="Logo Awani" className="size-24" />
         <div>
           <h1 className="text-2lx font-semibold text-start">Wamma</h1>
           <p className="text-sm">Aprendices del agua</p>
         </div>
-      </header>
-      <div className="pt-20">
+      </header>*/}
+      <div>
+        <div className="absolute top-1/2 left-1/2 -translate-1/2 flex flex-col items-center opacity-50">
+          <div className="overflow-hidden w-128 h-60 flex items-center justify-center">
+            <img className="object-cover w-full h-full" src="logoDark.svg" alt="Logo Awani" />
+          </div>
+          <h1 className="text-5xl font-semibold text-start">Wamma</h1>
+          <p className="text-3xl">Aprendices del agua</p>
+        </div>
         <GridStackProvider initialOptions={initialOptions}>
           <GridStackRenderProvider>
             <GridStackRender componentMap={COMPONENT_MAP} />
