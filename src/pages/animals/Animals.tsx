@@ -46,7 +46,7 @@ export function Animals() {
 
   return (
     <SelectPostItLayer isDragging={isDragging}>
-      <NavHeader pathItems={[{ nombre: "Animales", link: "/animales" }]} />
+      <NavHeader pathItems={[{ nombre: "Acuario", link: "/animales" }]} />
 
       <div className="relative mt-20 w-full h-3/5 flex items-center justify-center">
         <img
