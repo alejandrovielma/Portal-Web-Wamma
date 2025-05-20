@@ -87,9 +87,6 @@ export function NavMenu({ text}:NavMenuProps) {
         <Bubble navigate={navigate} href='/animales'>
           <h4 className="text-shadow-50 font-semibold text-center">Acuario</h4>
             <img className="flex-1" src="./Public/svgs/Animales.svg" alt="Acuario" />
-
-
-
         </Bubble>
         <Bubble navigate={navigate} href='/biblioteca'>
            <h4 className="text-shadow-50 font-semibold text-center">Biblioteca</h4>
