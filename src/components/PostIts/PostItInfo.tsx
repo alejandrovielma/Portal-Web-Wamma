@@ -72,7 +72,7 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
             {/* Modal desplegable con animación */}
             <AnimatePresence>
                 {isPopOpen && (
-                    <div className="fixed inset-0 z-40 flex items-end justify-center bg-black/50" onClick={() => { setIsPopOpen(false) }}>
+                    <div className="fixed inset-0 z-200 flex items-end justify-center bg-black/50" onClick={() => { setIsPopOpen(false) }}>
                         <motion.div
                             initial={{ y: "100%" }} // Ajusta este valor para cambiar el punto de inicio del modal
                             animate={{ y: 0 }}
