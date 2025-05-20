@@ -95,7 +95,7 @@ export function PostItBase({ children, color1, color2, dimensions }: { children?
     return (
         <div
             ref={containerRef}
-            className={`${color1} w-full h-full relative overflow-hidden cursor-grab`}
+            className={`${color1} w-full h-full flex-col flex relative overflow-hidden cursor-grab`}
             style={{ clipPath: `polygon(calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%, 0 0)` }}
             onMouseDown={handleMouseDown}
         >
@@ -113,9 +113,8 @@ export function PostItBase({ children, color1, color2, dimensions }: { children?
             </button>}
 
             <span
-                ref={pinRef}
-                
-                className="flex items-start justify-center w-full h-10 pt-1.5"
+                ref={pinRef}  
+                className="flex items-start justify-center w-full py-2.5"
             >
                 {isPinVisible && (
                     <div
@@ -128,7 +127,7 @@ export function PostItBase({ children, color1, color2, dimensions }: { children?
                 )}
             </span>
 
-            <div className="bg-white/10">
+            <div className="bg-white/10 flex-1">
                 {children}
             </div>
 

@@ -33,7 +33,7 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
         x: 11,
         y: 0,
         w: 5,
-        h: 4,
+        h: 5,
         content: JSON.stringify({
           name: "PostItInfo",
           props: {
@@ -75,7 +75,7 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
         x: 0,
         y: 0,
         w: 7,
-        h: 4,
+        h: 5,
         content: JSON.stringify({
           name: "PostItMap",
           props: {
