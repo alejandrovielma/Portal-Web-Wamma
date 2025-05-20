@@ -67,7 +67,7 @@ export function Map() {
         pathItems={[{ nombre: "Mapa", link: "/mapa" }]}
       />
       <div className="relative w-full h-full pt-20">
-        <DropOptions className="mt-40" title="Regiones" items={mapLocations.map(loca => {
+        {/*<DropOptions className="mt-40" title="Regiones" items={mapLocations.map(loca => {
           const item = {
             text: loca.name,
             onClick: () => {
@@ -93,7 +93,7 @@ export function Map() {
             }
           }
           return item
-        })} />
+        })} />*/}
         <MapContainer center={[8.332897505049878, -62.67421343794216]} zoom={13} className="w-full h-full z-0">
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
