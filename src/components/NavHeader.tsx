@@ -56,7 +56,7 @@ export function NavHeader ({ pathItems }: HeaderProps) {
   }
 
   return (
-    <header className="bg-blue-500 text-white flex items-stretch justify-between h-20 fixed w-full z-50">
+    <header className="bg-light-tertiary text-white flex items-stretch justify-between h-20 fixed w-full z-50">
       <TransitionToMenuButton
         href="/"
         className="flex items-center pl-6 cursor-pointer"
