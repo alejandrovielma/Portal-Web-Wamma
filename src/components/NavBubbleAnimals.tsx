@@ -50,7 +50,7 @@ export function NavBubbleAnimals({ setfiltered, setBackgroundImage }: { setfilte
       {bubbleItems.map((item, index) => (
         <button
           key={index}
-          className={`relative group w-24 h-24 rounded-full border-2 border-gray-300 shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer ${ index % 2 !== 1 ? "-top-10" : "" }`}
+          className={`relative group w-24 h-24 rounded-full border-2 border-gray-300 shadow-red-600 hover:scale-110 transition-transform duration-300 cursor-pointer ${ index % 2 !== 1 ? "-top-10" : "" }`}
           title={item.name}
           onClick={() => {
             setfiltered(item.class);

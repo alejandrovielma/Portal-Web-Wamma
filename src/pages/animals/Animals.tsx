@@ -48,7 +48,7 @@ export function Animals() {
     <SelectPostItLayer isDragging={isDragging}>
       <NavHeader pathItems={[{ nombre: "Animales", link: "/animales" }]} />
 
-      <div className="relative mt-5 w-full h-5/6 flex items-center justify-center">
+      <div className="relative mt-20 w-full h-3/5 flex items-center justify-center">
         <img
           src={backgroundImage}
           className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${isFading ? "opacity-0" : "opacity-100"}`}
@@ -61,7 +61,7 @@ export function Animals() {
       <span className="flex items-center justify-start gap-4 mt-8">
         <SearchBar estilo="w-1/3" onSearch={setSearchTerm} />
         <h2 className="text-xl">
-          Filtrando por clase: {filteredClass}
+          Filtrando por clase: <span className="font-semibold">{filteredClass}</span>
           {filteredClass && (
             <button onClick={resetFilter} className="ml-2 w-6 h-6 cursor-pointer">
               <img className="h-full w-full mt-1.5" src="./Public/svgs/Close.svg" alt="Limpiar búsqueda" />
