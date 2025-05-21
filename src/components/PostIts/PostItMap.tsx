@@ -45,6 +45,7 @@ export function PostItMap({ title, description, images, video, coordinates, city
     useEffect(() => {
         if (!gridStack) return;
         function updateDimensions() {
+            // @ts-ignore
             const childrens: GridStackWidget[] = saveOptions()["children"]
             const self = childrens.find((child: GridStackWidget) => child.id === widget.id)
             setDimensions({

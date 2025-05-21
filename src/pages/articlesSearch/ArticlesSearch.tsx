@@ -10,7 +10,7 @@ export function ArticlesSearch() {
   const [isDragging, setIsDragging] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredArticles, setFilteredArticles] = useState<PostItInfoProps[]>([]);
-  const [articles, setArticles] = useState<PostItInfoProps[]>(getAllArticles());
+  const [articles] = useState<PostItInfoProps[]>(getAllArticles());
 
   function handleEvent(event: Event) {
     setIsDragging(event.type === "dragstart");

@@ -27,6 +27,7 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
   useEffect(() => {
     if (!gridStack) return;
     function updateDimensions() {
+      // @ts-ignore
       const childrens: GridStackWidget[] = saveOptions()["children"];
       const self = childrens.find(
         (child: GridStackWidget) => child.id === widget.id

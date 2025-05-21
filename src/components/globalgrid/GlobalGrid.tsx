@@ -1,11 +1,10 @@
 import "./globalGrid.css"
-import { useEffect, useState } from "react";
-import { GridStackOptions, GridStackWidget } from "gridstack";
+import { useState } from "react";
+import { GridStackOptions } from "gridstack";
 import {
   GridStackProvider,
   GridStackRender,
   GridStackRenderProvider,
-  useGridStackContext,
   COMPONENT_MAP,
   useWidgetContext,
   GlobalWidgetupdater
@@ -36,12 +35,17 @@ export function GlobalGrip() {
         </div>
       </header>*/}
       <div>
-        <div className="absolute top-1/2 left-1/2 -translate-1/2 flex flex-col items-center opacity-50">
-          <div className="overflow-hidden w-128 h-60 flex items-center justify-center">
-            <img className="object-cover w-full h-full" src="logoDark.svg" alt="Logo Awani" />
+        <div className="absolute top-1/2 left-1/2 -translate-1/2 flex flex-col items-center gap-2 opacity-50">
+          <div className="flex flex-col items-center">
+            <div className="overflow-hidden w-128 h-60 flex items-center justify-center">
+              <img className="object-cover w-full h-full" src="logoDark.svg" alt="Logo Awani" />
+            </div>
+            <div>
+              <h1 className="text-5xl font-semibold text-start">Wamma</h1>
+              <p className="text-3xl text-start">Aprendices del agua</p>
+            </div>
           </div>
-          <h1 className="text-5xl font-semibold text-start">Wamma</h1>
-          <p className="text-3xl">Aprendices del agua</p>
+          <p className="text-3xl text-center">¡Arrastra!</p>
         </div>
         <GridStackProvider initialOptions={initialOptions}>
           <GridStackRenderProvider>
@@ -57,7 +61,7 @@ export function GlobalGrip() {
 export default GlobalGrip
 
 
-function DebugInfo() {
+/*function DebugInfo() {
   const { initialOptions, saveOptions } = useGridStackContext();
 
   const [realtimeOptions, setRealtimeOptions] = useState<
@@ -114,4 +118,4 @@ function DebugInfo() {
       </div>
     </div>
   );
-}
+}*/

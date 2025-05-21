@@ -11,10 +11,10 @@ export function Animals() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredClass, setFilteredClass] = useState("");
   const [filteredAnimals, setFilteredAnimals] = useState<Animal[]>([]);
-  const [animals, setAnimals] = useState<Animal[]>(getAllAnimals());
+  const [animals] = useState<Animal[]>(getAllAnimals());
 
   
-  const [backgroundImage, setBackgroundImage] = useState("./public/images/fondoMar.gif");
+  const [backgroundImage, setBackgroundImage] = useState("/images/fondoMar.gif");
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export function Animals() {
   function resetFilter() {
     setFilteredClass("");
     setFilteredAnimals(animals);
-    fadeBackground("./public/images/fondoMar.gif");
+    fadeBackground("/images/fondoMar.gif");
   }
 
   function fadeBackground(newImage: string) {
@@ -64,7 +64,7 @@ export function Animals() {
           Filtrando por clase: <span className="font-semibold">{filteredClass}</span>
           {filteredClass && (
             <button onClick={resetFilter} className="ml-2 w-6 h-6 cursor-pointer">
-              <img className="h-full w-full mt-1.5" src="./Public/svgs/Close.svg" alt="Limpiar búsqueda" />
+              <img className="h-full w-full mt-1.5" src="/svgs/Close.svg" alt="Limpiar búsqueda" />
             </button>
           )}
         </h2>

@@ -1,5 +1,9 @@
-import React from "react";
-export function NavBubbleAnimals({ setfiltered, setBackgroundImage }: { setfiltered: React.Dispatch<React.SetStateAction<string>>, setBackgroundImage: React.Dispatch<React.SetStateAction<string>> }) {
+interface NavBubbleAnimalsProps {
+  setfiltered: (value: string) => void;
+  setBackgroundImage: (img: string) => void;
+}
+
+export function NavBubbleAnimals({ setfiltered, setBackgroundImage }: NavBubbleAnimalsProps) {
   const bubbleItems = [
     {
       name: "Anfibios",

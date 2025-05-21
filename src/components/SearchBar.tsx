@@ -26,7 +26,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch, estilo=""}) => {
       {searchTerm && (
         <button onClick={() => { setSearchTerm(""); onSearch(""); }} className="ml-2 px-2 py-1 flex items-center justify-center cursor-pointer">
           <span className="h-6 w-6">
-            <img className="h-full w-full" src="./Public/svgs/Close.svg" alt="Limpiar búsqueda" />
+            <img className="h-full w-full" src="/svgs/Close.svg" alt="Limpiar búsqueda" />
           </span>
         </button>
       )}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { GridStackOptions } from "gridstack";
 import { GridStackProvider, GridStackRender, GridStackRenderProvider } from "#lib/gridStackLib/index.ts";
 import { PostItInfoProps } from "./PostIts/PostItInfo.tsx";
@@ -12,7 +12,7 @@ interface UnitPostItProps {
 
 
 export function UnitPostItInfo({ postItProds, handleEvent }: UnitPostItProps) {
-    const [gridOptions, setGridOptions] = useState<GridStackOptions>({
+    const [gridOptions] = useState<GridStackOptions>({
         column: 2,
         row: 2,
         disableResize: true,

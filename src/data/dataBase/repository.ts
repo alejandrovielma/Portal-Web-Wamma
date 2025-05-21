@@ -7,7 +7,6 @@ import worksData from "#info/works.json";
 import animalsData from "#info/faunachordata new.json";
 import destinationsData from "#info/destinations.json";
 import locationsData from "#info/locations.json";
-import { LatLngExpression } from "leaflet";
 
 const articles: PostItInfoProps[] = articlesData.map((article) => ({
   ...article,
