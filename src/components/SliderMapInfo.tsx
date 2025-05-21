@@ -36,7 +36,7 @@ export function SliderMapInfo({ content, realates, handleDrag }: { content?: Pos
                     ? (
                         !isExpanded
                             ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), handleDrag })
-                            : OpenSlider({ content, realates, onClose: () => setIsExpanded(false) })
+                            : OpenSlider({ content, onClose: () => setIsExpanded(false) })
                     )
                     : null
             }
@@ -45,7 +45,7 @@ export function SliderMapInfo({ content, realates, handleDrag }: { content?: Pos
 }
 export default SliderMapInfo;
 
-function OpenSlider({ content, realates, onClose }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void }) {
+function OpenSlider({ content, onClose }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void }) {
     return (
         <div id="content" className="flex gap-12">
             <div className="flex flex-col">

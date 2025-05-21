@@ -1,19 +1,8 @@
-import { ReactNode, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
-import { navigateTransitionToMenu } from "#components/TransitionToMenuButton.tsx";
+import { ReactNode, useEffect } from "react"
 import GlobalGrip from "./globalgrid/GlobalGrid";
 import { gsap } from "gsap";
 
 export function SelectPostItLayer({  children, isDragging }: { children?: ReactNode | undefined, isDragging: boolean }) {
-    const navigate = useNavigate();
-
-    function handleEvent(event: Event) {
-        console.log(event);
-        if (event.type === 'added') {
-            navigateTransitionToMenu(navigate, '/');
-        }
-    }
-
     function onMouseEnter(){
         console.log("Mouse enter");
         gsap.to("#expander", {

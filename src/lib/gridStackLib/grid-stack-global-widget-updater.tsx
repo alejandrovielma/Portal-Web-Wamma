@@ -13,6 +13,7 @@ export function GlobalWidgetupdater(){
 
     const handleGridChange = () => {
       if (saveOptions) {
+        // @ts-ignore
         const data = saveOptions()["children"] as GridStackWidget[];
         setWidgets(data);
         localStorage.setItem(WIDGETS_STORAGE_KEY, JSON.stringify(data));

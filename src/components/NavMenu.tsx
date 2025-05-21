@@ -82,19 +82,19 @@ export function NavMenu({ text}:NavMenuProps) {
       <div ref={bubblesRef} className='flex gap-8 absolute translate-y-full'>
         <Bubble navigate={navigate} href='/actualidad'>
           <h4 className="text-shadow-50 font-semibold text-center">Proyectos</h4>
-          <img className="flex-1" src="./Public/svgs/Actualidad.svg" alt="Actualidad" />
+          <img className="flex-1" src="/svgs/Actualidad.svg" alt="Actualidad" />
         </Bubble>
         <Bubble navigate={navigate} href='/animales'>
           <h4 className="text-shadow-50 font-semibold text-center">Acuario</h4>
-            <img className="flex-1" src="./Public/svgs/Animales.svg" alt="Acuario" />
+            <img className="flex-1" src="/svgs/Animales.svg" alt="Acuario" />
         </Bubble>
         <Bubble navigate={navigate} href='/biblioteca'>
            <h4 className="text-shadow-50 font-semibold text-center">Biblioteca</h4>
-            <img className="flex-1" src="./Public/svgs/Biblioteca.svg" alt="Biblioteca" />
+            <img className="flex-1" src="/svgs/Biblioteca.svg" alt="Biblioteca" />
         </Bubble>
         <Bubble navigate={navigate} href='/mapa'>
           <h4 className="text-shadow-50 font-semibold text-center">Mapa</h4>
-            <img className='flex-1' src="./Public/svgs/Mapa.svg" alt="Mapa" />
+            <img className='flex-1' src="/svgs/Mapa.svg" alt="Mapa" />
         </Bubble>
       </div>
     </div>

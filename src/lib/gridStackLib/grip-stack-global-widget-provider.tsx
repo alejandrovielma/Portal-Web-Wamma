@@ -1,8 +1,8 @@
-import React, { ComponentProps, createContext, useContext, useEffect, useState } from "react";
+import React, { ComponentProps, createContext, useContext, useState } from "react";
 import { GridStackWidget } from "gridstack";
 import { ComponentDataType } from "./grid-stack-render";
 import PostItInfo from "#components/PostIts/PostItInfo.tsx";
-import { getAllAnimals, getAllArticles, getAllDestinations, getAllProjects, getLastArticles, getLastProjects } from "../../data/dataBase/repository";
+import { getAllAnimals, getAllDestinations, getLastArticles, getLastProjects } from "../../data/dataBase/repository";
 import { WIDGETS_STORAGE_KEY } from "../../global";
 import PostItMap from "#components/PostIts/PostItMap.tsx";
 

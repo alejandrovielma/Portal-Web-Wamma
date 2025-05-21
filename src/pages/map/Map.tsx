@@ -7,7 +7,6 @@ import L from "leaflet";
 import SliderMapInfo, { RealatesDestination } from "#components/SliderMapInfo.tsx";
 import { Destination, getAllDestinations, getAllLocations, MapLocation } from "../../data/dataBase/repository";
 import { useLocation } from "react-router-dom";
-import DropOptions from "#components/DropOptions.tsx";
 
 export function Map() {
   const [isDragging, setIsDragging] = useState(false);
@@ -19,7 +18,7 @@ export function Map() {
 
   const destinations = getAllDestinations()
   const mapLocations = getAllLocations()
-  const [displayLocation, setDisplayLocation] = useState<string>("");
+  const [displayLocation] = useState<string>("");
   const [infoSlider, setInfoSlider] = useState<Destination>()
   const [relatedDestinations, setRelatedDestinations] = useState<RealatesDestination[]>([]);
   const [targetCoords, setTargetCoords] = useState<{ lat: number, lng: number } | null>(null);
@@ -120,7 +119,7 @@ export function Map() {
                   icon={L.icon({ iconUrl: icon })}
                   position={[destination.content.coordinates.lat, destination.content.coordinates.lng]}
                   eventHandlers={{
-                    click: (e) => {
+                    click: () => {
                       setInfoSlider(destination)
                     }
                   }}
