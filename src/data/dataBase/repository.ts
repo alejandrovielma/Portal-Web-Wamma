@@ -4,7 +4,7 @@ import projectsData from "#info/projects.json";
 import proposalsData from "#info/proposals.json";
 import articlesData from "#info/articles.json";
 import worksData from "#info/works.json";
-import animalsData from "#info/faunaVenezuelaChordata.json";
+import animalsData from "#info/faunachordata new.json";
 import destinationsData from "#info/destinations.json";
 import locationsData from "#info/locations.json";
 import { LatLngExpression } from "leaflet";
@@ -102,10 +102,10 @@ const animals: Animal[] = animalsData.map(
   (animal): Animal => ({
     class: animal.class,
     scientificName: animal.scientificName,
-    commonName: "Nombre Comun",
-    locations: ["locacion1", "location2"],
+    commonName: animal.name, // Se usa el campo 'name' como nombre común
+    locations: animal.locations || [], // Extrae directamente el arreglo de locaciones
     content: {
-      title: animal.scientificName,
+      title: animal.name,
       content: [
         {
           paragraphs: [animal.description],
@@ -126,18 +126,21 @@ const animals: Animal[] = animalsData.map(
         },
         {
           subtitle: "Situación",
-          paragraphs: [animal.situation],
+          paragraphs: [animal.situation ?? "Sin información disponible"],
         },
         {
           subtitle: "Peligro",
-          paragraphs: [animal.danger],
+          paragraphs: [animal.danger ?? "Sin información disponible"],
         },
         {
           subtitle: "Conservación",
-          paragraphs: [animal.conservation],
+          paragraphs: [animal.conservation ?? "Sin información disponible"],
         },
       ],
-      images: ["https://www.especiesamenazadas.org/" + animal.image],
+      images: [
+        "https://www.especiesamenazadas.org" + animal.image,
+        "https://www.especiesamenazadas.org" + animal.imageDistribution,
+      ].filter(Boolean), // Elimina cualquier undefined o string vacío
     },
   })
 );
@@ -146,17 +149,20 @@ export function getAllAnimals(): Animal[] {
   return animals;
 }
 
-// Locaciones par also animales
+// Locaciones para los animales
 
 export interface MapLocation {
   name: string;
   color: string;
-  bonds: [number, number][]
+  bonds: [number, number][];
 }
-const locations:MapLocation[]  = locationsData.map((location) => ({
+
+const locations: MapLocation[] = locationsData.map((location) => ({
   name: location.name,
   color: location.color,
-  bonds: location.bonds.map((bond) => [bond[0], bond[1]] as [number, number]),
+  bonds: location.bonds.map(
+    (bond) => [bond[0], bond[1]] as [number, number]
+  ),
 }));
 
 export function getAllLocations(): MapLocation[] {
