@@ -62,6 +62,75 @@ async function tryFetchJson(url: string, reachable: { value: boolean }): Promise
 }
 
 export class NetworkUnreachableError extends Error {}
+export class NotAquaticError extends Error {}
+
+// Wamma es un sitio sobre la cultura del AGUA -- la busqueda en vivo debe
+// quedarse en fauna asociada al agua (peces, anfibios, moluscos y demas
+// invertebrados acuaticos, tortugas/caimanes, mamiferos acuaticos, aves
+// acuaticas) y rechazar todo lo demas (ej. un halcon, que es Aves pero
+// no tiene nada que ver con el agua).
+
+const AQUATIC_PHYLA = new Set(["Mollusca", "Cnidaria", "Echinodermata"]);
+
+const AQUATIC_CLASSES = new Set([
+  // peces
+  "Actinopterygii",
+  "Chondrichthyes",
+  "Elasmobranchii",
+  "Sarcopterygii",
+  "Cephalaspidomorphi",
+  "Myxini",
+  // anfibios
+  "Amphibia",
+  // crustaceos (GBIF los reporta como "clase" dentro de Arthropoda)
+  "Malacostraca",
+  "Branchiopoda",
+  "Maxillopoda",
+  "Ostracoda",
+]);
+
+// Para estas clases, solo ciertos ordenes/familias son acuaticos o
+// semi-acuaticos -- no toda la clase.
+const AQUATIC_REPTILE_ORDERS = new Set(["Testudines", "Crocodylia"]);
+
+const AQUATIC_BIRD_ORDERS = new Set([
+  "Anseriformes", // patos, gansos
+  "Pelecaniformes", // pelicanos, garzas, ibis
+  "Suliformes", // cormoranes, piqueros
+  "Podicipediformes", // zambullidores
+  "Gaviiformes", // colimbos
+  "Charadriiformes", // playeros, gaviotas, chorlitos
+  "Phoenicopteriformes", // flamencos
+  "Ciconiiformes", // cigüeñas
+]);
+
+const AQUATIC_MAMMAL_ORDERS = new Set(["Cetacea", "Sirenia"]);
+const AQUATIC_MAMMAL_FAMILIES = new Set(["Mustelidae", "Hippopotamidae"]); // nutrias, hipopotamos
+
+function isAquaticTaxon(taxonomy: {
+  phylum: string | null;
+  class: string | null;
+  order: string | null;
+  family: string | null;
+}): boolean {
+  const { phylum, class: cls, order, family } = taxonomy;
+
+  if (phylum && AQUATIC_PHYLA.has(phylum)) return true;
+  if (!cls) return false; // sin clasificacion, no podemos confirmar que sea acuatico
+
+  if (AQUATIC_CLASSES.has(cls)) return true;
+
+  if (cls === "Reptilia") return !!order && AQUATIC_REPTILE_ORDERS.has(order);
+  if (cls === "Aves") return !!order && AQUATIC_BIRD_ORDERS.has(order);
+  if (cls === "Mammalia") {
+    return (
+      (!!order && AQUATIC_MAMMAL_ORDERS.has(order)) ||
+      (!!family && AQUATIC_MAMMAL_FAMILIES.has(family))
+    );
+  }
+
+  return false;
+}
 
 /**
  * Busca un animal por nombre (cientifico o comun) combinando las 3 fuentes.
@@ -92,6 +161,24 @@ export async function searchAnimalLive(query: string): Promise<LiveAnimalResult>
   const scientificName: string =
     taxon?.name ?? gbif?.canonicalName ?? gbif?.scientificName ?? trimmed;
 
+  // Taxonomia: preferimos GBIF (da phylum/class/order/family completos).
+  // Si GBIF no matcheo, usamos la clasificacion "iconica" (gruesa) de
+  // iNaturalist -- alcanza para las clases siempre-acuaticas, pero no
+  // para el filtro fino de aves/reptiles/mamiferos (que se queda
+  // conservador y rechaza si no hay order/family para confirmar).
+  const taxonomyForFilter = {
+    phylum: gbif?.phylum ?? null,
+    class: gbif?.class ?? taxon?.iconic_taxon_name ?? null,
+    order: gbif?.order ?? null,
+    family: gbif?.family ?? null,
+  };
+
+  if (!isAquaticTaxon(taxonomyForFilter)) {
+    throw new NotAquaticError(
+      `"${scientificName}" no es un animal asociado al agua -- Wamma se enfoca en fauna acuática y de humedales.`
+    );
+  }
+
   const [wiki, obsData] = await Promise.all([
     tryFetchJson(
       `https://es.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
@@ -111,10 +198,10 @@ export async function searchAnimalLive(query: string): Promise<LiveAnimalResult>
     query: trimmed,
     scientificName,
     commonName: taxon?.preferred_common_name ?? null,
-    phylum: gbif?.phylum ?? null,
-    class: gbif?.class ?? null,
-    order: gbif?.order ?? null,
-    family: gbif?.family ?? null,
+    phylum: taxonomyForFilter.phylum,
+    class: taxonomyForFilter.class,
+    order: taxonomyForFilter.order,
+    family: taxonomyForFilter.family,
     genus: gbif?.genus ?? null,
     globalConservationStatus: taxon?.conservation_status
       ? CONSERVATION_STATUS_ES[taxon.conservation_status.status] ??

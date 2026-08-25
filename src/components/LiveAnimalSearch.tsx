@@ -3,6 +3,7 @@ import {
   searchAnimalLive,
   getLastCachedSearch,
   NetworkUnreachableError,
+  NotAquaticError,
   LiveAnimalResult,
 } from "#lib/liveSpeciesSearch.ts";
 
@@ -44,13 +45,13 @@ export function LiveAnimalSearch({ initialQuery = "", title = "Buscar otro anima
       } else {
         setResult(null);
         setStatus("error");
-        setErrorMessage(
-          isNetworkFailure
-            ? "No se pudo conectar a internet y no hay ninguna búsqueda previa guardada."
-            : e instanceof Error
-              ? e.message
-              : "Ocurrió un error inesperado"
-        );
+        if (isNetworkFailure) {
+          setErrorMessage("No se pudo conectar a internet y no hay ninguna búsqueda previa guardada.");
+        } else if (e instanceof NotAquaticError) {
+          setErrorMessage(`🌊 ${e.message}`);
+        } else {
+          setErrorMessage(e instanceof Error ? e.message : "Ocurrió un error inesperado");
+        }
       }
     }
   }
