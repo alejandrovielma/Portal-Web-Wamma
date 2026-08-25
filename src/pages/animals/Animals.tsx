@@ -48,7 +48,7 @@ export function Animals() {
     <SelectPostItLayer isDragging={isDragging}>
       <NavHeader pathItems={[{ nombre: "Acuario", link: "/animales" }]} />
 
-      <div className="relative mt-20 w-full h-3/5 flex items-center justify-center">
+      <div className="relative mt-14 sm:mt-20 w-full h-3/5 flex items-center justify-center">
         <img
           src={backgroundImage}
           className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${isFading ? "opacity-0" : "opacity-100"}`}

@@ -11,32 +11,44 @@ export interface RealatesDestination {
     content: PostItMapProps;
 }
 
-export function SliderMapInfo({ content, realates, handleDrag }: { content?: PostItMapProps; realates?: RealatesDestination[], handleDrag: (event: Event) => void }) {
+export function SliderMapInfo({ content, realates, handleDrag, onClose }: { content?: PostItMapProps; realates?: RealatesDestination[], handleDrag: (event: Event) => void, onClose: () => void }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const asideRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (asideRef.current) {
+            const isMobile = window.innerWidth < 640;
+            const width = !content ? "0px" : isExpanded ? (isMobile ? "100%" : "80%") : (isMobile ? "100%" : "24rem");
             gsap.to(asideRef.current, {
-                width: isExpanded ? "80%" : "24rem",
+                width,
                 duration: 0.5,
                 ease: "power2.inOut"
             });
-            gsap.fromTo("#content",
-                { opacity: 0, },
-                { opacity: 1, duration: 0.8, ease: "power2.inOut" }
-            );
+            if (content) {
+                gsap.fromTo("#content",
+                    { opacity: 0, },
+                    { opacity: 1, duration: 0.8, ease: "power2.inOut" }
+                );
+            }
         }
     }, [isExpanded, content]);
 
     return (
-        <aside ref={asideRef} className="absolute pt-24 top-0 right-0 w-96 h-full overflow-y-scroll bg-sand/90 backdrop-blur-md shadow-2xl shadow-dark-tertiary/20 rounded-l-[2rem] p-4 flex flex-col">
+        <aside
+            ref={asideRef}
+            style={{ width: 0, padding: 0 }}
+            className={`absolute pt-14 sm:pt-20 top-0 right-0 h-full overflow-y-scroll overflow-x-hidden bg-sand/95 sm:bg-sand/90 backdrop-blur-md shadow-2xl shadow-dark-tertiary/20 sm:rounded-l-[2rem] flex flex-col ${content ? "" : "pointer-events-none"}`}
+        >
             {
                 content
                     ? (
-                        !isExpanded
-                            ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), handleDrag })
-                            : OpenSlider({ content, onClose: () => setIsExpanded(false) })
+                        <div className="p-4 h-full flex flex-col">
+                            {
+                                !isExpanded
+                                    ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), onClose, handleDrag })
+                                    : OpenSlider({ content, onClose: () => setIsExpanded(false) })
+                            }
+                        </div>
                     )
                     : null
             }
@@ -47,13 +59,13 @@ export default SliderMapInfo;
 
 function OpenSlider({ content, onClose }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void }) {
     return (
-        <div id="content" className="flex gap-12">
+        <div id="content" className="flex flex-col md:flex-row gap-6 md:gap-12">
             <div className="flex flex-col">
                 <button onClick={onClose} className="cursor-pointer size-9 rounded-full bg-light-primary/15 hover:bg-light-primary/25 flex items-center justify-center transition-colors text-dark-tertiary"><CompressSVG /></button>
             </div>
-            <div className="flex gap-12">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-12">
                 <section className="flex-1 flex flex-col gap-4">
-                    <h1 className="font-titles text-3xl text-dark-tertiary">{content.title}</h1>
+                    <h1 className="font-titles text-2xl sm:text-3xl text-dark-tertiary">{content.title}</h1>
                     <p>{content.description}</p>
                 </section>
                 <section className="flex-1/3">
@@ -73,12 +85,13 @@ function OpenSlider({ content, onClose }: { content: PostItMapProps; realates?: 
     )
 }
 
-function CloseSlider({ content, realates, onOpen, handleDrag }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, handleDrag: (event: Event) => void }) {
+function CloseSlider({ content, realates, onOpen, onClose, handleDrag }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, onClose: () => void, handleDrag: (event: Event) => void }) {
     return (
         <div id="content" className="flex flex-col gap-4 h-full">
-            <header className="flex justify-between items-center gap-4">
-                <button onClick={onOpen} className="cursor-pointer size-9 rounded-full bg-light-primary/15 hover:bg-light-primary/25 flex items-center justify-center transition-colors text-dark-tertiary" ><ExpandedSVG /></button>
-                <h2 className="text-xl font-titles flex-1 text-dark-tertiary">{content?.title}</h2>
+            <header className="flex justify-between items-center gap-2 sm:gap-4">
+                <button onClick={onOpen} className="cursor-pointer size-9 shrink-0 rounded-full bg-light-primary/15 hover:bg-light-primary/25 flex items-center justify-center transition-colors text-dark-tertiary" ><ExpandedSVG /></button>
+                <h2 className="text-lg sm:text-xl font-titles flex-1 text-dark-tertiary truncate">{content?.title}</h2>
+                <button onClick={onClose} className="cursor-pointer size-9 shrink-0 rounded-full bg-dark-tertiary/10 hover:bg-dark-tertiary/20 flex items-center justify-center transition-colors text-dark-tertiary">✕</button>
             </header>
             <div className="flex flex-col gap-8 justify-between h-full">
                 <div className="flex flex-col gap-4">

@@ -65,7 +65,7 @@ export function Map() {
       <NavHeader
         pathItems={[{ nombre: "Mapa", link: "/mapa" }]}
       />
-      <div className="relative w-full h-full pt-20">
+      <div className="relative w-full h-full pt-14 sm:pt-20">
         {/*<DropOptions className="mt-40" title="Regiones" items={mapLocations.map(loca => {
           const item = {
             text: loca.name,
@@ -129,7 +129,7 @@ export function Map() {
           }
           <RenderLocation displayLocation={displayLocation} locations={mapLocations} />
         </MapContainer>
-        <SliderMapInfo content={infoSlider?.content} realates={relatedDestinations} handleDrag={handleEvent} />
+        <SliderMapInfo content={infoSlider?.content} realates={relatedDestinations} handleDrag={handleEvent} onClose={() => setInfoSlider(undefined)} />
       </div>
 
     </SelectPostItLayer>
