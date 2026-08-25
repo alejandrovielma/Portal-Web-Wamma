@@ -5,6 +5,7 @@ import { SearchBar } from "#components/SearchBar.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import { Animal, getAllAnimals } from "../../data/dataBase/repository";
 import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
+import LiveAnimalSearch from "#components/LiveAnimalSearch.tsx";
 
 export function Animals() {
   const [isDragging, setIsDragging] = useState(false);
@@ -71,6 +72,15 @@ export function Animals() {
       </span>
 
       <AnimalGrip filteredAnimals={filteredAnimals} handleEvent={handleEvent} />
+
+      {searchTerm.trim() !== "" && filteredAnimals.length === 0 && (
+        <div className="max-w-2xl mx-auto w-full px-4 pb-24">
+          <p className="text-sm text-shadow-50/70 mb-3">
+            No encontramos "{searchTerm}" en el catálogo curado de Wamma.
+          </p>
+          <LiveAnimalSearch initialQuery={searchTerm} />
+        </div>
+      )}
     </SelectPostItLayer>
   );
 }

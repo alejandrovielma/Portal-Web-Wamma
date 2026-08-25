@@ -14,6 +14,7 @@ import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 import BookSVG from "#assets/BookSVG.tsx";
 import AudioSVG from "#assets/AudioSVG.tsx";
 import VideoSVG from "#assets/VideoSVG.tsx";
+import LiveAnimalSearch from "#components/LiveAnimalSearch.tsx";
 
 export function Library() {
   const [isDragging, setIsDragging] = useState(false);
@@ -42,6 +43,15 @@ export function Library() {
                 Descubre mas sobre la cultura del agua
               </h2>
               <LastWorks handleDrag={handleDrag} />
+            </section>
+            <Separator />
+            <section className="w-full flex flex-col gap-4 max-w-2xl px-4 pb-16">
+              <h2 className="text-2xl">¿Buscas otro animal?</h2>
+              <p className="text-sm text-shadow-50/70">
+                Nuestro Acuario tiene un catálogo curado de especies venezolanas. Si buscas
+                una especie que no está ahí, consúltala aquí en tiempo real.
+              </p>
+              <LiveAnimalSearch title="Buscar animal en línea" />
             </section>
           </div>
         </div>
