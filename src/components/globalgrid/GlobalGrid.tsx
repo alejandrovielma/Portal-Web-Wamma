@@ -17,6 +17,13 @@ export function GlobalGrip() {
     acceptWidgets: true,
     float: true,
     column: 16,
+    columnOpts: {
+      breakpoints: [
+        { w: 640, c: 1 },
+        { w: 1024, c: 4 },
+      ],
+      layout: "moveScale",
+    },
     row: 16,
     cellHeight: 5,
     cellHeightUnit: "rem",
@@ -35,17 +42,17 @@ export function GlobalGrip() {
         </div>
       </header>*/}
       <div>
-        <div className="absolute top-1/2 left-1/2 -translate-1/2 flex flex-col items-center gap-2 opacity-50">
-          <div className="flex flex-col items-center">
-            <div className="overflow-hidden w-128 h-60 flex items-center justify-center">
+        <div className="absolute top-1/2 left-1/2 -translate-1/2 flex flex-col items-center gap-2 opacity-50 px-4 w-full max-w-128">
+          <div className="flex flex-col items-center w-full">
+            <div className="overflow-hidden w-full max-w-128 h-24 sm:h-40 md:h-60 flex items-center justify-center">
               <img className="object-cover w-full h-full" src="logoDark.svg" alt="Logo Awani" />
             </div>
             <div>
-              <h1 className="text-5xl font-semibold text-start">Wamma</h1>
-              <p className="text-3xl text-start">Aprendices del agua</p>
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold text-center">Wamma</h1>
+              <p className="text-base sm:text-xl md:text-3xl text-center">Aprendices del agua</p>
             </div>
           </div>
-          <p className="text-3xl text-center">¡Arrastra!</p>
+          <p className="text-base sm:text-xl md:text-3xl text-center">¡Arrastra!</p>
         </div>
         <GridStackProvider initialOptions={initialOptions}>
           <GridStackRenderProvider>
