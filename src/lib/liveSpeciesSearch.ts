@@ -87,6 +87,12 @@ const AQUATIC_CLASSES = new Set([
   "Branchiopoda",
   "Maxillopoda",
   "Ostracoda",
+  // GBIF a veces eleva estos grupos de reptiles a nivel de "clase" en
+  // vez de reportarlos como "order" bajo Reptilia (backbone inconsistente,
+  // el mismo problema que se encontro migrando el catalogo curado) --
+  // se aceptan en ambos esquemas.
+  "Testudines",
+  "Crocodylia",
 ]);
 
 // Para estas clases, solo ciertos ordenes/familias son acuaticos o
@@ -143,41 +149,76 @@ export async function searchAnimalLive(query: string): Promise<LiveAnimalResult>
   if (!trimmed) throw new Error("Escribe el nombre de un animal");
 
   const reachable = { value: false };
-  const [gbif, inatTaxa] = await Promise.all([
+
+  // iNaturalist entiende nombres comunes en español razonablemente bien,
+  // pero por defecto el resultado #1 suele ser un genero/familia/orden
+  // (ej. buscar "caiman" da la orden "Crocodylia", no una especie).
+  // Pedimos varios candidatos con locale=es y despues nos quedamos con
+  // el primero que sea una ESPECIE real y que ademas sea acuatico.
+  const inatTaxa = await tryFetchJson(
+    `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(trimmed)}&per_page=10&locale=es`,
+    reachable
+  );
+  const candidates = (inatTaxa?.results ?? []).filter((t: any) => t.rank === "species");
+
+  // Consultamos GBIF (da phylum/class/order/family completos, mejor que
+  // el iconic_taxon_name gruesco de iNaturalist) para cada candidato en
+  // paralelo, y tambien intentamos un match directo por si escribieron
+  // el nombre cientifico exacto.
+  const [directGbif, ...candidateGbifs] = await Promise.all([
     tryFetchJson(`https://api.gbif.org/v1/species/match?name=${encodeURIComponent(trimmed)}`, reachable),
-    tryFetchJson(`https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(trimmed)}&per_page=1`, reachable),
+    ...candidates.map((c: any) =>
+      tryFetchJson(`https://api.gbif.org/v1/species/match?name=${encodeURIComponent(c.name)}`, reachable)
+    ),
   ]);
 
-  const taxon = inatTaxa?.results?.[0] ?? null;
-  const gbifMatched = gbif && gbif.matchType !== "NONE";
+  type Resolved = { taxon: any; gbif: any };
+  const ordered: Resolved[] = [];
+  if (directGbif && directGbif.matchType !== "NONE") {
+    // si el texto escrito ya es el nombre cientifico, el candidato que
+    // matchee ese mismo canonicalName es el mismo taxon (si esta en la lista)
+    const matchingCandidate = candidates.find(
+      (c: any) => c.name === directGbif.canonicalName
+    );
+    ordered.push({ taxon: matchingCandidate ?? null, gbif: directGbif });
+  }
+  candidates.forEach((c: any, i: number) => {
+    ordered.push({ taxon: c, gbif: candidateGbifs[i] ?? null });
+  });
 
-  if (!gbifMatched && !taxon) {
-    if (!reachable.value) {
-      throw new NetworkUnreachableError("No se pudo conectar a internet");
+  const winner = ordered.find(({ gbif, taxon: t }) =>
+    isAquaticTaxon({
+      phylum: gbif?.phylum ?? null,
+      class: gbif?.class ?? t?.iconic_taxon_name ?? null,
+      order: gbif?.order ?? null,
+      family: gbif?.family ?? null,
+    })
+  );
+
+  if (!winner) {
+    if (ordered.length === 0) {
+      if (!reachable.value) {
+        throw new NetworkUnreachableError("No se pudo conectar a internet");
+      }
+      throw new Error(`No se encontró "${trimmed}" en ninguna fuente`);
     }
-    throw new Error(`No se encontró "${trimmed}" en ninguna fuente`);
+    const bestGuessName =
+      ordered[0].taxon?.preferred_common_name ?? ordered[0].gbif?.canonicalName ?? trimmed;
+    throw new NotAquaticError(
+      `"${bestGuessName}" no es un animal asociado al agua -- Wamma se enfoca en fauna acuática y de humedales.`
+    );
   }
 
+  const { taxon, gbif } = winner;
+  const gbifMatched = !!gbif && gbif.matchType !== "NONE";
   const scientificName: string =
     taxon?.name ?? gbif?.canonicalName ?? gbif?.scientificName ?? trimmed;
-
-  // Taxonomia: preferimos GBIF (da phylum/class/order/family completos).
-  // Si GBIF no matcheo, usamos la clasificacion "iconica" (gruesa) de
-  // iNaturalist -- alcanza para las clases siempre-acuaticas, pero no
-  // para el filtro fino de aves/reptiles/mamiferos (que se queda
-  // conservador y rechaza si no hay order/family para confirmar).
   const taxonomyForFilter = {
     phylum: gbif?.phylum ?? null,
     class: gbif?.class ?? taxon?.iconic_taxon_name ?? null,
     order: gbif?.order ?? null,
     family: gbif?.family ?? null,
   };
-
-  if (!isAquaticTaxon(taxonomyForFilter)) {
-    throw new NotAquaticError(
-      `"${scientificName}" no es un animal asociado al agua -- Wamma se enfoca en fauna acuática y de humedales.`
-    );
-  }
 
   const [wiki, obsData] = await Promise.all([
     tryFetchJson(
