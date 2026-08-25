@@ -10,42 +10,42 @@ export function NavBubbleAnimals({ setfiltered, setBackgroundImage }: NavBubbleA
       info: "Los anfibios son vertebrados de 'doble vida'.",
       image: "/images/rana.jpg",
       class: "Amphibia",
-      background: "/images/fondoAnfibios.gif"
+      background: "/images/bg-anfibios.webp"
     },
     {
       name: "Mamíferos",
       info: "Los mamíferos tienen glándulas mamarias.",
       image: "/images/tonia.jpg",
       class: "Mammalia",
-      background: "/images/fondoMamiferos.gif"
+      background: "/images/bg-mamiferos.webp"
     },
     {
       name: "Aves",
       info: "Las aves acuáticas viven en hábitats acuáticos.",
       image: "/images/Garzas.jpg",
       class: "Aves",
-      background: "/images/fondoAves.gif"
+      background: "/images/bg-aves.webp"
     },
     {
       name: "Crustáceos",
       info: "Los crustáceos tienen un exoesqueleto duro.",
       image: "/images/Crustaceos.jpg",
       class: "Crustacea",
-      background: "/images/fondoCrustaceos.gif"
+      background: "/images/bg-crustaceos.webp"
     },
     {
       name: "Reptiles",
       info: "Los reptiles tienen piel seca y escamosa.",
       image: "/images/Reptiles.jpg",
       class: "Reptilia",
-      background: "/images/fondoReptiles.gif"
+      background: "/images/bg-reptiles.webp"
     },
     {
       name: "Peces",
       info: "Los peces tienen branquias para respirar.",
       image: "/images/peces.jpg",
       class: "Actinopterygii",
-      background: "/images/fondoPeces.gif"
+      background: "/images/bg-peces.webp"
     },
   ];
 

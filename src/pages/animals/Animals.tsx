@@ -15,7 +15,7 @@ export function Animals() {
   const [animals] = useState<Animal[]>(getAllAnimals());
 
   
-  const [backgroundImage, setBackgroundImage] = useState("/images/fondoMar.gif");
+  const [backgroundImage, setBackgroundImage] = useState("/images/bg-mar.webp");
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export function Animals() {
   function resetFilter() {
     setFilteredClass("");
     setFilteredAnimals(animals);
-    fadeBackground("/images/fondoMar.gif");
+    fadeBackground("/images/bg-mar.webp");
   }
 
   function fadeBackground(newImage: string) {
