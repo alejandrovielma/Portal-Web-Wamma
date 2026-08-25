@@ -95,11 +95,11 @@ export function PostItBase({ children, color1, color2, dimensions }: { children?
     return (
         <div
             ref={containerRef}
-            className={`${color1} w-full h-full flex-col flex relative overflow-hidden cursor-grab`}
+            className={`${color1} w-full h-full flex-col flex relative overflow-hidden cursor-grab transition-[filter] duration-300 drop-shadow-[0_6px_14px_rgba(1,46,65,0.18)] hover:drop-shadow-[0_10px_22px_rgba(1,46,65,0.28)]`}
             style={{ clipPath: `polygon(calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%, 0 0)` }}
             onMouseDown={handleMouseDown}
         >
-            <div className={`${color2} size-8 absolute top-0 right-0 z-10`}>
+            <div className={`${color2} size-8 absolute top-0 right-0 z-10 shadow-[inset_4px_-4px_6px_rgba(0,0,0,0.15)]`}>
             </div>
             {
                 (!dimensions || (dimensions?.h > 2 || dimensions?.w > 2)) && <button className="absolute top-0 left-0 h-10 z-20 cursor-pointer px-2 "

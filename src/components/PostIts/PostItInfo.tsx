@@ -82,7 +82,7 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
       <AnimatePresence>
         {isPopOpen && (
           <div
-            className="fixed inset-0 z-200 flex items-end justify-center bg-black/50"
+            className="fixed inset-0 z-200 flex items-end justify-center bg-dark-tertiary/60 backdrop-blur-sm"
             onClick={() => {
               setIsPopOpen(false);
             }}
@@ -92,19 +92,19 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="relative w-full max-w-5xl bg-white z-50 rounded-t-2xl shadow-xl overflow-hidden"
+              className="relative w-full max-w-5xl bg-sand z-50 rounded-t-[2rem] shadow-2xl shadow-dark-tertiary/30 overflow-hidden"
               onClick={(e) => e.stopPropagation()} // Evita que los clics dentro del modal lo cierren
             >
               {/* Barra superior para cerrar el modal */}
-              <div className="flex bg-gray-200 p-4 rounded-t-2xl">
-                <div className="h-1 w-12 bg-gray-500 mx-auto rounded-full"></div>
+              <div className="relative flex items-center justify-center bg-gradient-to-r from-light-primary to-light-secondary p-4 rounded-t-[2rem]">
+                <div className="h-1.5 w-12 bg-white/60 mx-auto rounded-full"></div>
                 <button
-                  className=" cursor-pointer"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer size-9 rounded-full bg-white/25 hover:bg-white/40 flex items-center justify-center transition-colors"
                   onClick={() => {
                     setIsPopOpen(false);
                   }}
                 >
-                  <img src="svgs/Close.svg" alt="salir" width="40px" />
+                  <img src="svgs/Close.svg" alt="salir" className="size-5 brightness-0 invert" />
                 </button>
               </div>
               {/* Contenedor desplazable completo */}
@@ -113,34 +113,35 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
                 {/* Ajusta este valor para cambiar la altura máxima del modal */}
                 {/* Imagen principal en la parte superior del modal */}
                 {images && images[0] && (
-                  <div className="relative w-full overflow-hidden rounded-t-2xl mb-6">
+                  <div className="relative w-full overflow-hidden mb-6">
                     <img
                       src={images[0]}
                       alt=""
-                      className="w-full h-auto object-contain rounded-t-2xl shadow-lg"
+                      className="w-full h-auto max-h-80 object-cover"
                       loading="lazy"
                     />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-sand to-transparent" />
                   </div>
                 )}
-                <div className="px-8 pb-8">
+                <div className="px-6 sm:px-8 pb-8">
                   {/* Título principal del modal */}
                   {title && (
-                    <h2 className="text-4xl font-bold mb-6 text-center">
+                    <h2 className="font-titles text-3xl sm:text-4xl mb-6 text-center text-dark-tertiary">
                       {title}
                     </h2>
                   )}
-                  <div className="flex gap-8">
+                  <div className="flex flex-col md:flex-row gap-8">
                     {/* Sección de texto principal */}
                     <div className="flex-1 text-left">
                       {content.map((item, i) => (
                         <section key={i} className="mb-6">
                           {item.subtitle && (
-                            <h3 className="text-2xl font-semibold mb-4">
+                            <h3 className="font-titles text-xl sm:text-2xl mb-4 text-leaf-dark">
                               {item.subtitle}
                             </h3>
                           )}
                           {item.paragraphs.map((para, j) => (
-                            <p key={j} className="text-lg mb-4">
+                            <p key={j} className="text-base sm:text-lg mb-4 leading-relaxed text-shadow-50/85">
                               {para}
                             </p>
                           ))}
@@ -149,7 +150,7 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
                     </div>
 
                     {/* Sección de imágenes y videos */}
-                    <div className="flex flex-col gap-4 flex-none w-2/5">
+                    <div className="flex flex-col gap-4 flex-none w-full md:w-2/5">
                       {images &&
                         images
                           .slice(1)
@@ -158,7 +159,7 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
                               key={i}
                               src={src}
                               alt=""
-                              className="w-full rounded-2xl shadow-lg"
+                              className="w-full rounded-2xl shadow-md ring-1 ring-black/5"
                             />
                           ))}
                       {video && (
@@ -166,7 +167,7 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
                           src={video}
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
-                          className="w-full h-64 rounded-2xl shadow-lg"
+                          className="w-full h-64 rounded-2xl shadow-md ring-1 ring-black/5"
                         />
                       )}
                     </div>

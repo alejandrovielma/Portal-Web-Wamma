@@ -30,7 +30,7 @@ export function SliderMapInfo({ content, realates, handleDrag }: { content?: Pos
     }, [isExpanded, content]);
 
     return (
-        <aside ref={asideRef} className="absolute pt-24 top-0 right-0 w-96 h-full overflow-y-scroll bg-white/80 shadow-lg p-4 flex flex-col">
+        <aside ref={asideRef} className="absolute pt-24 top-0 right-0 w-96 h-full overflow-y-scroll bg-sand/90 backdrop-blur-md shadow-2xl shadow-dark-tertiary/20 rounded-l-[2rem] p-4 flex flex-col">
             {
                 content
                     ? (
@@ -49,11 +49,11 @@ function OpenSlider({ content, onClose }: { content: PostItMapProps; realates?: 
     return (
         <div id="content" className="flex gap-12">
             <div className="flex flex-col">
-                <button onClick={onClose} className="cursor-pointer hover:text-neutral-900"><CompressSVG /></button>
+                <button onClick={onClose} className="cursor-pointer size-9 rounded-full bg-light-primary/15 hover:bg-light-primary/25 flex items-center justify-center transition-colors text-dark-tertiary"><CompressSVG /></button>
             </div>
             <div className="flex gap-12">
                 <section className="flex-1 flex flex-col gap-4">
-                    <h1 className="font-titles text-3xl">{content.title}</h1>
+                    <h1 className="font-titles text-3xl text-dark-tertiary">{content.title}</h1>
                     <p>{content.description}</p>
                 </section>
                 <section className="flex-1/3">
@@ -77,8 +77,8 @@ function CloseSlider({ content, realates, onOpen, handleDrag }: { content: PostI
     return (
         <div id="content" className="flex flex-col gap-4 h-full">
             <header className="flex justify-between items-center gap-4">
-                <button onClick={onOpen} className="cursor-pointer hover:text-neutral-900" ><ExpandedSVG /></button>
-                <h2 className="text-xl font-titles flex-1">{content?.title}</h2>
+                <button onClick={onOpen} className="cursor-pointer size-9 rounded-full bg-light-primary/15 hover:bg-light-primary/25 flex items-center justify-center transition-colors text-dark-tertiary" ><ExpandedSVG /></button>
+                <h2 className="text-xl font-titles flex-1 text-dark-tertiary">{content?.title}</h2>
             </header>
             <div className="flex flex-col gap-8 justify-between h-full">
                 <div className="flex flex-col gap-4">
@@ -105,7 +105,7 @@ function RelateCard({ relate }: { relate: RealatesDestination }) {
 
 
     return (
-        <button onClick={relate.onClick} className="flex overflow-hidden flex-col bg-light-secondary/50 shadow-lg rounded-lg transition-colors cursor-pointer hover:bg-light-secondary/70 hover:-translate-y-1">
+        <button onClick={relate.onClick} className="flex overflow-hidden flex-col bg-light-secondary/50 shadow-md rounded-2xl transition-all cursor-pointer hover:bg-light-secondary/70 hover:-translate-y-1">
             <div className="h-1/2">
                 <img className="w-full h-full object-cover" src={relate.content.images[0]} alt={relate.content.title} />
             </div>

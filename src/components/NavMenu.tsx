@@ -17,7 +17,7 @@ function Bubble({children ,navigate, href}: BubbleProps) {
   return (
     <button
       onClick={handleClick}
-      className='cursor-pointer flex flex-col items-center hover:text-neutral-950 size-16 sm:size-20 md:size-24 lg:size-28 bg-white opacity-85 rounded-full shadow-md p-2 sm:p-3 md:p-4 z-10'
+      className='cursor-pointer flex flex-col items-center justify-center overflow-hidden hover:text-neutral-950 size-16 sm:size-20 md:size-24 lg:size-28 bg-white opacity-85 rounded-full shadow-md p-2 sm:p-3 md:p-4 z-10'
     >
       {children}
     </button>
@@ -76,26 +76,26 @@ export function NavMenu({ text}:NavMenuProps) {
     <div ref={componentRef} className="w-50 z-10 flex flex-col items-center bottom-0 left-1/2 -translate-x-1/2 fixed">
         <button
         onClick={onClick}
-        className="hover:h-13 hover:bg-neutral-800 cursor-pointer flex flex-row justify-center items-center gap-2.5 bg-shadow-50 left-1/2 w-50 h-12 text-4xl rounded-t-full text-white transition-all duration-300 ease-in-out"
+        className="hover:h-13 hover:bg-dark-secondary cursor-pointer flex flex-row justify-center items-center gap-2.5 bg-dark-tertiary shadow-lg shadow-dark-tertiary/40 left-1/2 w-50 h-12 text-3xl sm:text-4xl font-titles rounded-t-full text-white transition-all duration-300 ease-in-out"
       >
         {text}
       </button>
       <div ref={bubblesRef} className='flex gap-3 sm:gap-4 md:gap-6 lg:gap-8 absolute translate-y-full'>
         <Bubble navigate={navigate} href='/actualidad'>
           <h4 className="text-shadow-50 font-semibold text-center text-[10px] sm:text-xs md:text-sm">Proyectos</h4>
-          <img className="flex-1" src="/svgs/Actualidad.svg" alt="Actualidad" />
+          <img className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain shrink-0" src="/svgs/Actualidad.svg" alt="Actualidad" />
         </Bubble>
         <Bubble navigate={navigate} href='/animales'>
           <h4 className="text-shadow-50 font-semibold text-center text-[10px] sm:text-xs md:text-sm">Acuario</h4>
-            <img className="flex-1" src="/svgs/Animales.svg" alt="Acuario" />
+            <img className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain shrink-0" src="/svgs/Animales.svg" alt="Acuario" />
         </Bubble>
         <Bubble navigate={navigate} href='/biblioteca'>
            <h4 className="text-shadow-50 font-semibold text-center text-[10px] sm:text-xs md:text-sm">Biblioteca</h4>
-            <img className="flex-1" src="/svgs/Biblioteca.svg" alt="Biblioteca" />
+            <img className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain shrink-0" src="/svgs/Biblioteca.svg" alt="Biblioteca" />
         </Bubble>
         <Bubble navigate={navigate} href='/mapa'>
           <h4 className="text-shadow-50 font-semibold text-center text-[10px] sm:text-xs md:text-sm">Mapa</h4>
-            <img className='flex-1' src="/svgs/Mapa.svg" alt="Mapa" />
+            <img className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain shrink-0" src="/svgs/Mapa.svg" alt="Mapa" />
         </Bubble>
       </div>
     </div>

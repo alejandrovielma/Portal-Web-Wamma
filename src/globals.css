@@ -27,6 +27,14 @@
   --color-shadow-50: #191615;
   --color-shadow-100: white;
 
+  /* Acentos naturales: complementan el azul de agua con verde vegetal y tierra calida */
+  --color-leaf: #4E9F63;
+  --color-leaf-light: #8FCB9B;
+  --color-leaf-dark: #2E6B42;
+
+  --color-sand: #F6F1E6;
+  --color-sand-dark: #E7DCC4;
+
   --font-titles: "Tsukimi_Rounded", 'Arial Narrow Bold', sans-serif;
   --font-body: "Barlow", sans-serif;
 }
@@ -42,7 +50,7 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   font-weight: 400;
-  background-color: white;
+  background-color: var(--color-sand);
   color: var(--color-shadow-50);
 }
 #root{

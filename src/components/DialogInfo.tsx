@@ -26,15 +26,15 @@ export function DialogInfo({ children, active, onClose }: PopInfoProps) {
     return (
         <dialog
             ref={dialogRef}
-            className=" bg-white w-full max-w-5xl  h-full px-8 py-4 mx-4 shadow-lg overflow-y-scroll bottom-0 top-auto left-1/2 transform -translate-x-1/2"
+            className="bg-sand w-full max-w-5xl h-full px-6 sm:px-8 py-4 mx-4 rounded-t-[2rem] shadow-2xl shadow-dark-tertiary/30 overflow-y-scroll bottom-0 top-auto left-1/2 transform -translate-x-1/2"
             onCancel={onClose}
         >
-            <header className="flex justify-end">
+            <header className="flex justify-end sticky top-0 pt-2 pb-2 bg-sand">
                 <button
                     onClick={onClose}
-                    className="cursor-pointer hover:text-red-600"
+                    className="cursor-pointer size-9 rounded-full bg-dark-tertiary/10 hover:bg-dark-tertiary/20 flex items-center justify-center transition-colors text-dark-tertiary"
                 >
-                    X
+                    ✕
                 </button>
             </header>
             {children}
