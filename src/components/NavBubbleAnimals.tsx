@@ -50,11 +50,11 @@ export function NavBubbleAnimals({ setfiltered, setBackgroundImage }: NavBubbleA
   ];
 
   return (
-    <nav className="flex mt-44 justify-center items-center space-x-24">
+    <nav className="flex flex-wrap mt-24 md:mt-44 justify-center items-center gap-x-6 gap-y-8 sm:gap-x-8 md:gap-x-10 lg:gap-x-16 px-4">
       {bubbleItems.map((item, index) => (
         <button
           key={index}
-          className={`relative group w-24 h-24 rounded-full border-2 border-gray-300 shadow-red-600 hover:scale-110 transition-transform duration-300 cursor-pointer ${ index % 2 !== 1 ? "-top-10" : "" }`}
+          className={`relative group w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-2 border-gray-300 shadow-red-600 hover:scale-110 transition-transform duration-300 cursor-pointer ${ index % 2 !== 1 ? "lg:-top-10" : "" }`}
           title={item.name}
           onClick={() => {
             setfiltered(item.class);
@@ -62,7 +62,7 @@ export function NavBubbleAnimals({ setfiltered, setBackgroundImage }: NavBubbleA
           }}
         >
           <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50">
-            <div className="bg-white border border-gray-200 rounded shadow-md p-3 w-72 z-60">
+            <div className="bg-white border border-gray-200 rounded shadow-md p-3 w-56 sm:w-72 max-w-[80vw] z-60">
               <h4 className="text-sm font-bold text-center">{item.name}</h4>
               <p className="text-sm text-gray-600">{item.info}</p>
             </div>

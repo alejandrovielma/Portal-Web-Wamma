@@ -17,7 +17,7 @@ function Bubble({children ,navigate, href}: BubbleProps) {
   return (
     <button
       onClick={handleClick}
-      className='cursor-pointer flex flex-col items-center hover:text-neutral-950 size-28 bg-white opacity-85 rounded-full shadow-md p-4 z-10'
+      className='cursor-pointer flex flex-col items-center hover:text-neutral-950 size-16 sm:size-20 md:size-24 lg:size-28 bg-white opacity-85 rounded-full shadow-md p-2 sm:p-3 md:p-4 z-10'
     >
       {children}
     </button>
@@ -51,11 +51,12 @@ export function NavMenu({ text}:NavMenuProps) {
     const bubbles = gsap.utils.toArray(bubblesRef.current.children);
 
     if (open){
+      const scale = window.innerWidth < 640 ? 0.55 : window.innerWidth < 768 ? 0.75 : 1;
       gsap.to(bubbles, {
         duration: 0.5,
         ease: "power2.inOut",
         opacity: 1,
-        y: (i:number) => (i == 1 || i == 2) ? -280 : -200,
+        y: (i:number) => ((i == 1 || i == 2) ? -280 : -200) * scale,
       })
     }else{
       gsap.to(bubbles, {
@@ -79,21 +80,21 @@ export function NavMenu({ text}:NavMenuProps) {
       >
         {text}
       </button>
-      <div ref={bubblesRef} className='flex gap-8 absolute translate-y-full'>
+      <div ref={bubblesRef} className='flex gap-3 sm:gap-4 md:gap-6 lg:gap-8 absolute translate-y-full'>
         <Bubble navigate={navigate} href='/actualidad'>
-          <h4 className="text-shadow-50 font-semibold text-center">Proyectos</h4>
+          <h4 className="text-shadow-50 font-semibold text-center text-[10px] sm:text-xs md:text-sm">Proyectos</h4>
           <img className="flex-1" src="/svgs/Actualidad.svg" alt="Actualidad" />
         </Bubble>
         <Bubble navigate={navigate} href='/animales'>
-          <h4 className="text-shadow-50 font-semibold text-center">Acuario</h4>
+          <h4 className="text-shadow-50 font-semibold text-center text-[10px] sm:text-xs md:text-sm">Acuario</h4>
             <img className="flex-1" src="/svgs/Animales.svg" alt="Acuario" />
         </Bubble>
         <Bubble navigate={navigate} href='/biblioteca'>
-           <h4 className="text-shadow-50 font-semibold text-center">Biblioteca</h4>
+           <h4 className="text-shadow-50 font-semibold text-center text-[10px] sm:text-xs md:text-sm">Biblioteca</h4>
             <img className="flex-1" src="/svgs/Biblioteca.svg" alt="Biblioteca" />
         </Bubble>
         <Bubble navigate={navigate} href='/mapa'>
-          <h4 className="text-shadow-50 font-semibold text-center">Mapa</h4>
+          <h4 className="text-shadow-50 font-semibold text-center text-[10px] sm:text-xs md:text-sm">Mapa</h4>
             <img className='flex-1' src="/svgs/Mapa.svg" alt="Mapa" />
         </Bubble>
       </div>

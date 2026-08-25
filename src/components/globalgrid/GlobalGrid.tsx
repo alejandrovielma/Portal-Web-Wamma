@@ -28,6 +28,8 @@ export function GlobalGrip() {
     cellHeight: 5,
     cellHeightUnit: "rem",
     margin: 2,
+    resizable: { handles: "e, se, s, sw, w" },
+    alwaysShowResizeHandle: "mobile",
     children: widgets
   };
   const [initialOptions] = useState(gridOptions)
@@ -54,13 +56,15 @@ export function GlobalGrip() {
           </div>
           <p className="text-base sm:text-xl md:text-3xl text-center">¡Arrastra!</p>
         </div>
-        <GridStackProvider initialOptions={initialOptions}>
-          <GridStackRenderProvider>
-            <GridStackRender componentMap={COMPONENT_MAP} />
-          </GridStackRenderProvider>
-          {/*<DebugInfo />*/}
-          <GlobalWidgetupdater />
-        </GridStackProvider>
+        <div className="p-3 sm:p-4 md:p-6">
+          <GridStackProvider initialOptions={initialOptions}>
+            <GridStackRenderProvider>
+              <GridStackRender componentMap={COMPONENT_MAP} />
+            </GridStackRenderProvider>
+            {/*<DebugInfo />*/}
+            <GlobalWidgetupdater />
+          </GridStackProvider>
+        </div>
       </div>
     </div>
   )
