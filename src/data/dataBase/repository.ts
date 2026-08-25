@@ -137,9 +137,12 @@ const animals: Animal[] = animalsData.map(
         },
       ],
       images: [
-        "https://www.especiesamenazadas.org" + animal.image,
-        "https://www.especiesamenazadas.org" + animal.imageDistribution,
-      ].filter(Boolean), // Elimina cualquier undefined o string vacío
+        animal.image,
+        animal.imageDistribution
+          ? "https://www.especiesamenazadas.org" + animal.imageDistribution
+          : null,
+        ...(animal.additionalImages ?? []),
+      ].filter((img): img is string => Boolean(img)), // Elimina cualquier undefined, null o string vacío
     },
   })
 );
