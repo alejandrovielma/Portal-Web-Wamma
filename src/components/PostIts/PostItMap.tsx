@@ -6,7 +6,6 @@ import { useGridStackContext } from "#lib/gridStackLib/grid-stack-context.ts";
 import { useEffect, useState } from "react";
 import { GridStackWidget } from "gridstack";
 import OpenSVG from "#assets/OpenSVG.tsx";
-const WHEATHER_API = import.meta.env.VITE_WEATHER_API;
 
 export interface PostItMapProps {
     title: string;
@@ -29,7 +28,7 @@ export function PostItMap({ title, description, images, video, coordinates, city
     const [weather, setWeather] = useState<any | undefined>(undefined);
 
     useEffect(() => {
-        fetch(`http://api.weatherapi.com/v1/current.json?key=${WHEATHER_API}&q=${city}&aqi=no`)
+        fetch(`/api/weather?city=${encodeURIComponent(city ?? "")}`)
             .then(response => response.json())
             .then(json => {
                 if (!json.error) {
