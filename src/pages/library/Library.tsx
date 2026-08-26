@@ -14,7 +14,6 @@ import { PostItInfoProps } from "#components/PostIts/PostItInfo.tsx";
 import BookSVG from "#assets/BookSVG.tsx";
 import AudioSVG from "#assets/AudioSVG.tsx";
 import VideoSVG from "#assets/VideoSVG.tsx";
-import LiveAnimalSearch from "#components/LiveAnimalSearch.tsx";
 import LiveBookSearch from "#components/LiveBookSearch.tsx";
 
 export function Library() {
@@ -46,22 +45,18 @@ export function Library() {
               <LastWorks handleDrag={handleDrag} />
             </section>
             <Separator />
-            <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
-              <h2 className="text-2xl">Busca más libros</h2>
+            <section className="w-full flex flex-col gap-4 max-w-6xl px-4 pb-16">
+              <span className="flex items-center gap-3">
+                <span className="text-leaf-dark shrink-0">
+                  <BookSVG />
+                </span>
+                <h2 className="text-2xl font-titles">Busca más libros en el catálogo</h2>
+              </span>
               <p className="text-sm text-shadow-50/70">
                 Encuentra libros reales sobre cualquier tema en Open Library, para complementar
                 lo que ya tenemos curado arriba.
               </p>
               <LiveBookSearch />
-            </section>
-            <Separator />
-            <section className="w-full flex flex-col gap-4 max-w-2xl px-4 pb-16">
-              <h2 className="text-2xl">¿Buscas otro animal?</h2>
-              <p className="text-sm text-shadow-50/70">
-                Nuestro Acuario tiene un catálogo curado de especies venezolanas. Si buscas
-                una especie que no está ahí, consúltala aquí en tiempo real.
-              </p>
-              <LiveAnimalSearch title="Buscar animal en línea" />
             </section>
           </div>
         </div>
