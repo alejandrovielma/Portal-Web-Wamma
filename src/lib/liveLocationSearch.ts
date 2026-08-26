@@ -12,6 +12,11 @@
 
 const CACHE_KEY = "wamma_last_live_location_search";
 
+export interface LocationFact {
+  label: string;
+  value: string;
+}
+
 export interface LiveLocationResult {
   query: string;
   name: string;
@@ -23,33 +28,74 @@ export interface LiveLocationResult {
   description: string | null;
   images: string[];
   city: string | null;
+  facts: LocationFact[];
 }
 
 export class NetworkUnreachableError extends Error {}
 
-async function getWikipediaSummary(name: string): Promise<{ description: string | null; image: string | null }> {
-  // Nominatim no da descripcion ni fotos -- se complementa con Wikipedia,
-  // igual que se hizo con la busqueda de animales. Se prueba ES primero
-  // y si no hay articulo se intenta EN como respaldo.
+async function fetchWikipediaSummary(
+  lang: string,
+  title: string
+): Promise<{ description: string | null; image: string | null } | null> {
+  try {
+    const res = await fetch(
+      `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}`
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.type === "disambiguation") return null;
+    return {
+      description: data.extract ?? null,
+      image: data.thumbnail?.source ?? data.originalimage?.source ?? null,
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function getWikipediaSummary(
+  name: string,
+  wikipediaTag?: string // formato "es:Titulo del articulo", viene de extratags de OSM
+): Promise<{ description: string | null; image: string | null }> {
+  // Preferimos el tag "wikipedia" de OSM (el mismo mapeador del lugar ya
+  // lo vinculo al articulo correcto) porque el "name" que devuelve
+  // Nominatim a veces esta en otro idioma y no matchea el titulo real
+  // del articulo en español.
+  if (wikipediaTag?.includes(":")) {
+    const [lang, ...rest] = wikipediaTag.split(":");
+    const found = await fetchWikipediaSummary(lang, rest.join(":"));
+    if (found) return found;
+  }
+
   for (const lang of ["es", "en"]) {
-    try {
-      const res = await fetch(
-        `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-          name.replace(/ /g, "_")
-        )}`
-      );
-      if (!res.ok) continue;
-      const data = await res.json();
-      if (data.type === "disambiguation") continue;
-      return {
-        description: data.extract ?? null,
-        image: data.thumbnail?.source ?? data.originalimage?.source ?? null,
-      };
-    } catch {
-      continue;
-    }
+    const found = await fetchWikipediaSummary(lang, name);
+    if (found) return found;
   }
   return { description: null, image: null };
+}
+
+const FACT_LABELS: Record<string, string> = {
+  operator: "Administrado por",
+  start_date: "Establecido en",
+  height: "Altura",
+  elevation: "Elevación",
+  population: "Población",
+  protection_title: "Categoría de protección",
+  website: "Sitio web",
+};
+
+function extractFacts(extratags: Record<string, string> | undefined): LocationFact[] {
+  if (!extratags) return [];
+  const facts: LocationFact[] = [];
+  for (const [key, label] of Object.entries(FACT_LABELS)) {
+    const value = extratags[key];
+    if (!value) continue;
+    facts.push({
+      label,
+      value: key === "height" || key === "elevation" ? `${value} m` : value,
+    });
+  }
+  return facts;
 }
 
 export async function searchLocationLive(query: string): Promise<LiveLocationResult> {
@@ -61,7 +107,7 @@ export async function searchLocationLive(query: string): Promise<LiveLocationRes
     response = await fetch(
       `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
         trimmed
-      )}&format=json&countrycodes=ve&limit=1&addressdetails=1`
+      )}&format=json&countrycodes=ve&limit=1&addressdetails=1&extratags=1`
     );
   } catch {
     throw new NetworkUnreachableError("No se pudo conectar a internet");
@@ -78,7 +124,7 @@ export async function searchLocationLive(query: string): Promise<LiveLocationRes
   }
 
   const name: string = place.name || place.display_name.split(",")[0];
-  const wiki = await getWikipediaSummary(name);
+  const wiki = await getWikipediaSummary(name, place.extratags?.wikipedia);
 
   const result: LiveLocationResult = {
     query: trimmed,
@@ -88,7 +134,7 @@ export async function searchLocationLive(query: string): Promise<LiveLocationRes
     lng: parseFloat(place.lon),
     type: place.type ?? null,
     osmUrl: `https://www.openstreetmap.org/${place.osm_type}/${place.osm_id}`,
-    description: wiki.description,
+    description: wiki.description ?? place.extratags?.["description:es"] ?? place.extratags?.["description:en"] ?? null,
     images: wiki.image ? [wiki.image] : [],
     city:
       place.address?.city ??
@@ -96,6 +142,7 @@ export async function searchLocationLive(query: string): Promise<LiveLocationRes
       place.address?.municipality ??
       place.address?.state ??
       null,
+    facts: extractFacts(place.extratags),
   };
 
   cacheLastResult(result);

@@ -15,9 +15,7 @@ function liveResultToDestination(result: LiveLocationResult): Destination {
     type: "online",
     content: {
       title: result.name,
-      description:
-        result.description ??
-        `${result.displayName}\n\nFuente: OpenStreetMap (${result.osmUrl}), sin descripción de Wikipedia disponible.`,
+      description: result.description ?? "Todavía no hay una descripción disponible para este lugar.",
       images: result.images,
       video: "",
       coordinates: { lat: result.lat, lng: result.lng },
@@ -176,6 +174,8 @@ export function Map() {
           handleDrag={handleEvent}
           onClose={() => setInfoSlider(undefined)}
           isLiveResult={isViewingLiveResult}
+          liveFacts={isViewingLiveResult ? liveLocation?.facts : undefined}
+          liveSourceUrl={isViewingLiveResult ? liveLocation?.osmUrl : undefined}
         />
       </div>
 

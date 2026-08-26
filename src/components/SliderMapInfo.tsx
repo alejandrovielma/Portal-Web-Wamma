@@ -4,6 +4,7 @@ import { PostItMapProps } from "./PostIts/PostItMap";
 import gsap from "gsap";
 import CompressSVG from "#assets/CompressSVG.tsx";
 import UnitPostItMap from "./UnitPostItMap";
+import { LocationFact } from "#lib/liveLocationSearch.ts";
 
 
 export interface RealatesDestination {
@@ -11,7 +12,7 @@ export interface RealatesDestination {
     content: PostItMapProps;
 }
 
-export function SliderMapInfo({ content, realates, handleDrag, onClose, isLiveResult }: { content?: PostItMapProps; realates?: RealatesDestination[], handleDrag: (event: Event) => void, onClose: () => void, isLiveResult?: boolean }) {
+export function SliderMapInfo({ content, realates, handleDrag, onClose, isLiveResult, liveFacts, liveSourceUrl }: { content?: PostItMapProps; realates?: RealatesDestination[], handleDrag: (event: Event) => void, onClose: () => void, isLiveResult?: boolean, liveFacts?: LocationFact[], liveSourceUrl?: string }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const asideRef = useRef<HTMLDivElement>(null);
 
@@ -45,8 +46,8 @@ export function SliderMapInfo({ content, realates, handleDrag, onClose, isLiveRe
                         <div className="p-4 h-full flex flex-col">
                             {
                                 !isExpanded
-                                    ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), onClose, handleDrag, isLiveResult })
-                                    : OpenSlider({ content, onClose: () => setIsExpanded(false), isLiveResult })
+                                    ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), onClose, handleDrag, isLiveResult, liveFacts, liveSourceUrl })
+                                    : OpenSlider({ content, onClose: () => setIsExpanded(false), isLiveResult, liveFacts, liveSourceUrl })
                             }
                         </div>
                     )
@@ -57,7 +58,34 @@ export function SliderMapInfo({ content, realates, handleDrag, onClose, isLiveRe
 }
 export default SliderMapInfo;
 
-function OpenSlider({ content, onClose, isLiveResult }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void, isLiveResult?: boolean }) {
+function LiveFactsFooter({ facts, sourceUrl }: { facts?: LocationFact[]; sourceUrl?: string }) {
+    if ((!facts || facts.length === 0) && !sourceUrl) return null;
+    return (
+        <div className="flex flex-col gap-1">
+            {facts && facts.length > 0 && (
+                <ul className="text-sm text-shadow-50/80 flex flex-col gap-0.5">
+                    {facts.map((fact) => (
+                        <li key={fact.label}>
+                            <span className="font-semibold">{fact.label}:</span> {fact.value}
+                        </li>
+                    ))}
+                </ul>
+            )}
+            {sourceUrl && (
+                <a
+                    href={sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-light-secondary hover:underline w-fit"
+                >
+                    Fuente: OpenStreetMap
+                </a>
+            )}
+        </div>
+    );
+}
+
+function OpenSlider({ content, onClose, isLiveResult, liveFacts, liveSourceUrl }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void, isLiveResult?: boolean, liveFacts?: LocationFact[], liveSourceUrl?: string }) {
     return (
         <div id="content" className="flex flex-col md:flex-row gap-6 md:gap-12">
             <div className="sticky top-0 -mx-4 px-4 py-2 z-10 bg-sand flex flex-col shadow-sm">
@@ -72,6 +100,7 @@ function OpenSlider({ content, onClose, isLiveResult }: { content: PostItMapProp
                     )}
                     <h1 className="font-titles text-2xl sm:text-3xl text-dark-tertiary">{content.title}</h1>
                     <p>{content.description}</p>
+                    {isLiveResult && <LiveFactsFooter facts={liveFacts} sourceUrl={liveSourceUrl} />}
                 </section>
                 <section className="flex-1/3">
                     <article>
@@ -90,7 +119,7 @@ function OpenSlider({ content, onClose, isLiveResult }: { content: PostItMapProp
     )
 }
 
-function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveResult }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, onClose: () => void, handleDrag: (event: Event) => void, isLiveResult?: boolean }) {
+function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveResult, liveFacts, liveSourceUrl }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, onClose: () => void, handleDrag: (event: Event) => void, isLiveResult?: boolean, liveFacts?: LocationFact[], liveSourceUrl?: string }) {
     return (
         <div id="content" className="flex flex-col gap-4 h-full">
             <header className="sticky top-0 -mx-4 px-4 py-2 z-10 bg-sand flex justify-between items-center gap-2 sm:gap-4 shadow-sm">
@@ -111,6 +140,7 @@ function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveRes
                             ? content.description.slice(0, 240) + '...'
                             : content?.description}
                     </p>
+                    {isLiveResult && <LiveFactsFooter facts={liveFacts} sourceUrl={liveSourceUrl} />}
                 </div>
                 <span className="flex gap-2">
                     {
