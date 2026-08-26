@@ -53,8 +53,7 @@ export function Library() {
                 <h2 className="text-2xl font-titles">Busca más libros en el catálogo</h2>
               </span>
               <p className="text-sm text-shadow-50/70">
-                Encuentra libros reales sobre cualquier tema en Open Library, para complementar
-                lo que ya tenemos curado arriba.
+                Escribe un tema o título y encuentra libros reales para seguir leyendo.
               </p>
               <LiveBookSearch />
             </section>
