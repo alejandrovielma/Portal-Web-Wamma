@@ -1,5 +1,5 @@
 import "./globalGrid.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GridStackOptions } from "gridstack";
 import {
   GridStackProvider,
@@ -7,8 +7,12 @@ import {
   GridStackRenderProvider,
   COMPONENT_MAP,
   useWidgetContext,
+  useGridStackContext,
+  useGridStackRenderContext,
   GlobalWidgetupdater
 } from "#lib/gridStackLib/index.js";
+import { HOME_GRID_ADD_EVENT } from "#lib/gridStackLib/home-grid-bridge.ts";
+import type { PostItMapProps } from "#components/PostIts/PostItMap.tsx";
 
 export function GlobalGrip() {
   const { widgets } = useWidgetContext();
@@ -60,6 +64,7 @@ export function GlobalGrip() {
           <GridStackProvider initialOptions={initialOptions}>
             <GridStackRenderProvider>
               <GridStackRender componentMap={COMPONENT_MAP} />
+              <HomeGridBridge />
             </GridStackRenderProvider>
             {/*<DebugInfo />*/}
             <GlobalWidgetupdater />
@@ -70,6 +75,27 @@ export function GlobalGrip() {
   )
 }
 export default GlobalGrip
+
+function HomeGridBridge() {
+  const { addWidget } = useGridStackContext();
+  const { reclaimRenderCB } = useGridStackRenderContext();
+
+  useEffect(() => {
+    function handleAddToHome(event: Event) {
+      const content = (event as CustomEvent<PostItMapProps>).detail;
+      reclaimRenderCB();
+      addWidget(() => ({
+        w: 5,
+        h: 5,
+        content: JSON.stringify({ name: "PostItMap", props: content }),
+      }));
+    }
+    window.addEventListener(HOME_GRID_ADD_EVENT, handleAddToHome);
+    return () => window.removeEventListener(HOME_GRID_ADD_EVENT, handleAddToHome);
+  }, [addWidget]);
+
+  return null;
+}
 
 
 /*function DebugInfo() {

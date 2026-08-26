@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   searchLocationLive,
   getLastCachedLocationSearch,
-  getRecentSearches,
   NetworkUnreachableError,
   LiveLocationResult,
 } from "#lib/liveLocationSearch.ts";
@@ -15,15 +14,6 @@ export function LiveLocationSearch({ onResult }: LiveLocationSearchProps) {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [recentSearches, setRecentSearches] = useState<LiveLocationResult[]>(() => getRecentSearches());
-
-  function selectResult(result: LiveLocationResult) {
-    onResult(result);
-    setQuery(result.name);
-    setStatus("idle");
-    setErrorMessage(null);
-    setRecentSearches(getRecentSearches());
-  }
 
   async function handleSearch() {
     if (!query.trim()) return;
@@ -34,7 +24,6 @@ export function LiveLocationSearch({ onResult }: LiveLocationSearchProps) {
       const result = await searchLocationLive(query);
       onResult(result);
       setStatus("idle");
-      setRecentSearches(getRecentSearches());
     } catch (e) {
       const isNetworkFailure = e instanceof NetworkUnreachableError;
       const cached = isNetworkFailure ? getLastCachedLocationSearch() : null;
@@ -84,19 +73,6 @@ export function LiveLocationSearch({ onResult }: LiveLocationSearchProps) {
         <p className="text-xs text-dark-tertiary bg-sand/95 rounded-full px-4 py-1.5 shadow">
           ⚠ {errorMessage}
         </p>
-      )}
-      {recentSearches.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 justify-center">
-          {recentSearches.map((result) => (
-            <button
-              key={result.name}
-              onClick={() => selectResult(result)}
-              className="text-xs bg-sand/90 hover:bg-sand text-dark-tertiary rounded-full px-3 py-1 shadow cursor-pointer transition-colors"
-            >
-              {result.name}
-            </button>
-          ))}
-        </div>
       )}
     </div>
   );

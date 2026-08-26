@@ -6,6 +6,7 @@ import {
   ComponentMap,
 } from "./grid-stack-render";
 import { useGridStackContext } from "./grid-stack-context";
+import { useGridStackRenderContext } from "./grid-stack-render-context";
 import { useGridStackWidgetContext } from "./grid-stack-widget-context";
 import COMPONENT_MAP from "./itemsType";
 import { GridStackGlobalWidgetProvider, useWidgetContext } from "./grip-stack-global-widget-provider";
@@ -18,6 +19,7 @@ export {
   type ComponentDataType,
   type ComponentMap,
   useGridStackContext,
+  useGridStackRenderContext,
   useGridStackWidgetContext,
   GridStackGlobalWidgetProvider,
   useWidgetContext,

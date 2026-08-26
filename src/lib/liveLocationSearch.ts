@@ -55,6 +55,26 @@ async function fetchWikipediaSummary(
   }
 }
 
+// MyMemory: API publica de traduccion, sin key, con CORS abierto. El
+// texto se recorta antes de mandarlo porque el tier gratuito rechaza
+// peticiones muy largas.
+const TRANSLATE_MAX_CHARS = 480;
+
+async function translateToSpanish(text: string, sourceLang: string): Promise<string> {
+  const trimmed = text.length > TRANSLATE_MAX_CHARS ? text.slice(0, TRANSLATE_MAX_CHARS) : text;
+  try {
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(trimmed)}&langpair=${sourceLang}|es`
+    );
+    if (!res.ok) return text;
+    const data = await res.json();
+    const translated = data?.responseData?.translatedText;
+    return typeof translated === "string" && translated.trim() ? translated : text;
+  } catch {
+    return text;
+  }
+}
+
 async function getWikipediaSummary(
   name: string,
   wikipediaTag?: string // formato "es:Titulo del articulo", viene de extratags de OSM
@@ -66,13 +86,23 @@ async function getWikipediaSummary(
   if (wikipediaTag?.includes(":")) {
     const [lang, ...rest] = wikipediaTag.split(":");
     const found = await fetchWikipediaSummary(lang, rest.join(":"));
-    if (found) return found;
+    if (found) {
+      if (lang !== "es" && found.description) {
+        found.description = await translateToSpanish(found.description, lang);
+      }
+      return found;
+    }
   }
 
-  for (const lang of ["es", "en"]) {
-    const found = await fetchWikipediaSummary(lang, name);
-    if (found) return found;
+  const es = await fetchWikipediaSummary("es", name);
+  if (es) return es;
+
+  const en = await fetchWikipediaSummary("en", name);
+  if (en) {
+    if (en.description) en.description = await translateToSpanish(en.description, "en");
+    return en;
   }
+
   return { description: null, image: null };
 }
 
@@ -128,6 +158,11 @@ export async function searchLocationLive(query: string): Promise<LiveLocationRes
   const name: string = place.name || place.display_name.split(",")[0];
   const wiki = await getWikipediaSummary(name, place.extratags?.wikipedia);
 
+  let description = wiki.description ?? place.extratags?.["description:es"] ?? null;
+  if (!description && place.extratags?.["description:en"]) {
+    description = await translateToSpanish(place.extratags["description:en"], "en");
+  }
+
   const result: LiveLocationResult = {
     query: trimmed,
     name,
@@ -136,7 +171,7 @@ export async function searchLocationLive(query: string): Promise<LiveLocationRes
     lng: parseFloat(place.lon),
     type: place.type ?? null,
     osmUrl: `https://www.openstreetmap.org/${place.osm_type}/${place.osm_id}`,
-    description: wiki.description ?? place.extratags?.["description:es"] ?? place.extratags?.["description:en"] ?? null,
+    description,
     images: wiki.image ? [wiki.image] : [],
     city:
       place.address?.city ??

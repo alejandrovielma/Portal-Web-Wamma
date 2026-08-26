@@ -39,6 +39,19 @@ import {
       },
       []
     );
+
+    // GridStack.renderCB es una propiedad estatica GLOBAL, compartida por
+    // TODAS las instancias de grid de la app (no es por-instancia). Si hay
+    // mas de un GridStackRenderProvider montado a la vez -- por ejemplo el
+    // grid de Home (oculto) y el mini-grid de UnitPostItMap dentro del
+    // panel del mapa -- el que se monto/renderizo ultimo le "roba" el
+    // renderCB al otro. Por eso, justo antes de agregar un widget mediante
+    // el addWidget() imperativo (ej. boton "Agregar a Inicio"), hay que
+    // reclamar el renderCB para asegurarse de que los nuevos contenedores
+    // se registren en la referencia correcta.
+    const reclaimRenderCB = useCallback(() => {
+      GridStack.renderCB = renderCBFn;
+    }, [renderCBFn]);
   
     const initGrid = useCallback(() => {
       if (containerRef.current) {
@@ -102,10 +115,11 @@ import {
             getWidgetContainer: (widgetId: string) => {
               return widgetContainersRef.current.get(widgetId) || null;
             },
+            reclaimRenderCB,
           }),
           // ! gridStack is required to reinitialize the grid when the options change
           // eslint-disable-next-line react-hooks/exhaustive-deps
-          [gridStack]
+          [gridStack, reclaimRenderCB]
         )}
       >
         <div ref={containerRef}>{gridStack ? children : null}</div>

@@ -163,12 +163,22 @@ function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveRes
 }
 
 function RelateCard({ relate }: { relate: RealatesDestination }) {
-
+    const [imageFailed, setImageFailed] = useState(false);
+    const image = relate.content.images[0];
 
     return (
         <button onClick={relate.onClick} className="flex overflow-hidden flex-col shrink-0 w-28 h-32 bg-light-secondary/50 shadow-md rounded-2xl transition-all cursor-pointer hover:bg-light-secondary/70 hover:-translate-y-1">
-            <div className="h-1/2">
-                <img className="w-full h-full object-cover" src={relate.content.images[0]} alt={relate.content.title} />
+            <div className="h-1/2 bg-leaf/20">
+                {image && !imageFailed ? (
+                    <img
+                        className="w-full h-full object-cover"
+                        src={image}
+                        alt={relate.content.title}
+                        onError={() => setImageFailed(true)}
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center text-leaf-dark text-2xl">💧</div>
+                )}
             </div>
             <div className="p-2">
                 <h4 className="text-left text-sm">{relate.content.title}</h4>

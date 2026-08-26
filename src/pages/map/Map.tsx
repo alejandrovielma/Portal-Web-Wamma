@@ -9,7 +9,7 @@ import { Destination, getAllDestinations, getAllLocations, MapLocation } from ".
 import { useLocation } from "react-router-dom";
 import LiveLocationSearch from "#components/LiveLocationSearch.tsx";
 import { LiveLocationResult, getRecentSearches } from "#lib/liveLocationSearch.ts";
-import { PostItMapProps } from "#components/PostIts/PostItMap.tsx";
+import { requestAddToHomeGrid } from "#lib/gridStackLib/home-grid-bridge.ts";
 
 function liveResultToDestination(result: LiveLocationResult): Destination {
   return {
@@ -23,24 +23,6 @@ function liveResultToDestination(result: LiveLocationResult): Destination {
       city: result.city ?? undefined,
     },
   };
-}
-
-// El grid de Home vive montado (oculto) en TODAS las paginas via
-// SelectPostItLayer, en una instancia de GridStack separada de la de
-// esta pagina -- no comparte contexto de React, asi que para agregarle
-// un postit desde aca hay que llamar directo a su API imperativa. El
-// listener que ya existe (GlobalWidgetupdater) se encarga de guardar el
-// cambio en localStorage automaticamente, igual que hace el arrastre.
-function addContentToHomeGrid(content: PostItMapProps): boolean {
-  const gridEl = document.querySelector("#gridContainer .grid-stack") as (HTMLElement & { gridstack?: any }) | null;
-  const gridStack = gridEl?.gridstack;
-  if (!gridStack) return false;
-  gridStack.addWidget({
-    w: 5,
-    h: 5,
-    content: JSON.stringify({ name: "PostItMap", props: content }),
-  });
-  return true;
 }
 
 export function Map() {
@@ -218,7 +200,10 @@ export function Map() {
           addedToHome={addedToHome}
           onAddToHome={
             infoSlider
-              ? () => setAddedToHome(addContentToHomeGrid(infoSlider.content))
+              ? () => {
+                  requestAddToHomeGrid(infoSlider.content);
+                  setAddedToHome(true);
+                }
               : undefined
           }
         />
