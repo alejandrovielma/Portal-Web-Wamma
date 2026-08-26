@@ -33,7 +33,7 @@ export function News() {
             <Separator />
             <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
               <h2 className="text-2xl">
-                Motivate y aporta a la comunidad
+                Motívate y aporta a la comunidad
               </h2>
               <LastWorks handleDrag={handleDrag} />
             </section>

@@ -39,13 +39,6 @@ export function GlobalGrip() {
 
   return (
     <div className="bgGrid">
-      {/*<header className="bg-light-tertiary px-4 text-white flex items-center gap-4 h-20 fixed w-full z-50">
-        <img src="logo.svg" alt="Logo Awani" className="size-24" />
-        <div>
-          <h1 className="text-2lx font-semibold text-start">Wamma</h1>
-          <p className="text-sm">Aprendices del agua</p>
-        </div>
-      </header>*/}
       <div>
         <div className="absolute top-1/2 left-1/2 -translate-1/2 flex flex-col items-center gap-2 opacity-50 px-4 w-full max-w-128">
           <div className="flex flex-col items-center w-full">
@@ -65,7 +58,6 @@ export function GlobalGrip() {
               <GridStackRender componentMap={COMPONENT_MAP} />
               <HomeGridBridge />
             </GridStackRenderProvider>
-            {/*<DebugInfo />*/}
             <GlobalWidgetupdater />
           </GridStackProvider>
         </div>
@@ -93,63 +85,3 @@ function HomeGridBridge() {
 
   return null;
 }
-
-
-/*function DebugInfo() {
-  const { initialOptions, saveOptions } = useGridStackContext();
-
-  const [realtimeOptions, setRealtimeOptions] = useState<
-    GridStackOptions | GridStackWidget[] | undefined
-  >(undefined);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (saveOptions) {
-        const data = saveOptions();
-        setRealtimeOptions(data);
-      }
-    }, 2000);
-
-    return () => clearInterval(timer);
-  }, [saveOptions]);
-
-  return (
-    <div>
-      <h2>Debug Info</h2>
-      <div
-        style={{
-          display: "grid",
-          gap: "1rem",
-          gridTemplateColumns: "repeat(2, 1fr)",
-        }}
-      >
-        <div>
-          <h3>Initial Options</h3>
-          <pre
-            style={{
-              backgroundColor: "#f3f4f6",
-              padding: "1rem",
-              borderRadius: "0.25rem",
-              overflow: "auto",
-            }}
-          >
-            {JSON.stringify(initialOptions, null, 2)}
-          </pre>
-        </div>
-        <div>
-          <h3>Realtime Options (2s refresh)</h3>
-          <pre
-            style={{
-              backgroundColor: "#f3f4f6",
-              padding: "1rem",
-              borderRadius: "0.25rem",
-              overflow: "auto",
-            }}
-          >
-            {JSON.stringify(realtimeOptions, null, 2)}
-          </pre>
-        </div>
-      </div>
-    </div>
-  );
-}*/

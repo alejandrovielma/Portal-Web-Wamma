@@ -4,7 +4,6 @@ import { gsap } from "gsap";
 
 export function SelectPostItLayer({  children, isDragging }: { children?: ReactNode | undefined, isDragging: boolean }) {
     function onMouseEnter(){
-        console.log("Mouse enter");
         gsap.to("#expander", {
             duration: 0.5,
             height: "100vh",
