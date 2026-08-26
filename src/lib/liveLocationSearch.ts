@@ -11,6 +11,8 @@
 // red se puede mostrar ese ultimo resultado en vez de una pantalla vacia.
 
 const CACHE_KEY = "wamma_last_live_location_search";
+const RECENT_SEARCHES_KEY = "wamma_recent_location_searches";
+const MAX_RECENT_SEARCHES = 5;
 
 export interface LocationFact {
   label: string;
@@ -146,6 +148,7 @@ export async function searchLocationLive(query: string): Promise<LiveLocationRes
   };
 
   cacheLastResult(result);
+  addToRecentSearches(result);
   return result;
 }
 
@@ -164,5 +167,25 @@ export function getLastCachedLocationSearch(): { result: LiveLocationResult; cac
     return JSON.parse(raw);
   } catch {
     return null;
+  }
+}
+
+function addToRecentSearches(result: LiveLocationResult) {
+  try {
+    const existing = getRecentSearches().filter((r) => r.name !== result.name);
+    const updated = [result, ...existing].slice(0, MAX_RECENT_SEARCHES);
+    localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updated));
+  } catch {
+    // localStorage puede fallar (modo privado, cuota llena) -- no es critico
+  }
+}
+
+export function getRecentSearches(): LiveLocationResult[] {
+  try {
+    const raw = localStorage.getItem(RECENT_SEARCHES_KEY);
+    if (!raw) return [];
+    return JSON.parse(raw);
+  } catch {
+    return [];
   }
 }

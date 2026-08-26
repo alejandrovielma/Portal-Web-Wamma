@@ -93,11 +93,6 @@ function OpenSlider({ content, onClose, isLiveResult, liveFacts, liveSourceUrl }
             </div>
             <div className="flex flex-col md:flex-row gap-6 md:gap-12">
                 <section className="flex-1 flex flex-col gap-4">
-                    {isLiveResult && (
-                        <span className="w-fit text-[10px] uppercase tracking-wide font-semibold bg-leaf/15 text-leaf-dark px-2 py-1 rounded-full">
-                            Resultado en línea
-                        </span>
-                    )}
                     <h1 className="font-titles text-2xl sm:text-3xl text-dark-tertiary">{content.title}</h1>
                     <p>{content.description}</p>
                     {isLiveResult && <LiveFactsFooter facts={liveFacts} sourceUrl={liveSourceUrl} />}
@@ -129,11 +124,6 @@ function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveRes
             </header>
             <div className="flex flex-col gap-8 justify-between h-full">
                 <div className="flex flex-col gap-4">
-                    {isLiveResult && (
-                        <span className="w-fit text-[10px] uppercase tracking-wide font-semibold bg-leaf/15 text-leaf-dark px-2 py-1 rounded-full">
-                            Resultado en línea
-                        </span>
-                    )}
                     <UnitPostItMap key={content.title} postItProds={content} handleEvent={handleDrag}/>
                     <p>
                         {content?.description && content.description.length > 240
