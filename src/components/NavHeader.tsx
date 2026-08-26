@@ -60,7 +60,7 @@ export function NavHeader ({ pathItems }: HeaderProps) {
 
   return (
     <header className="fixed w-full z-50">
-      <div className="bg-light-tertiary text-white flex items-center justify-between h-14 sm:h-20 px-2 sm:px-0">
+      <div className="bg-light-tertiary text-white flex items-center h-14 sm:h-20 px-2 sm:px-0">
         <TransitionToMenuButton
           href="/"
           className="flex items-center pl-1 sm:pl-6 cursor-pointer min-w-0 shrink-0"
@@ -96,7 +96,7 @@ export function NavHeader ({ pathItems }: HeaderProps) {
           <button
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
-            className="sm:hidden flex items-center justify-center cursor-pointer shrink-0 ml-auto mr-1 size-9 rounded-full transition-colors hover:bg-white/10"
+            className="sm:hidden flex items-center justify-center cursor-pointer shrink-0 mr-1 size-9 rounded-full transition-colors hover:bg-white/10"
           >
             <span className="relative size-6 grid place-items-center">
               <span className={`absolute transition-all duration-200 ${isMenuOpen ? "opacity-0 scale-75" : "opacity-100 scale-100"}`}>
@@ -111,7 +111,7 @@ export function NavHeader ({ pathItems }: HeaderProps) {
 
         <TransitionToMenuButton
           href="/"
-          className={`cursor-pointer pr-1 sm:pr-6 pl-2 flex items-center shrink-0 ${fullBreadcrumbs.length > 0 ? "" : "ml-auto"}`}
+          className="cursor-pointer ml-auto pr-1 sm:pr-6 pl-2 flex items-center shrink-0"
         >
           <img src="x.svg" alt="salir" className="h-5 sm:h-8 w-auto" />
         </TransitionToMenuButton>
