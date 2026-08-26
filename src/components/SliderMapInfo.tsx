@@ -36,7 +36,7 @@ export function SliderMapInfo({ content, realates, handleDrag, onClose }: { cont
     return (
         <aside
             ref={asideRef}
-            style={{ width: 0, padding: 0 }}
+            style={{ width: 0 }}
             className={`absolute pt-14 sm:pt-20 top-0 right-0 h-full overflow-y-scroll overflow-x-hidden bg-sand/95 sm:bg-sand/90 backdrop-blur-md shadow-2xl shadow-dark-tertiary/20 sm:rounded-l-[2rem] flex flex-col ${content ? "" : "pointer-events-none"}`}
         >
             {
@@ -60,7 +60,7 @@ export default SliderMapInfo;
 function OpenSlider({ content, onClose }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void }) {
     return (
         <div id="content" className="flex flex-col md:flex-row gap-6 md:gap-12">
-            <div className="flex flex-col">
+            <div className="sticky top-0 -mx-4 px-4 py-2 z-10 bg-sand flex flex-col shadow-sm">
                 <button onClick={onClose} className="cursor-pointer size-9 rounded-full bg-light-primary/15 hover:bg-light-primary/25 flex items-center justify-center transition-colors text-dark-tertiary"><CompressSVG /></button>
             </div>
             <div className="flex flex-col md:flex-row gap-6 md:gap-12">
@@ -88,7 +88,7 @@ function OpenSlider({ content, onClose }: { content: PostItMapProps; realates?: 
 function CloseSlider({ content, realates, onOpen, onClose, handleDrag }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, onClose: () => void, handleDrag: (event: Event) => void }) {
     return (
         <div id="content" className="flex flex-col gap-4 h-full">
-            <header className="flex justify-between items-center gap-2 sm:gap-4">
+            <header className="sticky top-0 -mx-4 px-4 py-2 z-10 bg-sand flex justify-between items-center gap-2 sm:gap-4 shadow-sm">
                 <button onClick={onOpen} className="cursor-pointer size-9 shrink-0 rounded-full bg-light-primary/15 hover:bg-light-primary/25 flex items-center justify-center transition-colors text-dark-tertiary" ><ExpandedSVG /></button>
                 <h2 className="text-lg sm:text-xl font-titles flex-1 text-dark-tertiary truncate">{content?.title}</h2>
                 <button onClick={onClose} className="cursor-pointer size-9 shrink-0 rounded-full bg-dark-tertiary/10 hover:bg-dark-tertiary/20 flex items-center justify-center transition-colors text-dark-tertiary">✕</button>
