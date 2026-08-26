@@ -167,8 +167,8 @@ function RelateCard({ relate }: { relate: RealatesDestination }) {
     const image = relate.content.images[0];
 
     return (
-        <button onClick={relate.onClick} className="flex overflow-hidden flex-col shrink-0 w-28 h-32 bg-light-secondary/50 shadow-md rounded-2xl transition-all cursor-pointer hover:bg-light-secondary/70 hover:-translate-y-1">
-            <div className="h-1/2 bg-leaf/20">
+        <button onClick={relate.onClick} className="flex overflow-hidden flex-col shrink-0 w-32 h-36 bg-light-secondary/50 shadow-md rounded-2xl transition-all cursor-pointer hover:bg-light-secondary/70 hover:-translate-y-1">
+            <div className="h-20 shrink-0 bg-leaf/20">
                 {image && !imageFailed ? (
                     <img
                         className="w-full h-full object-cover"
@@ -180,8 +180,8 @@ function RelateCard({ relate }: { relate: RealatesDestination }) {
                     <div className="w-full h-full flex items-center justify-center text-leaf-dark text-2xl">💧</div>
                 )}
             </div>
-            <div className="p-2">
-                <h4 className="text-left text-sm">{relate.content.title}</h4>
+            <div className="p-2 flex-1 min-h-0">
+                <h4 className="text-left text-sm leading-tight line-clamp-2">{relate.content.title}</h4>
             </div>
         </button>
     )

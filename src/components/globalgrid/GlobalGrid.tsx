@@ -8,7 +8,6 @@ import {
   COMPONENT_MAP,
   useWidgetContext,
   useGridStackContext,
-  useGridStackRenderContext,
   GlobalWidgetupdater
 } from "#lib/gridStackLib/index.js";
 import { HOME_GRID_ADD_EVENT } from "#lib/gridStackLib/home-grid-bridge.ts";
@@ -78,12 +77,10 @@ export default GlobalGrip
 
 function HomeGridBridge() {
   const { addWidget } = useGridStackContext();
-  const { reclaimRenderCB } = useGridStackRenderContext();
 
   useEffect(() => {
     function handleAddToHome(event: Event) {
       const content = (event as CustomEvent<PostItMapProps>).detail;
-      reclaimRenderCB();
       addWidget(() => ({
         w: 5,
         h: 5,

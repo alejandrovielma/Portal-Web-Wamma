@@ -8,6 +8,7 @@ import {
   import { useGridStackContext } from "./grid-stack-context";
   import { GridStack, GridStackEventHandler, GridStackOptions, GridStackWidget } from "gridstack";
   import { GridStackRenderContext } from "./grid-stack-render-context";
+  import { registerGridRenderCB, unregisterGridRenderCB, withInitRenderCB } from "./grid-stack-render-cb-registry";
 
 
   interface GridStackRenderProviderProps extends PropsWithChildren {
@@ -40,23 +41,12 @@ import {
       []
     );
 
-    // GridStack.renderCB es una propiedad estatica GLOBAL, compartida por
-    // TODAS las instancias de grid de la app (no es por-instancia). Si hay
-    // mas de un GridStackRenderProvider montado a la vez -- por ejemplo el
-    // grid de Home (oculto) y el mini-grid de UnitPostItMap dentro del
-    // panel del mapa -- el que se monto/renderizo ultimo le "roba" el
-    // renderCB al otro. Por eso, justo antes de agregar un widget mediante
-    // el addWidget() imperativo (ej. boton "Agregar a Inicio"), hay que
-    // reclamar el renderCB para asegurarse de que los nuevos contenedores
-    // se registren en la referencia correcta.
-    const reclaimRenderCB = useCallback(() => {
-      GridStack.renderCB = renderCBFn;
-    }, [renderCBFn]);
-  
     const initGrid = useCallback(() => {
       if (containerRef.current) {
-        GridStack.renderCB = renderCBFn;
-        const grid = GridStack.init(optionsRef.current, containerRef.current)
+        const grid = withInitRenderCB(renderCBFn, () =>
+          GridStack.init(optionsRef.current, containerRef.current!)
+        );
+        registerGridRenderCB(grid, renderCBFn);
 
         const events = [
           "added",
@@ -87,6 +77,7 @@ import {
     useLayoutEffect(() => {
       if (initialOptions != optionsRef.current && gridStack) {
         try {
+          unregisterGridRenderCB(gridStack);
           gridStack.removeAll(false);
           gridStack.destroy(false);
           widgetContainersRef.current.clear();
@@ -97,7 +88,7 @@ import {
         }
       }
     }, [initialOptions, gridStack, initGrid, setGridStack]);
-  
+
     useLayoutEffect(() => {
       if (!gridStack) {
         try {
@@ -107,7 +98,18 @@ import {
         }
       }
     }, [gridStack, initGrid, setGridStack]);
-  
+
+    // Al desmontar (ej. al cambiar de pagina, ya que este provider vive
+    // dentro del arbol de cada pagina) hay que sacar esta instancia del
+    // registro para que no queden referencias colgando.
+    useLayoutEffect(() => {
+      return () => {
+        if (gridStack) {
+          unregisterGridRenderCB(gridStack);
+        }
+      };
+    }, [gridStack]);
+
     return (
       <GridStackRenderContext.Provider
         value={useMemo(
@@ -115,11 +117,10 @@ import {
             getWidgetContainer: (widgetId: string) => {
               return widgetContainersRef.current.get(widgetId) || null;
             },
-            reclaimRenderCB,
           }),
           // ! gridStack is required to reinitialize the grid when the options change
           // eslint-disable-next-line react-hooks/exhaustive-deps
-          [gridStack, reclaimRenderCB]
+          [gridStack]
         )}
       >
         <div ref={containerRef}>{gridStack ? children : null}</div>

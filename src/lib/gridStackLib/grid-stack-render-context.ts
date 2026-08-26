@@ -2,7 +2,6 @@ import { createContext, useContext } from "react";
 
 export const GridStackRenderContext = createContext<{
   getWidgetContainer: (widgetId: string) => HTMLElement | null;
-  reclaimRenderCB: () => void;
 } | null>(null);
 
 export function useGridStackRenderContext() {

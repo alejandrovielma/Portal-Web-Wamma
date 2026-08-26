@@ -1,5 +1,5 @@
 import type { GridStack, GridStackOptions, GridStackWidget } from "gridstack";
-import { type PropsWithChildren, useCallback, useState } from "react";
+import { type PropsWithChildren, useCallback, useLayoutEffect, useState } from "react";
 import { GridStackContext } from "./grid-stack-context";
 
 export function GridStackProvider({
@@ -84,6 +84,59 @@ export function GridStackProvider({
 
   const saveOptions = useCallback(() => {
     return gridStack?.save(true, true, (_, widget) => widget);
+  }, [gridStack]);
+
+  // _rawWidgetMetaMap solo se llenaba a mano (addWidget/addSubGrid), asi
+  // que un widget que entra por otra via -- arrastrado desde OTRO grid
+  // (ej. la vista previa del panel del mapa hacia Inicio), o restaurado
+  // por GridStack al reordenar -- quedaba sin entrada aca. Sin entrada,
+  // GridStackRender nunca intenta portar contenido de React adentro, y el
+  // postit se ve vacio/transparente hasta que la pagina se remonta y lee
+  // todo de nuevo desde localStorage. Escuchar los eventos nativos
+  // "added"/"removed" del grid mantiene el mapa sincronizado sin importar
+  // como haya entrado o salido el widget.
+  useLayoutEffect(() => {
+    if (!gridStack) return;
+
+    function handleAdded(_event: Event, items?: GridStackWidget[]) {
+      if (!items || items.length === 0) return;
+      setRawWidgetMetaMap((prev) => {
+        let changed = false;
+        const newMap = new Map(prev);
+        items.forEach((node) => {
+          if (node.id && !newMap.has(node.id)) {
+            newMap.set(node.id, node);
+            changed = true;
+          }
+        });
+        return changed ? newMap : prev;
+      });
+    }
+
+    function handleRemoved(_event: Event, items?: GridStackWidget[]) {
+      if (!items || items.length === 0) return;
+      setRawWidgetMetaMap((prev) => {
+        let changed = false;
+        const newMap = new Map(prev);
+        items.forEach((node) => {
+          if (node.id && newMap.has(node.id)) {
+            newMap.delete(node.id);
+            changed = true;
+          }
+        });
+        return changed ? newMap : prev;
+      });
+    }
+
+    gridStack.on("added", handleAdded);
+    gridStack.on("removed", handleRemoved);
+    // No se desuscribe con gridStack.off(): esa API comparte un solo slot
+    // por nombre de evento entre TODOS los listeners (ver GlobalWidgetupdater
+    // y GridStackRenderProvider, que tambien escuchan "added"/"removed" en
+    // esta misma instancia), asi que llamar off() aca podria desconectar el
+    // listener de otro componente en vez del propio. El grid entero se
+    // destruye al reinicializar o desmontar, asi que el listener no queda
+    // huerfano de verdad.
   }, [gridStack]);
 
   return (
