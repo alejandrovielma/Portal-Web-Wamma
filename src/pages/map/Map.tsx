@@ -1,12 +1,14 @@
 import { NavHeader } from "#components/NavHeader.tsx";
 import SelectPostItLayer from "#components/SelectPostItLayer.tsx";
 import { useEffect, useState } from "react";
-import { MapContainer, Marker, Polyline, TileLayer, useMap } from "react-leaflet"
+import { MapContainer, Marker, Polyline, Popup, TileLayer, useMap } from "react-leaflet"
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import SliderMapInfo, { RealatesDestination } from "#components/SliderMapInfo.tsx";
 import { Destination, getAllDestinations, getAllLocations, MapLocation } from "../../data/dataBase/repository";
 import { useLocation } from "react-router-dom";
+import LiveLocationSearch from "#components/LiveLocationSearch.tsx";
+import { LiveLocationResult } from "#lib/liveLocationSearch.ts";
 
 export function Map() {
   const [isDragging, setIsDragging] = useState(false);
@@ -23,6 +25,7 @@ export function Map() {
   const [relatedDestinations, setRelatedDestinations] = useState<RealatesDestination[]>([]);
   const [targetCoords, setTargetCoords] = useState<{ lat: number, lng: number } | null>(null);
   const [targetZoom, setTargetZoom] = useState<number>(15);
+  const [liveLocation, setLiveLocation] = useState<LiveLocationResult | null>(null);
 
   useEffect(() => {
     if (!infoSlider) return;
@@ -66,6 +69,13 @@ export function Map() {
         pathItems={[{ nombre: "Mapa", link: "/mapa" }]}
       />
       <div className="relative w-full h-full pt-14 sm:pt-20">
+        <LiveLocationSearch
+          onResult={(result) => {
+            setLiveLocation(result);
+            setTargetZoom(15);
+            setTargetCoords({ lat: result.lat, lng: result.lng });
+          }}
+        />
         {/*<DropOptions className="mt-40" title="Regiones" items={mapLocations.map(loca => {
           const item = {
             text: loca.name,
@@ -128,6 +138,27 @@ export function Map() {
             })
           }
           <RenderLocation displayLocation={displayLocation} locations={mapLocations} />
+          {liveLocation && (
+            <Marker position={[liveLocation.lat, liveLocation.lng]}>
+              <Popup>
+                <div className="flex flex-col gap-1">
+                  <span className="text-[10px] uppercase tracking-wide font-semibold text-leaf-dark">
+                    Resultado en línea
+                  </span>
+                  <strong>{liveLocation.name}</strong>
+                  <span className="text-xs text-shadow-50/70">{liveLocation.displayName}</span>
+                  <a
+                    href={liveLocation.osmUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-light-secondary hover:underline"
+                  >
+                    © OpenStreetMap contributors
+                  </a>
+                </div>
+              </Popup>
+            </Marker>
+          )}
         </MapContainer>
         <SliderMapInfo content={infoSlider?.content} realates={relatedDestinations} handleDrag={handleEvent} onClose={() => setInfoSlider(undefined)} />
       </div>
