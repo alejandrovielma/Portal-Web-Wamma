@@ -19,7 +19,9 @@ export function UnitPostItInfo({ postItProds, handleEvent }: UnitPostItProps) {
         margin: 0,
         children: [
             {
-                id: "item2",
+                // Ver comentario en UnitPostItMap.tsx: un id fijo colisiona
+                // en el grid de Inicio en cuanto arrastras dos postits.
+                id: `unit-postit-info-${Math.random().toString(36).slice(2, 11)}`,
                 h: 2,
                 w: 2,
                 x: 0,

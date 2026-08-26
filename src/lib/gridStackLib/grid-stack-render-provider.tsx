@@ -4,6 +4,7 @@ import {
     useLayoutEffect,
     useMemo,
     useRef,
+    useState,
   } from "react";
   import { useGridStackContext } from "./grid-stack-context";
   import { GridStack, GridStackEventHandler, GridStackOptions, GridStackWidget } from "gridstack";
@@ -31,11 +32,16 @@ import {
     const widgetContainersRef = useRef<Map<string, HTMLElement>>(new Map());
     const containerRef = useRef<HTMLDivElement>(null);
     const optionsRef = useRef<GridStackOptions>(initialOptions);
-  
+    // Fuerza un re-render cada vez que se registra un contenedor nuevo, para
+    // que GridStackRender reintente los widgets que se saltó por no
+    // encontrar su contenedor todavia (ver comentario en grid-stack-render.tsx).
+    const [, forceContainerUpdate] = useState(0);
+
     const renderCBFn = useCallback(
       (element: HTMLElement, widget: GridStackWidget) => {
         if (widget.id) {
           widgetContainersRef.current.set(widget.id, element);
+          forceContainerUpdate((v) => v + 1);
         }
       },
       []
@@ -115,7 +121,22 @@ import {
         value={useMemo(
           () => ({
             getWidgetContainer: (widgetId: string) => {
-              return widgetContainersRef.current.get(widgetId) || null;
+              const cached = widgetContainersRef.current.get(widgetId);
+              if (cached) return cached;
+              // Cuando un widget entra por drag-and-drop desde OTRO grid,
+              // GridStack puede reparentar/renombrar el elemento existente
+              // sin volver a llamar renderCB, asi que nunca queda
+              // registrado aca. Como ultimo recurso se busca directo en
+              // el DOM por su atributo gs-id (que GridStack si mantiene
+              // actualizado) y se cachea para la proxima vez.
+              const fallback = containerRef.current?.querySelector(
+                `[gs-id="${widgetId}"] > .grid-stack-item-content`
+              );
+              if (fallback instanceof HTMLElement) {
+                widgetContainersRef.current.set(widgetId, fallback);
+                return fallback;
+              }
+              return null;
             },
           }),
           // ! gridStack is required to reinitialize the grid when the options change

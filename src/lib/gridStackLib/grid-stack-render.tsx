@@ -51,8 +51,14 @@ export function GridStackRender(props: { componentMap: ComponentMap }) {
 
         const widgetContainer = getWidgetContainer(id);
 
+        // GridStack a veces crea el contenedor nativo del widget un
+        // instante despues de que React se entera del widget (por ejemplo
+        // al arrastrarlo desde otro grid). En vez de crashear toda la app,
+        // se salta ese widget por esta pasada -- en cuanto el contenedor
+        // se registra, GridStackRenderProvider fuerza un re-render (ver
+        // containerVersion) y este componente lo vuelve a intentar.
         if (!widgetContainer) {
-          throw new Error(`Widget container not found for id: ${id}`);
+          return null;
         }
 
         return (

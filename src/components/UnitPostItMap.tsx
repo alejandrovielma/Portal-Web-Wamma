@@ -17,7 +17,12 @@ export function UnitPostItMap({ postItProds, handleEvent }: UnitPostItProps) {
         margin: 0,
         children: [
             {
-                id: "item2",
+                // Un id fijo ("item2") colisiona en el grid de Inicio en
+                // cuanto arrastras dos postits distintos (o el mismo dos
+                // veces) -- GridStack renombra el que llega despues, pero
+                // termina portando el contenido de React en el contenedor
+                // equivocado. Un id unico por instancia lo evita de raiz.
+                id: `unit-postit-map-${Math.random().toString(36).slice(2, 11)}`,
                 h: 2,
                 w: 2,
                 x: 0,
