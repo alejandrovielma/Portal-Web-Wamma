@@ -8,7 +8,8 @@ import SliderMapInfo, { RealatesDestination } from "#components/SliderMapInfo.ts
 import { Destination, getAllDestinations, getAllLocations, MapLocation } from "../../data/dataBase/repository";
 import { useLocation } from "react-router-dom";
 import LiveLocationSearch from "#components/LiveLocationSearch.tsx";
-import { LiveLocationResult } from "#lib/liveLocationSearch.ts";
+import { LiveLocationResult, getRecentSearches } from "#lib/liveLocationSearch.ts";
+import { PostItMapProps } from "#components/PostIts/PostItMap.tsx";
 
 function liveResultToDestination(result: LiveLocationResult): Destination {
   return {
@@ -22,6 +23,24 @@ function liveResultToDestination(result: LiveLocationResult): Destination {
       city: result.city ?? undefined,
     },
   };
+}
+
+// El grid de Home vive montado (oculto) en TODAS las paginas via
+// SelectPostItLayer, en una instancia de GridStack separada de la de
+// esta pagina -- no comparte contexto de React, asi que para agregarle
+// un postit desde aca hay que llamar directo a su API imperativa. El
+// listener que ya existe (GlobalWidgetupdater) se encarga de guardar el
+// cambio en localStorage automaticamente, igual que hace el arrastre.
+function addContentToHomeGrid(content: PostItMapProps): boolean {
+  const gridEl = document.querySelector("#gridContainer .grid-stack") as (HTMLElement & { gridstack?: any }) | null;
+  const gridStack = gridEl?.gridstack;
+  if (!gridStack) return false;
+  gridStack.addWidget({
+    w: 5,
+    h: 5,
+    content: JSON.stringify({ name: "PostItMap", props: content }),
+  });
+  return true;
 }
 
 export function Map() {
@@ -40,9 +59,11 @@ export function Map() {
   const [targetCoords, setTargetCoords] = useState<{ lat: number, lng: number } | null>(null);
   const [targetZoom, setTargetZoom] = useState<number>(15);
   const [liveLocation, setLiveLocation] = useState<LiveLocationResult | null>(null);
+  const [addedToHome, setAddedToHome] = useState(false);
   const isViewingLiveResult = infoSlider?.type === "online";
 
   useEffect(() => {
+    setAddedToHome(false);
     if (!infoSlider) return;
 
     const filtered = destinations
@@ -52,7 +73,7 @@ export function Map() {
           d.content.title !== infoSlider.content.title
       )
       .slice(0, 3)
-    const related = filtered.map((destination) => ({
+    const curatedRelated = filtered.map((destination) => ({
       onClick: () => {
         setInfoSlider(destination);
         setTargetCoords({
@@ -62,7 +83,25 @@ export function Map() {
       },
       content: destination.content,
     }));
-    setRelatedDestinations(related);
+
+    // No son "busquedas recientes" en el sentido estricto -- son otros
+    // lugares que la persona ya visito por aca, asi que se muestran
+    // junto con los destinos curados como "otros lugares para visitar",
+    // sin importar si el panel abierto ahora mismo es curado o en vivo.
+    const recentRelated = getRecentSearches()
+      .filter((r) => r.name !== infoSlider.content.title)
+      .slice(0, 2)
+      .map((r) => ({
+        onClick: () => {
+          setLiveLocation(r);
+          setInfoSlider(liveResultToDestination(r));
+          setTargetZoom(15);
+          setTargetCoords({ lat: r.lat, lng: r.lng });
+        },
+        content: liveResultToDestination(r).content,
+      }));
+
+    setRelatedDestinations([...curatedRelated, ...recentRelated]);
   }, [infoSlider, destinations]);
 
   useEffect(() => {
@@ -176,6 +215,12 @@ export function Map() {
           isLiveResult={isViewingLiveResult}
           liveFacts={isViewingLiveResult ? liveLocation?.facts : undefined}
           liveSourceUrl={isViewingLiveResult ? liveLocation?.osmUrl : undefined}
+          addedToHome={addedToHome}
+          onAddToHome={
+            infoSlider
+              ? () => setAddedToHome(addContentToHomeGrid(infoSlider.content))
+              : undefined
+          }
         />
       </div>
 

@@ -12,7 +12,7 @@ export interface RealatesDestination {
     content: PostItMapProps;
 }
 
-export function SliderMapInfo({ content, realates, handleDrag, onClose, isLiveResult, liveFacts, liveSourceUrl }: { content?: PostItMapProps; realates?: RealatesDestination[], handleDrag: (event: Event) => void, onClose: () => void, isLiveResult?: boolean, liveFacts?: LocationFact[], liveSourceUrl?: string }) {
+export function SliderMapInfo({ content, realates, handleDrag, onClose, isLiveResult, liveFacts, liveSourceUrl, onAddToHome, addedToHome }: { content?: PostItMapProps; realates?: RealatesDestination[], handleDrag: (event: Event) => void, onClose: () => void, isLiveResult?: boolean, liveFacts?: LocationFact[], liveSourceUrl?: string, onAddToHome?: () => void, addedToHome?: boolean }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const asideRef = useRef<HTMLDivElement>(null);
 
@@ -46,8 +46,8 @@ export function SliderMapInfo({ content, realates, handleDrag, onClose, isLiveRe
                         <div className="p-4 h-full flex flex-col">
                             {
                                 !isExpanded
-                                    ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), onClose, handleDrag, isLiveResult, liveFacts, liveSourceUrl })
-                                    : OpenSlider({ content, onClose: () => setIsExpanded(false), isLiveResult, liveFacts, liveSourceUrl })
+                                    ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), onClose, handleDrag, isLiveResult, liveFacts, liveSourceUrl, onAddToHome, addedToHome })
+                                    : OpenSlider({ content, onClose: () => setIsExpanded(false), isLiveResult, liveFacts, liveSourceUrl, onAddToHome, addedToHome })
                             }
                         </div>
                     )
@@ -85,7 +85,20 @@ function LiveFactsFooter({ facts, sourceUrl }: { facts?: LocationFact[]; sourceU
     );
 }
 
-function OpenSlider({ content, onClose, isLiveResult, liveFacts, liveSourceUrl }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void, isLiveResult?: boolean, liveFacts?: LocationFact[], liveSourceUrl?: string }) {
+function AddToHomeButton({ onAddToHome, addedToHome }: { onAddToHome?: () => void; addedToHome?: boolean }) {
+    if (!onAddToHome) return null;
+    return (
+        <button
+            onClick={onAddToHome}
+            disabled={addedToHome}
+            className={`w-fit text-xs font-semibold px-3 py-1.5 rounded-full transition-colors cursor-pointer disabled:cursor-default ${addedToHome ? "bg-leaf/20 text-leaf-dark" : "bg-leaf text-white hover:bg-leaf-dark"}`}
+        >
+            {addedToHome ? "✓ Agregado a Inicio" : "+ Agregar a Inicio"}
+        </button>
+    );
+}
+
+function OpenSlider({ content, onClose, isLiveResult, liveFacts, liveSourceUrl, onAddToHome, addedToHome }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void, isLiveResult?: boolean, liveFacts?: LocationFact[], liveSourceUrl?: string, onAddToHome?: () => void, addedToHome?: boolean }) {
     return (
         <div id="content" className="flex flex-col md:flex-row gap-6 md:gap-12">
             <div className="sticky top-0 -mx-4 px-4 py-2 z-10 bg-sand flex flex-col shadow-sm">
@@ -94,6 +107,7 @@ function OpenSlider({ content, onClose, isLiveResult, liveFacts, liveSourceUrl }
             <div className="flex flex-col md:flex-row gap-6 md:gap-12">
                 <section className="flex-1 flex flex-col gap-4">
                     <h1 className="font-titles text-2xl sm:text-3xl text-dark-tertiary">{content.title}</h1>
+                    <AddToHomeButton onAddToHome={onAddToHome} addedToHome={addedToHome} />
                     <p>{content.description}</p>
                     {isLiveResult && <LiveFactsFooter facts={liveFacts} sourceUrl={liveSourceUrl} />}
                 </section>
@@ -114,7 +128,7 @@ function OpenSlider({ content, onClose, isLiveResult, liveFacts, liveSourceUrl }
     )
 }
 
-function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveResult, liveFacts, liveSourceUrl }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, onClose: () => void, handleDrag: (event: Event) => void, isLiveResult?: boolean, liveFacts?: LocationFact[], liveSourceUrl?: string }) {
+function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveResult, liveFacts, liveSourceUrl, onAddToHome, addedToHome }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, onClose: () => void, handleDrag: (event: Event) => void, isLiveResult?: boolean, liveFacts?: LocationFact[], liveSourceUrl?: string, onAddToHome?: () => void, addedToHome?: boolean }) {
     return (
         <div id="content" className="flex flex-col gap-4 h-full">
             <header className="sticky top-0 -mx-4 px-4 py-2 z-10 bg-sand flex justify-between items-center gap-2 sm:gap-4 shadow-sm">
@@ -124,6 +138,7 @@ function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveRes
             </header>
             <div className="flex flex-col gap-8 justify-between h-full">
                 <div className="flex flex-col gap-4">
+                    <AddToHomeButton onAddToHome={onAddToHome} addedToHome={addedToHome} />
                     <UnitPostItMap key={content.title} postItProds={content} handleEvent={handleDrag}/>
                     <p>
                         {content?.description && content.description.length > 240
@@ -132,13 +147,16 @@ function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveRes
                     </p>
                     {isLiveResult && <LiveFactsFooter facts={liveFacts} sourceUrl={liveSourceUrl} />}
                 </div>
-                <span className="flex gap-2">
-                    {
-                        realates && realates.length > 0 && realates.map((related, index) => (
-                            <RelateCard key={index} relate={related} />
-                        ))
-                    }
-                </span>
+                {realates && realates.length > 0 && (
+                    <div className="flex flex-col gap-2">
+                        <h3 className="text-sm font-semibold text-dark-tertiary/70">Otros lugares para visitar</h3>
+                        <span className="flex gap-2 overflow-x-auto">
+                            {realates.map((related, index) => (
+                                <RelateCard key={index} relate={related} />
+                            ))}
+                        </span>
+                    </div>
+                )}
             </div>
         </div>
     )
@@ -148,7 +166,7 @@ function RelateCard({ relate }: { relate: RealatesDestination }) {
 
 
     return (
-        <button onClick={relate.onClick} className="flex overflow-hidden flex-col bg-light-secondary/50 shadow-md rounded-2xl transition-all cursor-pointer hover:bg-light-secondary/70 hover:-translate-y-1">
+        <button onClick={relate.onClick} className="flex overflow-hidden flex-col shrink-0 w-28 h-32 bg-light-secondary/50 shadow-md rounded-2xl transition-all cursor-pointer hover:bg-light-secondary/70 hover:-translate-y-1">
             <div className="h-1/2">
                 <img className="w-full h-full object-cover" src={relate.content.images[0]} alt={relate.content.title} />
             </div>
