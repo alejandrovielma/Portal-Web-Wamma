@@ -1,54 +1,5 @@
 [
   {
-    "scientificName": "Harpia harpyja",
-    "name": "Águila Harpía",
-    "phylum": "Chordata",
-    "class": "Aves",
-    "order": "Accipitriformes",
-    "family": "Accipitridae",
-    "genus": "Harpia",
-    "state": "Vulnerable",
-    "globalConservationStatus": "Vulnerable",
-    "description": "La arpía mayor, águila arpía, águila harpía o simplemente harpía es una especie de ave accipitriforme de la familia Accipitridae que vive en la zona neotropical. Es el águila más grande del hemisferio occidental y del hemisferio austral, y la única especie del género Harpia. Su hábitat es el bosque lluvioso. No se reconocen subespecies.\nSe le llama también águila coronada, aunque tal nombre se da también a otras especies, en particular a Stephanoaetus coronatus y a Harpyhaliaetus coronatus. Los géneros Harpia, Harpyopsis y Morphnus forman la subfamilia Harpiinae.",
-    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/447085421/medium.jpeg",
-    "imageAttribution": "(c) Christoph Moning, some rights reserved (CC BY), uploaded by Christoph Moning",
-    "additionalImages": [
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/153835158/medium.jpg",
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/95252648/medium.jpg",
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/13562776/medium.jpeg",
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/13562976/medium.jpeg"
-    ],
-    "distribution": "En Venezuela se encuentra al norte del Orinoco en la sierra de Perijá, sur del lago de Maracaibo (Zulia), Cordillera de la Costa central (Carabobo, Aragua, Miranda), Monagas (río Guarapiche; por ejemplo), y al sur del Orinoco en Delta Amacuro, Amazonas y Bolívar (alto río Caura, Gran Sabana, sierra de Lema, Imataca).",
-    "locations": [
-      "Ciudad Bolívar",
-      "Ciudad Guayana",
-      "El Palmar",
-      "El Callao",
-      "Tumeremo",
-      "Santa Elena de Uairén",
-      "Maripa",
-      "La Paragua",
-      "Caicara del Orinoco",
-      "Puerto Ayacucho",
-      "San Carlos de Río Negro",
-      "San Fernando de Atabapo",
-      "La Esmeralda",
-      "Tucupita",
-      "Curiapo",
-      "Capure"
-    ],
-    "imageDistribution": "/map/Harpia_harpyja_mapa_03.jpg",
-    "situation": null,
-    "danger": null,
-    "conservation": null,
-    "sources": {
-      "gbif": "https://www.gbif.org/species/2480516",
-      "inaturalist": "https://www.inaturalist.org/taxa/5321",
-      "wikipedia": "https://es.wikipedia.org/wiki/Harpia_harpyja"
-    },
-    "observationsInVenezuela": 10
-  },
-  {
     "scientificName": "Podocnemis expansa",
     "name": "Tortuga Arrau",
     "phylum": "Chordata",
@@ -91,124 +42,6 @@
       "wikipedia": "https://es.wikipedia.org/wiki/Podocnemis_expansa"
     },
     "observationsInVenezuela": 18
-  },
-  {
-    "scientificName": "Morphnus guianensis",
-    "name": "Águila Crestada",
-    "phylum": "Chordata",
-    "class": "Aves",
-    "order": "Accipitriformes",
-    "family": "Accipitridae",
-    "genus": "Morphnus",
-    "state": "Vulnerable",
-    "globalConservationStatus": "Casi Amenazada",
-    "description": "La arpía menor, también llamada águila monera, águila crestada o águila moñuda es una especie de ave accipitriforme de la familia Accipitridae propia de la región neotropical. Es el único miembro del género Morphnus. No se reconocen subespecies.",
-    "image": "https://static.inaturalist.org/photos/285619866/medium.jpeg",
-    "imageAttribution": "(c) Eduar Luis Paez Nuñez, all rights reserved, uploaded by Eduar Luis Paez Nuñez",
-    "additionalImages": [],
-    "distribution": "En Venezuela se tienen registros en Zulia, en la sierra de Perijá, en Barinas, en la Cordillera de la Costa central en Aragua, en el oriente desde Sucre (incluyendo la península de Paria) y hacia Amazonas y Bolívar, lo cual hace presumir la existencia de tres poblaciones disjuntas, dos al norte del Orinoco (sierra de Perijá, Cordillera de la Costa central, península de Paria), y una al sur del Orinoco, principalmente en la región de Imataca y Cuyuní.",
-    "locations": [
-      "Ciudad Bolívar",
-      "Ciudad Guayana",
-      "El Palmar",
-      "Tumeremo",
-      "El Callao",
-      "Maripa",
-      "La Paragua",
-      "Puerto Ayacucho",
-      "San Carlos de Río Negro",
-      "San Fernando de Atabapo",
-      "La Esmeralda"
-    ],
-    "imageDistribution": "/map/Morphnus_guianensis_mapa_03.jpg",
-    "situation": "Es una especie con bajas densidades poblacionales, además de ser escasa en toda su amplia distribución. Parece ser especialista en cazar mamíferos nocturnos y culebras grandes, y prefiere mantenerse en el interior del bosque primario, lo cual le hace sensible a la degradación de los bosques que habita.",
-    "danger": "Las principales amenazas que enfrenta están asociadas a la desaparición de los bosques. Los hábitats más amenazados para la especie se encuentran sobre todo en la Cordillera de la Costa y Zulia. Entre las amenazas a su hábitat en Perijá, se cuentan la expansión agrícola, la colonización no controlada, la ganadería y, finalmente, la minería.",
-    "conservation": "A escala internacional se encuentra incluida en el Apéndice II de la Convención sobre el comercio internacional de especies amenazadas de fauna y flora silvestres (CITES 2014). En nuestro país se establece su veda indefinida en 1996.",
-    "sources": {
-      "gbif": "https://www.gbif.org/species/2480576",
-      "inaturalist": "https://www.inaturalist.org/taxa/5384",
-      "wikipedia": "https://es.wikipedia.org/wiki/Morphnus_guianensis"
-    },
-    "observationsInVenezuela": 0
-  },
-  {
-    "scientificName": "Priodontes maximus",
-    "name": "Cachicamo Gigante",
-    "phylum": "Chordata",
-    "class": "Mammalia",
-    "order": "Cingulata",
-    "family": "Dasypodidae",
-    "genus": "Priodontes",
-    "state": "En Peligro",
-    "globalConservationStatus": "Vulnerable",
-    "description": "El armadillo gigante, también llamado tatú carreta, cuspón o gurre grande, es una especie de mamífero placentario xenartro de la familia Chlamyphoridae y subfamilia Tolypeutinae; es la especie existente más grande de armadillo, aunque sus parientes extintos, los glyptodontes, eran mucho más grandes. No se conocen subespecies y es la única especie de su género.",
-    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/373271593/medium.jpeg",
-    "imageAttribution": "(c) Luiz Alberto Santos, some rights reserved (CC BY-NC), uploaded by Luiz Alberto Santos",
-    "additionalImages": [],
-    "distribution": "Se extiende al este de los Andes desde el norte de Colombia, Venezuela y las Guayanas, hasta el norte de Argentina, abarcando la cuenca del río Amazonas. En Venezuela se encuentra a lo largo de bosques densos del piedemonte de las cordilleras de la Costa y los Andes. Se ha registrado en el occidente de Apure, Barinas, Portuguesa, Lara, Yaracuy, Zulia, nororiente de Guárico, y sur del río Orinoco en Bolívar y Amazonas.",
-    "locations": [
-      "Ciudad Bolívar",
-      "Maripa",
-      "La Paragua",
-      "Caicara del Orinoco",
-      "Puerto Ayacucho",
-      "San Fernando de Atabapo",
-      "San Carlos de Río Negro",
-      "La Esmeralda"
-    ],
-    "imageDistribution": "/map/Priodontes_maximus_mapa_02.jpg",
-    "situation": "Es una especie de biología frágil, escasa por naturaleza, con baja capacidad reproductiva y de hábitos muy especializados. De ningún fragmento de su distribución se conocen estudios poblacionales. En Venezuela se distribuye de forma amplia pero se encuentra localmente restringida con densidades poblacionales muy bajas.",
-    "danger": "Al ser un animal tan grande, enfrenta una cacería indiscriminada con fines comerciales como fuente de alimento. Además, algunas poblaciones indígenas amazónicas utilizan sus pezuñas para fabricar ornamentos.",
-    "conservation": "A escala internacional la especie está incluida en el Apéndice I de la Convención sobre el comercio internacional de especies amenazadas de fauna y flora silvestres (CITES 2014). En nuestro país se encuentra especialmente protegida desde 1983, mediante una resolución que prohíbe la cacería de cachicamos, la cual se ratifica en 1996 por un decreto que establece su veda indefinida y otro que la declara de manera oficial como Especie en Peligro de Extinción.",
-    "sources": {
-      "gbif": "https://www.gbif.org/species/5220096",
-      "inaturalist": "https://www.inaturalist.org/taxa/47085",
-      "wikipedia": "https://es.wikipedia.org/wiki/Priodontes_maximus"
-    },
-    "observationsInVenezuela": 0
-  },
-  {
-    "scientificName": "Myrmecophaga tridactyla",
-    "name": "Oso Palmero",
-    "phylum": "Chordata",
-    "class": "Mammalia",
-    "order": "Pilosa",
-    "family": "Myrmecophagidae",
-    "genus": "Myrmecophaga",
-    "state": "Vulnerable",
-    "globalConservationStatus": "Vulnerable",
-    "description": "El oso hormiguero gigante, también llamado oso palmero, oso bandera, tamandúa bandera, yurumí o ñurumí, es una especie de mamífero piloso de la familia de los mirmecofágidos que se encuentra en América Central y América del Sur. Es la única especie viviente del género Myrmecophaga y la más grande de oso hormiguero.",
-    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/108811809/medium.jpg",
-    "imageAttribution": "(c) Andy Jones, some rights reserved (CC BY-NC), uploaded by Andy Jones",
-    "additionalImages": [
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/297066334/medium.jpg",
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/107646659/medium.jpg",
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/602480534/medium.jpg"
-    ],
-    "distribution": "Myrmecophaga tridactyla es el único miembro del género. Se distribuye desde el sur de Belice y Guatemala hasta el norte de Argentina y Uruguay. En Venezuela su distribución es relativamente amplia. Al norte del río Orinoco habita sabanas, además de bosques húmedos y deciduos de los llanos, noreste y oeste de la cuenca del lago de Maracaibo y zonas contiguas del estado Falcón. Al sur del río Orinoco frecuenta sabanas y selvas húmedas de los estados Amazonas y Bolívar, incluyendo el delta del Orinoco.",
-    "locations": [
-      "Ciudad Bolívar",
-      "Maripa",
-      "La Paragua",
-      "Caicara del Orinoco",
-      "Puerto Ayacucho",
-      "San Fernando de Atabapo",
-      "San Carlos de Río Negro",
-      "La Esmeralda",
-      "Tucupita",
-      "Curiapo",
-      "Capure"
-    ],
-    "imageDistribution": "/map/Myrmecophaga_tridactyla_mapa_02.jpg",
-    "situation": "Habría que evaluar el impacto de arrollamientos en carreteras y de los incendios de vegetación sobre las poblaciones remanentes en el área de distribución de la especie. Durante un estudio de siete meses en el Cerrado brasileño en un trayecto de carretera de 120 km, de 108 arrollamientos de cuatro clases de vertebrados, 47 fueron mamíferos (11 especies) y ocho fueron del oso palmero. Se señala la pérdida de hábitat como el principal factor que actúa de forma negativa sobre las poblaciones del palmero.",
-    "danger": "Las principales amenazas que enfrenta la especie en Venezuela están relacionadas tanto con frecuentes arrollamientos en carreteras del país, como con su cacería por capricho o entretenimiento, además de ser utilizada como fuente de alimento por comunidades indígenas. Estas personas también aprovechan sus tendones para la fabricación de instrumentos de caza, además de mantener la creencia de que algunas partes de su cuerpo son afrodisíacas.",
-    "conservation": "Myrmecophaga tridactyla se encuentra incluida en el Apéndice II de la Convención sobre el comercio internacional de especies amenazadas de fauna y flora silvestres (CITES 2014). En nuestro país se estableció su veda indefinida en 1996. Su distribución geográfica abarca numerosas áreas protegidas. Su situación ha sido difundida mediante ocasionales campañas de divulgación. Se propone el desarrollo de un programa de concientización cuyo propósito sea la disminución de la frecuencia de arrollamientos en carreteras y el cumplimiento de la veda para controlar su cacería.",
-    "sources": {
-      "gbif": "https://www.gbif.org/species/2436346",
-      "inaturalist": "https://www.inaturalist.org/taxa/47107",
-      "wikipedia": "https://es.wikipedia.org/wiki/Myrmecophaga_tridactyla"
-    },
-    "observationsInVenezuela": 25
   },
   {
     "scientificName": "Tapirus terrestris",
@@ -467,35 +300,6 @@
       "wikipedia": null
     },
     "observationsInVenezuela": 1
-  },
-  {
-    "scientificName": "Podoxymys roraimae",
-    "name": "Ratón del Roraima",
-    "phylum": "Chordata",
-    "class": "Mammalia",
-    "order": "Rodentia",
-    "family": "Cricetidae",
-    "genus": "Podoxymys",
-    "state": "En Peligro",
-    "globalConservationStatus": "Vulnerable",
-    "description": "Pequeño roedor con una longitud de cuerpo entre 7 y 10 cm, y una cola de tamaño similar. Su pelaje es oscuro, con tonos que van del gris al negro, suave y largo, más corto en la cabeza. Tiene patas y cola desnudas, y un rostro alargado con pequeñas orejas redondeadas. Posee uñas proporcionalmente largas, lo que sugiere hábitos semifosoriales.",
-    "image": "https://www.especiesamenazadas.org/img/Podoxymys_roraimae_imagen_02.jpg",
-    "imageAttribution": "SIN CONFIRMAR: fuente original especiesamenazadas.org (Provita), sin licencia clara -- revisar antes de publicar",
-    "additionalImages": [],
-    "distribution": "Especie endémica de las cumbres del tepui Roraima (2.600 m s.n.m.) y del Wei-Assipu tepui (2.216 m s.n.m.), ambos en el Escudo Guayanés, Venezuela. Su área total de distribución potencial es extremadamente reducida, con una extensión de aproximadamente 43 km².",
-    "locations": [
-      "Santa Elena de Uairén"
-    ],
-    "imageDistribution": "/map/Podoxymys_roraimae_mapa_02.jpg",
-    "situation": "Se considera uno de los mamíferos más restringidos en cuanto a distribución geográfica, con pocos ejemplares colectados desde su descripción en 1929. Los registros son escasos y se limitan a pequeñas áreas de bosque tepuyano húmedo.",
-    "danger": "El turismo en el tepui Roraima y la posible introducción de especies alóctonas representan serias amenazas para esta especie. La extracción ilegal de plantas y la contaminación asociada al turismo también ponen en riesgo su frágil ecosistema.",
-    "conservation": "No se han tomado medidas específicas para su conservación. Se requiere una regulación estricta del turismo en el monte Roraima para minimizar el impacto humano. Se recomienda realizar estudios detallados sobre su distribución y biología para evaluar su estado de conservación de manera precisa.",
-    "sources": {
-      "gbif": "https://www.gbif.org/species/2438920",
-      "inaturalist": "https://www.inaturalist.org/taxa/44736",
-      "wikipedia": null
-    },
-    "observationsInVenezuela": 0
   },
   {
     "scientificName": "Stefania riveroi",
@@ -813,66 +617,6 @@
     "observationsInVenezuela": 0
   },
   {
-    "scientificName": "Leopardus wiedii",
-    "name": "Tigrito",
-    "phylum": "Chordata",
-    "class": "Mammalia",
-    "order": "Carnivora",
-    "family": "Felidae",
-    "genus": "Leopardus",
-    "state": "Vulnerable",
-    "globalConservationStatus": "Casi Amenazada",
-    "description": "Felino perteneciente al grupo de los pequeños gatos manchados, de tamaño similar a un gato doméstico, pero con un cuerpo más alargado, patas más cortas y cola más larga. Posee un pelaje suave con manchas negras y rosetas oscuras que le permiten camuflarse eficazmente en ambientes selváticos. Es un animal nocturno, solitario y muy ágil, adaptado para desplazarse entre los árboles gracias a sus fuertes extremidades y garras retráctiles.",
-    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/501215516/medium.jpg",
-    "imageAttribution": "(c) José G. Martínez-Fonseca, some rights reserved (CC BY-NC), uploaded by José G. Martínez-Fonseca",
-    "additionalImages": [
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/39048784/medium.jpeg",
-      "https://static.inaturalist.org/photos/349772565/medium.jpeg"
-    ],
-    "distribution": "En Venezuela su distribución es disjunta, ocupando un área amplia al sur del Orinoco, principalmente en regiones boscosas y selváticas como la Guayana. Se le encuentra en bosques húmedos tropicales, selvas montañosas y zonas con densa cobertura vegetal. También ha sido reportado en áreas cercanas a cuerpos de agua, lo que sugiere una preferencia por hábitats bien conservados y con escasa presencia humana.",
-    "locations": [
-      "Ciudad Guayana",
-      "Ciudad Bolívar",
-      "Upata",
-      "Tumeremo",
-      "El Callao",
-      "Guasipati",
-      "Caicara del Orinoco",
-      "El Manteco",
-      "El Palmar",
-      "Maripa",
-      "La Paragua",
-      "Las Claritas",
-      "El Dorado",
-      "Ciudad Piar",
-      "San Francisco de la Paragua",
-      "San Pedro de las Bocas",
-      "Santa Cruz de Orinoco",
-      "Santa Rosalía",
-      "Santa Teresa de Canavayen",
-      "Puerto Ayacucho",
-      "San Fernando de Atabapo",
-      "San Carlos de Río Negro",
-      "Maroa",
-      "La Esmeralda",
-      "Isla Ratón",
-      "San Juan de Manapiare",
-      "San Fernando de Guainía",
-      "San Simón de Cocuy",
-      "Santa Rosa de Amanadona"
-    ],
-    "imageDistribution": "/map/Leopardus_wiedii_mapa_02.jpg",
-    "situation": "Se considera una especie poco común y especialista de hábitat, lo que la hace particularmente sensible a los cambios ambientales. Su baja densidad poblacional y hábitos elusivos dificultan su estudio, lo que contribuye al desconocimiento sobre su ecología y comportamiento. La pérdida de hábitat por deforestación, minería y expansión agrícola representa una de las mayores amenazas para su supervivencia.",
-    "danger": "Como la mayoría de los felinos manchados, hasta principios de los años 1980 fue víctima de una fuerte presión por el comercio de pieles, lo que diezmó muchas poblaciones. Actualmente, la caza ilegal y la pérdida acelerada de su hábitat siguen siendo amenazas importantes. Además, su comportamiento arbóreo lo expone a riesgos como incendios forestales y tala selectiva de árboles clave.",
-    "conservation": "Su comercio internacional está regulado por el Apéndice I de la CITES, que prohíbe su exportación con fines comerciales. A nivel nacional, está protegido por la legislación venezolana, y su presencia en parques nacionales y áreas protegidas ofrece un cierto resguardo. Sin embargo, se requiere fortalecer la vigilancia en estas zonas y promover programas de educación ambiental y monitoreo científico para garantizar su conservación a largo plazo.",
-    "sources": {
-      "gbif": "https://www.gbif.org/species/2434950",
-      "inaturalist": "https://www.inaturalist.org/taxa/41988",
-      "wikipedia": null
-    },
-    "observationsInVenezuela": 2
-  },
-  {
     "scientificName": "Podocnemis unifilis",
     "name": "Terecay",
     "phylum": "Chordata",
@@ -960,82 +704,6 @@
       "wikipedia": null
     },
     "observationsInVenezuela": 6
-  },
-  {
-    "scientificName": "Leopardus tigrinus",
-    "name": "Gato de Monte",
-    "phylum": "Chordata",
-    "class": "Mammalia",
-    "order": "Carnivora",
-    "family": "Felidae",
-    "genus": "Leopardus",
-    "state": "Vulnerable",
-    "globalConservationStatus": "Vulnerable",
-    "description": "Es el más pequeño de los felinos neotropicales, con un tamaño corporal similar al de un gato doméstico. Posee un pelaje densamente manchado con patrones de rosetas y puntos oscuros que varían entre individuos, lo que le proporciona un excelente camuflaje en su entorno selvático. Tiene una cabeza redondeada, orejas cortas y una cola relativamente larga. Es de hábitos nocturnos y solitarios, y su dieta incluye pequeños mamíferos, aves, reptiles e insectos.",
-    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/658580533/medium.jpg",
-    "imageAttribution": "(c) Felipe OPassos, some rights reserved (CC BY-NC), uploaded by Felipe OPassos",
-    "additionalImages": [],
-    "distribution": "En Venezuela, Leopardus tigrinus tiene una distribución disjunta, con una subpoblación que ocupa un área amplia al sur del Orinoco, especialmente en la región Guayana, y otra al norte en áreas montañosas de la cordillera de la Costa y la cordillera de Mérida. Su presencia está asociada a bosques húmedos tropicales, selvas nubladas y áreas de densa vegetación, siendo más frecuente en zonas poco intervenidas por el ser humano.",
-    "locations": [
-      "Ciudad Guayana",
-      "Ciudad Bolívar",
-      "Upata",
-      "El Callao",
-      "Caicara del Orinoco",
-      "Puerto Ayacucho",
-      "San Fernando de Atabapo",
-      "San Carlos de Río Negro",
-      "Maroa",
-      "La Esmeralda",
-      "San Juan de Manapiare",
-      "San Fernando de Guainía",
-      "San Simón de Cocuy"
-    ],
-    "imageDistribution": "/map/Leopardus_tigrinus_mapa_03.jpg",
-    "situation": "Leopardus tigrinus es de baja abundancia y poco conocida, en parte por sus hábitos nocturnos y comportamiento evasivo. La fragmentación de su hábitat, sumada a la falta de investigaciones sistemáticas, impide tener una visión clara sobre el tamaño y la salud de sus poblaciones. La presión humana sobre sus ecosistemas ha incrementado el riesgo de aislamiento genético y disminución poblacional.",
-    "danger": "Al igual que las otras especies de gatos manchados, la cacería comercial de Leopardus tigrinus fue bastante común hasta fines de la década de 1980, principalmente por su atractiva piel. Aunque su caza ha disminuido por restricciones legales, persisten amenazas como la pérdida de hábitat por actividades mineras, agrícolas y urbanísticas, además del atropello en carreteras y conflictos con humanos en zonas rurales.",
-    "conservation": "Su comercio internacional está regulado por la CITES (Apéndice I), lo que prohíbe su comercialización con fines lucrativos. En Venezuela está protegido por la legislación nacional, y es parte de la fauna de diversas áreas protegidas. No obstante, es necesario implementar programas de monitoreo, fortalecer la protección de sus hábitats y fomentar la educación ambiental para garantizar su conservación efectiva.",
-    "sources": {
-      "gbif": "https://www.gbif.org/species/2434930",
-      "inaturalist": "https://www.inaturalist.org/taxa/544590",
-      "wikipedia": null
-    },
-    "observationsInVenezuela": 0
-  },
-  {
-    "scientificName": "Bothrops medusa",
-    "name": "Culebra de Medusa",
-    "phylum": "Chordata",
-    "class": "Reptilia",
-    "order": "Squamata",
-    "family": "Viperidae",
-    "genus": "Bothrops",
-    "state": "En Peligro",
-    "globalConservationStatus": "En Peligro",
-    "description": "Serpiente venenosa pequeña (50-80 cm) con cabeza lanceolada y bien diferenciada del cuerpo, ojos grandes con pupilas verticales y escamas fuertemente quilladas. Su coloración varía entre marrón claro y grisáceo con patrones oscuros en forma de bandas irregulares, lo que le proporciona un excelente camuflaje en el suelo del bosque. Es una especie terrestre, de hábitos nocturnos, y se alimenta de pequeños vertebrados como anfibios, lagartijas y roedores.",
-    "image": "https://static.inaturalist.org/photos/59672009/medium.jpg",
-    "imageAttribution": "(c) Luis Alejandro Rodriguez J., all rights reserved, uploaded by Luis Alejandro Rodriguez J.",
-    "additionalImages": [
-      "https://static.inaturalist.org/photos/59672009/medium.jpg",
-      "https://static.inaturalist.org/photos/59672017/medium.jpg"
-    ],
-    "distribution": "Bothrops medusa es endémica de la porción central en la cordillera de la Costa, en Venezuela, específicamente en los estados Aragua, Miranda y Distrito Capital. Habita en bosques nublados y premontanos entre los 800 y 1.500 m de altitud, ambientes caracterizados por una alta humedad y densa cobertura vegetal. Su distribución restringida y fragmentada la hace particularmente vulnerable a perturbaciones ambientales.",
-    "locations": [
-      "Puerto Ayacucho",
-      "San Fernando de Atabapo",
-      "San Carlos de Río Negro",
-      "La Esmeralda"
-    ],
-    "imageDistribution": "/map/Bothrops_medusa_mapa_02.jpg",
-    "situation": "No ha sido evaluada con anterioridad a nivel nacional ni internacional, pero estudios recientes indican que su área de ocupación es extremadamente limitada. La especie es poco conocida y rara vez observada, lo que dificulta la recopilación de datos poblacionales. La falta de investigaciones sistemáticas y su reducida distribución hacen que se encuentre en una situación de alta preocupación para la conservación.",
-    "danger": "Bothrops medusa está afectada por la continua pérdida del hábitat a causa de la expansión urbana, la agricultura intensiva y la construcción de infraestructuras. Su entorno montañoso ha sido severamente fragmentado, disminuyendo sus zonas de refugio y reproducción. También enfrenta persecución directa por el miedo que genera su veneno, a pesar de su importancia en el control biológico de plagas.",
-    "conservation": "Algunas poblaciones viven en áreas protegidas como el Parque Nacional Henri Pittier, lo que brinda cierto nivel de resguardo. No obstante, se requiere un plan de acción específico que incluya estudios ecológicos, monitoreo poblacional, programas de sensibilización local y la protección efectiva de su hábitat. Su inclusión en listas nacionales de especies amenazadas es urgente para facilitar su manejo y conservación.",
-    "sources": {
-      "gbif": "https://www.gbif.org/species/7597838",
-      "inaturalist": "https://www.inaturalist.org/taxa/539418",
-      "wikipedia": null
-    },
-    "observationsInVenezuela": 1
   },
   {
     "scientificName": "Epinephelus itajara",
@@ -1297,39 +965,6 @@
     "observationsInVenezuela": 0
   },
   {
-    "scientificName": "Ateles hybridus",
-    "name": "mono araña",
-    "phylum": "Chordata",
-    "class": "Mammalia",
-    "order": "Primates",
-    "family": "Atelidae",
-    "genus": "Ateles",
-    "state": "En Peligro",
-    "globalConservationStatus": "En Peligro Crítico",
-    "description": "Es un primate de gran tamaño (~8 kg) con un parche blanco en la frente. Sus ojos, en ocasiones, son de color azulado. El pelaje es largo y lacio. Es de un marrón a marrón grisáceo en la región dorsal y marrón claro a marrón amarilento y beige en la zona ventral. Cola larga y prensil, así como piernas y brazos alargados con manos sin pulgar (Linares 1998, Defler 2003). Diurno y frugívoro, forma parte de la lista de los 25 primates más amenazados del mundo (B. Urbani obs. pers.).",
-    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/48421065/medium.jpg",
-    "imageAttribution": "(c) Joachim S. Müller, some rights reserved (CC BY-NC-SA)",
-    "additionalImages": [
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/253328968/medium.jpeg",
-      "https://static.inaturalist.org/photos/261401448/medium.jpeg",
-      "https://static.inaturalist.org/photos/290428895/medium.jpeg"
-    ],
-    "distribution": "Ateles hybridus se consigue de forma discontinua o disyunta en Venezuela. El norte de su distribución, se localiza al sureste de la cordillera de la Costa en el estado Miranda y es posible que en Vargas. A su vez se encuentra a ambos lados de la cordillera de los Andes (Apure, Barinas, Mérida, Táchira, Trujillo y Zulia), así como en los bosques piemontanos de Ticoporo, San Camilo y Caparo. En el extremo occidental, se localiza en las tierras bajas del sur del lago de Maracaibo, en los Andes y en la sierra de Perijá. Ocupa un intervalo altitudinal de 20 a 700 m. (Mondolfi y Eisenberg 1979, Bodini y Pérez-Hernández 1987, Bodini 1989, Congdon 1996, Linares 1998, Cordero-Rodríguez y Biord 2001, Portillo-Quintero y Velásquez 2006, Duque 2007, Morales-Jiménez et al. 2008, Urbani et al. 2008, Duque 2009, Rivas-Rojas 2009, Duque 2011, Duque 2012, Duque 2013, B. Urbani obs. pers.). En fecha reciente, se registró un reporte de posible presencia histórica de la especie en la frontera entre los estados Trujillo y Lara (B. Urbani obs. pers.). La especie habita en bosques húmedos montanos y selvas altas primarias, así como en semideciduos de tierras bajas. Si bien es típicamente reportada para bosques continuos, Duque (2012, 2013) la observa en un área de bosque muy fragmentado (Duque 2012, Duque 2013). D. Lew (com. pers.) estima que para: a) la región de Barlovento del estado Miranda su área podría abarcar cerca de 12.000 km2; b) el flanco oriental-llanero de los Andes se distribuye en cerca de 40 fragmentos, teniendo diez de estos entre 700 y 1.800 km2 de área, y c) en la región de la cuenca del lago de Maracaibo su distribución se reduce a menos de 15.000 km2 en diez fragmentos. El mismo investigador (D. Lew com. pers.) sugiere que la transformación drástica de su hábitat potencial pudiera muy pronto dejar menos de 20.000 km2 de bosque en potencia ocupado por esta especie, estando en su mayoría ya fragmentado. Su distribución a nivel mundial se restringe a Colombia y Venezuela.",
-    "locations": [
-      "Ciudad Bolívar"
-    ],
-    "imageDistribution": "/map/Ateles_hybridus_mapa_02.jpg",
-    "situation": "A la fecha no se ha publicado ningún estudio detallado sobre su ecología y comportamiento en nuestro país. Sin embargo, Congdon (1996) realiza un breve prospecto sobre la conducta de Ateles hybridus en la Reserva Forestal Caparo, donde en la actualidad Duque (2011, 2012, 2013) desarrolla un programa de estudio sobre estos tópicos. De igual manera, Duque (2007, 2009) proporcionó una lista de árboles frutales potencialmente utilizables por la especie en el Parque Nacional Waraira Repano (El Ávila). Se han efectuado otros reconocimientos de campo del primate en su área de distribución centro-norte (Mondolfi y Eisenberg 1979, Cordero-Rodríguez y Biord 2001, Rivas-Rojas 2009, B. Urbani obs. pers.). En la sierra de Perijá, Portillo-Quintero y Velásquez (2006) realizaron un estudio de viabilidad de la especie, y Lizarralde (2002) uno sobre etnoprimatología barí, indicando que es el mono araña preferido para cacería, y de hecho su nombre en lengua barí «shugshaa» significa «carne».",
-    "danger": "Diferentes amenazas parecen direccionar a Ateles hybridus hacia serios problemas, tales como pérdida y fragmentación de bosques por acciones antrópicas (actividades agropecuarias y madereras), cacería, utilización como mascota, incremento de ocupación de la tierra nativa de la especie por poblaciones humanas (en especial alrededor de regiones urbanas y pecuarias) y falta de divulgación de información sobre su situación a nivel local, regional y nacional. También se desconoce si existe alguna amenaza potencial debido a enfermedades infecciosas, sobre todo en aquellas poblaciones del primate cercanas a áreas de ocupación humana. En el estado Zulia y el piedemonte de la sierra de Perijá su hábitat ha sido en particular devastado por las actividades agropecuarias (B. Urbani obs. pers.). Para esa región, Portillo-Quintero y Velásquez (2006) realizaron un estudio donde se determinó que a pesar de que la extensión de bosque en la zona es aún amplia (813.257 ha), solo 30% está relativamente bien conservada o protegida, y el resto se halla afectada por la rápida diseminación de poblaciones humanas, lo que implica un consecuente incremento en la deforestación y fragmentación, y pone en riesgo cualquier posibilidad de creación de corredores forestales. Lizarralde (2002) reporta que en Perijá, los monos arañas están entre los animales de interés de caza. En el centro de Venezuela, áreas que fueron reportadas con estos primates (Cordero-Rodríguez y Biord 2001) luego fueron revisitadas por Duque (2007, 2009) sin éxito de hallazgos; por el contrario, el lugar se observó transformado en bosques secundarios. En la misma región, B. Urbani (obs. pers.) frecuentó lugares alrededor de un área protegida con avistamientos confirmados de estos monos (parque nacional Guatopo), así como áreas protegidas del norte de Venezuela, sin confirmaciones de los mismos (Monumento Natural Cueva Alfredo Jahn, y parques nacionales Henri Pittier, San Esteban y Guaraira Rapano); observando que en las afueras los espacios se encuentran transformados por actividades de agricultura, en bosques secundarios o en asentamientos humanos. El flanco este de los Andes, donde se encuentran las selvas de San Camilo y Ticoporo, así como Caparo (Duque 2012, 2013), están también bajo fuertes presiones por acciones de madereros y actividades pecuarias. Boher (2007, en Duque 2007) indica que es posible que el hábitat de la especie se pudiera haber reducido a la mitad en los últimos setenta años. Esto explicaría, en parte, su distribución discontinua (Cordero-Rodríguez y Biord 2001, Duque 2007). En la sierra de Perijá, la cacería estaría provocando extinciones locales (B. Urbani obs. pers.), y otras presiones antrópicas, fundamentalmente debidas a la deforestación (Portillo-Quintero y Velásquez 2006). Es del todo necesario considerar que el intervalo entre partos para A. hybridus es en particular dilatado, lo cual puede aumentar su susceptibilidad a extinciones locales.",
-    "conservation": "Se requiere seguir fortaleciendo los parques nacionales donde se halla (e.g. Guatopo y Sierra de Perijá). Además, debe evitarse la extracción maderera ilegal. Igualmente, sería ideal estimular a organizaciones conservacionistas para que adopten a Ateles hybridus como especie bandera, así como incrementar los programas de educación en torno a la especie. Los estudios de ecología básica y comportamiento tienen que expandirse. El tráfico y cacería habrán de evitarse y penalizarse utilizando los medios legales existentes. A nivel internacional está incluida en el Apéndice II de la Convención sobre el comercio internacional de especies amenazadas de fauna y flora silvestres (Urbani et al. 2008, CITES 2014).",
-    "sources": {
-      "gbif": "https://www.gbif.org/species/4267251",
-      "inaturalist": "https://www.inaturalist.org/taxa/74091",
-      "wikipedia": null
-    },
-    "observationsInVenezuela": 9
-  },
-  {
     "scientificName": "Oreophrynella quelchii",
     "name": "sapito negro del Roraima",
     "phylum": "Chordata",
@@ -1438,47 +1073,6 @@
       "wikipedia": null
     },
     "observationsInVenezuela": 0
-  },
-  {
-    "scientificName": "Leopardus pardalis",
-    "name": "ocelote",
-    "phylum": "Chordata",
-    "class": "Mammalia",
-    "order": "Carnivora",
-    "family": "Felidae",
-    "genus": "Leopardus",
-    "state": "Vulnerable",
-    "globalConservationStatus": null,
-    "description": "Es el felino de mayor tamaño del género Leopardus, conformado por los pequeños gatos manchados de América. Alcanza entre 40 y 45 cm de alto, con una longitud desde la cabeza hasta la base de la cola entre 70 y 100 cm. Las hembras son más pequeñas que los machos, pesando de 9 a 9,4 kg y entre 10 y 12 kg, respectivamente. La cola mide 27 a 45 cm, siendo ésta menos larga que su pata trasera (Eisenberg 1989, Emmons 1990, Murray y Gardner 1997, Linares 1998). Su pelaje corto y rígido presenta una coloración dorsal parda amarillenta con manchas oscuras alargadas e irregulares, en un patrón que es único para cada individuo. El vientre es blanco con manchas negras. La cabeza es similar en color al dorso, con el pelaje del cuello dirigido hacia adelante. Presenta orejas redondeadas, ojos grandes y patas delanteras más grandes que las traseras, por lo que en algunas localidades se conoce con el nombre de «manigordo». Es un carnívoro solitario y territorial, de hábitos nocturnos y crepusculares. Se alimenta de vertebrados pequeños, sobre todo mamíferos, aves y reptiles que caza al acecho, de forma típica sobre el suelo (Eisenberg 1989, Emmons 1990, Murray y Gardner 1997, Linares 1998, Morales-Campos 2012). Antes era conocida como Felis pardalis. Se reconocen diez subespecies, de las cuales dos se encuentran en el país: L. pardalis melanura y L. pardalis pseudopardalis (Bisbal 1989, Murray y Gardner 1997, Linares 1998, Wozencraft 2005, Clavijo y Ramírez 2009).",
-    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/552302712/medium.jpg",
-    "imageAttribution": "(c) Jane Kempler &amp; Andrew Goldby Freelance, some rights reserved (CC BY-NC-ND), uploaded by Jane Kempler &amp; Andrew Goldby Freelance",
-    "additionalImages": [
-      "https://static.inaturalist.org/photos/611034272/medium.jpg",
-      "https://inaturalist-open-data.s3.amazonaws.com/photos/675734077/medium.gif",
-      "https://static.inaturalist.org/photos/631969821/medium.jpg",
-      "https://static.inaturalist.org/photos/631969850/medium.jpg"
-    ],
-    "distribution": "Leopardus pardalis se distribuye ampliamente desde el sur de los Estados Unidos, hasta el norte de Argentina, incluyendo Trinidad e isla de Margarita en Venezuela. No se ha reportado en las grandes planicies andinas, ni en el resto de las Antillas (Bisbal 1983, Eisenberg 1989, Murray y Gardner 1997, Linares 1998, Bisbal 2001). La distribución reportada de las dos subespecies presentes en Venezuela indica que L. pardalis melanura se encuentra al sur del Orinoco y del Sistema Deltaico, mientras que L. pardalis pseudopardalis está presente al norte del Orinoco, abarcando las regiones de la Cordillera de la Costa, Llanos, Sistema Coriano, depresión del lago de Maracaibo y la región insular, exclusivamente en la Isla de Margarita (Bisbal 1983, Murray y Gardner 1997, Linares 1998, Bisbal 2001). Sin embargo, esta distribución debe ser revisada, ya que se presume que la población de la isla de Margarita pertenece a una especie plena, diferente a la de tierra firme (J. Molinari com. pers., Abarca 2009). Este carnívoro se encuentra sobre todo asociado a regiones de tierras bajas (por debajo de 1.000 m de altitud), dominadas por formaciones vegetales de gran cobertura, predominantemente bosques. Sin embargo, también se ha reportado en zonas altas al sur del Orinoco, el estado Sucre y los Andes, hasta los 1.900 m de altitud (Handley Jr. 1976, Mondolfi 1976, Ojasti y Brull 1981a, Bisbal 1989, Desurca 2001, MARNR 2002, MARNR 2006). Puede utilizar gran variedad de ambientes, aunque es más frecuente en bosques húmedos, así como en bosques semideciduos y deciduos, bosques de galería y bosques espinosos. También puede conseguirse en áreas de manglares, matorrales, sabanas y ambientes xerofíticos (Ojasti y Brull 1981a, Bisbal 1989, Bisbal 1992, Sunquist 1992, Murray y Gardner 1997, Linares 1998).",
-    "locations": [
-      "Ciudad Guayana",
-      "Ciudad Bolívar",
-      "Caicara del Orinoco",
-      "Santa Elena de Uairén",
-      "Maripa",
-      "La Paragua",
-      "San Francisco de la Paragua",
-      "Santa Cruz de Orinoco"
-    ],
-    "imageDistribution": "/map/Leopardus_pardalis_mapa_03.jpg",
-    "situation": "Se considera uno de los felinos más comunes, pudiendo habitar áreas intervenidas, como bosques secundarios y ecotonos, incluso cerca de áreas con actividad humana (Bisbal 1992, Sunquist 1992, Nowell y Jackson 1996, Linares 1998). Sin embargo, la escasa información disponible en el país sobre su distribución y ecología, limita la evaluación de su estado de conservación. Al norte del Orinoco, las intensas y constantes presiones antrópicas generadas por la creciente actividad humana desarrollada en la región, pudieran estar provocando la disminución y aislamiento de sus poblaciones. Por tanto, la situación de amenaza de L. pardalis pseudopardalis pudiera ser crítica, principalmente en Perijá, al sur del lago de Maracaibo, los Andes, la cordillera de La Costa e isla de Margarita (Linares 1998). El estado de amenaza de la subpoblación presente en la isla de Margarita podría ser aún más alarmante, en caso de confirmarse que se trata de una especie plena (Abarca 2009). Al sur del país la presencia de grandes extensiones boscosas y las menores presiones antrópicas pudieran indicar que las poblaciones de L. pardalis melanura no están amenazadas, al menos a corto plazo. Leopardus pardalis se encuentra presente en numerosas áreas protegidas, como parques nacionales, que serían clave para su conservación (Ojasti y Brull 1981a, Mondolfi 1986, Bisbal 1989); sin embargo se desconoce la situación actual de las agrupaciones que allí pudieran mantenerse. Es importante destacar que estudios moleculares evidencian una diferenciación genética entre las subespecies descritas, por lo que las extinciones locales de cada una de estas subespecies, implicaría una importante reducción en la variabilidad genética de este felino (Eizirik et al. 1998). La Unión Internacional para la Conservación de la Naturaleza (UICN) considera a la especie en el nivel de Preocupación Menor a escala global (Caso et al. 2008a). Regionalmente ha sido clasificada en Argentina en la categoría En Peligro, Amenazada en Brasil, en situación Indeterminada (Datos Insuficientes) en Perú, y Casi Amenazada en Colombia y Ecuador (Pulido 1991, Bertonatti y González 1993, Rodríguez-Mahecha et al. 2006, Tirira 2011).",
-    "danger": "Hasta principios de 1980, la cacería comercial de Leopardus pardalis por su piel fue una actividad muy generalizada, siendo uno de los gatos manchados con mayor presión de caza por parte de la industria peletera (Nowell y Jackson 1996, Murray y Gardner 1997, Clavijo y Ramírez 2009). En Venezuela, esa actividad con fines comerciales fue muy intensa en los llanos, Zulia, Falcón, Yaracuy y Bolívar, reportándose más de 2.500 pieles exportadas por año a Estados Unidos entre 1968 y 1970, lo cual debe haber producido una drástica reducción en sus poblaciones (Römer et al. 1971, Mondolfi 1986). En la actualidad, su principal amenaza es la pérdida y fragmentación de su hábitat (Mondolfi 1986, Bisbal 1992, Nowell y Jackson 1996, Eizirik et al. 1998), debido a la destrucción de la cobertura boscosa, sobre todo por la expansión de la frontera agrícola y urbana. Se estima que al menos un 22% de la cobertura vegetal del país se encuentra modificada, principalmente al norte del Orinoco (Oliveira-Miranda et al. 2010c), incluyendo gran parte de las áreas de distribución del felino; aunque se desconoce el impacto que esto ha ocasionado sobre su estado de conservación. La pérdida de hábitat y la cacería indiscriminada han disminuido la disponibilidad de sus presas naturales, empeorando de modo directo el estado de conservación de sus poblaciones, y promoviendo la incorporación de animales domésticos en su dieta, lo que hace que esta se convierta en una de las causas fundamentales de su cacería por conflicto (Nowell y Jackson 1996, Caso et al. 2008a, Clavijo y Ramírez 2009). Aunque su cacería se ha reducido, sigue siendo perseguida ilegalmente por considerarse una especie perjudicial (cacería por conflicto), un trofeo (cacería deportiva), por el valor comercial que tiene como mascota, o por la venta de su piel, huesos, colmillos, garras y grasa (Bisbal 1992).",
-    "conservation": "El comercio internacional de Leopardus pardalis está regulado, ya que se encuentra incluida en el Apéndice I de la Convención sobre el comercio internacional de especies amenazadas de fauna y flora silvestres (CITES 2014). En nuestro país su cacería está prohibida de forma indefinida, siendo a su vez declarada Especie en Peligro de Extinción (Venezuela 1996a, Venezuela 1996b). Sin embargo, es necesario garantizar el cumplimiento de la veda de caza de este felino y sus presas naturales, en particular en áreas protegidas, donde aún se practica la cacería ilegal. En vista de que existen importantes vacíos de información que limitan la evaluación de la situación de la especie, es fundamental promover la investigación sobre su biología y ecología, tal y como se sugiere a nivel global en el plan de acción del Grupo de Especialistas Felinos de la UICN (Sunquist 1992, Nowell y Jackson 1996). Aunque existen estudios poblacionales en áreas clave de su distribución (Sunquist 1992, Abarca 2009, E. Isasi-Catalá obs. pers.), es necesario profundizar en las evaluaciones de su distribución, estado poblacional y amenazas en toda el área donde se distribuye, con énfasis en el norte del Orinoco, para poder plantear planes de manejo tanto ex situ como in situ. En específico para la población de la isla de Margarita, se requiere con urgencia realizar la evaluación taxonómica de la especie. Además, sería recomendable profundizar en los estudios genéticos, para así disponer de información sobre la variabilidad genética, tanto cromosómica como de ADN de las poblaciones (Eizirik et al. 1998, Aguilera et al. 2010). Las estrategias de conservación ex situ, como la cría en cautiverio, pudieran servir para reforzar y restaurar poblaciones naturales. Sin embargo, se considera que las medidas in situ, como la creación y fortalecimiento de áreas protegidas, pudieran ser más efectivas y viables. Por ello, se debe evaluar la efectividad de las áreas ya existentes, principalmente de la subespecie L. pardalis pseudopardalis. Luego, es ineludible identificar y proponer la creación de nuevas áreas de conservación, así como corredores naturales, que conformen una red de zonas protegidas que garantice el mantenimiento de poblaciones viables a largo plazo (Mondolfi 1986, Nowell y Jackson 1996, Caso et al. 2008a). Resulta fundamental desarrollar campañas informativas y de educación ambiental para reforzar el valor ecológico y cultural de la especie, que busquen mejorar la percepción humana que se tiene sobre L. pardalis, así como reducir su cacería por conflicto y comercio (Núñez 1992).",
-    "sources": {
-      "gbif": "https://www.gbif.org/species/2434982",
-      "inaturalist": "https://www.inaturalist.org/taxa/41997",
-      "wikipedia": null
-    },
-    "observationsInVenezuela": 15
   },
   {
     "scientificName": "Crocodylus intermedius",
