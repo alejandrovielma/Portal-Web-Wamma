@@ -111,7 +111,11 @@ const AQUATIC_BIRD_ORDERS = new Set([
 ]);
 
 const AQUATIC_MAMMAL_ORDERS = new Set(["Cetacea", "Sirenia"]);
-const AQUATIC_MAMMAL_FAMILIES = new Set(["Mustelidae", "Hippopotamidae"]); // nutrias, hipopotamos
+const AQUATIC_MAMMAL_FAMILIES = new Set([
+  "Mustelidae", // nutrias
+  "Hippopotamidae", // hipopotamos
+  "Caviidae", // chiguires/capibaras -- semi-acuaticos, muy asociados al agua en Venezuela
+]);
 
 function isAquaticTaxon(taxonomy: {
   phylum: string | null;
@@ -138,6 +142,38 @@ function isAquaticTaxon(taxonomy: {
   return false;
 }
 
+// Nombres venezolanos que las APIs internacionales (en ingles, o pensadas
+// para otros paises hispanohablantes) resuelven mal o ambiguo:
+//   - terminos que no existen fuera de Venezuela ("chiguire", "baba"),
+//   - o que en otro pais/idioma significan otra cosa ("pavon" trae un
+//     ave europea en vez del pez venezolano, "caribe" se confunde con
+//     el mar Caribe).
+// Se resuelven directo al nombre cientifico antes de ir a buscar.
+const VENEZUELAN_SYNONYMS: Record<string, string> = {
+  "pavon": "Cichla ocellaris", // pez -- las APIs traen un ave europea (Vanellus vanellus)
+  "pavón": "Cichla ocellaris",
+  "caribe": "Serrasalmus rhombeus", // piraña -- se confunde con "Caribbean" (el mar)
+  "caribes": "Serrasalmus rhombeus",
+  "chiguire": "Hydrochoerus hydrochaeris", // capibara -- termino puramente venezolano
+  "chigüire": "Hydrochoerus hydrochaeris",
+  "capibara": "Hydrochoerus hydrochaeris",
+  "baba": "Caiman crocodilus", // caiman de anteojos -- "baba" no se reconoce como animal
+  "babas": "Caiman crocodilus",
+  "morrocoy": "Chelonoidis carbonarius", // tortuga terrestre -- termino venezolano/caribeño
+  "cachama": "Piaractus brachypomus", // pez muy criado/consumido en Venezuela
+  "curito": "Hoplosternum littorale", // bagre acorazado de agua dulce
+  "guabina": "Hoplias malabaricus", // pez de agua dulce
+  "tonina": "Inia geoffrensis", // delfin de rio -- ya funcionaba bien, se deja explicito
+};
+
+function resolveVenezuelanSynonym(query: string): string | null {
+  const normalized = query
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, ""); // quita tildes para matchear con o sin acento
+  return VENEZUELAN_SYNONYMS[query.toLowerCase()] ?? VENEZUELAN_SYNONYMS[normalized] ?? null;
+}
+
 /**
  * Busca un animal por nombre (cientifico o comun) combinando las 3 fuentes.
  * Lanza NetworkUnreachableError si no se pudo contactar a NINGUNA API
@@ -150,13 +186,19 @@ export async function searchAnimalLive(query: string): Promise<LiveAnimalResult>
 
   const reachable = { value: false };
 
+  // Nombres venezolanos que las APIs internacionales no reconocen o
+  // resuelven a otra cosa (ver VENEZUELAN_SYNONYMS) se resuelven directo
+  // al nombre cientifico antes de ir a buscar.
+  const synonym = resolveVenezuelanSynonym(trimmed);
+  const effectiveQuery = synonym ?? trimmed;
+
   // iNaturalist entiende nombres comunes en español razonablemente bien,
   // pero por defecto el resultado #1 suele ser un genero/familia/orden
   // (ej. buscar "caiman" da la orden "Crocodylia", no una especie).
   // Pedimos varios candidatos con locale=es y despues nos quedamos con
   // el primero que sea una ESPECIE real y que ademas sea acuatico.
   const inatTaxa = await tryFetchJson(
-    `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(trimmed)}&per_page=10&locale=es`,
+    `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(effectiveQuery)}&per_page=10&locale=es`,
     reachable
   );
   const candidates = (inatTaxa?.results ?? []).filter((t: any) => t.rank === "species");
@@ -164,9 +206,10 @@ export async function searchAnimalLive(query: string): Promise<LiveAnimalResult>
   // Consultamos GBIF (da phylum/class/order/family completos, mejor que
   // el iconic_taxon_name gruesco de iNaturalist) para cada candidato en
   // paralelo, y tambien intentamos un match directo por si escribieron
-  // el nombre cientifico exacto.
+  // el nombre cientifico exacto (o por si es un sinonimo venezolano ya
+  // resuelto al nombre cientifico).
   const [directGbif, ...candidateGbifs] = await Promise.all([
-    tryFetchJson(`https://api.gbif.org/v1/species/match?name=${encodeURIComponent(trimmed)}`, reachable),
+    tryFetchJson(`https://api.gbif.org/v1/species/match?name=${encodeURIComponent(effectiveQuery)}`, reachable),
     ...candidates.map((c: any) =>
       tryFetchJson(`https://api.gbif.org/v1/species/match?name=${encodeURIComponent(c.name)}`, reachable)
     ),
