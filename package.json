@@ -19,8 +19,6 @@
     "#assets/*": "./src/assets/*"
   },
   "dependencies": {
-    "@react-router/node": "^7.5.3",
-    "@react-router/serve": "^7.5.3",
     "@tailwindcss/vite": "^4.1.6",
     "framer-motion": "^12.12.0",
     "gridstack": "^12.1.1",
