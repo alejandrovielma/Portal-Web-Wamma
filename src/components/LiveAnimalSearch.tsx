@@ -6,13 +6,15 @@ import {
   NotAquaticError,
   LiveAnimalResult,
 } from "#lib/liveSpeciesSearch.ts";
+import LiveAnimalCard from "#components/LiveAnimalCard.tsx";
 
 interface LiveAnimalSearchProps {
   initialQuery?: string;
   title?: string;
+  handleDrag: (event: Event) => void;
 }
 
-export function LiveAnimalSearch({ initialQuery = "", title = "Buscar otro animal en línea" }: LiveAnimalSearchProps) {
+export function LiveAnimalSearch({ initialQuery = "", title = "Buscar otro animal en línea", handleDrag }: LiveAnimalSearchProps) {
   const [query, setQuery] = useState(initialQuery);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [result, setResult] = useState<LiveAnimalResult | null>(null);
@@ -92,91 +94,11 @@ export function LiveAnimalSearch({ initialQuery = "", title = "Buscar otro anima
         </p>
       )}
 
-      {status === "success" && result && <ResultCard result={result} isCached={showingCached} />}
-    </div>
-  );
-}
-
-function ResultCard({ result, isCached }: { result: LiveAnimalResult; isCached: boolean }) {
-  return (
-    <div className="flex flex-col sm:flex-row gap-4 bg-sand rounded-3xl shadow-md ring-1 ring-black/5 overflow-hidden">
-      <div className="sm:w-1/3 shrink-0 bg-light-primary/10">
-        {result.image ? (
-          <img
-            src={result.image}
-            alt={result.scientificName}
-            className="w-full h-48 sm:h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-48 sm:h-full flex items-center justify-center text-dark-tertiary/50 text-sm">
-            Sin imagen disponible
-          </div>
-        )}
-      </div>
-      <div className="flex-1 p-4 sm:p-5 flex flex-col gap-2">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-[10px] uppercase tracking-wide font-semibold bg-leaf/15 text-leaf-dark px-2 py-1 rounded-full">
-            Resultado en línea
-          </span>
-          {isCached && (
-            <span className="text-[10px] uppercase tracking-wide font-semibold bg-dark-tertiary/10 text-dark-tertiary px-2 py-1 rounded-full">
-              Última búsqueda (caché)
-            </span>
-          )}
+      {status === "success" && result && (
+        <div className="max-w-xs">
+          <LiveAnimalCard result={result} handleDrag={handleDrag} />
         </div>
-        <h4 className="font-titles text-xl text-dark-tertiary">
-          {result.commonName ?? result.scientificName}
-        </h4>
-        <p className="text-sm italic text-shadow-50/70">{result.scientificName}</p>
-
-        {(result.phylum || result.class || result.order || result.family) && (
-          <p className="text-sm text-shadow-50/85">
-            {[result.phylum, result.class, result.order, result.family, result.genus]
-              .filter(Boolean)
-              .join(" · ")}
-          </p>
-        )}
-
-        {result.globalConservationStatus && (
-          <p className="text-sm">
-            <span className="font-semibold">Estado de conservación (global):</span>{" "}
-            {result.globalConservationStatus}
-            <span className="block text-xs text-shadow-50/60">
-              No es específico de Venezuela — solo las especies del Acuario tienen ese dato nacional.
-            </span>
-          </p>
-        )}
-
-        {result.description && (
-          <p className="text-sm text-shadow-50/85 leading-relaxed line-clamp-4">
-            {result.description}
-          </p>
-        )}
-
-        {result.observationsInVenezuela > 0 && (
-          <p className="text-xs text-leaf-dark">
-            📍 {result.observationsInVenezuela} avistamiento(s) registrados en Venezuela (iNaturalist)
-          </p>
-        )}
-
-        <div className="flex gap-3 mt-1 text-xs text-light-secondary">
-          {result.sources.gbif && (
-            <a href={result.sources.gbif} target="_blank" rel="noreferrer" className="hover:underline">
-              GBIF
-            </a>
-          )}
-          {result.sources.inaturalist && (
-            <a href={result.sources.inaturalist} target="_blank" rel="noreferrer" className="hover:underline">
-              iNaturalist
-            </a>
-          )}
-          {result.sources.wikipedia && (
-            <a href={result.sources.wikipedia} target="_blank" rel="noreferrer" className="hover:underline">
-              Wikipedia
-            </a>
-          )}
-        </div>
-      </div>
+      )}
     </div>
   );
 }

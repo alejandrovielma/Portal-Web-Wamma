@@ -88,7 +88,7 @@ export function Animals() {
           <p className="text-sm text-shadow-50/70 mb-3">
             No encontramos "{searchTerm}" en Wamma.
           </p>
-          <LiveAnimalSearch initialQuery={searchTerm} />
+          <LiveAnimalSearch initialQuery={searchTerm} handleDrag={handleEvent} />
         </div>
       )}
     </SelectPostItLayer>
