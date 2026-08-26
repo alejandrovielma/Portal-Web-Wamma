@@ -46,7 +46,7 @@ export function LiveLocationSearch({ onResult }: LiveLocationSearchProps) {
   }
 
   return (
-    <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1100] w-[92%] max-w-md flex flex-col gap-1">
+    <div className="absolute top-16 sm:top-24 left-1/2 -translate-x-1/2 z-[1100] w-[92%] max-w-md flex flex-col gap-1">
       <div className="flex gap-2 bg-sand/95 backdrop-blur-md rounded-full shadow-lg ring-1 ring-black/5 p-1.5">
         <input
           type="text"
