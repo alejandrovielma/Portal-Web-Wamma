@@ -15,6 +15,8 @@ import BookSVG from "#assets/BookSVG.tsx";
 import AudioSVG from "#assets/AudioSVG.tsx";
 import VideoSVG from "#assets/VideoSVG.tsx";
 import LiveBookSearch from "#components/LiveBookSearch.tsx";
+import LiveArticleSearch from "#components/LiveArticleSearch.tsx";
+import NewsSVG from "#assets/NewsSVG.tsx";
 
 export function Library() {
   const [isDragging, setIsDragging] = useState(false);
@@ -36,6 +38,18 @@ export function Library() {
               <span id="articles" className="grid gap-8 justify-between">
                 <LastArticles handleDrag={handleDrag} />
               </span>
+            </section>
+            <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
+              <span className="flex items-center gap-3">
+                <span className="text-leaf-dark shrink-0">
+                  <NewsSVG />
+                </span>
+                <h2 className="text-2xl font-titles">Busca más artículos</h2>
+              </span>
+              <p className="text-sm text-shadow-50/70">
+                Escribe un tema y encuentra artículos reales y actuales sobre él.
+              </p>
+              <LiveArticleSearch />
             </section>
             <Separator />
             <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
