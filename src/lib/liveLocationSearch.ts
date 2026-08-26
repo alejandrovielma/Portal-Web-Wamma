@@ -20,9 +20,37 @@ export interface LiveLocationResult {
   lng: number;
   type: string | null;
   osmUrl: string;
+  description: string | null;
+  images: string[];
+  city: string | null;
 }
 
 export class NetworkUnreachableError extends Error {}
+
+async function getWikipediaSummary(name: string): Promise<{ description: string | null; image: string | null }> {
+  // Nominatim no da descripcion ni fotos -- se complementa con Wikipedia,
+  // igual que se hizo con la busqueda de animales. Se prueba ES primero
+  // y si no hay articulo se intenta EN como respaldo.
+  for (const lang of ["es", "en"]) {
+    try {
+      const res = await fetch(
+        `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
+          name.replace(/ /g, "_")
+        )}`
+      );
+      if (!res.ok) continue;
+      const data = await res.json();
+      if (data.type === "disambiguation") continue;
+      return {
+        description: data.extract ?? null,
+        image: data.thumbnail?.source ?? data.originalimage?.source ?? null,
+      };
+    } catch {
+      continue;
+    }
+  }
+  return { description: null, image: null };
+}
 
 export async function searchLocationLive(query: string): Promise<LiveLocationResult> {
   const trimmed = query.trim();
@@ -49,14 +77,25 @@ export async function searchLocationLive(query: string): Promise<LiveLocationRes
     throw new Error(`No se encontró "${trimmed}" en Venezuela`);
   }
 
+  const name: string = place.name || place.display_name.split(",")[0];
+  const wiki = await getWikipediaSummary(name);
+
   const result: LiveLocationResult = {
     query: trimmed,
-    name: place.name || place.display_name.split(",")[0],
+    name,
     displayName: place.display_name,
     lat: parseFloat(place.lat),
     lng: parseFloat(place.lon),
     type: place.type ?? null,
     osmUrl: `https://www.openstreetmap.org/${place.osm_type}/${place.osm_id}`,
+    description: wiki.description,
+    images: wiki.image ? [wiki.image] : [],
+    city:
+      place.address?.city ??
+      place.address?.town ??
+      place.address?.municipality ??
+      place.address?.state ??
+      null,
   };
 
   cacheLastResult(result);

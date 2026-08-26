@@ -11,7 +11,7 @@ export interface RealatesDestination {
     content: PostItMapProps;
 }
 
-export function SliderMapInfo({ content, realates, handleDrag, onClose }: { content?: PostItMapProps; realates?: RealatesDestination[], handleDrag: (event: Event) => void, onClose: () => void }) {
+export function SliderMapInfo({ content, realates, handleDrag, onClose, isLiveResult }: { content?: PostItMapProps; realates?: RealatesDestination[], handleDrag: (event: Event) => void, onClose: () => void, isLiveResult?: boolean }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const asideRef = useRef<HTMLDivElement>(null);
 
@@ -45,8 +45,8 @@ export function SliderMapInfo({ content, realates, handleDrag, onClose }: { cont
                         <div className="p-4 h-full flex flex-col">
                             {
                                 !isExpanded
-                                    ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), onClose, handleDrag })
-                                    : OpenSlider({ content, onClose: () => setIsExpanded(false) })
+                                    ? CloseSlider({ content, realates, onOpen: () => setIsExpanded(true), onClose, handleDrag, isLiveResult })
+                                    : OpenSlider({ content, onClose: () => setIsExpanded(false), isLiveResult })
                             }
                         </div>
                     )
@@ -57,7 +57,7 @@ export function SliderMapInfo({ content, realates, handleDrag, onClose }: { cont
 }
 export default SliderMapInfo;
 
-function OpenSlider({ content, onClose }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void }) {
+function OpenSlider({ content, onClose, isLiveResult }: { content: PostItMapProps; realates?: RealatesDestination[], onClose: () => void, isLiveResult?: boolean }) {
     return (
         <div id="content" className="flex flex-col md:flex-row gap-6 md:gap-12">
             <div className="sticky top-0 -mx-4 px-4 py-2 z-10 bg-sand flex flex-col shadow-sm">
@@ -65,6 +65,11 @@ function OpenSlider({ content, onClose }: { content: PostItMapProps; realates?: 
             </div>
             <div className="flex flex-col md:flex-row gap-6 md:gap-12">
                 <section className="flex-1 flex flex-col gap-4">
+                    {isLiveResult && (
+                        <span className="w-fit text-[10px] uppercase tracking-wide font-semibold bg-leaf/15 text-leaf-dark px-2 py-1 rounded-full">
+                            Resultado en línea
+                        </span>
+                    )}
                     <h1 className="font-titles text-2xl sm:text-3xl text-dark-tertiary">{content.title}</h1>
                     <p>{content.description}</p>
                 </section>
@@ -85,7 +90,7 @@ function OpenSlider({ content, onClose }: { content: PostItMapProps; realates?: 
     )
 }
 
-function CloseSlider({ content, realates, onOpen, onClose, handleDrag }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, onClose: () => void, handleDrag: (event: Event) => void }) {
+function CloseSlider({ content, realates, onOpen, onClose, handleDrag, isLiveResult }: { content: PostItMapProps; realates?: RealatesDestination[], onOpen: () => void, onClose: () => void, handleDrag: (event: Event) => void, isLiveResult?: boolean }) {
     return (
         <div id="content" className="flex flex-col gap-4 h-full">
             <header className="sticky top-0 -mx-4 px-4 py-2 z-10 bg-sand flex justify-between items-center gap-2 sm:gap-4 shadow-sm">
@@ -95,6 +100,11 @@ function CloseSlider({ content, realates, onOpen, onClose, handleDrag }: { conte
             </header>
             <div className="flex flex-col gap-8 justify-between h-full">
                 <div className="flex flex-col gap-4">
+                    {isLiveResult && (
+                        <span className="w-fit text-[10px] uppercase tracking-wide font-semibold bg-leaf/15 text-leaf-dark px-2 py-1 rounded-full">
+                            Resultado en línea
+                        </span>
+                    )}
                     <UnitPostItMap key={content.title} postItProds={content} handleEvent={handleDrag}/>
                     <p>
                         {content?.description && content.description.length > 240
