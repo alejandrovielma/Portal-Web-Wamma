@@ -18,6 +18,15 @@ export function Animals() {
   const [backgroundImage, setBackgroundImage] = useState("/images/bg-mar.webp");
   const [isFading, setIsFading] = useState(false);
 
+  // En pantallas anchas el recorte de object-cover es mucho mas horizontal
+  // que en el celular (la caja pasa de ser vertical a rectangular ancha),
+  // asi que centrado (default) deja afuera cabeza/patas en algunas fotos
+  // -- estas posiciones se ajustaron a mano revisando cada foto recortada
+  // en ambos formatos.
+  const BACKGROUND_POSITIONS: Record<string, string> = {
+    "/images/bg-aves.webp": "center 10%",
+  };
+
   useEffect(() => {
     const results = animals.filter((animal) =>
       animal.content.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -52,6 +61,7 @@ export function Animals() {
       <div className="relative mt-14 sm:mt-20 w-full h-3/5 flex items-center justify-center">
         <img
           src={backgroundImage}
+          style={{ objectPosition: BACKGROUND_POSITIONS[backgroundImage] ?? "center" }}
           className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${isFading ? "opacity-0" : "opacity-100"}`}
         />
         <div className="relative z-10">
@@ -59,9 +69,9 @@ export function Animals() {
         </div>
       </div>
 
-      <span className="flex items-center justify-start gap-4 mt-8">
-        <SearchBar estilo="w-1/3" onSearch={setSearchTerm} />
-        <h2 className="text-xl">
+      <span className="flex flex-col sm:flex-row sm:items-center justify-start gap-2 sm:gap-4 mt-8 px-4 sm:px-0">
+        <SearchBar estilo="sm:w-1/3" onSearch={setSearchTerm} />
+        <h2 className="text-lg sm:text-xl">
           Filtrando por clase: <span className="font-semibold">{filteredClass}</span>
           {filteredClass && (
             <button onClick={resetFilter} className="ml-2 w-6 h-6 cursor-pointer">
@@ -76,7 +86,7 @@ export function Animals() {
       {searchTerm.trim() !== "" && filteredAnimals.length === 0 && (
         <div className="max-w-2xl mx-auto w-full px-4 pb-24">
           <p className="text-sm text-shadow-50/70 mb-3">
-            No encontramos "{searchTerm}" en el catálogo curado de Wamma.
+            No encontramos "{searchTerm}" en Wamma.
           </p>
           <LiveAnimalSearch initialQuery={searchTerm} />
         </div>

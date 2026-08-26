@@ -10,6 +10,10 @@ export function NavBubbleAnimals({ setfiltered, setBackgroundImage }: NavBubbleA
       info: "Los anfibios son vertebrados de 'doble vida'.",
       image: "/images/rana.jpg",
       class: "Amphibia",
+      // bg-anfibios.webp: foto de "portioid" en iNaturalist (CC BY 4.0)
+      // https://www.inaturalist.org/photos/622903407 -- se eligio porque
+      // el sapito queda bien encuadrado tanto en el recorte alto de
+      // mobile como en el recorte panoramico de escritorio.
       background: "/images/bg-anfibios.webp"
     },
     {

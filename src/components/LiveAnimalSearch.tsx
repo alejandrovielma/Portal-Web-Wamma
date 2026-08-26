@@ -142,7 +142,7 @@ function ResultCard({ result, isCached }: { result: LiveAnimalResult; isCached: 
             <span className="font-semibold">Estado de conservación (global):</span>{" "}
             {result.globalConservationStatus}
             <span className="block text-xs text-shadow-50/60">
-              No es específico de Venezuela — solo el catálogo curado del sitio tiene ese dato nacional.
+              No es específico de Venezuela — solo las especies del Acuario tienen ese dato nacional.
             </span>
           </p>
         )}
