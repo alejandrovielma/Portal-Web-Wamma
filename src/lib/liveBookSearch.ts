@@ -12,6 +12,7 @@ export interface LiveBookResult {
   coverUrl: string | null;
   openLibraryUrl: string;
   readUrl: string | null; // solo si hay una copia legible/prestable en Internet Archive
+  subjects: string[]; // temas del libro segun Open Library -- lo mas cercano a una descripcion que trae la busqueda
 }
 
 export class NetworkUnreachableError extends Error {}
@@ -103,6 +104,7 @@ export async function searchBooksLive(query: string): Promise<LiveBookResult[]> 
       (doc.ebook_access === "public" || doc.ebook_access === "borrowable") && doc.ia?.[0]
         ? `https://archive.org/details/${doc.ia[0]}`
         : null,
+    subjects: (doc.subject ?? []).slice(0, 4),
   }));
 
   cacheLastResults(trimmed, results);

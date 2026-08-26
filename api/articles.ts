@@ -33,6 +33,29 @@ function isRelevant(article: { title?: string; description?: string }): boolean 
     return mentionsVenezuela && mentionsWater;
 }
 
+// Algunos medios (sobre todo los mas chicos) no le mandan a Currents un
+// resumen del articulo puntual -- le mandan la descripcion generica del
+// sitio ("Ultimas noticias de Venezuela y el mundo..."), que Currents
+// repite tal cual para CADA articulo de ese medio. La señal de que una
+// descripcion es asi (generica, no del articulo) es que aparece
+// identica en mas de un articulo del mismo resultado -- una descripcion
+// real de un articulo especifico no se repite.
+function clearBoilerplateDescriptions(articles: any[]): any[] {
+    const counts = new Map<string, number>();
+    for (const article of articles) {
+        const desc = (article.description || "").trim();
+        if (!desc) continue;
+        counts.set(desc, (counts.get(desc) ?? 0) + 1);
+    }
+    return articles.map((article) => {
+        const desc = (article.description || "").trim();
+        if (desc && (counts.get(desc) ?? 0) > 1) {
+            return { ...article, description: "" };
+        }
+        return article;
+    });
+}
+
 async function fetchArticles(apiKey: string, keywords: string, pageSize: number) {
     const response = await fetch(
         `https://api.currentsapi.services/v1/search?keywords=${encodeURIComponent(keywords)}&language=es&page_size=${pageSize}`,
@@ -69,6 +92,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 }
             }
         }
+
+        relevant = clearBoilerplateDescriptions(relevant);
+        // Los que si tienen una descripcion real (no boilerplate) van primero.
+        relevant.sort((a, b) => (b.description ? 1 : 0) - (a.description ? 1 : 0));
 
         return res.status(200).json({ status: ok ? "ok" : "error", news: relevant.slice(0, 12) });
     } catch (error) {

@@ -92,7 +92,12 @@ export function LiveBookSearch({ handleDrag }: { handleDrag: (event: Event) => v
 }
 
 function BookCard({ book, handleDrag }: { book: LiveBookResult; handleDrag: (event: Event) => void }) {
-  const authorLine = `${book.authors.join(", ") || "Autor desconocido"}${book.year ? ` · ${book.year}` : ""}`;
+  const authorLine =
+    `${book.authors.join(", ") || "Autor desconocido"}${book.year ? ` · ${book.year}` : ""}` +
+    (book.readUrl ? " · Disponible para leer online." : "");
+  // Open Library no trae una sinopsis en la busqueda -- los temas del
+  // libro son lo mas parecido a una descripcion que hay disponible.
+  const subjectsLine = book.subjects.length > 0 ? `Temas: ${book.subjects.join(", ")}.` : null;
 
   return (
     <div className="w-full">
@@ -101,7 +106,7 @@ function BookCard({ book, handleDrag }: { book: LiveBookResult; handleDrag: (eve
         handleEvent={handleDrag}
         postItProds={{
           title: book.title,
-          content: [{ paragraphs: [authorLine + (book.readUrl ? " · Disponible para leer online." : "")] }],
+          content: [{ paragraphs: subjectsLine ? [authorLine, subjectsLine] : [authorLine] }],
           images: book.coverUrl ? [book.coverUrl] : [],
           sourceUrl: book.readUrl ?? book.openLibraryUrl,
         }}

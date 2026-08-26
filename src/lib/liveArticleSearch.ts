@@ -14,10 +14,23 @@ export interface LiveArticleResult {
   url: string;
   imageUrl: string | null;
   source: string | null;
-  publishedAt: string | null;
+  publishedDate: string | null; // ya formateada para mostrar (ej. "26 ago. 2026")
+  categories: string[];
 }
 
 export class NetworkUnreachableError extends Error {}
+
+function formatDate(published: string): string | null {
+  // Currents manda "YYYY-MM-DD HH:MM:SS +0000", que no es ISO 8601 valido
+  // tal cual (le falta la T y los ":" del offset) -- se normaliza antes de parsear.
+  const normalized = published
+    .trim()
+    .replace(" ", "T")
+    .replace(/\s?([+-]\d{2})(\d{2})$/, "$1:$2");
+  const date = new Date(normalized);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("es-VE", { day: "numeric", month: "short", year: "numeric" });
+}
 
 export async function searchArticlesLive(query: string): Promise<LiveArticleResult[]> {
   const trimmed = query.trim();
@@ -49,15 +62,19 @@ export async function searchArticlesLive(query: string): Promise<LiveArticleResu
   const orNull = (value: unknown) =>
     typeof value === "string" && value.trim() && value !== "None" ? value : null;
 
-  const results: LiveArticleResult[] = news.map((item) => ({
-    id: item.id,
-    title: item.title,
-    description: orNull(item.description),
-    url: item.url,
-    imageUrl: orNull(item.image),
-    source: orNull(item.author),
-    publishedAt: orNull(item.published),
-  }));
+  const results: LiveArticleResult[] = news.map((item) => {
+    const published = orNull(item.published);
+    return {
+      id: item.id,
+      title: item.title,
+      description: orNull(item.description),
+      url: item.url,
+      imageUrl: orNull(item.image),
+      source: orNull(item.author),
+      publishedDate: published ? formatDate(published) : null,
+      categories: Array.isArray(item.category) ? item.category.filter((c: string) => c && c !== "general") : [],
+    };
+  });
 
   cacheLastResults(trimmed, results);
   return results;
