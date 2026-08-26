@@ -55,7 +55,7 @@ export function Library() {
               <p className="text-sm text-shadow-50/70">
                 Escribe un tema o título y encuentra libros reales para seguir leyendo.
               </p>
-              <LiveBookSearch />
+              <LiveBookSearch handleDrag={handleDrag} />
             </section>
           </div>
         </div>

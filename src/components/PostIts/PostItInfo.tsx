@@ -31,9 +31,13 @@ export interface PostItInfoProps {
   content: PostItInfoContent[];
   video?: string;
   images: string[];
+  // Solo lo traen los resultados de busquedas en vivo (articulos/libros
+  // reales) -- un link a la fuente original, ya que el texto que se
+  // muestra aca es apenas un resumen.
+  sourceUrl?: string;
 }
 
-export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
+export function PostItInfo({ title, content, video, images, sourceUrl }: PostItInfoProps) {
   const embedVideo = toYouTubeEmbedUrl(video);
   const [isPopOpen, setIsPopOpen] = useState(false);
   const { widget } = useGridStackWidgetContext();
@@ -142,9 +146,22 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
                 <div className="px-6 sm:px-8 pb-8">
                   {/* Título principal del modal */}
                   {title && (
-                    <h2 className="font-titles text-3xl sm:text-4xl mb-6 text-center text-dark-tertiary">
+                    <h2 className="font-titles text-3xl sm:text-4xl mb-2 text-center text-dark-tertiary">
                       {title}
                     </h2>
+                  )}
+                  {sourceUrl && (
+                    <div className="text-center mb-6">
+                      <a
+                        href={sourceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-block text-sm font-semibold text-leaf-dark hover:underline"
+                      >
+                        Ver fuente original ↗
+                      </a>
+                    </div>
                   )}
                   <div className="flex flex-col md:flex-row gap-8">
                     {/* Sección de texto principal */}

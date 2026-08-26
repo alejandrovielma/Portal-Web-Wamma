@@ -6,9 +6,9 @@ import {
   LiveBookResult,
 } from "#lib/liveBookSearch.ts";
 import BookSVG from "#assets/BookSVG.tsx";
-import PostItShell from "#components/PostIts/PostItShell.tsx";
+import UnitPostItInfo from "#components/UnitPostItInfo.tsx";
 
-export function LiveBookSearch() {
+export function LiveBookSearch({ handleDrag }: { handleDrag: (event: Event) => void }) {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [results, setResults] = useState<LiveBookResult[]>([]);
@@ -81,9 +81,9 @@ export function LiveBookSearch() {
       )}
 
       {status === "success" && results.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {results.map((book) => (
-            <BookCard key={book.key} book={book} />
+            <BookCard key={book.key} book={book} handleDrag={handleDrag} />
           ))}
         </div>
       )}
@@ -91,36 +91,22 @@ export function LiveBookSearch() {
   );
 }
 
-function BookCard({ book }: { book: LiveBookResult }) {
+function BookCard({ book, handleDrag }: { book: LiveBookResult; handleDrag: (event: Event) => void }) {
+  const authorLine = `${book.authors.join(", ") || "Autor desconocido"}${book.year ? ` · ${book.year}` : ""}`;
+
   return (
-    <a
-      href={book.readUrl ?? book.openLibraryUrl}
-      target="_blank"
-      rel="noreferrer"
-      className="group block w-full aspect-[4/5] cursor-pointer hover:-translate-y-1 transition-transform"
-    >
-      <PostItShell>
-        <div className="w-full h-28 shrink-0 bg-black/5 flex items-center justify-center overflow-hidden">
-          {book.coverUrl ? (
-            <img src={book.coverUrl} alt={book.title} className="w-full h-full object-cover" />
-          ) : (
-            <span className="text-xs opacity-50 px-2 text-center">Sin portada</span>
-          )}
-        </div>
-        <div className="px-3 py-2 flex flex-col gap-1 flex-1 min-h-0">
-          <h4 className="font-titles text-sm line-clamp-2">{book.title}</h4>
-          <p className="text-xs opacity-70 line-clamp-1">
-            {book.authors.join(", ") || "Autor desconocido"}
-            {book.year ? ` · ${book.year}` : ""}
-          </p>
-          {book.readUrl && (
-            <span className="text-[10px] uppercase tracking-wide font-semibold text-leaf-dark mt-auto pt-1">
-              Disponible para leer
-            </span>
-          )}
-        </div>
-      </PostItShell>
-    </a>
+    <div className="w-full">
+      <UnitPostItInfo
+        dimensions={{ w: 2, h: 3 }}
+        handleEvent={handleDrag}
+        postItProds={{
+          title: book.title,
+          content: [{ paragraphs: [authorLine + (book.readUrl ? " · Disponible para leer online." : "")] }],
+          images: book.coverUrl ? [book.coverUrl] : [],
+          sourceUrl: book.readUrl ?? book.openLibraryUrl,
+        }}
+      />
+    </div>
   );
 }
 

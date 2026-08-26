@@ -7,14 +7,19 @@ import {COMPONENT_MAP} from "#lib/gridStackLib/index.ts";
 interface UnitPostItProps {
     postItProds: PostItInfoProps;
     handleEvent: (event: Event) => void;
+    // Un widget mas alto (h>2) hace que PostItInfo muestre titulo y
+    // descripcion (ContentMedium) en vez de solo la imagen (ContentSmall)
+    // -- se usa para las tarjetas de busqueda en vivo, donde hace falta
+    // ver el titulo sin tener que abrir el postit.
+    dimensions?: { w: number; h: number };
 }
 
 
 
-export function UnitPostItInfo({ postItProds, handleEvent }: UnitPostItProps) {
+export function UnitPostItInfo({ postItProds, handleEvent, dimensions = { w: 2, h: 2 } }: UnitPostItProps) {
     const [gridOptions] = useState<GridStackOptions>({
-        column: 2,
-        row: 2,
+        column: dimensions.w,
+        row: dimensions.h,
         disableResize: true,
         margin: 0,
         children: [
@@ -22,8 +27,8 @@ export function UnitPostItInfo({ postItProds, handleEvent }: UnitPostItProps) {
                 // Ver comentario en UnitPostItMap.tsx: un id fijo colisiona
                 // en el grid de Inicio en cuanto arrastras dos postits.
                 id: `unit-postit-info-${Math.random().toString(36).slice(2, 11)}`,
-                h: 2,
-                w: 2,
+                h: dimensions.h,
+                w: dimensions.w,
                 x: 0,
                 y: 0,
                 content: JSON.stringify({
