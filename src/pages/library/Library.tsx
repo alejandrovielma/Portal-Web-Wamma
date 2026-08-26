@@ -15,6 +15,7 @@ import BookSVG from "#assets/BookSVG.tsx";
 import AudioSVG from "#assets/AudioSVG.tsx";
 import VideoSVG from "#assets/VideoSVG.tsx";
 import LiveAnimalSearch from "#components/LiveAnimalSearch.tsx";
+import LiveBookSearch from "#components/LiveBookSearch.tsx";
 
 export function Library() {
   const [isDragging, setIsDragging] = useState(false);
@@ -43,6 +44,15 @@ export function Library() {
                 Descubre mas sobre la cultura del agua
               </h2>
               <LastWorks handleDrag={handleDrag} />
+            </section>
+            <Separator />
+            <section className="w-full flex flex-col gap-4 max-w-6xl px-4">
+              <h2 className="text-2xl">Busca más libros</h2>
+              <p className="text-sm text-shadow-50/70">
+                Encuentra libros reales sobre cualquier tema en Open Library, para complementar
+                lo que ya tenemos curado arriba.
+              </p>
+              <LiveBookSearch />
             </section>
             <Separator />
             <section className="w-full flex flex-col gap-4 max-w-2xl px-4 pb-16">
