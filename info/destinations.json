@@ -39,7 +39,7 @@
     "type": "tourism",
     "title": "Parque Nacional Serranía La Neblina",
     "description": "La Serranía La Neblina es el tepuy más alto en la Tierra. El relieve está cortado por profundos valles. Este masivo tepuy está en efecto cortado en dos por el Cañón Grande del río Baría, uno de los cañones más profundos del mundo.",
-    "images": ["destinations/serrania.jpg", "destinations/serrania.jpg", "destinations/serrania3.jpg", "destinations/serrania4.jpg"],
+    "images": ["destinations/serrania.jpg", "destinations/serrania2.jpg", "destinations/serrania3.jpg", "destinations/serrania4.jpg"],
     "video": "https://www.youtube.com/embed/zdhVvZTMczI",
     "coordinates": {
       "lat": 1.2450608459065895,
