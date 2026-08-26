@@ -1,8 +1,7 @@
 import React, { ComponentProps, createContext, useContext, useState } from "react";
 import { GridStackWidget } from "gridstack";
 import { ComponentDataType } from "./grid-stack-render";
-import PostItInfo from "#components/PostIts/PostItInfo.tsx";
-import { getAllAnimals, getAllDestinations, getLastArticles, getLastProjects } from "../../data/dataBase/repository";
+import { getAllDestinations } from "../../data/dataBase/repository";
 import { WIDGETS_STORAGE_KEY } from "../../global";
 import PostItMap from "#components/PostIts/PostItMap.tsx";
 
@@ -23,59 +22,14 @@ export function GridStackGlobalWidgetProvider({ children }: { children: React.Re
       }
     }
 
-    const articles = getLastArticles(1);
-    const projects = getLastProjects(2)
-    const animals = getAllAnimals().slice(0,3);
     const destination = getAllDestinations().slice(0, 1);
     const defaultWidgets: GridStackWidget[] = [
-      ...articles.map((article, index) => ({
-        id: `articleDefault${index}`,
-        x: 11,
-        y: 0,
-        w: 5,
-        h: 5,
-        content: JSON.stringify({
-          name: "PostItInfo",
-          props: {
-            ...article
-          },
-        } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
-      })),
-
-      ...animals.map((animal, index) => ({
-        id: `animalDefault${index}`,
-        x: 0,
-        y: 5 + 3 * index, 
-        w: 3,
-        h: 3,
-        content: JSON.stringify({
-          name: "PostItInfo",
-          props: {
-            ...animal.content
-          },
-        } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
-      })),
-
-      ...projects.map((project, index) => ({
-        id: `projectDefault${index}`,
-        x: 12 ,
-        y: 5 + index* 3, 
-        w: 4,
-        h: 3,
-        content: JSON.stringify({
-          name: "PostItInfo",
-          props: {
-            ...project
-          },
-        } satisfies ComponentDataType<ComponentProps<typeof PostItInfo>>),
-      })),
-
       ...destination.map((dest, index) => ({
         id: `destinationDefault${index}`,
-        x: 0,
-        y: 0,
-        w: 7,
-        h: 5,
+        x: 4,
+        y: 1,
+        w: 8,
+        h: 6,
         content: JSON.stringify({
           name: "PostItMap",
           props: {
