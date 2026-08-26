@@ -15,7 +15,7 @@
         ]
       }
     ],
-    "video": "https://www.youtube.com/watch?v=EjemploVideo1",
+    "video": "",
     "images": ["projects/fuentehidrica.webp"]
   },
   {
@@ -34,7 +34,7 @@
         ]
       }
     ],
-    "video": "https://www.youtube.com/watch?v=EjemploVideo2",
+    "video": "",
     "images": ["projects/comunidades_indi.jpeg"]
   },
   {
@@ -53,7 +53,7 @@
         ]
       }
     ],
-    "video": "https://www.youtube.com/watch?v=EjemploVideo3",
+    "video": "https://www.youtube.com/embed/ced1JVZnrss",
     "images": ["projects/captacion.png"]
   }
 ]

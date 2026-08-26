@@ -11,6 +11,21 @@ export interface PostItInfoContent {
   paragraphs: string[];
 }
 
+// Normaliza cualquier link de YouTube (watch?v=, youtu.be/, o ya en
+// formato embed) al formato /embed/ID que un <iframe> si puede
+// reproducir -- un link watch?v=... simplemente no carga dentro de un
+// iframe (YouTube lo bloquea). De paso, si el "video" es un placeholder
+// invalido (ej. "EjemploVideo1") no matchea un ID real de YouTube
+// (siempre 11 caracteres) y devuelve null, ocultando el reproductor
+// en vez de mostrar un iframe roto.
+function toYouTubeEmbedUrl(video?: string): string | null {
+  if (!video) return null;
+  const match = video.match(
+    /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/
+  );
+  return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+}
+
 export interface PostItInfoProps {
   title: string;
   content: PostItInfoContent[];
@@ -19,6 +34,7 @@ export interface PostItInfoProps {
 }
 
 export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
+  const embedVideo = toYouTubeEmbedUrl(video);
   const [isPopOpen, setIsPopOpen] = useState(false);
   const { widget } = useGridStackWidgetContext();
   const { saveOptions, gridStack } = useGridStackContext();
@@ -162,9 +178,9 @@ export function PostItInfo({ title, content, video, images }: PostItInfoProps) {
                               className="w-full rounded-2xl shadow-md ring-1 ring-black/5"
                             />
                           ))}
-                      {video && (
+                      {embedVideo && (
                         <iframe
-                          src={video}
+                          src={embedVideo}
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
                           className="w-full h-64 rounded-2xl shadow-md ring-1 ring-black/5"

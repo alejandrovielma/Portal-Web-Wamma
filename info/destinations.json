@@ -4,7 +4,7 @@
     "title": "Parque Nacional La Llovizna",
     "description": "Este magnífico sitio conforma una de las paradas obligadas de cualquiera que visite la ciudad. Con una extensión de aproximadamente 165 hectáreas, este hermoso lugar posee una de las caídas de agua más vistosas de la cuenca del río Caroní como es el Salto La Llovizna.",
     "images": ["destinations/llovizna.jpg","destinations/llovizna2.jpg","destinations/llovizna3.jpg","destinations/llovizna4.jpg"],
-    "video": "https://www.youtube.com/watch?v=8v0g1q2X4aA",
+    "video": "https://www.youtube.com/embed/9JVY5gfIvu4",
     "coordinates": {
       "lat": 8.331261124576413,
       "lng": -62.67203178486292
@@ -16,7 +16,7 @@
     "title": "Parque Nacional Cachamay",
     "description": "En él encontramos una impresionante caída de agua de 800 metros de ancho a la que el parque debe su nombre, con una vegetación tan impactante como la del parque La Llovizna, rápidos conformados por la parte baja del río Caroní y los hermosos parajes que rodean el espectáculo natural que es la cascada.",
     "images": ["destinations/cachamay.jpg", "destinations/cachamay2.jpg", "destinations/cachamay3.jpg", "destinations/cachamay4.jpg"],
-    "video": "https://www.youtube.com/watch?v=8v0g1q2X4aA",
+    "video": "https://www.youtube.com/embed/jW-BGXU5Ci4",
     "coordinates": {
       "lat": 8.306899790006497, 
       "lng": -62.70178288057335
@@ -28,7 +28,7 @@
     "title": "Parque zoológico Löfling",
     "description": "Es un jardín zoológico de propiedad pública ubicado al suroeste del Parque Cachamay.",
     "images": ["destinations/lofling.jpg", "destinations/lofling2.jpg", "destinations/lofling3.jpg", "destinations/lofling4.jpg"],
-    "video": "https://www.youtube.com/watch?v=8v0g1q2X4aA",
+    "video": "",
     "coordinates": {
       "lat": 8.293042074804443,
       "lng": -62.70590411769142
@@ -40,7 +40,7 @@
     "title": "Parque Nacional Serranía La Neblina",
     "description": "La Serranía La Neblina es el tepuy más alto en la Tierra. El relieve está cortado por profundos valles. Este masivo tepuy está en efecto cortado en dos por el Cañón Grande del río Baría, uno de los cañones más profundos del mundo.",
     "images": ["destinations/serrania.jpg", "destinations/serrania.jpg", "destinations/serrania3.jpg", "destinations/serrania4.jpg"],
-    "video": "https://www.youtube.com/watch?v=8v0g1q2X4aA",
+    "video": "https://www.youtube.com/embed/zdhVvZTMczI",
     "coordinates": {
       "lat": 1.2450608459065895,
       "lng": -65.66589971956282
@@ -52,7 +52,7 @@
     "title": "Parque Nacional Canaima",
     "description": "Se extiende sobre 30 000 km² hasta la frontera con Guyana y Brasil, por su tamaño es considerado el decimoquinto parque nacional más grande del mundo.",
     "images": ["destinations/canaima.jpg", "destinations/canaima2.jpg", "destinations/canaima3.jpg", "destinations/canaima4.jpg"],
-    "video": "https://www.youtube.com/watch?v=8v0g1q2X4aA",
+    "video": "https://www.youtube.com/embed/lbvPkWW5CUE",
     "coordinates": {
       "lat": 5.500652935445389, 
       "lng": -62.00002189380594
@@ -69,7 +69,7 @@
       "destinations/piedra_elefante3.jpg",
       "destinations/piedra_elefante4.jpg"
     ],
-    "video": "https://www.youtube.com/watch?v=1EhXHJZeqr8",
+    "video": "https://www.youtube.com/embed/inBM9NvsvMQ",
     "coordinates": {
       "lat": 8.123456,
       "lng": -62.987654
